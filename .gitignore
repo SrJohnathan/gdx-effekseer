@@ -1,0 +1,7 @@
+/cmake-linux/
+/cmake-build/
+/.gradle/
+/.idea/
+/build/
+
+/gradle.properties

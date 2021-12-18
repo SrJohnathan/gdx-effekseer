@@ -1,0 +1,119 @@
+plugins {
+    id 'java-library'
+    id 'maven-publish'
+    id 'signing'
+}
+
+
+group 'org.johnathan.gdx.effekseer'
+version '1.0-SNAPSHOT'
+
+repositories {
+    mavenCentral()
+    maven { url "https://oss.sonatype.org/content/repositories/snapshots/" }
+}
+
+dependencies {
+    testCompile group: 'junit', name: 'junit', version: '4.12'
+    implementation "com.badlogicgames.gdx:gdx:1.10.0"
+}
+
+
+def coreWrapperDir=new File("${projectDir}/src/main/java/org/johnathan/gdx/effekseer")
+task createCoreWrapperDir{
+    coreWrapperDir.mkdirs()
+}
+
+
+task runSwig(type:Exec, dependsOn:['createCoreWrapperDir']){
+    commandLine 'swig'
+    args '-c++', '-java', '-package', 'org.johnathan.gdx.effekseer', '-outdir', coreWrapperDir.absolutePath, '-o',"${projectDir}/cpp/dll.cpp", "${projectDir}/jni/st.i"
+}
+
+
+jar {
+    from fileTree("libs").files
+
+}
+
+
+
+
+def cmakepathDir=new File("${projectDir}/cmake-build")
+task createCmakepathDirDir{
+    cmakepathDir.mkdirs()
+}
+
+task configureLibs(type:Exec,dependsOn:['createCmakepathDirDir']){
+    commandLine 'cmake'
+    args '-D' ,'BUILD_DX12=OFF', '-D', 'BUILD_EXAMPLES=OFF', '-B' , cmakepathDir.absolutePath
+}
+
+task buildLibs(type:Exec,dependsOn:['configureLibs','runSwig','jar']){
+    commandLine 'cmake'
+    args  '--build', cmakepathDir.absolutePath, '--config', 'Release'
+
+}
+
+task buildL(type:Exec,dependsOn:[]){
+    commandLine 'cmake'
+    args  '--build', cmakepathDir.absolutePath, '--config', 'Release'
+
+}
+
+
+task sourceJar(type: Jar) {
+    from sourceSets.main.allJava
+}
+
+publishing {
+
+
+    publications {
+        mavenJava(MavenPublication) {
+            groupId project.group
+            artifactId project.name
+            version project.version
+            from components.java
+
+            pom {
+                name = "gdx-effekseer"
+                description = "Dedicated library for using Effekseer particle tools in libGDX"
+                url = "https://github.com/SrJohnathan/gdx-effekseer"
+                licenses {
+                    license {
+                        name = "The Apache License, Version 2.0"
+                        url = "http://www.apache.org/licenses/LICENSE-2.0.txt"
+                    }
+                }
+                developers {
+                    developer {
+                        id = "john"
+                        name = "Antonio Johnathan"
+                        email = "johnathan.stark42@gmail.com"
+                    }
+                }
+                scm {
+                    connection = "scm:git@github.com:SrJohnathan/gdx-effekseer.git"
+                    developerConnection = "scm:git@github.com:SrJohnathan/gdx-effekseer.git"
+                    url = "scm:git@github.com:SrJohnathan/gdx-effekseer.git"
+                }
+            }
+
+        }
+    }
+    repositories {
+        maven {
+            name = "gdx-effekseer"
+            url = "https://s01.oss.sonatype.org/service/local/staging/deploy/maven2/"
+            credentials {
+                username = System.getenv("MAVEN_USERNAME")
+                password = System.getenv("MAVEN_PASSWORD")
+            }
+        }
+    }
+}
+
+signing {
+    sign publishing.publications.mavenJava
+}
