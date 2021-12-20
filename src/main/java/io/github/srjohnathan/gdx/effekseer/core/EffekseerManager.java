@@ -1,4 +1,4 @@
-package io.github.srjohnathan.core;
+package io.github.srjohnathan.gdx.effekseer.core;
 
 import com.badlogic.gdx.Application;
 import com.badlogic.gdx.Gdx;
@@ -23,13 +23,13 @@ public class EffekseerManager implements Disposable {
     private ModelBuilder mb;
     protected ModelBatch modelBatch;
 
-    public static void InitializeEffekseer() {
+  /*  public static void InitializeEffekseer() {
         try {
             System.loadLibrary("src");
         } catch (Error | Exception exception) {
             exception.printStackTrace();
         }
-    }
+    }  */
 
 
     public EffekseerManager(Camera camera,EffekseerCore.TypeOpenGL core) {

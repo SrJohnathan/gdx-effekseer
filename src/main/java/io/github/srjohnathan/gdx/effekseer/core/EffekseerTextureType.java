@@ -6,11 +6,12 @@
  * the SWIG interface file instead.
  * ----------------------------------------------------------------------------- */
 
-package io.github.srjohnathan.core;
+package io.github.srjohnathan.gdx.effekseer.core;
 
-public final class EffekseerCoreDeviceType {
-  public final static EffekseerCoreDeviceType Unknown = new EffekseerCoreDeviceType("Unknown");
-  public final static EffekseerCoreDeviceType OpenGL = new EffekseerCoreDeviceType("OpenGL");
+public final class EffekseerTextureType {
+  public final static EffekseerTextureType Color = new EffekseerTextureType("Color");
+  public final static EffekseerTextureType Normal = new EffekseerTextureType("Normal");
+  public final static EffekseerTextureType Distortion = new EffekseerTextureType("Distortion");
 
   public final int swigValue() {
     return swigValue;
@@ -20,33 +21,33 @@ public final class EffekseerCoreDeviceType {
     return swigName;
   }
 
-  public static EffekseerCoreDeviceType swigToEnum(int swigValue) {
+  public static EffekseerTextureType swigToEnum(int swigValue) {
     if (swigValue < swigValues.length && swigValue >= 0 && swigValues[swigValue].swigValue == swigValue)
       return swigValues[swigValue];
     for (int i = 0; i < swigValues.length; i++)
       if (swigValues[i].swigValue == swigValue)
         return swigValues[i];
-    throw new IllegalArgumentException("No enum " + EffekseerCoreDeviceType.class + " with value " + swigValue);
+    throw new IllegalArgumentException("No enum " + EffekseerTextureType.class + " with value " + swigValue);
   }
 
-  private EffekseerCoreDeviceType(String swigName) {
+  private EffekseerTextureType(String swigName) {
     this.swigName = swigName;
     this.swigValue = swigNext++;
   }
 
-  private EffekseerCoreDeviceType(String swigName, int swigValue) {
+  private EffekseerTextureType(String swigName, int swigValue) {
     this.swigName = swigName;
     this.swigValue = swigValue;
     swigNext = swigValue+1;
   }
 
-  private EffekseerCoreDeviceType(String swigName, EffekseerCoreDeviceType swigEnum) {
+  private EffekseerTextureType(String swigName, EffekseerTextureType swigEnum) {
     this.swigName = swigName;
     this.swigValue = swigEnum.swigValue;
     swigNext = this.swigValue+1;
   }
 
-  private static EffekseerCoreDeviceType[] swigValues = { Unknown, OpenGL };
+  private static EffekseerTextureType[] swigValues = { Color, Normal, Distortion };
   private static int swigNext = 0;
   private final int swigValue;
   private final String swigName;

@@ -8,6 +8,8 @@ plugins {
 group 'io.github.srjohnathan'
 version '1.0-SNAPSHOT'
 
+def  isReleaseVersion = !version.endsWith("SNAPSHOT")
+
 repositories {
     mavenCentral()
     maven { url "https://oss.sonatype.org/content/repositories/snapshots/" }
@@ -19,7 +21,7 @@ dependencies {
 }
 
 
-def coreWrapperDir=new File("${projectDir}/src/main/java/io/github/srjohnathan/core")
+def coreWrapperDir=new File("${projectDir}/src/main/java/io/github/srjohnathan/gdx/effekseer/core")
 task createCoreWrapperDir{
     coreWrapperDir.mkdirs()
 }
@@ -28,16 +30,20 @@ task createCoreWrapperDir{
 
 task runSwig(type:Exec, dependsOn:['createCoreWrapperDir']){
     commandLine 'swig'
-    args '-c++', '-java', '-package', 'io.github.srjohnathan.core', '-outdir', coreWrapperDir.absolutePath, '-o',"${projectDir}/cpp/dll.cpp", "${projectDir}/jni/st.i"
+    args '-c++', '-java', '-package', 'io.github.srjohnathan.gdx.effekseer.core', '-outdir', coreWrapperDir.absolutePath, '-o',"${projectDir}/cpp/dll.cpp", "${projectDir}/jni/st.i"
+}
+
+jar.dependsOn runSwig
+
+def cmakepathDir
+if (org.gradle.internal.os.OperatingSystem.current().isLinux()) {
+    cmakepathDir=new File("${projectDir}/cmake-linux")
+} else {
+    cmakepathDir=new File("${projectDir}/cmake-build")
 }
 
 
 
-
-
-
-
-def cmakepathDir=new File("${projectDir}/cmake-build")
 task createCmakepathDirDir{
     cmakepathDir.mkdirs()
 }
@@ -47,7 +53,7 @@ task configureLibs(type:Exec,dependsOn:['createCmakepathDirDir']){
     args '-D' ,'BUILD_DX12=OFF', '-D', 'BUILD_EXAMPLES=OFF', '-B' , cmakepathDir.absolutePath
 }
 
-task buildLibs(type:Exec,dependsOn:['configureLibs','runSwig','jar']){
+task buildLibs(type:Exec,dependsOn:['configureLibs','jar']){
     commandLine 'cmake'
     args  '--build', cmakepathDir.absolutePath, '--config', 'Release'
 
@@ -115,7 +121,7 @@ publishing {
     }
 }
 
-ext.isReleaseVersion = !version.endsWith("SNAPSHOT")
+
 
 signing {
     sign publishing.publications.mavenJava

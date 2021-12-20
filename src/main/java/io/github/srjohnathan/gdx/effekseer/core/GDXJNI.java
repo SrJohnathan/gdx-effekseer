@@ -6,7 +6,7 @@
  * the SWIG interface file instead.
  * ----------------------------------------------------------------------------- */
 
-package io.github.srjohnathan.core;
+package io.github.srjohnathan.gdx.effekseer.core;
 
 public class GDXJNI {
   public final static native long new_VectorFloat__SWIG_0();

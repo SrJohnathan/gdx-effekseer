@@ -1,4 +1,4 @@
-package io.github.srjohnathan.core;
+package io.github.srjohnathan.gdx.effekseer.core;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.files.FileHandle;

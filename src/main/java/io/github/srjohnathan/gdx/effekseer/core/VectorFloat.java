@@ -6,7 +6,7 @@
  * the SWIG interface file instead.
  * ----------------------------------------------------------------------------- */
 
-package io.github.srjohnathan.core;
+package io.github.srjohnathan.gdx.effekseer.core;
 
 public class VectorFloat extends java.util.AbstractList<Float> implements java.util.RandomAccess {
   private transient long swigCPtr;

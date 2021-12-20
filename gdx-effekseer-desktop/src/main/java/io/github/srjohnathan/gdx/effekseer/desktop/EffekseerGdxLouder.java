@@ -8,13 +8,16 @@ import java.io.IOException;
         {
             try {
                 if (OsCheck.getOperatingSystemType() == OsCheck.OSType.Windows) {
-                    NativeUtils.loadLibraryFromJar("/resources/src.dll");
+                    NativeUtils.loadLibraryFromJar("/src.dll");
                 } else {
-                    NativeUtils.loadLibraryFromJar("/resources/libsrc.so");
+                    NativeUtils.loadLibraryFromJar("/libsrc.so");
                 }
             } catch (IOException e) {
                 e.printStackTrace();
             }
+
+
+
         }
     }
 }
