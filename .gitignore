@@ -3,5 +3,5 @@
 /.gradle/
 /.idea/
 /build/
-
 /gradle.properties
+/gdx-effekseer-desktop/build/

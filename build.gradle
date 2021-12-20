@@ -5,7 +5,7 @@ plugins {
 }
 
 
-group 'org.johnathan.gdx.effekseer'
+group 'io.github.srjohnathan'
 version '1.0-SNAPSHOT'
 
 repositories {
@@ -19,22 +19,20 @@ dependencies {
 }
 
 
-def coreWrapperDir=new File("${projectDir}/src/main/java/org/johnathan/gdx/effekseer")
+def coreWrapperDir=new File("${projectDir}/src/main/java/io/github/srjohnathan/core")
 task createCoreWrapperDir{
     coreWrapperDir.mkdirs()
 }
 
 
+
 task runSwig(type:Exec, dependsOn:['createCoreWrapperDir']){
     commandLine 'swig'
-    args '-c++', '-java', '-package', 'org.johnathan.gdx.effekseer', '-outdir', coreWrapperDir.absolutePath, '-o',"${projectDir}/cpp/dll.cpp", "${projectDir}/jni/st.i"
+    args '-c++', '-java', '-package', 'io.github.srjohnathan.core', '-outdir', coreWrapperDir.absolutePath, '-o',"${projectDir}/cpp/dll.cpp", "${projectDir}/jni/st.i"
 }
 
 
-jar {
-    from fileTree("libs").files
 
-}
 
 
 
@@ -61,20 +59,18 @@ task buildL(type:Exec,dependsOn:[]){
 
 }
 
-
-task sourceJar(type: Jar) {
-    from sourceSets.main.allJava
+java {
+    withJavadocJar()
+    withSourcesJar()
 }
-
 publishing {
-
-
     publications {
         mavenJava(MavenPublication) {
             groupId project.group
             artifactId project.name
             version project.version
             from components.java
+
 
             pom {
                 name = "gdx-effekseer"
@@ -88,7 +84,7 @@ publishing {
                 }
                 developers {
                     developer {
-                        id = "john"
+                        id = "johnathan.stark42"
                         name = "Antonio Johnathan"
                         email = "johnathan.stark42@gmail.com"
                     }
@@ -96,7 +92,7 @@ publishing {
                 scm {
                     connection = "scm:git@github.com:SrJohnathan/gdx-effekseer.git"
                     developerConnection = "scm:git@github.com:SrJohnathan/gdx-effekseer.git"
-                    url = "scm:git@github.com:SrJohnathan/gdx-effekseer.git"
+                    url = "https://github.com/SrJohnathan/gdx-effekseer"
                 }
             }
 
@@ -105,15 +101,25 @@ publishing {
     repositories {
         maven {
             name = "gdx-effekseer"
-            url = "https://s01.oss.sonatype.org/service/local/staging/deploy/maven2/"
+
+            def releaseRepo = "https://s01.oss.sonatype.org/service/local/staging/deploy/maven2/"
+            def snapshotRepo = "https://s01.oss.sonatype.org/content/repositories/snapshots/"
+            url = isReleaseVersion ? releaseRepo : snapshotRepo
+
+            //url = "https://s01.oss.sonatype.org/service/local/staging/deploy/maven2/"
             credentials {
-                username = System.getenv("MAVEN_USERNAME")
-                password = System.getenv("MAVEN_PASSWORD")
+                username = findProperty("MAVEN_USERNAME")
+                password = findProperty("MAVEN_PASSWORD")
             }
         }
     }
 }
 
+ext.isReleaseVersion = !version.endsWith("SNAPSHOT")
+
 signing {
     sign publishing.publications.mavenJava
+}
+tasks.withType(Sign) {
+    onlyIf { isReleaseVersion }
 }
