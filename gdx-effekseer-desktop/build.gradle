@@ -9,6 +9,7 @@ plugins {
 group 'io.github.srjohnathan'
 version rootProject.version
 
+def  isReleaseVersion = !version.endsWith("SNAPSHOT")
 
 
 repositories {
@@ -84,8 +85,9 @@ publishing {
     repositories {
         maven {
             name = "gdx-effekseer-desktop"
-            url = "https://s01.oss.sonatype.org/content/repositories/snapshots/"
-            //url = "https://s01.oss.sonatype.org/service/local/staging/deploy/maven2/"
+            def releaseRepo = "https://s01.oss.sonatype.org/service/local/staging/deploy/maven2/"
+            def snapshotRepo = "https://s01.oss.sonatype.org/content/repositories/snapshots/"
+            url = isReleaseVersion ? releaseRepo : snapshotRepo
             credentials {
                 username = findProperty("MAVEN_USERNAME")
                 password = findProperty("MAVEN_PASSWORD")
@@ -96,4 +98,8 @@ publishing {
 
 signing {
     sign publishing.publications.mavenJava
+}
+
+tasks.withType(Sign) {
+    onlyIf { isReleaseVersion }
 }

@@ -1,4 +1,4 @@
-cmake_minimum_required(VERSION 3.15)
+cmake_minimum_required(VERSION 3.16)
 
 set(CMAKE_POSITION_INDEPENDENT_CODE ON)
 
@@ -22,6 +22,11 @@ endif()
 
 if(UNIX AND NOT APPLE)
   set(CMAKE_SHARED_LINKER_FLAGS "${CMAKE_SHARED_LINKER_FLAGS} -Wl,--start-group ")
+endif()
+
+if( ANDROID )
+  set(CMAKE_SHARED_LINKER_FLAGS "${CMAKE_SHARED_LINKER_FLAGS} -Wl,--start-group ")
+
 endif()
 
 add_subdirectory(cpp)

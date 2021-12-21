@@ -34,7 +34,15 @@ public:
 
         glGenTextures(1, &texture);
         glBindTexture(GL_TEXTURE_2D, texture);
+
+#if defined(__linux__)
+        glTexImage2D(GL_TEXTURE_2D, 0,  GL_RGBA,width_, height_, 0, GL_RGBA, GL_UNSIGNED_BYTE, 0);
+
+#else
         glTexImage2D(GL_TEXTURE_2D, 0,  GL_RGBA8,width_, height_, 0, GL_RGBA, GL_UNSIGNED_BYTE, 0);
+
+#endif
+
         glBindTexture(GL_TEXTURE_2D, 0);
 
 
