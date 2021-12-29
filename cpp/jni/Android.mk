@@ -7,8 +7,8 @@ LOCAL_PATH:=$(call my-dir)
 LOCAL_ARM_MODE  := arm
 LOCAL_PATH      := $(NDK_PROJECT_PATH)
 LOCAL_MODULE    := libgdx
-LOCAL_CFLAGS    := -O2 -D__EFFEKSEER_RENDERER_GLES3__ -D__EFFEKSEER_RENDERER_INTERNAL_LOADER__ -std=c++14
-LOCAL_LDLIBS    :=  -landroid -lEGL -lGLESv3 
+LOCAL_CFLAGS    := -O2 -D__EFFEKSEER_RENDERER_GLES2__ -D__EFFEKSEER_RENDERER_INTERNAL_LOADER__ -std=c++14
+LOCAL_LDLIBS    :=  -llog -landroid -lEGL -lGLESv2 
 
 
 
@@ -24,7 +24,6 @@ LOCAL_SRC_FILES := \
 	$(LOCAL_PATH)/lib/EffekseerBackendCore.cpp \
 	$(LOCAL_PATH)/lib/EffekseerEffectCore.cpp \
 	$(LOCAL_PATH)/lib/EffekseerManagerCore.cpp \
-	#$(LOCAL_PATH)/lib/effekseernode.cpp \
 	$(LOCAL_PATH)/lib/Vector4Map.cpp \
 	$(LOCAL_PATH)/lib/distotion.cpp \
 	

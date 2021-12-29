@@ -3,10 +3,9 @@
 #include "EffekseerManagerCore.h"
 #include "EffekseerRendererGL.h"
 #include "Effekseer.h"
-#include "distotion.h"
 #include <assert.h>
-#include "Vector4Map.h"
 #include <iostream>
+#include "distotion.h"
 
 
 #if   defined(__EFFEKSEER_RENDERER_GLES2__)
@@ -39,11 +38,7 @@ static ::Effekseer::Matrix44 projectionmatrix,cameramatrix;
 ::EffekseerRenderer::DistortingCallback * CreateDistortingCallback(EffekseerRenderer::RendererRef renderer, Effekseer::Backend::GraphicsDeviceRef ptr)
 {
 
-
-
-
     auto renderGL = static_cast<::EffekseerRendererGL::Renderer *>(renderer.Get());
-
     return new Distotion(renderGL,ptr);
 
 }

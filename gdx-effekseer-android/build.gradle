@@ -1,0 +1,94 @@
+plugins {
+    id 'java-library'
+    id 'maven-publish'
+    id 'signing'
+}
+
+group 'io.github.srjohnathan'
+version '1.0-SNAPSHOT'
+
+def  isReleaseVersion = !version.endsWith("SNAPSHOT")
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    testImplementation 'org.junit.jupiter:junit-jupiter-api:5.7.2'
+    testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine:5.7.2'
+}
+
+task addNativeLibs(type: Copy) {
+
+    // String osName = OperatingSystem.current().getName();
+
+    from "$rootDir/cpp/libs"
+    into "$rootDir/gdx-effekseer-android/src/main/resources"
+}
+
+jar.dependsOn addNativeLibs
+
+test {
+    useJUnitPlatform()
+}
+
+java {
+    withJavadocJar()
+    withSourcesJar()
+}
+publishing {
+    publications {
+        mavenJava(MavenPublication) {
+            groupId project.group
+            artifactId project.name
+            version project.version
+            from components.java
+
+
+            pom {
+                name = "gdx-effekseer-android"
+                description = "Dedicated library for using Effekseer particle tools in libGDX"
+                url = "https://github.com/SrJohnathan/gdx-effekseer"
+                licenses {
+                    license {
+                        name = "The Apache License, Version 2.0"
+                        url = "http://www.apache.org/licenses/LICENSE-2.0.txt"
+                    }
+                }
+                developers {
+                    developer {
+                        id = "johnathan.stark42"
+                        name = "Antonio Johnathan"
+                        email = "johnathan.stark42@gmail.com"
+                    }
+                }
+                scm {
+                    connection = "scm:git@github.com:SrJohnathan/gdx-effekseer.git"
+                    developerConnection = "scm:git@github.com:SrJohnathan/gdx-effekseer.git"
+                    url = "https://github.com/SrJohnathan/gdx-effekseer"
+                }
+            }
+
+        }
+    }
+    repositories {
+        maven {
+            name = "gdx-effekseer-android"
+            def releaseRepo = "https://s01.oss.sonatype.org/service/local/staging/deploy/maven2/"
+            def snapshotRepo = "https://s01.oss.sonatype.org/content/repositories/snapshots/"
+            url = isReleaseVersion ? releaseRepo : snapshotRepo
+            credentials {
+                username = findProperty("MAVEN_USERNAME")
+                password = findProperty("MAVEN_PASSWORD")
+            }
+        }
+    }
+}
+
+signing {
+    sign publishing.publications.mavenJava
+}
+
+tasks.withType(Sign) {
+    onlyIf { isReleaseVersion }
+}

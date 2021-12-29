@@ -5,3 +5,5 @@
 /build/
 /gradle.properties
 /gdx-effekseer-desktop/build/
+/gdx-effekseer-android/build/
+

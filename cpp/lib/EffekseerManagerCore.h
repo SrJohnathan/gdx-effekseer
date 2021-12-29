@@ -4,6 +4,8 @@
 #include "EffekseerEffectCore.h"
 #include "Effekseer.h"
 #include "distotion.h"
+#include "Vector4Map.h"
+#include "distotion.h"
 #include <array>
 
 

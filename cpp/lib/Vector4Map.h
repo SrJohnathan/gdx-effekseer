@@ -1,5 +1,3 @@
-#pragma once
-
 #include <Effekseer.h>
 class Vector4Map {
 
