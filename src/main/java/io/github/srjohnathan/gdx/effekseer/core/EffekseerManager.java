@@ -23,13 +23,13 @@ public class EffekseerManager implements Disposable {
     private ModelBuilder mb;
     protected ModelBatch modelBatch;
 
-  /*  public static void InitializeEffekseer() {
+    public static void init() {
         try {
             System.loadLibrary("src");
         } catch (Error | Exception exception) {
             exception.printStackTrace();
         }
-    }  */
+    }
 
 
     public EffekseerManager(Camera camera,EffekseerCore.TypeOpenGL core) {

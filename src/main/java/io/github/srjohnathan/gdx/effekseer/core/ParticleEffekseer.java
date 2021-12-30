@@ -212,10 +212,6 @@ public class ParticleEffekseer {
                     pathh = effekseerEffectCore.GetTexturePath(i, textureTypes[t]);
                 }
 
-
-
-                System.out.println(pathh);
-
                 FileHandle handle1 = null;
                 if (internalStorage) {
                     handle1 = Gdx.files.internal(pathh);
