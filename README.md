@@ -51,8 +51,8 @@ build.gradle :android
 task copyEffekseerNatives {
     doFirst {
         configurations.natives.copy().files.each { jar ->
-
-            if (jar.name.endsWith("gdx-effekseer-android-2.1-SNAPSHOT.jar")){
+                                                        // 2.1-SNAPSHOT - version snapshot
+            if (jar.name.endsWith("gdx-effekseer-android-2.1.jar")){
 
                 zipTree(jar).files.each {file  ->
                     if( file.path.contains("arm64-v8a") ){
