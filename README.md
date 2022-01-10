@@ -22,6 +22,7 @@ sourceCompatibility = 1.8
 
 
 ###Core
+
 [![Maven Central](https://img.shields.io/maven-central/v/io.github.srjohnathan/gdx-effekseer.svg?label=Maven%20Central&style=for-the-badge&logo=appveyor)](https://search.maven.org/search?q=g:%22io.github.srjohnathan%22%20AND%20a:%22gdx-effekseer%22)
 
 ```groovy
@@ -29,6 +30,7 @@ api 'io.github.srjohnathan:gdx-effekseer:2.1'
 ```
 
 ###Desktop
+
 [![Maven Central](https://img.shields.io/maven-central/v/io.github.srjohnathan/gdx-effekseer-desktop.svg?label=Maven%20Central&style=for-the-badge&logo=appveyor)](https://search.maven.org/search?q=g:%22io.github.srjohnathan%22%20AND%20a:%22gdx-effekseer-desktop%22)
 
 ```groovy
@@ -36,6 +38,7 @@ api 'io.github.srjohnathan:gdx-effekseer-desktop:2.1'
 ```
 
 ###Android
+
 [![Maven Central](https://img.shields.io/maven-central/v/io.github.srjohnathan/gdx-effekseer-android.svg?label=Maven%20Central&style=for-the-badge&logo=appveyor)](https://search.maven.org/search?q=g:%22io.github.srjohnathan%22%20AND%20a:%22gdx-effekseer-android%22)
 
 ```groovy
