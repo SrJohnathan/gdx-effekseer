@@ -1,11 +1,8 @@
 # LibGDX + Effekseer
 
 
-[![Bintray](https://img.shields.io/bintray/v/srjohnathan/gdx.effekseer/gdx.effekseer)](https://bintray.com/srjohnathan/gdx.effekseer/gdx.effekseer)
-[ ![Download](https://api.bintray.com/packages/srjohnathan/gdx.effekseer/gdx.effekseer/images/download.svg) ](https://bintray.com/srjohnathan/gdx.effekseer/gdx.effekseer/_latestVersion)
 
 Dedicated library for using Effekseer particle tools in libGDX
-
 
 ![Alt text](https://thumbs.gfycat.com/ThickDistinctDunnart-size_restricted.gif?raw=true "Title")
 
@@ -15,49 +12,85 @@ https://libgdx.badlogicgames.com/
 
 ### Supported platforms
 
-Android
-
-Windows
-
-### Native dependencies
-
-You must download the native libraries
-
-[download libs native](libs.zip)
+Android,
+Windows and
+Linux
 
 
-```
-
-Android Folder
-
-libs 
-    arm64-v8a
-        libgdxeffek.so
-    armeabi-v7a
-        libgdxeffek.so
-    x86
-        libgdxeffek.so
-
-Windows Folder
-        assets
-            gdxeffek.dll
-
-```
-
-
-
-### Core dependencies
-```implementation 'br.com.johnathan.gdx.effekseer.api:api:0.0.6'```
 
 sourceCompatibility = 1.8
+
+
+###Core
+[![Maven Central](https://img.shields.io/maven-central/v/io.github.srjohnathan/gdx-effekseer.svg?label=Maven%20Central&style=for-the-badge&logo=appveyor)](https://search.maven.org/search?q=g:%22io.github.srjohnathan%22%20AND%20a:%22gdx-effekseer%22)
+
+```groovy
+api 'io.github.srjohnathan:gdx-effekseer:2.1'
+```
+
+###Desktop
+[![Maven Central](https://img.shields.io/maven-central/v/io.github.srjohnathan/gdx-effekseer-desktop.svg?label=Maven%20Central&style=for-the-badge&logo=appveyor)](https://search.maven.org/search?q=g:%22io.github.srjohnathan%22%20AND%20a:%22gdx-effekseer-desktop%22)
+
+```groovy
+api 'io.github.srjohnathan:gdx-effekseer-desktop:2.1'
+```
+
+###Android
+[![Maven Central](https://img.shields.io/maven-central/v/io.github.srjohnathan/gdx-effekseer-android.svg?label=Maven%20Central&style=for-the-badge&logo=appveyor)](https://search.maven.org/search?q=g:%22io.github.srjohnathan%22%20AND%20a:%22gdx-effekseer-android%22)
+
+```groovy
+natives 'io.github.srjohnathan:gdx-effekseer-android:2.1'
+```
+
+build.gradle :android
+
+```groovy
+task copyEffekseerNatives {
+    doFirst {
+        configurations.natives.copy().files.each { jar ->
+
+            if (jar.name.endsWith("gdx-effekseer-android-2.1-SNAPSHOT.jar")){
+
+                zipTree(jar).files.each {file  ->
+                    if( file.path.contains("arm64-v8a") ){
+                        copy {
+                            from file.path
+                            into "${projectDir}/libs/arm64-v8a"
+                            include "*.so"
+                        }
+                    }
+
+                    if( file.path.contains("armeabi-v7a") ){
+                        copy {
+                            from file.path
+                            into "${projectDir}/libs/armeabi-v7a"
+                            include "*.so"
+                        }
+                    }
+                    if( file.path.contains("x86") ){
+                        copy {
+                            from file.path
+                            into "${projectDir}/libs/x86"
+                            include "*.so"
+                        }
+                    }
+                }
+            }
+
+        }
+    }
+}
+```
+run copyEffekseerNatives
+
+
 ### Starting
 
 #### 3D Effects  perspectiveCamera
 
 ```java
 // Effekseer start
-EffekseerManager.InitializeEffekseer();
-
+  EffekseerGdx.init()
   PerspectiveCamera  perspectiveCamera = new PerspectiveCamera(67, 1280f, 720);
 
   // Create a new manager for the particles
@@ -68,8 +101,8 @@ EffekseerManager.InitializeEffekseer();
         effekseer.setMagnification(20f);
         try {
             
-            // false = InternalStorage
-            // true = ExternalStorage
+            // true = InternalStorage
+            // false = ExternalStorage
 
             effekseer.load("data/tu.efk",false);
         } catch (Exception e) {
