@@ -7,6 +7,7 @@
 #include "lib/EffekseerEffectCore.h"
 #include "lib/EffekseerManagerCore.h"
 
+#define FillMeInAsSizeCannotBeDeterminedAutomatically = 16;
 
 %}
 

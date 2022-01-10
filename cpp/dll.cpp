@@ -237,6 +237,7 @@ static void SWIGUNUSED SWIG_JavaThrowException(JNIEnv *jenv, SWIG_JavaExceptionC
 #include "lib/EffekseerEffectCore.h"
 #include "lib/EffekseerManagerCore.h"
 
+#define FillMeInAsSizeCannotBeDeterminedAutomatically = 16;
 
 
 
@@ -1847,7 +1848,7 @@ SWIGEXPORT jfloatArray JNICALL Java_io_github_srjohnathan_gdx_effekseer_core_GDX
   arg1 = *(EffekseerManagerCore **)&jarg1; 
   arg2 = (int)jarg2; 
   result = (float *)(arg1)->GetMatrix(arg2);
-  jresult = SWIG_JavaArrayOutFloat(jenv, (float *)result, 16);
+  jresult = SWIG_JavaArrayOutFloat(jenv, (float *)result, FillMeInAsSizeCannotBeDeterminedAutomatically); 
   return jresult;
 }
 

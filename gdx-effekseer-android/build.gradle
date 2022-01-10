@@ -18,7 +18,7 @@ dependencies {
     testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine:5.7.2'
 }
 
-task addNativeLibs(type: Copy) {
+task addNativeLibAndroid(type: Copy) {
 
     // String osName = OperatingSystem.current().getName();
 
@@ -26,7 +26,7 @@ task addNativeLibs(type: Copy) {
     into "$rootDir/gdx-effekseer-android/src/main/resources"
 }
 
-jar.dependsOn addNativeLibs
+jar.dependsOn addNativeLibAndroid
 
 test {
     useJUnitPlatform()

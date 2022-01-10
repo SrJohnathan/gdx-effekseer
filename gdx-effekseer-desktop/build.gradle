@@ -32,7 +32,7 @@ task addNativeLibs(type: Copy) {
         from "$rootDir/cmake-linux/cpp/libsrc.so"
    // } else if (OperatingSystem.current().isWindows()) {
     } else {
-        from "$rootDir/cmake-linux/cpp/src.dll"
+        from "$rootDir/cmake-build/cpp/Release/src.dll"
     }
     into "$rootDir/gdx-effekseer-desktop/src/main/resources"
 }

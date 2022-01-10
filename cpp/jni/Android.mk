@@ -6,7 +6,7 @@ LOCAL_PATH:=$(call my-dir)
 
 LOCAL_ARM_MODE  := arm
 LOCAL_PATH      := $(NDK_PROJECT_PATH)
-LOCAL_MODULE    := libgdx
+LOCAL_MODULE    := libefk
 LOCAL_CFLAGS    := -O2 -D__EFFEKSEER_RENDERER_GLES2__ -D__EFFEKSEER_RENDERER_INTERNAL_LOADER__ -std=c++14
 LOCAL_LDLIBS    :=  -llog -landroid -lEGL -lGLESv2 
 
