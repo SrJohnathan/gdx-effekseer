@@ -97,8 +97,11 @@ run copyEffekseerNatives
   PerspectiveCamera  perspectiveCamera = new PerspectiveCamera(67, 1280f, 720);
 
   // Create a new manager for the particles
-  EffekseerManager  manager = new EffekseerManager(perspectiveCamera);
-
+          if( Gdx.app.type == Application.ApplicationType.Android){
+          manager = EffekseerManager(perspectiveCamera, EffekseerCore.TypeOpenGL.OPEN_GLES2);
+          }else{
+          manager = EffekseerManager(perspectiveCamera, EffekseerCore.TypeOpenGL.OPEN_GL2);
+          }
         // create a new particle
         effekseer = new ParticleEffekseer(manager);
         effekseer.setMagnification(20f);
