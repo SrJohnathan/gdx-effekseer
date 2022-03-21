@@ -1,61 +1,93 @@
 package io.github.srjohnathan.gdx.effekseer.core;
 
-import com.badlogic.gdx.Application;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Camera;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.PerspectiveCamera;
-import com.badlogic.gdx.graphics.g3d.ModelBatch;
-
-import com.badlogic.gdx.graphics.g3d.utils.ModelBuilder;
+import com.badlogic.gdx.utils.Array;
 import com.badlogic.gdx.utils.Disposable;
 import com.badlogic.gdx.utils.viewport.Viewport;
 
-import java.util.ArrayList;
-
+/**
+ * The base class used to manage an Effekseer particle system instance.
+ * Override the following protected methods for customizing what happens during a draw call:
+ *  {@link #shouldCameraBeUpdatedInDraw()},
+ *  {@link #onPreDraw()},
+ *  {@link #onPostDraw()}
+ */
 public class EffekseerManager implements Disposable {
+
+    //region Static
+
+    private static final float SINGLE_FRAME_TIME_SECONDS = 1.0f / 60.0f;
+    private static final float SINGLE_FRAME_TIME_SECONDS_INV = 1.0f / SINGLE_FRAME_TIME_SECONDS;
+
+    //endregion
+
+    //region Properties
 
     protected EffekseerManagerCore effekseerManagerCore;
     protected Camera camera;
-    private ArrayList<ParticleEffekseer> effekseers;
     private Viewport viewport;
-    private ModelBuilder mb;
-    protected ModelBatch modelBatch;
+    /**
+     * Contains all the added Effekseer particle effects.
+     */
+    private final Array<ParticleEffekseer> effekseers;
 
+    //endregion
 
-    public EffekseerManager(Camera camera,EffekseerCore.TypeOpenGL core) {
+    //region Constructors
 
-
-        this.camera = camera;
-        effekseers = new ArrayList<>();
+    public EffekseerManager(Camera camera, EffekseerCore.TypeOpenGL core, int maxSpriteCount) {
         EffekseerBackendCore.InitializeAsOpenGL();
-        effekseerManagerCore = new EffekseerManagerCore();
 
-        if (Gdx.app.getType() == Application.ApplicationType.Android) {
+        // Set the properties
+        this.effekseerManagerCore = new EffekseerManagerCore();
+        this.camera = camera;
+        this.effekseers = new Array<>(false, 16);
 
-            effekseerManagerCore.Initialize(600, core.getId(),true);
-
-        } else {
-            effekseerManagerCore.Initialize(2000, core.getId(),true);
-
-        }
-
-
+        // Initialize the core manager
+        this.effekseerManagerCore.Initialize(maxSpriteCount, core.getId(),true);
     }
 
-    protected void setModelBatch(ModelBatch modelBatch) {
-        this.modelBatch = modelBatch;
+    //endregion
+
+    //region Protected Methods
+
+    protected void addParticleEffekseer(ParticleEffekseer effekseer) {
+        this.effekseers.add(effekseer);
     }
 
-    protected ModelBuilder getMb() {
-        return mb;
+    protected void removeParticleEffekseer(ParticleEffekseer effekseer) {
+        this.effekseers.removeValue(effekseer, true);
     }
 
-    public boolean isPlaying(ParticleEffekseer effekseer ){
-       return effekseerManagerCore.isPlaying(effekseer.getHandle());
-
+    protected boolean shouldCameraBeUpdatedInDraw() {
+        return false;
     }
+
+    /**
+     * Called at the start of the draw call.
+     */
+    protected void onPreDraw() {
+        Gdx.gl.glEnable(GL20.GL_BLEND);
+        Gdx.gl.glEnable(GL20.GL_DEPTH_TEST);
+    }
+
+    /**
+     * Called at the end of the draw call.
+     */
+    protected void onPostDraw() {
+        Gdx.gl.glEnable(GL20.GL_BLEND);
+        Gdx.gl.glEnable(GL20.GL_DEPTH_TEST);
+    }
+
+    //endregion
+
+    //region Public Methods
+
+    //region Getters/Setters
 
     public Viewport getViewport() {
         return viewport;
@@ -65,85 +97,81 @@ public class EffekseerManager implements Disposable {
         this.viewport = viewport;
     }
 
-    protected void addParticleEffekseer(ParticleEffekseer effekseers) {
-        this.effekseers.add(effekseers);
+    //endregion
+
+    public boolean isPlaying(ParticleEffekseer effekseer) {
+        return this.effekseerManagerCore.isPlaying(effekseer.getHandle());
     }
 
-
+    /**
+     * Draws all added particle effects.
+     * @param delta The time in seconds since the last frame.
+     */
     public void draw(float delta) {
-        camera.update();
+        this.onPreDraw();
 
-        Gdx.gl.glEnable(GL20.GL_BLEND);
-        Gdx.gl.glEnable(GL20.GL_DEPTH_TEST);
-        Gdx.gl.glCullFace(GL20.GL_FRONT);
+        // If the LibGDX camera state should be updated here
+        if (this.shouldCameraBeUpdatedInDraw()) {
+            this.camera.update();
+        }
 
-
-        for (ParticleEffekseer effekseer : effekseers) {
-
-
+        // Update and draw each particle effect
+        for (ParticleEffekseer effekseer : this.effekseers) {
             effekseer.update(delta);
 
-
+            // Check if the current effect has just finished playing. If so, call its animation completed callback if available.
             if (effekseer.isPlay()) {
-
-                if (!effekseerManagerCore.isPlaying(effekseer.getHandle())) {
+                if (!this.isPlaying(effekseer)) {
                     effekseer.setPlay(false);
                     if (effekseer.getOnAnimationComplete() != null) {
                         effekseer.getOnAnimationComplete().finish();
                     }
-
-
                 }
             }
 
-            if (camera instanceof PerspectiveCamera) {
+            if (this.camera instanceof PerspectiveCamera) {
                 effekseer.setMatrix4();
             }
-
-
         }
 
-
-        if (camera instanceof OrthographicCamera) {
-
-            if (viewport != null) {
-                effekseerManagerCore.SetProjectionMatrix((camera).projection.val, (camera).view.val, false, viewport.getWorldWidth(), viewport.getWorldHeight());
-
-            } else {
-                effekseerManagerCore.SetProjectionMatrix((camera).projection.val, (camera).view.val, false, camera.viewportWidth, camera.viewportHeight);
+        // Set the projection matrix
+        if (this.camera instanceof OrthographicCamera) {
+            if (this.viewport != null) {
+                this.effekseerManagerCore.SetProjectionMatrix((camera).projection.val, (camera).view.val, false, viewport.getWorldWidth(), viewport.getWorldHeight());
+            }
+            else {
+                this.effekseerManagerCore.SetProjectionMatrix((camera).projection.val, (camera).view.val, false, camera.viewportWidth, camera.viewportHeight);
 
             }
-
-
+        }
+        else if (this.camera instanceof PerspectiveCamera) {
+            this.effekseerManagerCore.SetProjectionMatrix((camera).projection.val, (camera).view.val, true, 0, 0);
         }
 
-        if (camera instanceof PerspectiveCamera) {
-            effekseerManagerCore.SetProjectionMatrix((camera).projection.val, (camera).view.val, true, 0, 0);
+        // Update the manager core
+        this.effekseerManagerCore.Update(delta * SINGLE_FRAME_TIME_SECONDS_INV);
+        // Draw
+        this.effekseerManagerCore.DrawBack();
+        this.effekseerManagerCore.DrawFront();
 
-        }
-
-
-        effekseerManagerCore.Update(delta / (1.0f / 60.0f));
-        effekseerManagerCore.DrawBack();
-        effekseerManagerCore.DrawFront();
-
-
-        Gdx.gl.glCullFace(GL20.GL_BACK);
-        Gdx.gl.glDisable(GL20.GL_DEPTH_TEST);
-        Gdx.gl.glDisable(GL20.GL_BLEND);
-
-
+        this.onPostDraw();
     }
 
+    //endregion
+
+    //region Disposable
 
     @Override
     public void dispose() {
-
-        effekseerManagerCore.delete();
-        for (ParticleEffekseer effekseer : this.effekseers) {
-            effekseer.delete();
+        // Delete the manager color
+        this.effekseerManagerCore.delete();
+        // Delete all added effect instances. Use while loop to avoid nested iterator usages of LibGDX Array.
+        while (!this.effekseers.isEmpty()) {
+            this.effekseers.first().delete();
         }
+        // Terminate the backend
         EffekseerBackendCore.Terminate();
-
     }
+
+    //endregion
 }

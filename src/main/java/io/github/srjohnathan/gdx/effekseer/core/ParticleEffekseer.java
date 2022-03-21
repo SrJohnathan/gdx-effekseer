@@ -66,6 +66,7 @@ public class ParticleEffekseer {
     }
 
     protected void delete() {
+        manager.removeParticleEffekseer(this);
         effekseerEffectCore.delete();
     }
 
