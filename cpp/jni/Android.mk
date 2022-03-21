@@ -25,7 +25,7 @@ LOCAL_SRC_FILES := \
 	$(LOCAL_PATH)/lib/EffekseerEffectCore.cpp \
 	$(LOCAL_PATH)/lib/EffekseerManagerCore.cpp \
 	$(LOCAL_PATH)/lib/Vector4Map.cpp \
-	$(LOCAL_PATH)/lib/distotion.cpp \
+	$(LOCAL_PATH)/lib/distortion.cpp \
 	
 	
 	

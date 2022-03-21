@@ -1,5 +1,5 @@
-#ifndef DISTOTION_H
-#define DISTOTION_H
+#ifndef DISTORTION_H
+#define DISTORTION_H
 
 
 #include<EffekseerRendererGL.h>
@@ -71,7 +71,7 @@ public:
 
 
 
-class Distotion : public EffekseerRenderer::DistortingCallback
+class Distortion : public EffekseerRenderer::DistortingCallback
 {
 
 private:
@@ -81,7 +81,7 @@ public:
 
 
 
-    Distotion(EffekseerRendererGL::Renderer *,Effekseer::Backend::GraphicsDeviceRef graphicsDevice_);
+    Distortion(EffekseerRendererGL::Renderer *,Effekseer::Backend::GraphicsDeviceRef graphicsDevice_);
 
 
 
@@ -94,7 +94,7 @@ public:
     EffekseerRendererGL::Renderer *ref = nullptr;
 
 
-    virtual ~Distotion();
+    virtual ~Distortion();
 
     void ReleaseTexture();
 
@@ -105,7 +105,7 @@ public:
 
 };
 
-#endif // DISTOTION_H
+#endif // DISTORTION_H
 
 
 

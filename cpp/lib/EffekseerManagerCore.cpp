@@ -5,7 +5,7 @@
 #include "Effekseer.h"
 #include <assert.h>
 #include <iostream>
-#include "distotion.h"
+#include "distortion.h"
 
 
 #if   defined(__EFFEKSEER_RENDERER_GLES2__)
@@ -39,7 +39,7 @@ static ::Effekseer::Matrix44 projectionmatrix,cameramatrix;
 {
 
     auto renderGL = static_cast<::EffekseerRendererGL::Renderer *>(renderer.Get());
-    return new Distotion(renderGL,ptr);
+    return new Distortion(renderGL,ptr);
 
 }
 

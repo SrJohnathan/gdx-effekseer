@@ -3,9 +3,8 @@
 #include "EffekseerBackendCore.h"
 #include "EffekseerEffectCore.h"
 #include "Effekseer.h"
-#include "distotion.h"
+#include "distortion.h"
 #include "Vector4Map.h"
-#include "distotion.h"
 #include <array>
 
 

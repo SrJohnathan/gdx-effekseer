@@ -1,7 +1,7 @@
-#include "distotion.h"
+#include "distortion.h"
 
 
-Distotion::Distotion(EffekseerRendererGL::Renderer* ref,Effekseer::Backend::GraphicsDeviceRef graphicsDevice_):
+Distortion::Distortion(EffekseerRendererGL::Renderer* ref,Effekseer::Backend::GraphicsDeviceRef graphicsDevice_):
     EffekseerRenderer::DistortingCallback(),ref(ref),graphicsDevice_(graphicsDevice_)
 
 {
@@ -23,12 +23,12 @@ Distotion::Distotion(EffekseerRendererGL::Renderer* ref,Effekseer::Backend::Grap
 }
 
 
-Distotion::~Distotion()
+Distortion::~Distortion()
 {
     ReleaseTexture();
 }
 
-void Distotion::ReleaseTexture()
+void Distortion::ReleaseTexture()
 {
 #ifndef _WIN32
     glDeleteFramebuffers(1, &framebufferForCopy);
@@ -41,7 +41,7 @@ void Distotion::ReleaseTexture()
     glDeleteTextures(1, &backGroundTexture);
 } 
 
-void Distotion::PrepareTexture(uint32_t width, uint32_t height, GLint internalFormat)
+void Distortion::PrepareTexture(uint32_t width, uint32_t height, GLint internalFormat)
 {
     glBindTexture(GL_TEXTURE_2D, backGroundTexture);
     glTexImage2D(GL_TEXTURE_2D, 0, internalFormat, width, height, 0, GL_RGBA, GL_UNSIGNED_BYTE, 0);
@@ -53,7 +53,7 @@ void Distotion::PrepareTexture(uint32_t width, uint32_t height, GLint internalFo
     backGroundTextureInternalFormat = internalFormat;
 }
 
-bool Distotion::OnDistorting(EffekseerRenderer::Renderer* renderer)
+bool Distortion::OnDistorting(EffekseerRenderer::Renderer* renderer)
 {
 
  /*   
