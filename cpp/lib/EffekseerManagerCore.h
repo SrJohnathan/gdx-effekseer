@@ -41,7 +41,7 @@ public:
     bool Initialize(int32_t spriteMaxCount, int32_t id, bool sgbd);
     void Update(float deltaFrames);
     int Play(EffekseerEffectCore *effect);
-    bool IsPlaing(int handle);
+    bool isPlaying(int handle);
     float Speed(int handle);
  /*   bool Exists(int handle);
     void SetDynamicInput(int handle, int32_t index, float value);

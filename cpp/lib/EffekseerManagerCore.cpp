@@ -154,7 +154,7 @@ int EffekseerManagerCore::Play(EffekseerEffectCore *effect) {
 }
 
 
-bool EffekseerManagerCore::IsPlaing(int handle) {
+bool EffekseerManagerCore::isPlaying(int handle) {
     if (manager_ == nullptr) {
         return false;
     }

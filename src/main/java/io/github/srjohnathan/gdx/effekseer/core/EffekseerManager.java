@@ -52,8 +52,8 @@ public class EffekseerManager implements Disposable {
         return mb;
     }
 
-    public boolean IsPlaing(ParticleEffekseer effekseer ){
-       return effekseerManagerCore.IsPlaing(effekseer.getHandle());
+    public boolean isPlaying(ParticleEffekseer effekseer ){
+       return effekseerManagerCore.isPlaying(effekseer.getHandle());
 
     }
 
@@ -86,7 +86,7 @@ public class EffekseerManager implements Disposable {
 
             if (effekseer.isPlay()) {
 
-                if (!effekseerManagerCore.IsPlaing(effekseer.getHandle())) {
+                if (!effekseerManagerCore.isPlaying(effekseer.getHandle())) {
                     effekseer.setPlay(false);
                     if (effekseer.getOnAnimationComplete() != null) {
                         effekseer.getOnAnimationComplete().finish();
