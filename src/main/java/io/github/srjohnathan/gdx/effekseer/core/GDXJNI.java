@@ -59,7 +59,7 @@ public class GDXJNI {
   public final static native void EffekseerManagerCore_SetEffectPosition(long jarg1, EffekseerManagerCore jarg1_, int jarg2, float jarg3, float jarg4, float jarg5);
   public final static native void EffekseerManagerCore_SetEffectScale(long jarg1, EffekseerManagerCore jarg1_, int jarg2, float jarg3, float jarg4, float jarg5);
   public final static native void EffekseerManagerCore_Stop(long jarg1, EffekseerManagerCore jarg1_, int jarg2);
-  public final static native int EffekseerManagerCore_InstacieCount(long jarg1, EffekseerManagerCore jarg1_, int jarg2);
+  public final static native int EffekseerManagerCore_InstanceCount(long jarg1, EffekseerManagerCore jarg1_, int jarg2);
   public final static native float[] EffekseerManagerCore_GetMatrix(long jarg1, EffekseerManagerCore jarg1_, int jarg2);
   public final static native void EffekseerManagerCore_SetMatrix(long jarg1, EffekseerManagerCore jarg1_, int jarg2, float[] jarg3);
 }

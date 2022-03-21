@@ -255,7 +255,7 @@ void EffekseerManagerCore::Stop(int i) {
     manager_->StopEffect(i);
 }
 
-int32_t EffekseerManagerCore::InstacieCount(int handle)
+int32_t EffekseerManagerCore::InstanceCount(int handle)
 {
     return manager_->GetInstanceCount(handle);
 }

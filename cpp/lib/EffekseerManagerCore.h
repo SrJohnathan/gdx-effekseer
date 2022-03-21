@@ -55,7 +55,7 @@ public:
     void SetEffectPosition(int handle, float x, float y, float z);
     void SetEffectScale(int handle, float x, float y, float z);
     void Stop(int i);
-    int32_t InstacieCount(int handle);
+    int32_t InstanceCount(int handle);
 
 
     float* GetMatrix(int handle);

@@ -92,8 +92,8 @@ public class EffekseerManagerCore {
     GDXJNI.EffekseerManagerCore_Stop(swigCPtr, this, i);
   }
 
-  public int InstacieCount(int handle) {
-    return GDXJNI.EffekseerManagerCore_InstacieCount(swigCPtr, this, handle);
+  public int InstanceCount(int handle) {
+    return GDXJNI.EffekseerManagerCore_InstanceCount(swigCPtr, this, handle);
   }
 
   public float[] GetMatrix(int handle) {
