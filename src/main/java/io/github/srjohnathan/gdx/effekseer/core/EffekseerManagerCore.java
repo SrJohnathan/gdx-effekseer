@@ -40,8 +40,8 @@ public class EffekseerManagerCore {
     this(GDXJNI.new_EffekseerManagerCore(), true);
   }
 
-  public boolean Initialize(int spriteMaxCount, int id, boolean sgbd) {
-    return GDXJNI.EffekseerManagerCore_Initialize(swigCPtr, this, spriteMaxCount, id, sgbd);
+  public boolean Initialize(int spriteMaxCount, int id, boolean isSrgbMode) {
+    return GDXJNI.EffekseerManagerCore_Initialize(swigCPtr, this, spriteMaxCount, id, isSrgbMode);
   }
 
   public void Update(float deltaFrames) {
