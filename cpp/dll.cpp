@@ -1649,7 +1649,7 @@ SWIGEXPORT jint JNICALL Java_io_github_srjohnathan_gdx_effekseer_core_GDXJNI_Eff
 }
 
 
-SWIGEXPORT jboolean JNICALL Java_io_github_srjohnathan_gdx_effekseer_core_GDXJNI_EffekseerManagerCore_1IsPlaing(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_, jint jarg2) {
+SWIGEXPORT jboolean JNICALL Java_io_github_srjohnathan_gdx_effekseer_core_GDXJNI_EffekseerManagerCore_1IsPlaying(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_, jint jarg2) {
   jboolean jresult = 0 ;
   EffekseerManagerCore *arg1 = (EffekseerManagerCore *) 0 ;
   int arg2 ;
@@ -1660,7 +1660,7 @@ SWIGEXPORT jboolean JNICALL Java_io_github_srjohnathan_gdx_effekseer_core_GDXJNI
   (void)jarg1_;
   arg1 = *(EffekseerManagerCore **)&jarg1; 
   arg2 = (int)jarg2; 
-  result = (bool)(arg1)->IsPlaing(arg2);
+  result = (bool)(arg1)->IsPlaying(arg2);
   jresult = (jboolean)result; 
   return jresult;
 }
