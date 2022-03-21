@@ -37,7 +37,7 @@ public:
 #ifndef SWIG
     Effekseer::ManagerRef manager_ = nullptr;
 #endif
-    bool Initialize(int32_t spriteMaxCount, int32_t id, bool sgbd);
+    bool Initialize(int32_t spriteMaxCount, int32_t id, bool isSrgbMode);
     void Update(float deltaFrames);
     int Play(EffekseerEffectCore *effect);
     bool isPlaying(int handle);

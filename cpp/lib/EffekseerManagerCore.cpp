@@ -55,63 +55,48 @@ EffekseerManagerCore::~EffekseerManagerCore() {
     renderer_.Reset();
 }
 
-bool EffekseerManagerCore::Initialize(int32_t spriteMaxCount, int32_t id,bool sgdb) {
+bool EffekseerManagerCore::Initialize(int32_t spriteMaxCount, int32_t id,bool isSrgbMode) {
     if (manager_ != nullptr || renderer_ != nullptr) {
         return false;
     }
 
     this->manager_  = ::Effekseer::Manager::Create(spriteMaxCount);
 
+    // GL version
     if (id == 2) {
         openglDeviceType = EffekseerRendererGL::OpenGLDeviceType::OpenGL2;
-
-
     }
 
     if (id == 3) {
         openglDeviceType = EffekseerRendererGL::OpenGLDeviceType::OpenGL3;
-
     }
-
 
     if (id == 4) {
         openglDeviceType = EffekseerRendererGL::OpenGLDeviceType::OpenGLES2;
-
-
     }
-
 
     if (id == 5) {
         openglDeviceType = EffekseerRendererGL::OpenGLDeviceType::OpenGLES3;
-
     }
 
+    // Create renderer
+    renderer_ = ::EffekseerRendererGL::Renderer::Create(spriteMaxCount, openglDeviceType);
 
-
-
-
-     renderer_ = ::EffekseerRendererGL::Renderer::Create(spriteMaxCount, openglDeviceType);
-
-
-
+    // Check successful creation
     if (manager_ == nullptr || renderer_ == nullptr) {
         manager_.Reset();
         renderer_.Reset();
         return false;
     }
 
+    // Set all renderer instances for each type by using the created renderer object
+    this->manager_->SetSpriteRenderer(renderer_->CreateSpriteRenderer());
+    this->manager_->SetRibbonRenderer(renderer_->CreateRibbonRenderer());
+    this->manager_->SetRingRenderer(renderer_->CreateRingRenderer());
+    this->manager_->SetTrackRenderer(renderer_->CreateTrackRenderer());
+    this->manager_->SetModelRenderer(renderer_->CreateModelRenderer());
 
-
-
-
-     this->manager_->SetSpriteRenderer(renderer_->CreateSpriteRenderer());
-     this->manager_->SetRibbonRenderer(renderer_->CreateRibbonRenderer());
-     this->manager_->SetRingRenderer(renderer_->CreateRingRenderer());
-     this->manager_->SetTrackRenderer(renderer_->CreateTrackRenderer());
-     this->manager_->SetModelRenderer(renderer_->CreateModelRenderer());
-
-
-    this->settingCore =  EffekseerSettingCore::create(sgdb,  EffekseerRendererGL::CreateGraphicsDevice(openglDeviceType) );
+    this->settingCore =  EffekseerSettingCore::create(isSrgbMode,  EffekseerRendererGL::CreateGraphicsDevice(openglDeviceType) );
 
     settingCore->SetModelLoader(renderer_->CreateModelLoader());
     settingCore->SetMaterialLoader(renderer_->CreateMaterialLoader());
@@ -121,10 +106,9 @@ bool EffekseerManagerCore::Initialize(int32_t spriteMaxCount, int32_t id,bool sg
     this->distortingCallback = CreateDistortingCallback(renderer_, settingCore->GetGraphicsDevice());
     //disto = new DistortingCallbackGL(0,0);
     this->renderer_->SetDistortingCallback(this->distortingCallback);
-     this->manager_->SetSetting(settingCore);
-     this->renderer_->SetRenderMode(Effekseer::RenderMode::Normal);
-     this->settingCore->SetCoordinateSystem(Effekseer::CoordinateSystem::RH);
-
+    this->manager_->SetSetting(settingCore);
+    this->renderer_->SetRenderMode(Effekseer::RenderMode::Normal);
+    this->settingCore->SetCoordinateSystem(Effekseer::CoordinateSystem::RH);
 
 
     return true;
@@ -144,13 +128,11 @@ void EffekseerManagerCore::Update(float deltaFrames) {
 
 int EffekseerManagerCore::Play(EffekseerEffectCore *effect) {
     if (manager_ == nullptr)
-        {
-            return -1;
-        }
+    {
+        return -1;
+    }
 
-
-
-        return manager_->Play(effect->GetInternal(), ::Effekseer::Vector3D());
+    return manager_->Play(effect->GetInternal(), ::Effekseer::Vector3D());
 }
 
 
