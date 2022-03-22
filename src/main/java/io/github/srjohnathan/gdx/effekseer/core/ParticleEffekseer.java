@@ -316,11 +316,11 @@ public class ParticleEffekseer {
     }
 
     public void pause() {
-        manager.effekseerManagerCore.SetPause(handle, true);
+        manager.effekseerManagerCore.SetPaused(handle, true);
     }
 
     public void resume() {
-        manager.effekseerManagerCore.SetPause(handle, false);
+        manager.effekseerManagerCore.SetPaused(handle, false);
     }
 
     protected OnAnimationComplete getOnAnimationComplete() {

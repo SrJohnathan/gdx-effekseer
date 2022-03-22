@@ -31,13 +31,27 @@
 %include "./ibyte.i"
 %apply unsigned char *UBYTE { unsigned char *data };
 
+// void* from c++ to Object in Java
+/*
+%typemap(jni) void* "java.lang.Object"
+%typemap(jtype) void* "java.lang.Object"
+%typemap(jstype) void* "java.lang.Object"
+%typemap(javain) void* "$javainput"
+%typemap(javaout) void* {
+    return $jnicall;
+}
+*/
+
 
 namespace std {
     %template(VectorFloat) vector<float>;
 };
 
 // Forward declaration of classes/structs that will be included later on in this file
+struct Effekseer::Manager::UpdateParameter;
 struct Effekseer::Manager::DrawParameter;
+struct Effekseer::Vector3D;
+struct Effekseer::Color;
 
 %include "/cpp/lib/EffekseerBackendCore.h"
 %include "/cpp/lib/EffekseerEffectCore.h"

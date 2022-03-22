@@ -34,6 +34,11 @@ using  namespace std;
 
 static ::Effekseer::Matrix44 projectionmatrix,cameramatrix;
 
+typedef ::Effekseer::Vector3D Vector3D;
+typedef ::Effekseer::Color Color;
+typedef ::Effekseer::Manager::UpdateParameter UpdateParameter;
+typedef ::Effekseer::Manager::DrawParameter DrawParameter;
+
 
 ::EffekseerRenderer::DistortingCallback * CreateDistortingCallback(EffekseerRenderer::RendererRef renderer, Effekseer::Backend::GraphicsDeviceRef ptr)
 {
@@ -114,6 +119,371 @@ bool EffekseerManagerCore::Initialize(int32_t spriteMaxCount, int32_t id,bool is
     return true;
 }
 
+void EffekseerManagerCore::LaunchWorkerThreads(uint32_t threadCount) {
+    if (manager_ == nullptr) {
+        return;
+    }
+
+     manager_->LaunchWorkerThreads(threadCount);
+}
+
+bool EffekseerManagerCore::Exists(int handle) {
+    return manager_->Exists(handle);
+}
+
+int EffekseerManagerCore::Play(EffekseerEffectCore *effect) {
+    if (manager_ == nullptr) {
+        return -1;
+    }
+
+    return manager_->Play(effect->GetInternal(), ::Effekseer::Vector3D());
+}
+
+void EffekseerManagerCore::StopEffect(int handle) {
+    if (manager_ == nullptr) {
+        return;
+    }
+
+    manager_->StopEffect(handle);
+}
+
+void EffekseerManagerCore::StopAllEffects() {
+    if (manager_ == nullptr) {
+        return;
+    }
+
+    manager_->StopAllEffects();
+}
+
+void EffekseerManagerCore::StopRoot(int handle) {
+    if (manager_ == nullptr) {
+        return;
+    }
+
+    manager_->StopRoot(handle);
+}
+
+int32_t EffekseerManagerCore::GetInstanceCount(int handle) {
+    if (manager_ == nullptr) {
+        return -1;
+    }
+
+    return manager_->GetInstanceCount(handle);
+}
+
+int32_t EffekseerManagerCore::GetTotalInstanceCount() {
+    if (manager_ == nullptr) {
+        return -1;
+    }
+
+    return manager_->GetTotalInstanceCount();
+}
+
+float* EffekseerManagerCore::GetMatrix(int handle) {
+    if (manager_ == nullptr) {
+        return nullptr;
+    }
+
+    auto f = Vector4Map::setConvert43(manager_->GetMatrix(handle));
+    return f;
+}
+
+void EffekseerManagerCore::SetMatrix(int handle, float *matrix43) {
+    if (manager_ == nullptr) {
+        return;
+    }
+
+    auto mat43 = Vector4Map::getConvert43(matrix43);
+    mat43.Value[3][1] = mat43.Value[3][1] /2;
+    manager_->SetMatrix(handle, mat43);
+}
+
+float* EffekseerManagerCore::GetBaseMatrix(int handle) {
+    if (manager_ == nullptr) {
+        return nullptr;
+    }
+
+    auto f = Vector4Map::setConvert43(manager_->GetBaseMatrix(handle));
+    return f;
+}
+
+void EffekseerManagerCore::SetBaseMatrix(int handle, float *matrix43) {
+    if (manager_ == nullptr) {
+        return;
+    }
+
+    auto mat43 = Vector4Map::getConvert43(matrix43);
+    mat43.Value[3][1] = mat43.Value[3][1] /2;
+    manager_->SetBaseMatrix(handle, mat43);
+}
+
+Vector3D EffekseerManagerCore::GetLocation(int handle) {
+    if (manager_ == nullptr) {
+        return ::Effekseer::Vector3D();
+    }
+
+    return manager_->GetLocation(handle);
+}
+
+void EffekseerManagerCore::SetLocation(int handle, float x, float y, float z) {
+    if (manager_ == nullptr) {
+        return;
+    }
+
+    manager_->SetLocation(handle, x, y, z);
+}
+
+void EffekseerManagerCore::SetLocation(int handle, const Vector3D& location) {
+    if (manager_ == nullptr) {
+        return;
+    }
+
+    manager_->SetLocation(handle, location);
+}
+
+void EffekseerManagerCore::AddLocation(int handle, const Vector3D& location) {
+    if (manager_ == nullptr) {
+        return;
+    }
+
+    manager_->AddLocation(handle,location);
+}
+
+void EffekseerManagerCore::SetRotation(int handle, float x, float y, float z) {
+    if (manager_ == nullptr) {
+        return;
+    }
+
+    manager_->SetRotation(handle, x, y, z);
+}
+
+void EffekseerManagerCore::SetRotation(int handle, const Vector3D& axis, float angle) {
+    if (manager_ == nullptr) {
+        return;
+    }
+
+    manager_->SetRotation(handle, axis, angle);
+}
+
+void EffekseerManagerCore::SetScale(int handle, float x, float y, float z) {
+    if (manager_ == nullptr) {
+        return;
+    }
+
+    manager_->SetScale(handle, x, y, z);
+}
+
+void EffekseerManagerCore::SetAllColor(int handle, Color color) {
+    if (manager_ == nullptr) {
+        return;
+    }
+
+    manager_->SetAllColor(handle, color);
+}
+
+void EffekseerManagerCore::SetTargetLocation(int handle, float x, float y, float z) {
+    if (manager_ == nullptr) {
+        return;
+    }
+
+    manager_->SetTargetLocation(handle, x, y, z);
+}
+
+void EffekseerManagerCore::SetTargetLocation(int handle, const Vector3D& location) {
+    if (manager_ == nullptr) {
+        return;
+    }
+
+    manager_->SetTargetLocation(handle, location);
+}
+
+void EffekseerManagerCore::SetEffectRotateAxis(int handle, float x, float y, float z,float angle) {
+
+    Effekseer::Vector3D vec(x,y,z);
+    manager_->SetRotation(handle,vec,angle);
+}
+
+void EffekseerManagerCore::SetEffectPosition(int handle, float x, float y, float z) {
+    manager_->SetLocation(handle,x,y,z);
+}
+
+void EffekseerManagerCore::SetEffectScale(int handle, float x, float y, float z) {
+    manager_->SetScale(handle, x, y, z);
+}
+
+void EffekseerManagerCore::SetProjectionMatrix(float *matrix44, float *matrix44C, bool view, float width, float height) {
+    // disto->update();
+    projectionmatrix = Vector4Map::getConvert44( matrix44 );
+    cameramatrix = Vector4Map::getConvert44(matrix44C);
+
+
+    if (manager_ == nullptr) {
+        return;
+    }
+
+    if(view){
+        renderer_->SetProjectionMatrix(projectionmatrix);
+    }else{
+        renderer_->SetProjectionMatrix( ::Effekseer::Matrix44().OrthographicRH(width, height, 0.0f, 100.0f));
+    }
+
+    renderer_->SetCameraMatrix(cameramatrix);
+}
+
+float EffekseerManagerCore::GetDynamicInput(int handle, int32_t index) {
+    if (manager_ == nullptr) {
+        return 0.0f;
+    }
+
+    return manager_->GetDynamicInput(handle, index);
+}
+
+void EffekseerManagerCore::SetDynamicInput(int handle, int32_t index, float value) {
+    if (manager_ == nullptr) {
+        return;
+    }
+
+    manager_->SetDynamicInput(handle, index, value);
+}
+
+bool EffekseerManagerCore::GetShown(int handle) {
+    if (manager_ == nullptr) {
+        return false;
+    }
+
+    return manager_->GetShown(handle);
+}
+
+void EffekseerManagerCore::SetShown(int handle, bool shown) {
+    if (manager_ == nullptr) {
+        return;
+    }
+
+    manager_->SetShown(handle, shown);
+}
+
+bool EffekseerManagerCore::GetPaused(int handle) {
+    if (manager_ == nullptr) {
+        return false;
+    }
+
+    return manager_->GetPaused(handle);
+}
+
+void EffekseerManagerCore::SetPaused(int handle, bool paused) {
+    if (manager_ == nullptr) {
+        return;
+    }
+
+    manager_->SetPaused(handle, paused);
+}
+
+void EffekseerManagerCore::SetPausedToAllEffects(bool paused) {
+    if (manager_ == nullptr) {
+        return;
+    }
+
+    manager_->SetPausedToAllEffects(paused);
+}
+
+int EffekseerManagerCore::GetLayer(int handle) {
+    if (manager_ == nullptr) {
+        return -1;
+    }
+
+    return manager_->GetLayer(handle);
+}
+
+void EffekseerManagerCore::SetLayer(int handle, int32_t layer) {
+    if (manager_ == nullptr) {
+        return;
+    }
+
+    manager_->SetLayer(handle, layer);
+}
+
+int64_t EffekseerManagerCore::GetGroupMask(int handle) {
+    if (manager_ == nullptr) {
+        return -1;
+    }
+
+    return manager_->GetGroupMask(handle);
+}
+
+void EffekseerManagerCore::SetGroupMask(int handle, int64_t groupmask) {
+    if (manager_ == nullptr) {
+        return;
+    }
+
+    manager_->SetGroupMask(handle, groupmask);
+}
+
+float EffekseerManagerCore::GetSpeed(int handle) {
+    if (manager_ == nullptr) {
+        return -1.0f;
+    }
+
+    return manager_->GetSpeed(handle);
+}
+
+void EffekseerManagerCore::SetSpeed(int handle, float speed) {
+    if (manager_ == nullptr) {
+        return;
+    }
+
+    manager_->SetSpeed(handle, speed);
+}
+
+void EffekseerManagerCore::SetTimeScaleByGroup(int64_t groupmask, float timeScale) {
+    if (manager_ == nullptr) {
+        return;
+    }
+
+    manager_->SetTimeScaleByGroup(groupmask, timeScale);
+}
+
+void EffekseerManagerCore::SetTimeScaleByHandle(int handle, float timeScale) {
+    if (manager_ == nullptr) {
+        return;
+    }
+
+    manager_->SetTimeScaleByHandle(handle, timeScale);
+}
+
+void EffekseerManagerCore::SetAutoDrawing(int handle, bool autoDraw) {
+    if (manager_ == nullptr) {
+        return;
+    }
+
+    manager_->SetAutoDrawing(handle, autoDraw);
+}
+
+/*
+void* EffekseerManagerCore::GetUserData(int handle) {
+    if (manager_ == nullptr) {
+        return nullptr;
+    }
+
+    return manager_->GetUserData(handle);
+}
+
+void EffekseerManagerCore::SetUserData(int handle, void* userData) {
+    if (manager_ == nullptr) {
+        return;
+    }
+
+    manager_->SetUserData(handle, userData);
+}
+*/
+
+void EffekseerManagerCore::Flip() {
+    if (manager_ == nullptr) {
+        return;
+    }
+
+    manager_->Flip();
+}
+
 void EffekseerManagerCore::Update(float deltaFrames) {
     if (manager_ == nullptr) {
         return;
@@ -126,57 +496,44 @@ void EffekseerManagerCore::Update(float deltaFrames) {
     }
 }
 
-int EffekseerManagerCore::Play(EffekseerEffectCore *effect) {
-    if (manager_ == nullptr)
-    {
-        return -1;
-    }
-
-    return manager_->Play(effect->GetInternal(), ::Effekseer::Vector3D());
-}
-
-
-bool EffekseerManagerCore::isPlaying(int handle) {
+void EffekseerManagerCore::Update(const UpdateParameter& parameter) {
     if (manager_ == nullptr) {
-        return false;
+        return;
     }
 
-    return manager_->GetShown(handle);
+    manager_->Update(parameter);
 }
 
-float EffekseerManagerCore::Speed(int handle)
-{
-    return manager_->GetSpeed(handle);
+void EffekseerManagerCore::BeginUpdate() {
+    if (manager_ == nullptr) {
+        return;
+    }
+
+    manager_->BeginUpdate();
 }
 
+void EffekseerManagerCore::EndUpdate() {
+    if (manager_ == nullptr) {
+        return;
+    }
 
-
-
-void EffekseerManagerCore::SetEffectRotateAxis(int handle, float x, float y, float z,float angle) {
-
-    Effekseer::Vector3D vec(x,y,z);
-    manager_->SetRotation(handle,vec,angle);
+    manager_->EndUpdate();
 }
 
-void EffekseerManagerCore::SetEffectPosition(int handle, float x, float y, float z)
-{
-    manager_->SetLocation(handle,x,y,z);
+void EffekseerManagerCore::UpdateHandle(int handle, float deltaFrame) {
+    if (manager_ == nullptr) {
+        return;
+    }
+
+    manager_->UpdateHandle(handle, deltaFrame);
 }
 
-void EffekseerManagerCore::SetEffectScale(int handle, float x, float y, float z)
-{
-    manager_->SetScale(handle, x, y, z);
-}
+void EffekseerManagerCore::UpdateHandleToMoveToFrame(int handle, float frame) {
+    if (manager_ == nullptr) {
+        return;
+    }
 
-
-
-
-void EffekseerManagerCore::SetMatrix(int handle, float *matrix43)
-{
-
-    auto mat43 = Vector4Map::getConvert43(matrix43);
-    mat43.Value[3][1] = mat43.Value[3][1] /2;
-    manager_->SetMatrix(handle, mat43);
+    manager_->UpdateHandleToMoveToFrame(handle, frame);
 }
 
 void EffekseerManagerCore::BeginRendering() {
@@ -212,49 +569,6 @@ void EffekseerManagerCore::DrawFront() {
 
 void EffekseerManagerCore::EndRendering() {
     renderer_->EndRendering();
-}
-
-void EffekseerManagerCore::SetPause(int i,bool pause) {
-    manager_->SetPaused(i,pause);
-}
-
-void EffekseerManagerCore::SetProjectionMatrix(float *matrix44, float *matrix44C, bool view, float width, float heith)
-{
-
-   // disto->update();
-    projectionmatrix = Vector4Map::getConvert44( matrix44 );
-    cameramatrix = Vector4Map::getConvert44(matrix44C);
-
-
-    if (manager_ == nullptr) {
-        return;
-    }
-
-    if(view){
-        renderer_->SetProjectionMatrix(projectionmatrix);
-    }else{
-        renderer_->SetProjectionMatrix( ::Effekseer::Matrix44().OrthographicRH(width,heith , 0.0f, 100.0f));
-    }
-
-
-    renderer_->SetCameraMatrix(cameramatrix);
-
-}
-
-
-void EffekseerManagerCore::Stop(int i) {
-    manager_->StopEffect(i);
-}
-
-int32_t EffekseerManagerCore::InstanceCount(int handle)
-{
-    return manager_->GetInstanceCount(handle);
-}
-
-float* EffekseerManagerCore::GetMatrix(int handle)
-{
-    auto f = Vector4Map::setConvert43(manager_->GetMatrix(handle));
-    return f;
 }
 
 

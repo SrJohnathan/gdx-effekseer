@@ -118,9 +118,185 @@ public class EffekseerManager implements Disposable {
 
     //endregion
 
-    public boolean isPlaying(ParticleEffekseer effekseer) {
-        return this.effekseerManagerCore.isPlaying(effekseer.getHandle());
+    //region Wrapper Methods
+
+    public void launchWorkerThreads(long threadCount) {
+        effekseerManagerCore.LaunchWorkerThreads(threadCount);
     }
+
+    public boolean exists(int handle) {
+        return effekseerManagerCore.Exists(handle);
+    }
+
+    public int play(EffekseerEffectCore effect) {
+        return effekseerManagerCore.Play(effect);
+    }
+
+    public void stopEffect(int handle) {
+        effekseerManagerCore.StopEffect(handle);
+    }
+
+    public void stopAllEffects() {
+        effekseerManagerCore.StopAllEffects();
+    }
+
+    public void stopRoot(int handle) {
+        effekseerManagerCore.StopRoot(handle);
+    }
+
+    public int getInstanceCount(int handle) {
+        return effekseerManagerCore.GetInstanceCount(handle);
+    }
+
+    public int getTotalInstanceCount() {
+        return effekseerManagerCore.GetTotalInstanceCount();
+    }
+
+    public float[] getMatrix(int handle) {
+        return effekseerManagerCore.GetMatrix(handle);
+    }
+
+    public void setMatrix(int handle, float[] matrix43) {
+        effekseerManagerCore.SetMatrix(handle, matrix43);
+    }
+
+    public float[] getBaseMatrix(int handle) {
+        return effekseerManagerCore.GetBaseMatrix(handle);
+    }
+
+    public void setBaseMatrix(int handle, float[] matrix43) {
+        effekseerManagerCore.SetBaseMatrix(handle, matrix43);
+    }
+
+    public Vector3D getLocation(int handle) {
+        return effekseerManagerCore.GetLocation(handle);
+    }
+
+    public void setLocation(int handle, float x, float y, float z) {
+        effekseerManagerCore.SetLocation(handle, x, y, z);
+    }
+
+    public void setLocation(int handle, Vector3D location) {
+        effekseerManagerCore.SetLocation(handle, location);
+    }
+
+    public void addLocation(int handle, Vector3D location) {
+        effekseerManagerCore.AddLocation(handle, location);
+    }
+
+    public void setRotation(int handle, float x, float y, float z) {
+        effekseerManagerCore.SetRotation(handle, x, y, z);
+    }
+
+    public void setRotation(int handle, Vector3D axis, float angle) {
+        effekseerManagerCore.SetRotation(handle, axis, angle);
+    }
+
+    public void setScale(int handle, float x, float y, float z) {
+        effekseerManagerCore.SetScale(handle, x, y, z);
+    }
+
+    public void setAllColor(int handle, Color color) {
+        effekseerManagerCore.SetAllColor(handle, color);
+    }
+
+    public void setTargetLocation(int handle, float x, float y, float z) {
+        effekseerManagerCore.SetTargetLocation(handle, x, y, z);
+    }
+
+    public void setTargetLocation(int handle, Vector3D location) {
+        effekseerManagerCore.SetTargetLocation(handle, location);
+    }
+
+    public void setEffectRotateAxis(int handle, float x, float y, float z, float angle) {
+        effekseerManagerCore.SetEffectRotateAxis(handle, x, y, z, angle);
+    }
+
+    public void setEffectPosition(int handle, float x, float y, float z) {
+        effekseerManagerCore.SetEffectPosition(handle, x, y, z);
+    }
+
+    public void setEffectScale(int handle, float x, float y, float z) {
+        effekseerManagerCore.SetEffectScale(handle, x, y, z);
+    }
+
+    public float getDynamicInput(int handle, int index) {
+        return effekseerManagerCore.GetDynamicInput(handle, index);
+    }
+
+    public void setDynamicInput(int handle, int index, float value) {
+        effekseerManagerCore.SetDynamicInput(handle, index, value);
+    }
+
+    public boolean isPlaying(ParticleEffekseer effekseer) {
+        return this.effekseerManagerCore.GetShown(effekseer.getHandle());
+    }
+
+    public boolean getShown(int handle) {
+        return effekseerManagerCore.GetShown(handle);
+    }
+
+    public void setShown(int handle, boolean shown) {
+        effekseerManagerCore.SetShown(handle, shown);
+    }
+
+    public boolean getPaused(int handle) {
+        return effekseerManagerCore.GetPaused(handle);
+    }
+
+    public void setPaused(int handle, boolean paused) {
+        effekseerManagerCore.SetPaused(handle, paused);
+    }
+
+    public void setPausedToAllEffects(boolean paused) {
+        effekseerManagerCore.SetPausedToAllEffects(paused);
+    }
+
+    public int getLayer(int handle) {
+        return effekseerManagerCore.GetLayer(handle);
+    }
+
+    public void setLayer(int handle, int layer) {
+        effekseerManagerCore.SetLayer(handle, layer);
+    }
+
+    public long getGroupMask(int handle) {
+        return effekseerManagerCore.GetGroupMask(handle);
+    }
+
+    public void setGroupMask(int handle, long groupmask) {
+        effekseerManagerCore.SetGroupMask(handle, groupmask);
+    }
+
+    public float getSpeed(int handle) {
+        return effekseerManagerCore.GetSpeed(handle);
+    }
+
+    public void setSpeed(int handle, float speed) {
+        effekseerManagerCore.SetSpeed(handle, speed);
+    }
+
+    public void setTimeScaleByGroup(long groupmask, float timeScale) {
+        effekseerManagerCore.SetTimeScaleByGroup(groupmask, timeScale);
+    }
+
+    public void setTimeScaleByHandle(int handle, float timeScale) {
+        effekseerManagerCore.SetTimeScaleByHandle(handle, timeScale);
+    }
+
+    public void setAutoDrawing(int handle, boolean autoDraw) {
+        effekseerManagerCore.SetAutoDrawing(handle, autoDraw);
+    }
+
+    public void flip() {
+        effekseerManagerCore.Flip();
+    }
+
+    public void updateHandleToMoveToFrame(int handle, float frame) {
+        effekseerManagerCore.UpdateHandleToMoveToFrame(handle, frame);
+    }
+
+    //endregion
 
     /**
      * Draws all added particle effects. Call {@link #getDrawParameter()} before this call, and update its state to further affect
