@@ -2035,6 +2035,190 @@ SWIGEXPORT void JNICALL Java_io_github_srjohnathan_gdx_effekseer_core_GDXJNI_del
 }
 
 
+SWIGEXPORT jint JNICALL Java_io_github_srjohnathan_gdx_effekseer_core_GDXJNI_COLOR_1MODE_1DWORD_1get(JNIEnv *jenv, jclass jcls) {
+  jint jresult = 0 ;
+  Effekseer::ColorMode result;
+  
+  (void)jenv;
+  (void)jcls;
+  result = (Effekseer::ColorMode)Effekseer::COLOR_MODE_DWORD;
+  jresult = (jint)result; 
+  return jresult;
+}
+
+
+SWIGEXPORT void JNICALL Java_io_github_srjohnathan_gdx_effekseer_core_GDXJNI_Color_1R_1set(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_, jshort jarg2) {
+  Effekseer::Color *arg1 = (Effekseer::Color *) 0 ;
+  uint8_t arg2 ;
+  
+  (void)jenv;
+  (void)jcls;
+  (void)jarg1_;
+  arg1 = *(Effekseer::Color **)&jarg1; 
+  arg2 = (uint8_t)jarg2; 
+  if (arg1) (arg1)->R = arg2;
+}
+
+
+SWIGEXPORT jshort JNICALL Java_io_github_srjohnathan_gdx_effekseer_core_GDXJNI_Color_1R_1get(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_) {
+  jshort jresult = 0 ;
+  Effekseer::Color *arg1 = (Effekseer::Color *) 0 ;
+  uint8_t result;
+  
+  (void)jenv;
+  (void)jcls;
+  (void)jarg1_;
+  arg1 = *(Effekseer::Color **)&jarg1; 
+  result = (uint8_t) ((arg1)->R);
+  jresult = (jshort)result; 
+  return jresult;
+}
+
+
+SWIGEXPORT void JNICALL Java_io_github_srjohnathan_gdx_effekseer_core_GDXJNI_Color_1G_1set(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_, jshort jarg2) {
+  Effekseer::Color *arg1 = (Effekseer::Color *) 0 ;
+  uint8_t arg2 ;
+  
+  (void)jenv;
+  (void)jcls;
+  (void)jarg1_;
+  arg1 = *(Effekseer::Color **)&jarg1; 
+  arg2 = (uint8_t)jarg2; 
+  if (arg1) (arg1)->G = arg2;
+}
+
+
+SWIGEXPORT jshort JNICALL Java_io_github_srjohnathan_gdx_effekseer_core_GDXJNI_Color_1G_1get(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_) {
+  jshort jresult = 0 ;
+  Effekseer::Color *arg1 = (Effekseer::Color *) 0 ;
+  uint8_t result;
+  
+  (void)jenv;
+  (void)jcls;
+  (void)jarg1_;
+  arg1 = *(Effekseer::Color **)&jarg1; 
+  result = (uint8_t) ((arg1)->G);
+  jresult = (jshort)result; 
+  return jresult;
+}
+
+
+SWIGEXPORT void JNICALL Java_io_github_srjohnathan_gdx_effekseer_core_GDXJNI_Color_1B_1set(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_, jshort jarg2) {
+  Effekseer::Color *arg1 = (Effekseer::Color *) 0 ;
+  uint8_t arg2 ;
+  
+  (void)jenv;
+  (void)jcls;
+  (void)jarg1_;
+  arg1 = *(Effekseer::Color **)&jarg1; 
+  arg2 = (uint8_t)jarg2; 
+  if (arg1) (arg1)->B = arg2;
+}
+
+
+SWIGEXPORT jshort JNICALL Java_io_github_srjohnathan_gdx_effekseer_core_GDXJNI_Color_1B_1get(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_) {
+  jshort jresult = 0 ;
+  Effekseer::Color *arg1 = (Effekseer::Color *) 0 ;
+  uint8_t result;
+  
+  (void)jenv;
+  (void)jcls;
+  (void)jarg1_;
+  arg1 = *(Effekseer::Color **)&jarg1; 
+  result = (uint8_t) ((arg1)->B);
+  jresult = (jshort)result; 
+  return jresult;
+}
+
+
+SWIGEXPORT void JNICALL Java_io_github_srjohnathan_gdx_effekseer_core_GDXJNI_Color_1A_1set(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_, jshort jarg2) {
+  Effekseer::Color *arg1 = (Effekseer::Color *) 0 ;
+  uint8_t arg2 ;
+  
+  (void)jenv;
+  (void)jcls;
+  (void)jarg1_;
+  arg1 = *(Effekseer::Color **)&jarg1; 
+  arg2 = (uint8_t)jarg2; 
+  if (arg1) (arg1)->A = arg2;
+}
+
+
+SWIGEXPORT jshort JNICALL Java_io_github_srjohnathan_gdx_effekseer_core_GDXJNI_Color_1A_1get(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_) {
+  jshort jresult = 0 ;
+  Effekseer::Color *arg1 = (Effekseer::Color *) 0 ;
+  uint8_t result;
+  
+  (void)jenv;
+  (void)jcls;
+  (void)jarg1_;
+  arg1 = *(Effekseer::Color **)&jarg1; 
+  result = (uint8_t) ((arg1)->A);
+  jresult = (jshort)result; 
+  return jresult;
+}
+
+
+SWIGEXPORT jlong JNICALL Java_io_github_srjohnathan_gdx_effekseer_core_GDXJNI_new_1Color_1_1SWIG_10(JNIEnv *jenv, jclass jcls) {
+  jlong jresult = 0 ;
+  Effekseer::Color *result = 0 ;
+  
+  (void)jenv;
+  (void)jcls;
+  result = (Effekseer::Color *)new Effekseer::Color();
+  *(Effekseer::Color **)&jresult = result; 
+  return jresult;
+}
+
+
+SWIGEXPORT jlong JNICALL Java_io_github_srjohnathan_gdx_effekseer_core_GDXJNI_new_1Color_1_1SWIG_11(JNIEnv *jenv, jclass jcls, jshort jarg1, jshort jarg2, jshort jarg3, jshort jarg4) {
+  jlong jresult = 0 ;
+  uint8_t arg1 ;
+  uint8_t arg2 ;
+  uint8_t arg3 ;
+  uint8_t arg4 ;
+  Effekseer::Color *result = 0 ;
+  
+  (void)jenv;
+  (void)jcls;
+  arg1 = (uint8_t)jarg1; 
+  arg2 = (uint8_t)jarg2; 
+  arg3 = (uint8_t)jarg3; 
+  arg4 = (uint8_t)jarg4; 
+  result = (Effekseer::Color *)new Effekseer::Color(arg1,arg2,arg3,arg4);
+  *(Effekseer::Color **)&jresult = result; 
+  return jresult;
+}
+
+
+SWIGEXPORT jlong JNICALL Java_io_github_srjohnathan_gdx_effekseer_core_GDXJNI_new_1Color_1_1SWIG_12(JNIEnv *jenv, jclass jcls, jshort jarg1, jshort jarg2, jshort jarg3) {
+  jlong jresult = 0 ;
+  uint8_t arg1 ;
+  uint8_t arg2 ;
+  uint8_t arg3 ;
+  Effekseer::Color *result = 0 ;
+  
+  (void)jenv;
+  (void)jcls;
+  arg1 = (uint8_t)jarg1; 
+  arg2 = (uint8_t)jarg2; 
+  arg3 = (uint8_t)jarg3; 
+  result = (Effekseer::Color *)new Effekseer::Color(arg1,arg2,arg3);
+  *(Effekseer::Color **)&jresult = result; 
+  return jresult;
+}
+
+
+SWIGEXPORT void JNICALL Java_io_github_srjohnathan_gdx_effekseer_core_GDXJNI_delete_1Color(JNIEnv *jenv, jclass jcls, jlong jarg1) {
+  Effekseer::Color *arg1 = (Effekseer::Color *) 0 ;
+  
+  (void)jenv;
+  (void)jcls;
+  arg1 = *(Effekseer::Color **)&jarg1; 
+  delete arg1;
+}
+
+
 SWIGEXPORT void JNICALL Java_io_github_srjohnathan_gdx_effekseer_core_GDXJNI_EffekseerManagerParameters_1UpdateParameter_1DeltaFrame_1set(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_, jfloat jarg2) {
   Effekseer::Manager::UpdateParameter *arg1 = (Effekseer::Manager::UpdateParameter *) 0 ;
   float arg2 ;

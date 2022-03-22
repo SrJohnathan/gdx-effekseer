@@ -57,6 +57,16 @@ struct Effekseer::Manager::DrawParameter;
 %rename("Z", fullname=1) "Effekseer::Vector3D::Z";
 %include "/cpp/Effekseer/Dev/Cpp/Effekseer/Effekseer/Effekseer.Vector3D.h"
 
+// Color with only the fields and constructor and destructor
+%rename("Color", fullname=1) "Effekseer::Color";
+%rename("Color", fullname=1) "Effekseer::Color::Vector3D";
+%rename("~Color", fullname=1) "Effekseer::Color::~Vector3D";
+%rename("R", fullname=1) "Effekseer::Color::R";
+%rename("G", fullname=1) "Effekseer::Color::G";
+%rename("B", fullname=1) "Effekseer::Color::B";
+%rename("A", fullname=1) "Effekseer::Color::A";
+%include "/cpp/Effekseer/Dev/Cpp/Effekseer/Effekseer/Effekseer.Color.h"
+
 // The Effekseer Manager, with just the parameter structs
 %rename("EffekseerManagerParameters", fullname=1) "Effekseer::Manager";
 %rename("UpdateParameter", fullname=1) "Effekseer::Manager::UpdateParameter";
