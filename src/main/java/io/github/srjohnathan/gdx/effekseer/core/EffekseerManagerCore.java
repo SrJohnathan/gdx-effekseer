@@ -60,12 +60,24 @@ public class EffekseerManagerCore {
     return GDXJNI.EffekseerManagerCore_Speed(swigCPtr, this, handle);
   }
 
+  public void BeginRendering() {
+    GDXJNI.EffekseerManagerCore_BeginRendering(swigCPtr, this);
+  }
+
+  public void Draw(EffekseerManagerParameters.DrawParameter drawParameter) {
+    GDXJNI.EffekseerManagerCore_Draw(swigCPtr, this, EffekseerManagerParameters.DrawParameter.getCPtr(drawParameter), drawParameter);
+  }
+
   public void DrawBack() {
     GDXJNI.EffekseerManagerCore_DrawBack(swigCPtr, this);
   }
 
   public void DrawFront() {
     GDXJNI.EffekseerManagerCore_DrawFront(swigCPtr, this);
+  }
+
+  public void EndRendering() {
+    GDXJNI.EffekseerManagerCore_EndRendering(swigCPtr, this);
   }
 
   public void SetPause(int handle, boolean pause) {

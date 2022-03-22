@@ -179,6 +179,13 @@ void EffekseerManagerCore::SetMatrix(int handle, float *matrix43)
     manager_->SetMatrix(handle, mat43);
 }
 
+void EffekseerManagerCore::BeginRendering() {
+    renderer_->BeginRendering();
+}
+
+void EffekseerManagerCore::Draw(const Effekseer::Manager::DrawParameter& drawParameter) {
+    manager_->Draw(drawParameter);
+}
 
 void EffekseerManagerCore::DrawBack() {
     if (manager_ == nullptr) {
@@ -191,7 +198,6 @@ void EffekseerManagerCore::DrawBack() {
     manager_->DrawBack();
 
     renderer_->EndRendering();
-
 }
 
 void EffekseerManagerCore::DrawFront() {
@@ -202,7 +208,10 @@ void EffekseerManagerCore::DrawFront() {
     renderer_->BeginRendering();
     manager_->DrawFront();
     renderer_->EndRendering();
+}
 
+void EffekseerManagerCore::EndRendering() {
+    renderer_->EndRendering();
 }
 
 void EffekseerManagerCore::SetPause(int i,bool pause) {

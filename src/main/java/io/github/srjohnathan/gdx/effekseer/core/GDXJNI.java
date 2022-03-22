@@ -51,8 +51,11 @@ public class GDXJNI {
   public final static native int EffekseerManagerCore_Play(long jarg1, EffekseerManagerCore jarg1_, long jarg2, EffekseerEffectCore jarg2_);
   public final static native boolean EffekseerManagerCore_isPlaying(long jarg1, EffekseerManagerCore jarg1_, int jarg2);
   public final static native float EffekseerManagerCore_Speed(long jarg1, EffekseerManagerCore jarg1_, int jarg2);
+  public final static native void EffekseerManagerCore_BeginRendering(long jarg1, EffekseerManagerCore jarg1_);
+  public final static native void EffekseerManagerCore_Draw(long jarg1, EffekseerManagerCore jarg1_, long jarg2, EffekseerManagerParameters.DrawParameter jarg2_);
   public final static native void EffekseerManagerCore_DrawBack(long jarg1, EffekseerManagerCore jarg1_);
   public final static native void EffekseerManagerCore_DrawFront(long jarg1, EffekseerManagerCore jarg1_);
+  public final static native void EffekseerManagerCore_EndRendering(long jarg1, EffekseerManagerCore jarg1_);
   public final static native void EffekseerManagerCore_SetPause(long jarg1, EffekseerManagerCore jarg1_, int jarg2, boolean jarg3);
   public final static native void EffekseerManagerCore_SetProjectionMatrix(long jarg1, EffekseerManagerCore jarg1_, float[] jarg2, float[] jarg3, boolean jarg4, float jarg5, float jarg6);
   public final static native void EffekseerManagerCore_SetEffectRotateAxis(long jarg1, EffekseerManagerCore jarg1_, int jarg2, float jarg3, float jarg4, float jarg5, float jarg6);

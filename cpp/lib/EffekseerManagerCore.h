@@ -46,8 +46,11 @@ public:
     void SetDynamicInput(int handle, int32_t index, float value);
     float GetDynamicInput(int handle, int32_t index);
     void LaunchWorkerThreads(int32_t n); */
+    void BeginRendering();
+    void Draw(const Effekseer::Manager::DrawParameter& drawParameter);
     void DrawBack();
     void DrawFront();
+    void EndRendering();
     void SetPause(int handle,bool pause);
     void SetProjectionMatrix(float matrix44[],float matrix44C[], bool view,float width,float heith);
     void SetEffectRotateAxis(int handle, float x, float y, float z,float angle);

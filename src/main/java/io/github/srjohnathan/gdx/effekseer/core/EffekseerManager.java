@@ -37,15 +37,25 @@ public class EffekseerManager implements Disposable {
 
     //endregion
 
+    //region State
+
+    /**
+     * The DrawParameter instance to use for calling the {@link EffekseerManagerCore#Draw(EffekseerManagerParameters.DrawParameter)} method.
+     */
+    private final EffekseerManagerParameters.DrawParameter drawParameter;
+
+    //endregion
+
     //region Constructors
 
     public EffekseerManager(Camera camera, EffekseerCore.TypeOpenGL core, int maxSpriteCount) {
         EffekseerBackendCore.InitializeAsOpenGL();
 
-        // Set the properties
+        // Set the properties/state
         this.effekseerManagerCore = new EffekseerManagerCore();
         this.camera = camera;
         this.effekseers = new Array<>(false, 16);
+        this.drawParameter = new EffekseerManagerParameters.DrawParameter();
 
         // Initialize the core manager
         this.effekseerManagerCore.Initialize(maxSpriteCount, core.getId(),true);
@@ -97,6 +107,15 @@ public class EffekseerManager implements Disposable {
         this.viewport = viewport;
     }
 
+    /**
+     *
+     * @return The {@link EffekseerManagerParameters.DrawParameter} being used for every draw call. Update the state of this
+     * instance for affecting how the particles are drawn (culling and render sorting).
+     */
+    public EffekseerManagerParameters.DrawParameter getDrawParameter() {
+        return drawParameter;
+    }
+
     //endregion
 
     public boolean isPlaying(ParticleEffekseer effekseer) {
@@ -104,7 +123,8 @@ public class EffekseerManager implements Disposable {
     }
 
     /**
-     * Draws all added particle effects.
+     * Draws all added particle effects. Call {@link #getDrawParameter()} before this call, and update its state to further affect
+     * how the particles are drawn.
      * @param delta The time in seconds since the last frame.
      */
     public void draw(float delta) {
@@ -151,8 +171,9 @@ public class EffekseerManager implements Disposable {
         // Update the manager core
         this.effekseerManagerCore.Update(delta * SINGLE_FRAME_TIME_SECONDS_INV);
         // Draw
-        this.effekseerManagerCore.DrawBack();
-        this.effekseerManagerCore.DrawFront();
+        this.effekseerManagerCore.BeginRendering();
+        this.effekseerManagerCore.Draw(this.drawParameter);
+        this.effekseerManagerCore.EndRendering();
 
         this.onPostDraw();
     }

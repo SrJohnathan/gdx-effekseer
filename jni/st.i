@@ -36,7 +36,8 @@ namespace std {
     %template(VectorFloat) vector<float>;
 };
 
-
+// Forward declaration of classes/structs that will be included later on in this file
+struct Effekseer::Manager::DrawParameter;
 
 %include "/cpp/lib/EffekseerBackendCore.h"
 %include "/cpp/lib/EffekseerEffectCore.h"

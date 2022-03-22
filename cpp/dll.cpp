@@ -1683,6 +1683,35 @@ SWIGEXPORT jfloat JNICALL Java_io_github_srjohnathan_gdx_effekseer_core_GDXJNI_E
 }
 
 
+SWIGEXPORT void JNICALL Java_io_github_srjohnathan_gdx_effekseer_core_GDXJNI_EffekseerManagerCore_1BeginRendering(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_) {
+  EffekseerManagerCore *arg1 = (EffekseerManagerCore *) 0 ;
+  
+  (void)jenv;
+  (void)jcls;
+  (void)jarg1_;
+  arg1 = *(EffekseerManagerCore **)&jarg1; 
+  (arg1)->BeginRendering();
+}
+
+
+SWIGEXPORT void JNICALL Java_io_github_srjohnathan_gdx_effekseer_core_GDXJNI_EffekseerManagerCore_1Draw(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_, jlong jarg2, jobject jarg2_) {
+  EffekseerManagerCore *arg1 = (EffekseerManagerCore *) 0 ;
+  Effekseer::Manager::DrawParameter *arg2 = 0 ;
+  
+  (void)jenv;
+  (void)jcls;
+  (void)jarg1_;
+  (void)jarg2_;
+  arg1 = *(EffekseerManagerCore **)&jarg1; 
+  arg2 = *(Effekseer::Manager::DrawParameter **)&jarg2;
+  if (!arg2) {
+    SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "Effekseer::Manager::DrawParameter const & reference is null");
+    return ;
+  } 
+  (arg1)->Draw((Effekseer::Manager::DrawParameter const &)*arg2);
+}
+
+
 SWIGEXPORT void JNICALL Java_io_github_srjohnathan_gdx_effekseer_core_GDXJNI_EffekseerManagerCore_1DrawBack(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_) {
   EffekseerManagerCore *arg1 = (EffekseerManagerCore *) 0 ;
   
@@ -1702,6 +1731,17 @@ SWIGEXPORT void JNICALL Java_io_github_srjohnathan_gdx_effekseer_core_GDXJNI_Eff
   (void)jarg1_;
   arg1 = *(EffekseerManagerCore **)&jarg1; 
   (arg1)->DrawFront();
+}
+
+
+SWIGEXPORT void JNICALL Java_io_github_srjohnathan_gdx_effekseer_core_GDXJNI_EffekseerManagerCore_1EndRendering(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_) {
+  EffekseerManagerCore *arg1 = (EffekseerManagerCore *) 0 ;
+  
+  (void)jenv;
+  (void)jcls;
+  (void)jarg1_;
+  arg1 = *(EffekseerManagerCore **)&jarg1; 
+  (arg1)->EndRendering();
 }
 
 
