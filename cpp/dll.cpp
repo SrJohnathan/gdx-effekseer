@@ -1871,6 +1871,372 @@ SWIGEXPORT void JNICALL Java_io_github_srjohnathan_gdx_effekseer_core_GDXJNI_Eff
 }
 
 
+SWIGEXPORT void JNICALL Java_io_github_srjohnathan_gdx_effekseer_core_GDXJNI_Vector3D_1X_1set(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_, jfloat jarg2) {
+  Effekseer::Vector3D *arg1 = (Effekseer::Vector3D *) 0 ;
+  float arg2 ;
+  
+  (void)jenv;
+  (void)jcls;
+  (void)jarg1_;
+  arg1 = *(Effekseer::Vector3D **)&jarg1; 
+  arg2 = (float)jarg2; 
+  if (arg1) (arg1)->X = arg2;
+}
+
+
+SWIGEXPORT jfloat JNICALL Java_io_github_srjohnathan_gdx_effekseer_core_GDXJNI_Vector3D_1X_1get(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_) {
+  jfloat jresult = 0 ;
+  Effekseer::Vector3D *arg1 = (Effekseer::Vector3D *) 0 ;
+  float result;
+  
+  (void)jenv;
+  (void)jcls;
+  (void)jarg1_;
+  arg1 = *(Effekseer::Vector3D **)&jarg1; 
+  result = (float) ((arg1)->X);
+  jresult = (jfloat)result; 
+  return jresult;
+}
+
+
+SWIGEXPORT void JNICALL Java_io_github_srjohnathan_gdx_effekseer_core_GDXJNI_Vector3D_1Y_1set(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_, jfloat jarg2) {
+  Effekseer::Vector3D *arg1 = (Effekseer::Vector3D *) 0 ;
+  float arg2 ;
+  
+  (void)jenv;
+  (void)jcls;
+  (void)jarg1_;
+  arg1 = *(Effekseer::Vector3D **)&jarg1; 
+  arg2 = (float)jarg2; 
+  if (arg1) (arg1)->Y = arg2;
+}
+
+
+SWIGEXPORT jfloat JNICALL Java_io_github_srjohnathan_gdx_effekseer_core_GDXJNI_Vector3D_1Y_1get(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_) {
+  jfloat jresult = 0 ;
+  Effekseer::Vector3D *arg1 = (Effekseer::Vector3D *) 0 ;
+  float result;
+  
+  (void)jenv;
+  (void)jcls;
+  (void)jarg1_;
+  arg1 = *(Effekseer::Vector3D **)&jarg1; 
+  result = (float) ((arg1)->Y);
+  jresult = (jfloat)result; 
+  return jresult;
+}
+
+
+SWIGEXPORT void JNICALL Java_io_github_srjohnathan_gdx_effekseer_core_GDXJNI_Vector3D_1Z_1set(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_, jfloat jarg2) {
+  Effekseer::Vector3D *arg1 = (Effekseer::Vector3D *) 0 ;
+  float arg2 ;
+  
+  (void)jenv;
+  (void)jcls;
+  (void)jarg1_;
+  arg1 = *(Effekseer::Vector3D **)&jarg1; 
+  arg2 = (float)jarg2; 
+  if (arg1) (arg1)->Z = arg2;
+}
+
+
+SWIGEXPORT jfloat JNICALL Java_io_github_srjohnathan_gdx_effekseer_core_GDXJNI_Vector3D_1Z_1get(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_) {
+  jfloat jresult = 0 ;
+  Effekseer::Vector3D *arg1 = (Effekseer::Vector3D *) 0 ;
+  float result;
+  
+  (void)jenv;
+  (void)jcls;
+  (void)jarg1_;
+  arg1 = *(Effekseer::Vector3D **)&jarg1; 
+  result = (float) ((arg1)->Z);
+  jresult = (jfloat)result; 
+  return jresult;
+}
+
+
+SWIGEXPORT jlong JNICALL Java_io_github_srjohnathan_gdx_effekseer_core_GDXJNI_new_1Vector3D_1_1SWIG_10(JNIEnv *jenv, jclass jcls) {
+  jlong jresult = 0 ;
+  Effekseer::Vector3D *result = 0 ;
+  
+  (void)jenv;
+  (void)jcls;
+  result = (Effekseer::Vector3D *)new Effekseer::Vector3D();
+  *(Effekseer::Vector3D **)&jresult = result; 
+  return jresult;
+}
+
+
+SWIGEXPORT jlong JNICALL Java_io_github_srjohnathan_gdx_effekseer_core_GDXJNI_new_1Vector3D_1_1SWIG_11(JNIEnv *jenv, jclass jcls, jfloat jarg1, jfloat jarg2, jfloat jarg3) {
+  jlong jresult = 0 ;
+  float arg1 ;
+  float arg2 ;
+  float arg3 ;
+  Effekseer::Vector3D *result = 0 ;
+  
+  (void)jenv;
+  (void)jcls;
+  arg1 = (float)jarg1; 
+  arg2 = (float)jarg2; 
+  arg3 = (float)jarg3; 
+  result = (Effekseer::Vector3D *)new Effekseer::Vector3D(arg1,arg2,arg3);
+  *(Effekseer::Vector3D **)&jresult = result; 
+  return jresult;
+}
+
+
+SWIGEXPORT void JNICALL Java_io_github_srjohnathan_gdx_effekseer_core_GDXJNI_delete_1Vector3D(JNIEnv *jenv, jclass jcls, jlong jarg1) {
+  Effekseer::Vector3D *arg1 = (Effekseer::Vector3D *) 0 ;
+  
+  (void)jenv;
+  (void)jcls;
+  arg1 = *(Effekseer::Vector3D **)&jarg1; 
+  delete arg1;
+}
+
+
+SWIGEXPORT void JNICALL Java_io_github_srjohnathan_gdx_effekseer_core_GDXJNI_EffekseerManagerParameters_1UpdateParameter_1DeltaFrame_1set(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_, jfloat jarg2) {
+  Effekseer::Manager::UpdateParameter *arg1 = (Effekseer::Manager::UpdateParameter *) 0 ;
+  float arg2 ;
+  
+  (void)jenv;
+  (void)jcls;
+  (void)jarg1_;
+  arg1 = *(Effekseer::Manager::UpdateParameter **)&jarg1; 
+  arg2 = (float)jarg2; 
+  if (arg1) (arg1)->DeltaFrame = arg2;
+}
+
+
+SWIGEXPORT jfloat JNICALL Java_io_github_srjohnathan_gdx_effekseer_core_GDXJNI_EffekseerManagerParameters_1UpdateParameter_1DeltaFrame_1get(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_) {
+  jfloat jresult = 0 ;
+  Effekseer::Manager::UpdateParameter *arg1 = (Effekseer::Manager::UpdateParameter *) 0 ;
+  float result;
+  
+  (void)jenv;
+  (void)jcls;
+  (void)jarg1_;
+  arg1 = *(Effekseer::Manager::UpdateParameter **)&jarg1; 
+  result = (float) ((arg1)->DeltaFrame);
+  jresult = (jfloat)result; 
+  return jresult;
+}
+
+
+SWIGEXPORT void JNICALL Java_io_github_srjohnathan_gdx_effekseer_core_GDXJNI_EffekseerManagerParameters_1UpdateParameter_1UpdateInterval_1set(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_, jfloat jarg2) {
+  Effekseer::Manager::UpdateParameter *arg1 = (Effekseer::Manager::UpdateParameter *) 0 ;
+  float arg2 ;
+  
+  (void)jenv;
+  (void)jcls;
+  (void)jarg1_;
+  arg1 = *(Effekseer::Manager::UpdateParameter **)&jarg1; 
+  arg2 = (float)jarg2; 
+  if (arg1) (arg1)->UpdateInterval = arg2;
+}
+
+
+SWIGEXPORT jfloat JNICALL Java_io_github_srjohnathan_gdx_effekseer_core_GDXJNI_EffekseerManagerParameters_1UpdateParameter_1UpdateInterval_1get(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_) {
+  jfloat jresult = 0 ;
+  Effekseer::Manager::UpdateParameter *arg1 = (Effekseer::Manager::UpdateParameter *) 0 ;
+  float result;
+  
+  (void)jenv;
+  (void)jcls;
+  (void)jarg1_;
+  arg1 = *(Effekseer::Manager::UpdateParameter **)&jarg1; 
+  result = (float) ((arg1)->UpdateInterval);
+  jresult = (jfloat)result; 
+  return jresult;
+}
+
+
+SWIGEXPORT void JNICALL Java_io_github_srjohnathan_gdx_effekseer_core_GDXJNI_EffekseerManagerParameters_1UpdateParameter_1SyncUpdate_1set(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_, jboolean jarg2) {
+  Effekseer::Manager::UpdateParameter *arg1 = (Effekseer::Manager::UpdateParameter *) 0 ;
+  bool arg2 ;
+  
+  (void)jenv;
+  (void)jcls;
+  (void)jarg1_;
+  arg1 = *(Effekseer::Manager::UpdateParameter **)&jarg1; 
+  arg2 = jarg2 ? true : false; 
+  if (arg1) (arg1)->SyncUpdate = arg2;
+}
+
+
+SWIGEXPORT jboolean JNICALL Java_io_github_srjohnathan_gdx_effekseer_core_GDXJNI_EffekseerManagerParameters_1UpdateParameter_1SyncUpdate_1get(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_) {
+  jboolean jresult = 0 ;
+  Effekseer::Manager::UpdateParameter *arg1 = (Effekseer::Manager::UpdateParameter *) 0 ;
+  bool result;
+  
+  (void)jenv;
+  (void)jcls;
+  (void)jarg1_;
+  arg1 = *(Effekseer::Manager::UpdateParameter **)&jarg1; 
+  result = (bool) ((arg1)->SyncUpdate);
+  jresult = (jboolean)result; 
+  return jresult;
+}
+
+
+SWIGEXPORT jlong JNICALL Java_io_github_srjohnathan_gdx_effekseer_core_GDXJNI_new_1EffekseerManagerParameters_1UpdateParameter(JNIEnv *jenv, jclass jcls) {
+  jlong jresult = 0 ;
+  Effekseer::Manager::UpdateParameter *result = 0 ;
+  
+  (void)jenv;
+  (void)jcls;
+  result = (Effekseer::Manager::UpdateParameter *)new Effekseer::Manager::UpdateParameter();
+  *(Effekseer::Manager::UpdateParameter **)&jresult = result; 
+  return jresult;
+}
+
+
+SWIGEXPORT void JNICALL Java_io_github_srjohnathan_gdx_effekseer_core_GDXJNI_delete_1EffekseerManagerParameters_1UpdateParameter(JNIEnv *jenv, jclass jcls, jlong jarg1) {
+  Effekseer::Manager::UpdateParameter *arg1 = (Effekseer::Manager::UpdateParameter *) 0 ;
+  
+  (void)jenv;
+  (void)jcls;
+  arg1 = *(Effekseer::Manager::UpdateParameter **)&jarg1; 
+  delete arg1;
+}
+
+
+SWIGEXPORT void JNICALL Java_io_github_srjohnathan_gdx_effekseer_core_GDXJNI_EffekseerManagerParameters_1DrawParameter_1CameraPosition_1set(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_, jlong jarg2, jobject jarg2_) {
+  Effekseer::Manager::DrawParameter *arg1 = (Effekseer::Manager::DrawParameter *) 0 ;
+  Effekseer::Vector3D *arg2 = (Effekseer::Vector3D *) 0 ;
+  
+  (void)jenv;
+  (void)jcls;
+  (void)jarg1_;
+  (void)jarg2_;
+  arg1 = *(Effekseer::Manager::DrawParameter **)&jarg1; 
+  arg2 = *(Effekseer::Vector3D **)&jarg2; 
+  if (arg1) (arg1)->CameraPosition = *arg2;
+}
+
+
+SWIGEXPORT jlong JNICALL Java_io_github_srjohnathan_gdx_effekseer_core_GDXJNI_EffekseerManagerParameters_1DrawParameter_1CameraPosition_1get(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_) {
+  jlong jresult = 0 ;
+  Effekseer::Manager::DrawParameter *arg1 = (Effekseer::Manager::DrawParameter *) 0 ;
+  Effekseer::Vector3D *result = 0 ;
+  
+  (void)jenv;
+  (void)jcls;
+  (void)jarg1_;
+  arg1 = *(Effekseer::Manager::DrawParameter **)&jarg1; 
+  result = (Effekseer::Vector3D *)& ((arg1)->CameraPosition);
+  *(Effekseer::Vector3D **)&jresult = result; 
+  return jresult;
+}
+
+
+SWIGEXPORT void JNICALL Java_io_github_srjohnathan_gdx_effekseer_core_GDXJNI_EffekseerManagerParameters_1DrawParameter_1CameraFrontDirection_1set(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_, jlong jarg2, jobject jarg2_) {
+  Effekseer::Manager::DrawParameter *arg1 = (Effekseer::Manager::DrawParameter *) 0 ;
+  Effekseer::Vector3D *arg2 = (Effekseer::Vector3D *) 0 ;
+  
+  (void)jenv;
+  (void)jcls;
+  (void)jarg1_;
+  (void)jarg2_;
+  arg1 = *(Effekseer::Manager::DrawParameter **)&jarg1; 
+  arg2 = *(Effekseer::Vector3D **)&jarg2; 
+  if (arg1) (arg1)->CameraFrontDirection = *arg2;
+}
+
+
+SWIGEXPORT jlong JNICALL Java_io_github_srjohnathan_gdx_effekseer_core_GDXJNI_EffekseerManagerParameters_1DrawParameter_1CameraFrontDirection_1get(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_) {
+  jlong jresult = 0 ;
+  Effekseer::Manager::DrawParameter *arg1 = (Effekseer::Manager::DrawParameter *) 0 ;
+  Effekseer::Vector3D *result = 0 ;
+  
+  (void)jenv;
+  (void)jcls;
+  (void)jarg1_;
+  arg1 = *(Effekseer::Manager::DrawParameter **)&jarg1; 
+  result = (Effekseer::Vector3D *)& ((arg1)->CameraFrontDirection);
+  *(Effekseer::Vector3D **)&jresult = result; 
+  return jresult;
+}
+
+
+SWIGEXPORT void JNICALL Java_io_github_srjohnathan_gdx_effekseer_core_GDXJNI_EffekseerManagerParameters_1DrawParameter_1CameraCullingMask_1set(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_, jint jarg2) {
+  Effekseer::Manager::DrawParameter *arg1 = (Effekseer::Manager::DrawParameter *) 0 ;
+  int32_t arg2 ;
+  
+  (void)jenv;
+  (void)jcls;
+  (void)jarg1_;
+  arg1 = *(Effekseer::Manager::DrawParameter **)&jarg1; 
+  arg2 = (int32_t)jarg2; 
+  if (arg1) (arg1)->CameraCullingMask = arg2;
+}
+
+
+SWIGEXPORT jint JNICALL Java_io_github_srjohnathan_gdx_effekseer_core_GDXJNI_EffekseerManagerParameters_1DrawParameter_1CameraCullingMask_1get(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_) {
+  jint jresult = 0 ;
+  Effekseer::Manager::DrawParameter *arg1 = (Effekseer::Manager::DrawParameter *) 0 ;
+  int32_t result;
+  
+  (void)jenv;
+  (void)jcls;
+  (void)jarg1_;
+  arg1 = *(Effekseer::Manager::DrawParameter **)&jarg1; 
+  result = (int32_t) ((arg1)->CameraCullingMask);
+  jresult = (jint)result; 
+  return jresult;
+}
+
+
+SWIGEXPORT void JNICALL Java_io_github_srjohnathan_gdx_effekseer_core_GDXJNI_EffekseerManagerParameters_1DrawParameter_1IsSortingEffectsEnabled_1set(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_, jboolean jarg2) {
+  Effekseer::Manager::DrawParameter *arg1 = (Effekseer::Manager::DrawParameter *) 0 ;
+  bool arg2 ;
+  
+  (void)jenv;
+  (void)jcls;
+  (void)jarg1_;
+  arg1 = *(Effekseer::Manager::DrawParameter **)&jarg1; 
+  arg2 = jarg2 ? true : false; 
+  if (arg1) (arg1)->IsSortingEffectsEnabled = arg2;
+}
+
+
+SWIGEXPORT jboolean JNICALL Java_io_github_srjohnathan_gdx_effekseer_core_GDXJNI_EffekseerManagerParameters_1DrawParameter_1IsSortingEffectsEnabled_1get(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_) {
+  jboolean jresult = 0 ;
+  Effekseer::Manager::DrawParameter *arg1 = (Effekseer::Manager::DrawParameter *) 0 ;
+  bool result;
+  
+  (void)jenv;
+  (void)jcls;
+  (void)jarg1_;
+  arg1 = *(Effekseer::Manager::DrawParameter **)&jarg1; 
+  result = (bool) ((arg1)->IsSortingEffectsEnabled);
+  jresult = (jboolean)result; 
+  return jresult;
+}
+
+
+SWIGEXPORT jlong JNICALL Java_io_github_srjohnathan_gdx_effekseer_core_GDXJNI_new_1EffekseerManagerParameters_1DrawParameter(JNIEnv *jenv, jclass jcls) {
+  jlong jresult = 0 ;
+  Effekseer::Manager::DrawParameter *result = 0 ;
+  
+  (void)jenv;
+  (void)jcls;
+  result = (Effekseer::Manager::DrawParameter *)new Effekseer::Manager::DrawParameter();
+  *(Effekseer::Manager::DrawParameter **)&jresult = result; 
+  return jresult;
+}
+
+
+SWIGEXPORT void JNICALL Java_io_github_srjohnathan_gdx_effekseer_core_GDXJNI_delete_1EffekseerManagerParameters_1DrawParameter(JNIEnv *jenv, jclass jcls, jlong jarg1) {
+  Effekseer::Manager::DrawParameter *arg1 = (Effekseer::Manager::DrawParameter *) 0 ;
+  
+  (void)jenv;
+  (void)jcls;
+  arg1 = *(Effekseer::Manager::DrawParameter **)&jarg1; 
+  delete arg1;
+}
+
+
 #ifdef __cplusplus
 }
 #endif
