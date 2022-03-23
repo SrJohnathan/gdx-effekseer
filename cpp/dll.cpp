@@ -1747,7 +1747,7 @@ SWIGEXPORT jfloatArray JNICALL Java_io_github_srjohnathan_gdx_effekseer_core_GDX
   arg1 = *(EffekseerManagerCore **)&jarg1; 
   arg2 = (int)jarg2; 
   result = (float *)(arg1)->GetMatrix(arg2);
-  jresult = SWIG_JavaArrayOutFloat(jenv, (float *)result, FillMeInAsSizeCannotBeDeterminedAutomatically); 
+  jresult = SWIG_JavaArrayOutFloat(jenv, (float *)result, 16); 
   return jresult;
 }
 
@@ -1782,7 +1782,7 @@ SWIGEXPORT jfloatArray JNICALL Java_io_github_srjohnathan_gdx_effekseer_core_GDX
   arg1 = *(EffekseerManagerCore **)&jarg1; 
   arg2 = (int)jarg2; 
   result = (float *)(arg1)->GetBaseMatrix(arg2);
-  jresult = SWIG_JavaArrayOutFloat(jenv, (float *)result, FillMeInAsSizeCannotBeDeterminedAutomatically); 
+  jresult = SWIG_JavaArrayOutFloat(jenv, (float *)result, 16); 
   return jresult;
 }
 
@@ -1999,65 +1999,6 @@ SWIGEXPORT void JNICALL Java_io_github_srjohnathan_gdx_effekseer_core_GDXJNI_Eff
     return ;
   } 
   (arg1)->SetTargetLocation(arg2,(Vector3D const &)*arg3);
-}
-
-
-SWIGEXPORT void JNICALL Java_io_github_srjohnathan_gdx_effekseer_core_GDXJNI_EffekseerManagerCore_1SetEffectRotateAxis(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_, jint jarg2, jfloat jarg3, jfloat jarg4, jfloat jarg5, jfloat jarg6) {
-  EffekseerManagerCore *arg1 = (EffekseerManagerCore *) 0 ;
-  int arg2 ;
-  float arg3 ;
-  float arg4 ;
-  float arg5 ;
-  float arg6 ;
-  
-  (void)jenv;
-  (void)jcls;
-  (void)jarg1_;
-  arg1 = *(EffekseerManagerCore **)&jarg1; 
-  arg2 = (int)jarg2; 
-  arg3 = (float)jarg3; 
-  arg4 = (float)jarg4; 
-  arg5 = (float)jarg5; 
-  arg6 = (float)jarg6; 
-  (arg1)->SetEffectRotateAxis(arg2,arg3,arg4,arg5,arg6);
-}
-
-
-SWIGEXPORT void JNICALL Java_io_github_srjohnathan_gdx_effekseer_core_GDXJNI_EffekseerManagerCore_1SetEffectPosition(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_, jint jarg2, jfloat jarg3, jfloat jarg4, jfloat jarg5) {
-  EffekseerManagerCore *arg1 = (EffekseerManagerCore *) 0 ;
-  int arg2 ;
-  float arg3 ;
-  float arg4 ;
-  float arg5 ;
-  
-  (void)jenv;
-  (void)jcls;
-  (void)jarg1_;
-  arg1 = *(EffekseerManagerCore **)&jarg1; 
-  arg2 = (int)jarg2; 
-  arg3 = (float)jarg3; 
-  arg4 = (float)jarg4; 
-  arg5 = (float)jarg5; 
-  (arg1)->SetEffectPosition(arg2,arg3,arg4,arg5);
-}
-
-
-SWIGEXPORT void JNICALL Java_io_github_srjohnathan_gdx_effekseer_core_GDXJNI_EffekseerManagerCore_1SetEffectScale(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_, jint jarg2, jfloat jarg3, jfloat jarg4, jfloat jarg5) {
-  EffekseerManagerCore *arg1 = (EffekseerManagerCore *) 0 ;
-  int arg2 ;
-  float arg3 ;
-  float arg4 ;
-  float arg5 ;
-  
-  (void)jenv;
-  (void)jcls;
-  (void)jarg1_;
-  arg1 = *(EffekseerManagerCore **)&jarg1; 
-  arg2 = (int)jarg2; 
-  arg3 = (float)jarg3; 
-  arg4 = (float)jarg4; 
-  arg5 = (float)jarg5; 
-  (arg1)->SetEffectScale(arg2,arg3,arg4,arg5);
 }
 
 

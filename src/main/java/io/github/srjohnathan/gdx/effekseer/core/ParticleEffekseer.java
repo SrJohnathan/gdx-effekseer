@@ -1,23 +1,20 @@
 package io.github.srjohnathan.gdx.effekseer.core;
 
+import com.badlogic.gdx.Files;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.files.FileHandle;
-
 import com.badlogic.gdx.math.Matrix4;
-import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.math.Vector3;
-
-
-import java.io.File;
 import java.util.Objects;
 
-
 public class ParticleEffekseer {
+
+    //region State
 
     public final Matrix4 transform = new Matrix4();
 
     private final EffekseerEffectCore effekseerEffectCore;
-    private int nodeSize = 0;
+    // private int nodeSize = 0;
     // private ArrayList<EffekseerNode> nodes;
 
     private final float[] mtx = new float[12];
@@ -26,43 +23,132 @@ public class ParticleEffekseer {
     private int handle;
     private boolean play;
     private float magnification = 1.0f;
-    private float scale = 1f;
 
+    private boolean isMatrixUpdateQueued = false;
 
-    private boolean getmatrix = false;
+    //endregion
 
+    //region Constructors
 
-
-
-
-    public ParticleEffekseer(  EffekseerManager manager) {
-
-
-
+    public ParticleEffekseer( EffekseerManager manager) {
         this.manager = Objects.requireNonNull(manager);
         this.manager.addParticleEffekseer(this);
-        effekseerEffectCore = new EffekseerEffectCore();
+        this.effekseerEffectCore = new EffekseerEffectCore();
         // nodes = new ArrayList<>();
-
     }
 
+    //endregion
 
-    public void setMagnification(float magnification) {
-        this.magnification = magnification;
+    //region Transform Matrix Methods
+
+    protected void updateTransformMatrixIfQueued() {
+        if (this.isMatrixUpdateQueued) {
+            this.transform.extract4x3Matrix(this.mtx);
+            this.manager.effekseerManagerCore.SetMatrix(this.handle, this.mtx);
+        }
     }
 
-    public boolean isPlay() {
-        return play;
+    /**
+     * Queues an update (calls Effekseer's SetMatrix()) of the transform matrix call for this effect the next time this effect is drawn.
+     */
+    private void queueUpdateTransformMatrix() {
+        float[] dst = this.manager.effekseerManagerCore.GetMatrix(handle);
+
+        this.transform.val[Matrix4.M00] = dst[0];
+        this.transform.val[Matrix4.M10] = dst[1];
+        this.transform.val[Matrix4.M20] = dst[2];
+        this.transform.val[Matrix4.M01] = dst[3];
+        this.transform.val[Matrix4.M11] = dst[4];
+        this.transform.val[Matrix4.M21] = dst[5];
+        this.transform.val[Matrix4.M02] = dst[6];
+        this.transform.val[Matrix4.M12] = dst[7];
+        this.transform.val[Matrix4.M22] = dst[8];
+        this.transform.val[Matrix4.M03] = dst[9];
+        this.transform.val[Matrix4.M13] = dst[10];
+        this.transform.val[Matrix4.M23] = dst[11];
+
+        this.isMatrixUpdateQueued = true;
     }
 
-    protected void setPlay(boolean play) {
-        this.play = play;
+    public void setTranslation(float x, float y, float z) {
+        this.transform.setTranslation(x, y, z);
+        this.queueUpdateTransformMatrix();
+    }
 
-     /*  if (nodes.size() > 0) {
+    public void translate(float x, float y, float z) {
+        this.transform.translate(x, y, z);
+        this.queueUpdateTransformMatrix();
+    }
+
+    public void setRotation(Vector3 axis, float angle) {
+        this.transform.setToRotation(axis, angle);
+        this.queueUpdateTransformMatrix();
+    }
+
+    public void setRotation(float axisX, float axisY, float axisZ, float degrees) {
+        this.transform.setToRotation(axisX, axisY, axisZ, degrees);
+        this.queueUpdateTransformMatrix();
+    }
+
+    public void rotate(Vector3 axis, float angle) {
+        this.transform.rotate(axis, angle);
+        this.queueUpdateTransformMatrix();
+    }
+
+    public void rotate(float axisX, float axisY, float axisZ, float degrees) {
+        this.transform.rotate(axisX, axisY, axisZ, degrees);
+        this.queueUpdateTransformMatrix();
+    }
+
+    public void scale(float x, float y, float z) {
+        this.transform.scale(x, y, z);
+        this.queueUpdateTransformMatrix();
+    }
+
+    public void setScale(float x, float y, float z) {
+        this.transform.setToScaling(x, y, z);
+        this.queueUpdateTransformMatrix();
+    }
+
+    //endregion
+
+    //region Private Methods
+
+    private FileHandle getPathAsFileHandle(String path, Files.FileType fileType) {
+        switch (fileType) {
+            case Classpath:
+                return Gdx.files.classpath(path);
+            case Internal:
+                return Gdx.files.internal(path);
+            case External:
+                return Gdx.files.external(path);
+            case Absolute:
+                return Gdx.files.absolute(path);
+            case Local:
+                return Gdx.files.local(path);
+        }
+
+        return Gdx.files.internal(path);
+    }
+
+    //endregion
+
+    //region Protected Methods
+
+    protected void update(float delta) {
+     /*   if (nodes.size() > 0) {
             nodes.forEach(effekseerNode -> {
-                effekseerNode.setPlay(play);
+                effekseerNode.update(delta);
             });
-        }     */
+        }    */
+    }
+
+    protected void setToStopState() {
+        this.play = false;
+    }
+
+    protected OnAnimationComplete getOnAnimationComplete() {
+        return onAnimationComplete;
     }
 
     protected void delete() {
@@ -70,67 +156,141 @@ public class ParticleEffekseer {
         effekseerEffectCore.delete();
     }
 
+    //endregion
+
+    //region Public Methods
+
+    public int getHandle() {
+        return this.handle;
+    }
+
+    public int getNodeCount() {
+        return this.effekseerEffectCore.NodeCount();
+    }
+
+    public void setMagnification(float magnification) {
+        this.magnification = magnification;
+    }
+
+    public boolean isInPlayingState() {
+        return play;
+    }
 
    /* public ArrayList<EffekseerNode> getNodes() {
         return nodes;
-    }  */
-
-    public float getScale() {
-        return scale;
     }
+    */
 
-    public void setScale(float scale) {
-        this.scale = scale;
-        manager.effekseerManagerCore.SetEffectScale(handle, scale, scale, scale);
-
+  /*  public EffekseerNode getNode() {
+        return effekseerEffectCore.getNode();
     }
+    */
 
-    protected void setMatrix4() {
-
-
-        if (getmatrix) {
-            transform.extract4x3Matrix(mtx);
-            manager.effekseerManagerCore.SetMatrix(handle, mtx);
+    public void load(FileHandle effectFileHandle) throws IllegalStateException {
+        // Check that the manager core is available
+        if (this.manager.effekseerManagerCore == null) {
+            throw new IllegalStateException("add particle on manager");
         }
+
+        byte[] byt = effectFileHandle.readBytes();
+
+        try {
+            if (!this.effekseerEffectCore.load(manager.effekseerManagerCore, byt, byt.length, this.magnification)) {
+                System.out.print("Failed to load.");
+            }
+        }
+        catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        // load textures
+        EffekseerTextureType[] textureTypes = new EffekseerTextureType[]{
+            EffekseerTextureType.Color,
+            EffekseerTextureType.Normal,
+            EffekseerTextureType.Distortion,
+        };
+
+        for (int t = 0; t < 3; t++) {
+            for (int i = 0; i < this.effekseerEffectCore.GetTextureCount(textureTypes[t]); i++) {
+                String path = effectFileHandle.file().getParent();
+                if (path != null) {
+                    path += "/" + this.effekseerEffectCore.GetTexturePath(i, textureTypes[t]);
+                }
+                else {
+                    path = this.effekseerEffectCore.GetTexturePath(i, textureTypes[t]);
+                }
+
+                FileHandle textureFileHandle = this.getPathAsFileHandle(path, effectFileHandle.type());
+                byte[] bytes = textureFileHandle.readBytes();
+                this.effekseerEffectCore.LoadTexture(bytes, bytes.length, i, textureTypes[t]);
+            }
+        }
+
+        for (int i = 0; i < this.effekseerEffectCore.GetModelCount(); i++) {
+            String path = effectFileHandle.file().getParent();
+            if (path != null) {
+                path += "/" + this.effekseerEffectCore.GetModelPath(i);
+            }
+            else {
+                path = this.effekseerEffectCore.GetModelPath(i);
+            }
+
+            FileHandle modelFileHandle = this.getPathAsFileHandle(path, effectFileHandle.type());
+            byte[] bytes = modelFileHandle.readBytes();
+            this.effekseerEffectCore.LoadModel(bytes, bytes.length, i);
+        }
+
+        for (int i = 0; i < effekseerEffectCore.GetMaterialCount(); i++) {
+            String path = effectFileHandle.file().getParent();
+            if (path != null) {
+                path += "/" + effekseerEffectCore.GetMaterialPath(i);
+            }
+            else {
+                path = effekseerEffectCore.GetMaterialPath(i);
+            }
+
+            FileHandle materialFileHandle = this.getPathAsFileHandle(path, effectFileHandle.type());
+            byte[] bytes = materialFileHandle.readBytes();
+            effekseerEffectCore.LoadMaterial(bytes, bytes.length, i);
+        }
+
+        // TODO sound
+
+        /*
+        nodeSize = effekseerEffectCore.getNodesSize();
+        for (int i = 0; i < nodeSize; i++) {
+            EffekseerNode node = new EffekseerNode(effekseerEffectCore.swigCPtr, i, true);
+            node.setMagnification(magnification);
+            node.setManager(manager);
+            nodes.add(node);
+        }
+         */
     }
 
-    private void getmatrix() {
+    public void load(String path, boolean isInternalStorage) throws IllegalStateException {
+        // Get the file handle
+        FileHandle effectFileHandle = null;
+        if (isInternalStorage) {
+            effectFileHandle = Gdx.files.internal(path);
+        } else {
+            effectFileHandle = Gdx.files.external(path);
+        }
 
-
-        float[] dst = manager.effekseerManagerCore.GetMatrix(handle);
-
-
-        transform.val[Matrix4.M00] = dst[0];
-        transform.val[Matrix4.M10] = dst[1];
-        transform.val[Matrix4.M20] = dst[2];
-        transform.val[Matrix4.M01] = dst[3];
-        transform.val[Matrix4.M11] = dst[4];
-        transform.val[Matrix4.M21] = dst[5];
-        transform.val[Matrix4.M02] = dst[6];
-        transform.val[Matrix4.M12] = dst[7];
-        transform.val[Matrix4.M22] = dst[8];
-        transform.val[Matrix4.M03] = dst[9];
-        transform.val[Matrix4.M13] = dst[10];
-        transform.val[Matrix4.M23] = dst[11];
-
-        getmatrix = true;
-
-
+        // Call load() with the generated file handle
+        this.load(effectFileHandle);
     }
 
-    public int getHandle() {
-        return handle;
+    public void setOnAnimationComplete(OnAnimationComplete onAnimationComplete) {
+        this.onAnimationComplete = onAnimationComplete;
     }
 
-    public void play() {
-        play = true;
-        handle = manager.effekseerManagerCore.Play(effekseerEffectCore);
+    //region Wrapper Methods
 
+    public int play() {
+        this.play = true;
+        this.handle = this.manager.play(this.effekseerEffectCore);
 
-        getmatrix();
-
-
-
+        this.queueUpdateTransformMatrix();
 
       /*  if (nodes.size() > 0) {
             nodes.forEach(effekseerNode -> {
@@ -139,201 +299,89 @@ public class ParticleEffekseer {
         }
             */
 
-
-    }
-
-    public int getNodeSize() {
-        return effekseerEffectCore.NodeCount();
-    }
-
-    /**
-     * @param axis  The vector axis to rotate around.
-     * @param angle
-     */
-    public void rotate(Vector3 axis, float angle) {
-        transform.rotate(axis, angle);
-
-    }
-
-    public void translate(float x, float y, float z) {
-        transform.translate(x, y, z);
-    }
-
-  /*  public EffekseerNode getNode() {
-        return effekseerEffectCore.getNode();
-    }
-*/
-    public void load(String path, boolean internalStorage) throws Exception {
-
-
-        FileHandle handle = null;
-        if (internalStorage) {
-            handle = Gdx.files.internal(path);
-        } else {
-            handle = Gdx.files.external(path);
-        }
-
-        byte[] byt = handle.readBytes();
-
-
-        if (manager.effekseerManagerCore == null) {
-            throw new Exception("add particle on manager");
-        }
-
-
-        try {
-
-
-            if (!effekseerEffectCore.load(manager.effekseerManagerCore, byt, byt.length, magnification)) {
-                System.out.print("Failed to load.");
-
-            }
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-
-
-        // load textures
-        EffekseerTextureType[] textureTypes = new EffekseerTextureType[]{
-                EffekseerTextureType.Color,
-                EffekseerTextureType.Normal,
-                EffekseerTextureType.Distortion,
-        };
-
-        for (int t = 0; t < 3; t++) {
-            for (int i = 0; i < effekseerEffectCore.GetTextureCount(textureTypes[t]); i++) {
-
-                String pathh = null;
-                pathh = (new File(path)).getParent();
-
-
-                if (pathh != null) {
-                    pathh += "/" + effekseerEffectCore.GetTexturePath(i, textureTypes[t]);
-                } else {
-                    pathh = effekseerEffectCore.GetTexturePath(i, textureTypes[t]);
-                }
-
-                FileHandle handle1 = null;
-                if (internalStorage) {
-                    handle1 = Gdx.files.internal(pathh);
-                } else {
-                    handle1 = Gdx.files.external(pathh);
-                }
-
-
-                byte[] bytes = handle1.readBytes();
-                effekseerEffectCore.LoadTexture(bytes, bytes.length, i, textureTypes[t]);
-            }
-        }
-
-        for (int i = 0; i < effekseerEffectCore.GetModelCount(); i++) {
-            String pathh = (new File(path)).getParent();
-
-            if (pathh != null) {
-                pathh += "/" + effekseerEffectCore.GetModelPath(i);
-            } else {
-                pathh = effekseerEffectCore.GetModelPath(i);
-            }
-
-
-            FileHandle handle1 = null;
-            if (internalStorage) {
-                handle1 = Gdx.files.internal(pathh);
-            } else {
-                handle1 = Gdx.files.external(pathh);
-            }
-
-
-            byte[] bytes = handle1.readBytes();
-
-            effekseerEffectCore.LoadModel(bytes, bytes.length, i);
-
-        }
-
-        for (int i = 0; i < effekseerEffectCore.GetMaterialCount(); i++) {
-            String pathh = (new File(path)).getParent();
-            if (pathh != null) {
-                pathh += "/" + effekseerEffectCore.GetMaterialPath(i);
-            } else {
-                pathh = effekseerEffectCore.GetMaterialPath(i);
-            }
-
-
-            FileHandle handle1 = null;
-            if (internalStorage) {
-                handle1 = Gdx.files.internal(pathh);
-            } else {
-                handle1 = Gdx.files.external(pathh);
-            }
-
-
-            byte[] bytes = handle1.readBytes();
-            effekseerEffectCore.LoadMaterial(bytes, bytes.length, i);
-        }
-
-        // TODO sound
-
-
-
-        /*
-
-        nodeSize = effekseerEffectCore.getNodesSize();
-        for (int i = 0; i < nodeSize; i++) {
-            EffekseerNode node = new EffekseerNode(effekseerEffectCore.swigCPtr, i, true);
-            node.setMagnification(magnification);
-            node.setManager(manager);
-            nodes.add(node);
-
-
-        }
-
-
-         */
-
-    }
-
-
-    protected void update(float delta) {
-
-
-
-     /*   if (nodes.size() > 0) {
-            nodes.forEach(effekseerNode -> {
-                effekseerNode.update(delta);
-            });
-        }    */
-    }
-
-
-    public void setPosition2D(Vector2 position) {
-
-      /*  vector2.set(position);
-        transform.getTranslation(vector2);
-        transform.translate((-(manager.camera.viewportWidth / 2) + vector2.x), (-(manager.camera.viewportHeight / 2) + vector2.y), 0.0f);
-
-*/
-        manager.effekseerManagerCore.SetEffectPosition(handle, ((-(manager.camera.viewportWidth / 2)) + position.x), ((-(manager.camera.viewportHeight / 2)) + position.y), 0.0f);
+        return this.handle;
     }
 
     public void pause() {
-        manager.effekseerManagerCore.SetPaused(handle, true);
+        this.manager.setPaused(handle, true);
     }
 
     public void resume() {
-        manager.effekseerManagerCore.SetPaused(handle, false);
+        this.manager.setPaused(handle, false);
     }
 
-    protected OnAnimationComplete getOnAnimationComplete() {
-        return onAnimationComplete;
+    public void stop() {
+        this.manager.stopEffect(this.handle);
+        this.setToStopState();
     }
 
-    public void setOnAnimationComplete(OnAnimationComplete onAnimationComplete) {
-        this.onAnimationComplete = onAnimationComplete;
-
+    public int getInstanceCount() {
+        return this.manager.getInstanceCount(this.handle);
     }
 
+    public void setTargetLocation(float x, float y, float z) {
+        this.manager.setTargetLocation(this.handle, x, y, z);
+    }
 
+    public void setTargetLocation(Vector3D location) {
+        this.manager.setTargetLocation(this.handle, location);
+    }
 
+    public float getDynamicInput(int index) {
+        return this.manager.getDynamicInput(this.handle, index);
+    }
+
+    public void setDynamicInput(int index, float value) {
+        this.manager.setDynamicInput(this.handle, index, value);
+    }
+
+    public boolean getIsShown() {
+        return this.manager.getShown(this.handle);
+    }
+
+    public void setIsShown(boolean shown) {
+        this.manager.setShown(this.handle, shown);
+    }
+
+    public boolean getIsPaused() {
+        return this.manager.getPaused(this.handle);
+    }
+
+    public void setIsPaused(boolean paused) {
+        this.manager.setPaused(this.handle, paused);
+    }
+
+    public int getLayer() {
+        return this.manager.getLayer(this.handle);
+    }
+
+    public void setLayer(int layer) {
+        this.manager.setLayer(this.handle, layer);
+    }
+
+    public long getGroupMask() {
+        return this.manager.getGroupMask(this.handle);
+    }
+
+    public void setGroupMask(long groupmask) {
+        this.manager.setGroupMask(this.handle, groupmask);
+    }
+
+    public float getSpeed() {
+        return this.manager.getSpeed(this.handle);
+    }
+
+    public void setSpeed(float speed) {
+        this.manager.setSpeed(this.handle, speed);
+    }
+
+    public void setTimeScale(float timeScale) {
+        this.manager.setTimeScaleByHandle(this.handle, timeScale);
+    }
+
+    //endregion
+
+    //endregion
 
   /*  public interface EffekseerXYZListener {
         void fixed(VectorFixed Class);

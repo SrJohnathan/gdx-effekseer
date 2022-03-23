@@ -297,20 +297,6 @@ void EffekseerManagerCore::SetTargetLocation(int handle, const Vector3D& locatio
     manager_->SetTargetLocation(handle, location);
 }
 
-void EffekseerManagerCore::SetEffectRotateAxis(int handle, float x, float y, float z,float angle) {
-
-    Effekseer::Vector3D vec(x,y,z);
-    manager_->SetRotation(handle,vec,angle);
-}
-
-void EffekseerManagerCore::SetEffectPosition(int handle, float x, float y, float z) {
-    manager_->SetLocation(handle,x,y,z);
-}
-
-void EffekseerManagerCore::SetEffectScale(int handle, float x, float y, float z) {
-    manager_->SetScale(handle, x, y, z);
-}
-
 void EffekseerManagerCore::SetProjectionMatrix(float *matrix44, float *matrix44C, bool view, float width, float height) {
     // disto->update();
     projectionmatrix = Vector4Map::getConvert44( matrix44 );

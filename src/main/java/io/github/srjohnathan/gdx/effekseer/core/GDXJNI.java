@@ -69,9 +69,6 @@ public class GDXJNI {
   public final static native void EffekseerManagerCore_SetAllColor(long jarg1, EffekseerManagerCore jarg1_, int jarg2, long jarg3, Color jarg3_);
   public final static native void EffekseerManagerCore_SetTargetLocation__SWIG_0(long jarg1, EffekseerManagerCore jarg1_, int jarg2, float jarg3, float jarg4, float jarg5);
   public final static native void EffekseerManagerCore_SetTargetLocation__SWIG_1(long jarg1, EffekseerManagerCore jarg1_, int jarg2, long jarg3, Vector3D jarg3_);
-  public final static native void EffekseerManagerCore_SetEffectRotateAxis(long jarg1, EffekseerManagerCore jarg1_, int jarg2, float jarg3, float jarg4, float jarg5, float jarg6);
-  public final static native void EffekseerManagerCore_SetEffectPosition(long jarg1, EffekseerManagerCore jarg1_, int jarg2, float jarg3, float jarg4, float jarg5);
-  public final static native void EffekseerManagerCore_SetEffectScale(long jarg1, EffekseerManagerCore jarg1_, int jarg2, float jarg3, float jarg4, float jarg5);
   public final static native void EffekseerManagerCore_SetProjectionMatrix(long jarg1, EffekseerManagerCore jarg1_, float[] jarg2, float[] jarg3, boolean jarg4, float jarg5, float jarg6);
   public final static native float EffekseerManagerCore_GetDynamicInput(long jarg1, EffekseerManagerCore jarg1_, int jarg2, int jarg3);
   public final static native void EffekseerManagerCore_SetDynamicInput(long jarg1, EffekseerManagerCore jarg1_, int jarg2, int jarg3, float jarg4);

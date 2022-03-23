@@ -69,9 +69,6 @@ public:
     void SetAllColor(int handle, Color color);
     void SetTargetLocation(int handle, float x, float y, float z);
     void SetTargetLocation(int handle, const Vector3D& location);
-    void SetEffectRotateAxis(int handle, float x, float y, float z,float angle);
-    void SetEffectPosition(int handle, float x, float y, float z);
-    void SetEffectScale(int handle, float x, float y, float z);
     void SetProjectionMatrix(float matrix44[],float matrix44C[], bool view,float width,float height);
 
     float GetDynamicInput(int handle, int32_t index);

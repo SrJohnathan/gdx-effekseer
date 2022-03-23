@@ -132,18 +132,6 @@ public class EffekseerManagerCore {
     GDXJNI.EffekseerManagerCore_SetTargetLocation__SWIG_1(swigCPtr, this, handle, Vector3D.getCPtr(location), location);
   }
 
-  public void SetEffectRotateAxis(int handle, float x, float y, float z, float angle) {
-    GDXJNI.EffekseerManagerCore_SetEffectRotateAxis(swigCPtr, this, handle, x, y, z, angle);
-  }
-
-  public void SetEffectPosition(int handle, float x, float y, float z) {
-    GDXJNI.EffekseerManagerCore_SetEffectPosition(swigCPtr, this, handle, x, y, z);
-  }
-
-  public void SetEffectScale(int handle, float x, float y, float z) {
-    GDXJNI.EffekseerManagerCore_SetEffectScale(swigCPtr, this, handle, x, y, z);
-  }
-
   public void SetProjectionMatrix(float[] matrix44, float[] matrix44C, boolean view, float width, float height) {
     GDXJNI.EffekseerManagerCore_SetProjectionMatrix(swigCPtr, this, matrix44, matrix44C, view, width, height);
   }

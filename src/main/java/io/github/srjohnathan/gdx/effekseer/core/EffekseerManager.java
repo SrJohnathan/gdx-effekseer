@@ -156,12 +156,17 @@ public class EffekseerManager implements Disposable {
         return effekseerManagerCore.GetMatrix(handle);
     }
 
-    public void setMatrix(int handle, float[] matrix43) {
-        effekseerManagerCore.SetMatrix(handle, matrix43);
-    }
-
     public float[] getBaseMatrix(int handle) {
         return effekseerManagerCore.GetBaseMatrix(handle);
+    }
+
+    /**
+     * To avoid multiple ways of setting the transform of a particle effect these methods are commented out.
+     * Use {@link ParticleEffekseer}'s transform methods instead.
+     */
+    /*
+    public void setMatrix(int handle, float[] matrix43) {
+        effekseerManagerCore.SetMatrix(handle, matrix43);
     }
 
     public void setBaseMatrix(int handle, float[] matrix43) {
@@ -195,6 +200,7 @@ public class EffekseerManager implements Disposable {
     public void setScale(int handle, float x, float y, float z) {
         effekseerManagerCore.SetScale(handle, x, y, z);
     }
+     */
 
     public void setAllColor(int handle, Color color) {
         effekseerManagerCore.SetAllColor(handle, color);
@@ -206,18 +212,6 @@ public class EffekseerManager implements Disposable {
 
     public void setTargetLocation(int handle, Vector3D location) {
         effekseerManagerCore.SetTargetLocation(handle, location);
-    }
-
-    public void setEffectRotateAxis(int handle, float x, float y, float z, float angle) {
-        effekseerManagerCore.SetEffectRotateAxis(handle, x, y, z, angle);
-    }
-
-    public void setEffectPosition(int handle, float x, float y, float z) {
-        effekseerManagerCore.SetEffectPosition(handle, x, y, z);
-    }
-
-    public void setEffectScale(int handle, float x, float y, float z) {
-        effekseerManagerCore.SetEffectScale(handle, x, y, z);
     }
 
     public float getDynamicInput(int handle, int index) {
@@ -316,9 +310,9 @@ public class EffekseerManager implements Disposable {
             effekseer.update(delta);
 
             // Check if the current effect has just finished playing. If so, call its animation completed callback if available.
-            if (effekseer.isPlay()) {
+            if (effekseer.isInPlayingState()) {
                 if (!this.isPlaying(effekseer)) {
-                    effekseer.setPlay(false);
+                    effekseer.setToStopState();
                     if (effekseer.getOnAnimationComplete() != null) {
                         effekseer.getOnAnimationComplete().finish();
                     }
@@ -326,7 +320,7 @@ public class EffekseerManager implements Disposable {
             }
 
             if (this.camera instanceof PerspectiveCamera) {
-                effekseer.setMatrix4();
+                effekseer.updateTransformMatrixIfQueued();
             }
         }
 
