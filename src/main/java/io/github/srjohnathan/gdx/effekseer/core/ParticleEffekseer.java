@@ -48,11 +48,8 @@ public class ParticleEffekseer {
         }
     }
 
-    /**
-     * Queues an update (calls Effekseer's SetMatrix()) of the transform matrix call for this effect the next time this effect is drawn.
-     */
-    private void queueUpdateTransformMatrix() {
-        float[] dst = this.manager.effekseerManagerCore.GetMatrix(handle);
+    private void getTransformFromEffekseer() {
+        float[] dst = this.manager.effekseerManagerCore.GetMatrix(this.handle);
 
         this.transform.val[Matrix4.M00] = dst[0];
         this.transform.val[Matrix4.M10] = dst[1];
@@ -66,7 +63,12 @@ public class ParticleEffekseer {
         this.transform.val[Matrix4.M03] = dst[9];
         this.transform.val[Matrix4.M13] = dst[10];
         this.transform.val[Matrix4.M23] = dst[11];
+    }
 
+    /**
+     * Queues an update (calls Effekseer's SetMatrix()) of the transform matrix call for this effect the next time this effect is drawn.
+     */
+    private void queueUpdateTransformMatrix() {
         this.isMatrixUpdateQueued = true;
     }
 
@@ -76,6 +78,7 @@ public class ParticleEffekseer {
     }
 
     public void translate(float x, float y, float z) {
+        this.getTransformFromEffekseer();
         this.transform.translate(x, y, z);
         this.queueUpdateTransformMatrix();
     }
@@ -91,22 +94,25 @@ public class ParticleEffekseer {
     }
 
     public void rotate(Vector3 axis, float angle) {
+        this.getTransformFromEffekseer();
         this.transform.rotate(axis, angle);
         this.queueUpdateTransformMatrix();
     }
 
     public void rotate(float axisX, float axisY, float axisZ, float degrees) {
+        this.getTransformFromEffekseer();
         this.transform.rotate(axisX, axisY, axisZ, degrees);
-        this.queueUpdateTransformMatrix();
-    }
-
-    public void scale(float x, float y, float z) {
-        this.transform.scale(x, y, z);
         this.queueUpdateTransformMatrix();
     }
 
     public void setScale(float x, float y, float z) {
         this.transform.setToScaling(x, y, z);
+        this.queueUpdateTransformMatrix();
+    }
+
+    public void scale(float x, float y, float z) {
+        this.getTransformFromEffekseer();
+        this.transform.scale(x, y, z);
         this.queueUpdateTransformMatrix();
     }
 
