@@ -284,7 +284,7 @@ public class ParticleEffekseer {
         this.onAnimationComplete = onAnimationComplete;
     }
 
-    //region Wrapper Methods
+    //region Manager Wrapper Methods
 
     public int play() {
         this.play = true;
@@ -377,6 +377,22 @@ public class ParticleEffekseer {
 
     public void setTimeScale(float timeScale) {
         this.manager.setTimeScaleByHandle(this.handle, timeScale);
+    }
+
+    //endregion
+
+    //region Effect Wrapper Methods
+
+    public String getName() {
+        return this.effekseerEffectCore.GetName();
+    }
+
+    public void setName(String name) {
+        this.effekseerEffectCore.SetName(name);
+    }
+
+    public int getVersion() {
+        return this.effekseerEffectCore.GetVersion();
     }
 
     //endregion

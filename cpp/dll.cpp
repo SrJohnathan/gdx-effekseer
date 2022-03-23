@@ -1288,6 +1288,60 @@ SWIGEXPORT void JNICALL Java_io_github_srjohnathan_gdx_effekseer_core_GDXJNI_del
 }
 
 
+SWIGEXPORT jstring JNICALL Java_io_github_srjohnathan_gdx_effekseer_core_GDXJNI_EffekseerEffectCore_1GetName(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_) {
+  jstring jresult = 0 ;
+  EffekseerEffectCore *arg1 = (EffekseerEffectCore *) 0 ;
+  char16_t *result = 0 ;
+  
+  (void)jenv;
+  (void)jcls;
+  (void)jarg1_;
+  arg1 = *(EffekseerEffectCore **)&jarg1; 
+  result = (char16_t *)(arg1)->GetName();
+  {
+    if(result) jresult = jenv->NewString((const jchar *) result, char16_len (result)); 
+  }
+  return jresult;
+}
+
+
+SWIGEXPORT void JNICALL Java_io_github_srjohnathan_gdx_effekseer_core_GDXJNI_EffekseerEffectCore_1SetName(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_, jstring jarg2) {
+  EffekseerEffectCore *arg1 = (EffekseerEffectCore *) 0 ;
+  char16_t *arg2 = (char16_t *) 0 ;
+  
+  (void)jenv;
+  (void)jcls;
+  (void)jarg1_;
+  arg1 = *(EffekseerEffectCore **)&jarg1; 
+  {
+    arg2 = 0;
+    if (jarg2) {
+      arg2 = (char16_t *)jenv->GetStringChars(jarg2, 0);
+      if (!arg2) return ;
+    }
+  }
+  (arg1)->SetName((char16_t const *)arg2);
+  {
+    if (arg2) jenv->ReleaseStringChars(jarg2, (const jchar *) arg2); 
+  }
+}
+
+
+SWIGEXPORT jint JNICALL Java_io_github_srjohnathan_gdx_effekseer_core_GDXJNI_EffekseerEffectCore_1GetVersion(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_) {
+  jint jresult = 0 ;
+  EffekseerEffectCore *arg1 = (EffekseerEffectCore *) 0 ;
+  int result;
+  
+  (void)jenv;
+  (void)jcls;
+  (void)jarg1_;
+  arg1 = *(EffekseerEffectCore **)&jarg1; 
+  result = (int)(arg1)->GetVersion();
+  jresult = (jint)result; 
+  return jresult;
+}
+
+
 SWIGEXPORT jboolean JNICALL Java_io_github_srjohnathan_gdx_effekseer_core_GDXJNI_EffekseerEffectCore_1load(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_, jlong jarg2, jobject jarg2_, jbyteArray jarg3, jint jarg4, jfloat jarg5) {
   jboolean jresult = 0 ;
   EffekseerEffectCore *arg1 = (EffekseerEffectCore *) 0 ;
@@ -1318,6 +1372,23 @@ SWIGEXPORT jboolean JNICALL Java_io_github_srjohnathan_gdx_effekseer_core_GDXJNI
 }
 
 
+SWIGEXPORT jint JNICALL Java_io_github_srjohnathan_gdx_effekseer_core_GDXJNI_EffekseerEffectCore_1GetTextureCount(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_, jint jarg2) {
+  jint jresult = 0 ;
+  EffekseerEffectCore *arg1 = (EffekseerEffectCore *) 0 ;
+  EffekseerTextureType arg2 ;
+  int32_t result;
+  
+  (void)jenv;
+  (void)jcls;
+  (void)jarg1_;
+  arg1 = *(EffekseerEffectCore **)&jarg1; 
+  arg2 = (EffekseerTextureType)jarg2; 
+  result = (int32_t)((EffekseerEffectCore const *)arg1)->GetTextureCount(arg2);
+  jresult = (jint)result; 
+  return jresult;
+}
+
+
 SWIGEXPORT jstring JNICALL Java_io_github_srjohnathan_gdx_effekseer_core_GDXJNI_EffekseerEffectCore_1GetTexturePath(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_, jint jarg2, jint jarg3) {
   jstring jresult = 0 ;
   EffekseerEffectCore *arg1 = (EffekseerEffectCore *) 0 ;
@@ -1335,23 +1406,6 @@ SWIGEXPORT jstring JNICALL Java_io_github_srjohnathan_gdx_effekseer_core_GDXJNI_
   {
     if(result) jresult = jenv->NewString((const jchar *) result, char16_len (result)); 
   }
-  return jresult;
-}
-
-
-SWIGEXPORT jint JNICALL Java_io_github_srjohnathan_gdx_effekseer_core_GDXJNI_EffekseerEffectCore_1GetTextureCount(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_, jint jarg2) {
-  jint jresult = 0 ;
-  EffekseerEffectCore *arg1 = (EffekseerEffectCore *) 0 ;
-  EffekseerTextureType arg2 ;
-  int32_t result;
-  
-  (void)jenv;
-  (void)jcls;
-  (void)jarg1_;
-  arg1 = *(EffekseerEffectCore **)&jarg1; 
-  arg2 = (EffekseerTextureType)jarg2; 
-  result = (int32_t)((EffekseerEffectCore const *)arg1)->GetTextureCount(arg2);
-  jresult = (jint)result; 
   return jresult;
 }
 
@@ -1404,6 +1458,21 @@ SWIGEXPORT jboolean JNICALL Java_io_github_srjohnathan_gdx_effekseer_core_GDXJNI
 }
 
 
+SWIGEXPORT jint JNICALL Java_io_github_srjohnathan_gdx_effekseer_core_GDXJNI_EffekseerEffectCore_1GetModelCount(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_) {
+  jint jresult = 0 ;
+  EffekseerEffectCore *arg1 = (EffekseerEffectCore *) 0 ;
+  int32_t result;
+  
+  (void)jenv;
+  (void)jcls;
+  (void)jarg1_;
+  arg1 = *(EffekseerEffectCore **)&jarg1; 
+  result = (int32_t)((EffekseerEffectCore const *)arg1)->GetModelCount();
+  jresult = (jint)result; 
+  return jresult;
+}
+
+
 SWIGEXPORT jstring JNICALL Java_io_github_srjohnathan_gdx_effekseer_core_GDXJNI_EffekseerEffectCore_1GetModelPath(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_, jint jarg2) {
   jstring jresult = 0 ;
   EffekseerEffectCore *arg1 = (EffekseerEffectCore *) 0 ;
@@ -1419,21 +1488,6 @@ SWIGEXPORT jstring JNICALL Java_io_github_srjohnathan_gdx_effekseer_core_GDXJNI_
   {
     if(result) jresult = jenv->NewString((const jchar *) result, char16_len (result)); 
   }
-  return jresult;
-}
-
-
-SWIGEXPORT jint JNICALL Java_io_github_srjohnathan_gdx_effekseer_core_GDXJNI_EffekseerEffectCore_1GetModelCount(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_) {
-  jint jresult = 0 ;
-  EffekseerEffectCore *arg1 = (EffekseerEffectCore *) 0 ;
-  int32_t result;
-  
-  (void)jenv;
-  (void)jcls;
-  (void)jarg1_;
-  arg1 = *(EffekseerEffectCore **)&jarg1; 
-  result = (int32_t)((EffekseerEffectCore const *)arg1)->GetModelCount();
-  jresult = (jint)result; 
   return jresult;
 }
 
@@ -1478,6 +1532,21 @@ SWIGEXPORT jboolean JNICALL Java_io_github_srjohnathan_gdx_effekseer_core_GDXJNI
   arg2 = (int32_t)jarg2; 
   result = (bool)(arg1)->HasModelLoaded(arg2);
   jresult = (jboolean)result; 
+  return jresult;
+}
+
+
+SWIGEXPORT jint JNICALL Java_io_github_srjohnathan_gdx_effekseer_core_GDXJNI_EffekseerEffectCore_1GetMaterialCount(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_) {
+  jint jresult = 0 ;
+  EffekseerEffectCore *arg1 = (EffekseerEffectCore *) 0 ;
+  int32_t result;
+  
+  (void)jenv;
+  (void)jcls;
+  (void)jarg1_;
+  arg1 = *(EffekseerEffectCore **)&jarg1; 
+  result = (int32_t)((EffekseerEffectCore const *)arg1)->GetMaterialCount();
+  jresult = (jint)result; 
   return jresult;
 }
 
@@ -1541,21 +1610,6 @@ SWIGEXPORT jboolean JNICALL Java_io_github_srjohnathan_gdx_effekseer_core_GDXJNI
   arg2 = (int32_t)jarg2; 
   result = (bool)(arg1)->HasMaterialLoaded(arg2);
   jresult = (jboolean)result; 
-  return jresult;
-}
-
-
-SWIGEXPORT jint JNICALL Java_io_github_srjohnathan_gdx_effekseer_core_GDXJNI_EffekseerEffectCore_1GetMaterialCount(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_) {
-  jint jresult = 0 ;
-  EffekseerEffectCore *arg1 = (EffekseerEffectCore *) 0 ;
-  int32_t result;
-  
-  (void)jenv;
-  (void)jcls;
-  (void)jarg1_;
-  arg1 = *(EffekseerEffectCore **)&jarg1; 
-  result = (int32_t)((EffekseerEffectCore const *)arg1)->GetMaterialCount();
-  jresult = (jint)result; 
   return jresult;
 }
 
@@ -1747,7 +1801,7 @@ SWIGEXPORT jfloatArray JNICALL Java_io_github_srjohnathan_gdx_effekseer_core_GDX
   arg1 = *(EffekseerManagerCore **)&jarg1; 
   arg2 = (int)jarg2; 
   result = (float *)(arg1)->GetMatrix(arg2);
-  jresult = SWIG_JavaArrayOutFloat(jenv, (float *)result, 16); 
+  jresult = SWIG_JavaArrayOutFloat(jenv, (float *)result, FillMeInAsSizeCannotBeDeterminedAutomatically); 
   return jresult;
 }
 
@@ -1782,7 +1836,7 @@ SWIGEXPORT jfloatArray JNICALL Java_io_github_srjohnathan_gdx_effekseer_core_GDX
   arg1 = *(EffekseerManagerCore **)&jarg1; 
   arg2 = (int)jarg2; 
   result = (float *)(arg1)->GetBaseMatrix(arg2);
-  jresult = SWIG_JavaArrayOutFloat(jenv, (float *)result, 16); 
+  jresult = SWIG_JavaArrayOutFloat(jenv, (float *)result, FillMeInAsSizeCannotBeDeterminedAutomatically); 
   return jresult;
 }
 
