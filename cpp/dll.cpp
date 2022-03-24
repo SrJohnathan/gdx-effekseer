@@ -241,6 +241,7 @@ static void SWIGUNUSED SWIG_JavaThrowException(JNIEnv *jenv, SWIG_JavaExceptionC
 #include "Effekseer/Dev/Cpp/Effekseer/Effekseer/Effekseer.InternalStruct.h"
 #include "Effekseer/Dev/Cpp/Effekseer/Effekseer/Parameter/Effekseer.Parameters.h"
 #include "Effekseer/Dev/Cpp/Effekseer/Effekseer/Parameter/DynamicParameter.h"
+// Undefine min/max function
 #ifdef max
 #undef max
 #endif
@@ -1642,6 +1643,21 @@ SWIGEXPORT jint JNICALL Java_io_github_srjohnathan_gdx_effekseer_core_GDXJNI_Eff
   arg1 = *(EffekseerEffectCore **)&jarg1; 
   result = (int32_t)(arg1)->NodeCount();
   jresult = (jint)result; 
+  return jresult;
+}
+
+
+SWIGEXPORT jlong JNICALL Java_io_github_srjohnathan_gdx_effekseer_core_GDXJNI_EffekseerEffectCore_1GetRootNode(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_) {
+  jlong jresult = 0 ;
+  EffekseerEffectCore *arg1 = (EffekseerEffectCore *) 0 ;
+  Effekseer::EffectNodeImplemented *result = 0 ;
+  
+  (void)jenv;
+  (void)jcls;
+  (void)jarg1_;
+  arg1 = *(EffekseerEffectCore **)&jarg1; 
+  result = (Effekseer::EffectNodeImplemented *)(arg1)->GetRootNode();
+  *(Effekseer::EffectNodeImplemented **)&jresult = result; 
   return jresult;
 }
 

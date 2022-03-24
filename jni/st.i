@@ -13,11 +13,10 @@
 #include "Effekseer/Dev/Cpp/Effekseer/Effekseer/Parameter/DynamicParameter.h"
 // Undefine min/max function
 #ifdef max
-#undef max
+    #undef max
 #endif
-
 #ifdef min
-#undef min
+    #undef min
 #endif
 #include "Effekseer/Dev/Cpp/Effekseer/Effekseer/Parameter/Easing.h"
 #include "Effekseer/Dev/Cpp/Effekseer/Effekseer/Effekseer.FCurves.h"

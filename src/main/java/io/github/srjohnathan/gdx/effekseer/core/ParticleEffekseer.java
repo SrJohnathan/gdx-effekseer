@@ -393,6 +393,10 @@ public class ParticleEffekseer {
         return this.effekseerEffectCore.GetVersion();
     }
 
+    public EffectNodeImplemented getRootNode() {
+        return this.effekseerEffectCore.GetRootNode();
+    }
+
     //endregion
 
     //endregion

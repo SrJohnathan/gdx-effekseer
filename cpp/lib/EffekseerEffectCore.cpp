@@ -245,6 +245,11 @@ int32_t EffekseerEffectCore::NodeCount()
     return i;
 }
 
+
+Effekseer::EffectNodeImplemented* EffekseerEffectCore::GetRootNode() {
+    return static_cast<Effekseer::EffectNodeImplemented*>(effect_->GetRoot());
+}
+
 Effekseer::EffectRef EffekseerEffectCore::GetInternal() const { return effect_; }
 
 const char16_t * EffekseerEffectCore::GetMaterialPath(int32_t index) const { return effect_->GetMaterialPath(index); }

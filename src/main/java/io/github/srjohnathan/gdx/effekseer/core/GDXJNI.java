@@ -47,6 +47,7 @@ public class GDXJNI {
   public final static native boolean EffekseerEffectCore_LoadMaterial(long jarg1, EffekseerEffectCore jarg1_, byte[] jarg2, int jarg3, int jarg4);
   public final static native boolean EffekseerEffectCore_HasMaterialLoaded(long jarg1, EffekseerEffectCore jarg1_, int jarg2);
   public final static native int EffekseerEffectCore_NodeCount(long jarg1, EffekseerEffectCore jarg1_);
+  public final static native long EffekseerEffectCore_GetRootNode(long jarg1, EffekseerEffectCore jarg1_);
   public final static native long new_EffekseerManagerCore();
   public final static native void delete_EffekseerManagerCore(long jarg1);
   public final static native boolean EffekseerManagerCore_Initialize(long jarg1, EffekseerManagerCore jarg1_, int jarg2, int jarg3, boolean jarg4);

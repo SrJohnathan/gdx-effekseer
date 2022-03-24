@@ -19,6 +19,14 @@
 #include "Effekseer.h"
 #include "EffekseerManagerCore.h"
 #include "EffekseerSettingCore.h"
+// Undefine min/max function
+#ifdef max
+    #undef max
+#endif
+#ifdef min
+    #undef min
+#endif
+#include "Effekseer/Effekseer.EffectNode.h"
 
 class EffekseerManagerCore;
 
@@ -33,7 +41,6 @@ class EffekseerEffectCore
 {
 private:
     Effekseer::EffectRef effect_ = nullptr;
-    Effekseer::EffectNode* node = nullptr;
 
 public:
     EffekseerEffectCore();
@@ -63,6 +70,7 @@ public:
     bool HasMaterialLoaded(int32_t index);
 
     int32_t NodeCount();
+    Effekseer::EffectNodeImplemented* GetRootNode();
 
 #ifndef SWIG
     Effekseer::EffectRef GetInternal() const;
