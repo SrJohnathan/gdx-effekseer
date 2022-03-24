@@ -37,35 +37,35 @@ public class Color {
   }
 
   public void setR(short value) {
-    GDXJNI.Color_R_set(swigCPtr, this, value);
+    GDXJNI.Color_r_set(swigCPtr, this, value);
   }
 
   public short getR() {
-    return GDXJNI.Color_R_get(swigCPtr, this);
+    return GDXJNI.Color_r_get(swigCPtr, this);
   }
 
   public void setG(short value) {
-    GDXJNI.Color_G_set(swigCPtr, this, value);
+    GDXJNI.Color_g_set(swigCPtr, this, value);
   }
 
   public short getG() {
-    return GDXJNI.Color_G_get(swigCPtr, this);
+    return GDXJNI.Color_g_get(swigCPtr, this);
   }
 
   public void setB(short value) {
-    GDXJNI.Color_B_set(swigCPtr, this, value);
+    GDXJNI.Color_b_set(swigCPtr, this, value);
   }
 
   public short getB() {
-    return GDXJNI.Color_B_get(swigCPtr, this);
+    return GDXJNI.Color_b_get(swigCPtr, this);
   }
 
   public void setA(short value) {
-    GDXJNI.Color_A_set(swigCPtr, this, value);
+    GDXJNI.Color_a_set(swigCPtr, this, value);
   }
 
   public short getA() {
-    return GDXJNI.Color_A_get(swigCPtr, this);
+    return GDXJNI.Color_a_get(swigCPtr, this);
   }
 
   public Color() {

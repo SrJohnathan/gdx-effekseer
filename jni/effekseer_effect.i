@@ -6,12 +6,12 @@
 %rename("EffectModelParameter", fullname=1) "Effekseer::EffectModelParameter";
 %rename("EffekseerEffect", fullname=1) "Effekseer::Effect";
 %rename("EffectNode", fullname=1) "Effekseer::EffectNode";
-%rename("GetEffect", fullname=1) "Effekseer::EffectNode::GetEffect";
-%rename("GetGeneration", fullname=1) "Effekseer::EffectNode::GetGeneration";
-%rename("GetChildrenCount", fullname=1) "Effekseer::EffectNode::GetChildrenCount";
-%rename("GetChild", fullname=1) "Effekseer::EffectNode::GetChild";
-%rename("GetBasicRenderParameter", fullname=1) "Effekseer::EffectNode::GetBasicRenderParameter";
-%rename("SetBasicRenderParameter", fullname=1) "Effekseer::EffectNode::SetBasicRenderParameter";
-%rename("GetEffectModelParameter", fullname=1) "Effekseer::EffectNode::GetEffectModelParameter";
-%rename("CalculateInstanceTerm", fullname=1) "Effekseer::EffectNode::CalculateInstanceTerm";
+%rename("getEffect", fullname=1) "Effekseer::EffectNode::GetEffect";
+%rename("getGeneration", fullname=1) "Effekseer::EffectNode::GetGeneration";
+%rename("getChildrenCount", fullname=1) "Effekseer::EffectNode::GetChildrenCount";
+%rename("getChild", fullname=1) "Effekseer::EffectNode::GetChild";
+%rename("getBasicRenderParameter", fullname=1) "Effekseer::EffectNode::GetBasicRenderParameter";
+%rename("setBasicRenderParameter", fullname=1) "Effekseer::EffectNode::SetBasicRenderParameter";
+%rename("getEffectModelParameter", fullname=1) "Effekseer::EffectNode::GetEffectModelParameter";
+%rename("calculateInstanceTerm", fullname=1) "Effekseer::EffectNode::CalculateInstanceTerm";
 %include "/cpp/Effekseer/Dev/Cpp/Effekseer/Effekseer/Effekseer.Effect.h"

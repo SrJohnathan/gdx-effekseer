@@ -36,38 +36,38 @@ public class EffectNode {
     }
   }
 
-  public EffekseerEffect GetEffect() {
-    long cPtr = GDXJNI.EffectNode_GetEffect(swigCPtr, this);
+  public EffekseerEffect getEffect() {
+    long cPtr = GDXJNI.EffectNode_getEffect(swigCPtr, this);
     return (cPtr == 0) ? null : new EffekseerEffect(cPtr, false);
   }
 
-  public int GetGeneration() {
-    return GDXJNI.EffectNode_GetGeneration(swigCPtr, this);
+  public int getGeneration() {
+    return GDXJNI.EffectNode_getGeneration(swigCPtr, this);
   }
 
-  public int GetChildrenCount() {
-    return GDXJNI.EffectNode_GetChildrenCount(swigCPtr, this);
+  public int getChildrenCount() {
+    return GDXJNI.EffectNode_getChildrenCount(swigCPtr, this);
   }
 
-  public EffectNode GetChild(int index) {
-    long cPtr = GDXJNI.EffectNode_GetChild(swigCPtr, this, index);
+  public EffectNode getChild(int index) {
+    long cPtr = GDXJNI.EffectNode_getChild(swigCPtr, this, index);
     return (cPtr == 0) ? null : new EffectNode(cPtr, false);
   }
 
-  public EffectBasicRenderParameter GetBasicRenderParameter() {
-    return new EffectBasicRenderParameter(GDXJNI.EffectNode_GetBasicRenderParameter(swigCPtr, this), true);
+  public EffectBasicRenderParameter getBasicRenderParameter() {
+    return new EffectBasicRenderParameter(GDXJNI.EffectNode_getBasicRenderParameter(swigCPtr, this), true);
   }
 
-  public void SetBasicRenderParameter(EffectBasicRenderParameter param) {
-    GDXJNI.EffectNode_SetBasicRenderParameter(swigCPtr, this, EffectBasicRenderParameter.getCPtr(param), param);
+  public void setBasicRenderParameter(EffectBasicRenderParameter param) {
+    GDXJNI.EffectNode_setBasicRenderParameter(swigCPtr, this, EffectBasicRenderParameter.getCPtr(param), param);
   }
 
-  public EffectModelParameter GetEffectModelParameter() {
-    return new EffectModelParameter(GDXJNI.EffectNode_GetEffectModelParameter(swigCPtr, this), true);
+  public EffectModelParameter getEffectModelParameter() {
+    return new EffectModelParameter(GDXJNI.EffectNode_getEffectModelParameter(swigCPtr, this), true);
   }
 
-  public EffectInstanceTerm CalculateInstanceTerm(EffectInstanceTerm parentTerm) {
-    return new EffectInstanceTerm(GDXJNI.EffectNode_CalculateInstanceTerm(swigCPtr, this, EffectInstanceTerm.getCPtr(parentTerm), parentTerm), true);
+  public EffectInstanceTerm calculateInstanceTerm(EffectInstanceTerm parentTerm) {
+    return new EffectInstanceTerm(GDXJNI.EffectNode_calculateInstanceTerm(swigCPtr, this, EffectInstanceTerm.getCPtr(parentTerm), parentTerm), true);
   }
 
 }

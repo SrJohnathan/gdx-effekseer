@@ -37,19 +37,19 @@ public class Vector2D {
   }
 
   public void setX(float value) {
-    GDXJNI.Vector2D_X_set(swigCPtr, this, value);
+    GDXJNI.Vector2D_x_set(swigCPtr, this, value);
   }
 
   public float getX() {
-    return GDXJNI.Vector2D_X_get(swigCPtr, this);
+    return GDXJNI.Vector2D_x_get(swigCPtr, this);
   }
 
   public void setY(float value) {
-    GDXJNI.Vector2D_Y_set(swigCPtr, this, value);
+    GDXJNI.Vector2D_y_set(swigCPtr, this, value);
   }
 
   public float getY() {
-    return GDXJNI.Vector2D_Y_get(swigCPtr, this);
+    return GDXJNI.Vector2D_y_get(swigCPtr, this);
   }
 
   public Vector2D() {

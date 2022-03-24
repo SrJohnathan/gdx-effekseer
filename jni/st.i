@@ -85,10 +85,10 @@ struct Effekseer::Color;
 %rename("Color", fullname=1) "Effekseer::Color";
 %rename("Color", fullname=1) "Effekseer::Color::Color";
 %rename("~Color", fullname=1) "Effekseer::Color::~Color";
-%rename("R", fullname=1) "Effekseer::Color::R";
-%rename("G", fullname=1) "Effekseer::Color::G";
-%rename("B", fullname=1) "Effekseer::Color::B";
-%rename("A", fullname=1) "Effekseer::Color::A";
+%rename("r", fullname=1) "Effekseer::Color::R";
+%rename("g", fullname=1) "Effekseer::Color::G";
+%rename("b", fullname=1) "Effekseer::Color::B";
+%rename("a", fullname=1) "Effekseer::Color::A";
 %include "/cpp/Effekseer/Dev/Cpp/Effekseer/Effekseer/Effekseer.Color.h"
 
 %include "effekseer_base.i"

@@ -1,14 +1,14 @@
 // Vector3D with only the fields and constructor and destructor
 %rename("Vector2D", fullname=1) "Effekseer::Vector2D";
-%rename("X", fullname=1) "Effekseer::Vector2D::X";
-%rename("Y", fullname=1) "Effekseer::Vector2D::Y";
+%rename("x", fullname=1) "Effekseer::Vector2D::X";
+%rename("y", fullname=1) "Effekseer::Vector2D::Y";
 %include "/cpp/Effekseer/Dev/Cpp/Effekseer/Effekseer/Effekseer.Vector2D.h"
 
 // Vector3D with only the fields and constructor and destructor
 %rename("Vector3D", fullname=1) "Effekseer::Vector3D";
-%rename("X", fullname=1) "Effekseer::Vector3D::X";
-%rename("Y", fullname=1) "Effekseer::Vector3D::Y";
-%rename("Z", fullname=1) "Effekseer::Vector3D::Z";
+%rename("x", fullname=1) "Effekseer::Vector3D::X";
+%rename("y", fullname=1) "Effekseer::Vector3D::Y";
+%rename("z", fullname=1) "Effekseer::Vector3D::Z";
 %include "/cpp/Effekseer/Dev/Cpp/Effekseer/Effekseer/Effekseer.Vector3D.h"
 
 // Matrix43 with only the fields and constructor and destructor
@@ -27,10 +27,10 @@
 // Ignore boost data structures
 %rename($ignore, fullname=1) Effekseer::SIMD::Vec2f::Vec2f(const std::array<float, 2>&);
 // Getters and Setters
-%rename("GetX", fullname=1) "Effekseer::SIMD::Vec3f::GetX";
-%rename("GetY", fullname=1) "Effekseer::SIMD::Vec3f::GetY";
-%rename("SetX", fullname=1) "Effekseer::SIMD::Vec3f::SetX";
-%rename("SetY", fullname=1) "Effekseer::SIMD::Vec3f::SetY";
+%rename("getX", fullname=1) "Effekseer::SIMD::Vec3f::GetX";
+%rename("getY", fullname=1) "Effekseer::SIMD::Vec3f::GetY";
+%rename("setX", fullname=1) "Effekseer::SIMD::Vec3f::SetX";
+%rename("setY", fullname=1) "Effekseer::SIMD::Vec3f::SetY";
 %include "/cpp/Effekseer/Dev/Cpp/Effekseer/Effekseer/SIMD/Vec2f.h"
 // SIMD::Vec3f
 %rename("SIMDVec3f", fullname=1) "Effekseer::SIMD::Vec3f";
@@ -40,12 +40,12 @@
 // Ignore boost data structures
 %rename($ignore, fullname=1) Effekseer::SIMD::Vec3f::Vec3f(const std::array<float, 3>&);
 // Getters and Setters
-%rename("GetX", fullname=1) "Effekseer::SIMD::Vec3f::GetX";
-%rename("GetY", fullname=1) "Effekseer::SIMD::Vec3f::GetY";
-%rename("GetZ", fullname=1) "Effekseer::SIMD::Vec3f::GetZ";
-%rename("SetX", fullname=1) "Effekseer::SIMD::Vec3f::SetX";
-%rename("SetY", fullname=1) "Effekseer::SIMD::Vec3f::SetY";
-%rename("SetZ", fullname=1) "Effekseer::SIMD::Vec3f::SetZ";
+%rename("getX", fullname=1) "Effekseer::SIMD::Vec3f::GetX";
+%rename("getY", fullname=1) "Effekseer::SIMD::Vec3f::GetY";
+%rename("getZ", fullname=1) "Effekseer::SIMD::Vec3f::GetZ";
+%rename("setX", fullname=1) "Effekseer::SIMD::Vec3f::SetX";
+%rename("setY", fullname=1) "Effekseer::SIMD::Vec3f::SetY";
+%rename("setZ", fullname=1) "Effekseer::SIMD::Vec3f::SetZ";
 %include "/cpp/Effekseer/Dev/Cpp/Effekseer/Effekseer/SIMD/Vec3f.h"
 // SIMD::Mat43f
 %rename("SIMDMat43f", fullname=1) "Effekseer::SIMD::Mat43f";

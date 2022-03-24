@@ -243,11 +243,10 @@ static void SWIGUNUSED SWIG_JavaThrowException(JNIEnv *jenv, SWIG_JavaExceptionC
 #include "Effekseer/Dev/Cpp/Effekseer/Effekseer/Parameter/DynamicParameter.h"
 // Undefine min/max function
 #ifdef max
-#undef max
+    #undef max
 #endif
-
 #ifdef min
-#undef min
+    #undef min
 #endif
 #include "Effekseer/Dev/Cpp/Effekseer/Effekseer/Parameter/Easing.h"
 #include "Effekseer/Dev/Cpp/Effekseer/Effekseer/Effekseer.FCurves.h"
@@ -1834,7 +1833,7 @@ SWIGEXPORT jfloatArray JNICALL Java_io_github_srjohnathan_gdx_effekseer_core_GDX
   arg1 = *(EffekseerManagerCore **)&jarg1; 
   arg2 = (int)jarg2; 
   result = (float *)(arg1)->GetMatrix(arg2);
-  jresult = SWIG_JavaArrayOutFloat(jenv, (float *)result, 16); 
+  jresult = SWIG_JavaArrayOutFloat(jenv, (float *)result, FillMeInAsSizeCannotBeDeterminedAutomatically); 
   return jresult;
 }
 
@@ -1869,7 +1868,7 @@ SWIGEXPORT jfloatArray JNICALL Java_io_github_srjohnathan_gdx_effekseer_core_GDX
   arg1 = *(EffekseerManagerCore **)&jarg1; 
   arg2 = (int)jarg2; 
   result = (float *)(arg1)->GetBaseMatrix(arg2);
-  jresult = SWIG_JavaArrayOutFloat(jenv, (float *)result, 16); 
+  jresult = SWIG_JavaArrayOutFloat(jenv, (float *)result, FillMeInAsSizeCannotBeDeterminedAutomatically); 
   return jresult;
 }
 
@@ -2539,7 +2538,7 @@ SWIGEXPORT void JNICALL Java_io_github_srjohnathan_gdx_effekseer_core_GDXJNI_Eff
 }
 
 
-SWIGEXPORT void JNICALL Java_io_github_srjohnathan_gdx_effekseer_core_GDXJNI_Vector2D_1X_1set(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_, jfloat jarg2) {
+SWIGEXPORT void JNICALL Java_io_github_srjohnathan_gdx_effekseer_core_GDXJNI_Vector2D_1x_1set(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_, jfloat jarg2) {
   Effekseer::Vector2D *arg1 = (Effekseer::Vector2D *) 0 ;
   float arg2 ;
   
@@ -2552,7 +2551,7 @@ SWIGEXPORT void JNICALL Java_io_github_srjohnathan_gdx_effekseer_core_GDXJNI_Vec
 }
 
 
-SWIGEXPORT jfloat JNICALL Java_io_github_srjohnathan_gdx_effekseer_core_GDXJNI_Vector2D_1X_1get(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_) {
+SWIGEXPORT jfloat JNICALL Java_io_github_srjohnathan_gdx_effekseer_core_GDXJNI_Vector2D_1x_1get(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_) {
   jfloat jresult = 0 ;
   Effekseer::Vector2D *arg1 = (Effekseer::Vector2D *) 0 ;
   float result;
@@ -2567,7 +2566,7 @@ SWIGEXPORT jfloat JNICALL Java_io_github_srjohnathan_gdx_effekseer_core_GDXJNI_V
 }
 
 
-SWIGEXPORT void JNICALL Java_io_github_srjohnathan_gdx_effekseer_core_GDXJNI_Vector2D_1Y_1set(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_, jfloat jarg2) {
+SWIGEXPORT void JNICALL Java_io_github_srjohnathan_gdx_effekseer_core_GDXJNI_Vector2D_1y_1set(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_, jfloat jarg2) {
   Effekseer::Vector2D *arg1 = (Effekseer::Vector2D *) 0 ;
   float arg2 ;
   
@@ -2580,7 +2579,7 @@ SWIGEXPORT void JNICALL Java_io_github_srjohnathan_gdx_effekseer_core_GDXJNI_Vec
 }
 
 
-SWIGEXPORT jfloat JNICALL Java_io_github_srjohnathan_gdx_effekseer_core_GDXJNI_Vector2D_1Y_1get(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_) {
+SWIGEXPORT jfloat JNICALL Java_io_github_srjohnathan_gdx_effekseer_core_GDXJNI_Vector2D_1y_1get(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_) {
   jfloat jresult = 0 ;
   Effekseer::Vector2D *arg1 = (Effekseer::Vector2D *) 0 ;
   float result;
@@ -2633,7 +2632,7 @@ SWIGEXPORT void JNICALL Java_io_github_srjohnathan_gdx_effekseer_core_GDXJNI_del
 }
 
 
-SWIGEXPORT void JNICALL Java_io_github_srjohnathan_gdx_effekseer_core_GDXJNI_Vector3D_1X_1set(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_, jfloat jarg2) {
+SWIGEXPORT void JNICALL Java_io_github_srjohnathan_gdx_effekseer_core_GDXJNI_Vector3D_1x_1set(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_, jfloat jarg2) {
   Effekseer::Vector3D *arg1 = (Effekseer::Vector3D *) 0 ;
   float arg2 ;
   
@@ -2646,7 +2645,7 @@ SWIGEXPORT void JNICALL Java_io_github_srjohnathan_gdx_effekseer_core_GDXJNI_Vec
 }
 
 
-SWIGEXPORT jfloat JNICALL Java_io_github_srjohnathan_gdx_effekseer_core_GDXJNI_Vector3D_1X_1get(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_) {
+SWIGEXPORT jfloat JNICALL Java_io_github_srjohnathan_gdx_effekseer_core_GDXJNI_Vector3D_1x_1get(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_) {
   jfloat jresult = 0 ;
   Effekseer::Vector3D *arg1 = (Effekseer::Vector3D *) 0 ;
   float result;
@@ -2661,7 +2660,7 @@ SWIGEXPORT jfloat JNICALL Java_io_github_srjohnathan_gdx_effekseer_core_GDXJNI_V
 }
 
 
-SWIGEXPORT void JNICALL Java_io_github_srjohnathan_gdx_effekseer_core_GDXJNI_Vector3D_1Y_1set(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_, jfloat jarg2) {
+SWIGEXPORT void JNICALL Java_io_github_srjohnathan_gdx_effekseer_core_GDXJNI_Vector3D_1y_1set(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_, jfloat jarg2) {
   Effekseer::Vector3D *arg1 = (Effekseer::Vector3D *) 0 ;
   float arg2 ;
   
@@ -2674,7 +2673,7 @@ SWIGEXPORT void JNICALL Java_io_github_srjohnathan_gdx_effekseer_core_GDXJNI_Vec
 }
 
 
-SWIGEXPORT jfloat JNICALL Java_io_github_srjohnathan_gdx_effekseer_core_GDXJNI_Vector3D_1Y_1get(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_) {
+SWIGEXPORT jfloat JNICALL Java_io_github_srjohnathan_gdx_effekseer_core_GDXJNI_Vector3D_1y_1get(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_) {
   jfloat jresult = 0 ;
   Effekseer::Vector3D *arg1 = (Effekseer::Vector3D *) 0 ;
   float result;
@@ -2689,7 +2688,7 @@ SWIGEXPORT jfloat JNICALL Java_io_github_srjohnathan_gdx_effekseer_core_GDXJNI_V
 }
 
 
-SWIGEXPORT void JNICALL Java_io_github_srjohnathan_gdx_effekseer_core_GDXJNI_Vector3D_1Z_1set(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_, jfloat jarg2) {
+SWIGEXPORT void JNICALL Java_io_github_srjohnathan_gdx_effekseer_core_GDXJNI_Vector3D_1z_1set(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_, jfloat jarg2) {
   Effekseer::Vector3D *arg1 = (Effekseer::Vector3D *) 0 ;
   float arg2 ;
   
@@ -2702,7 +2701,7 @@ SWIGEXPORT void JNICALL Java_io_github_srjohnathan_gdx_effekseer_core_GDXJNI_Vec
 }
 
 
-SWIGEXPORT jfloat JNICALL Java_io_github_srjohnathan_gdx_effekseer_core_GDXJNI_Vector3D_1Z_1get(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_) {
+SWIGEXPORT jfloat JNICALL Java_io_github_srjohnathan_gdx_effekseer_core_GDXJNI_Vector3D_1z_1get(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_) {
   jfloat jresult = 0 ;
   Effekseer::Vector3D *arg1 = (Effekseer::Vector3D *) 0 ;
   float result;
@@ -3061,7 +3060,7 @@ SWIGEXPORT jlong JNICALL Java_io_github_srjohnathan_gdx_effekseer_core_GDXJNI_ne
 }
 
 
-SWIGEXPORT jfloat JNICALL Java_io_github_srjohnathan_gdx_effekseer_core_GDXJNI_SIMDVec3f_1GetX(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_) {
+SWIGEXPORT jfloat JNICALL Java_io_github_srjohnathan_gdx_effekseer_core_GDXJNI_SIMDVec3f_1getX(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_) {
   jfloat jresult = 0 ;
   Effekseer::SIMD::Vec3f *arg1 = (Effekseer::SIMD::Vec3f *) 0 ;
   float result;
@@ -3076,7 +3075,7 @@ SWIGEXPORT jfloat JNICALL Java_io_github_srjohnathan_gdx_effekseer_core_GDXJNI_S
 }
 
 
-SWIGEXPORT jfloat JNICALL Java_io_github_srjohnathan_gdx_effekseer_core_GDXJNI_SIMDVec3f_1GetY(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_) {
+SWIGEXPORT jfloat JNICALL Java_io_github_srjohnathan_gdx_effekseer_core_GDXJNI_SIMDVec3f_1getY(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_) {
   jfloat jresult = 0 ;
   Effekseer::SIMD::Vec3f *arg1 = (Effekseer::SIMD::Vec3f *) 0 ;
   float result;
@@ -3091,7 +3090,7 @@ SWIGEXPORT jfloat JNICALL Java_io_github_srjohnathan_gdx_effekseer_core_GDXJNI_S
 }
 
 
-SWIGEXPORT jfloat JNICALL Java_io_github_srjohnathan_gdx_effekseer_core_GDXJNI_SIMDVec3f_1GetZ(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_) {
+SWIGEXPORT jfloat JNICALL Java_io_github_srjohnathan_gdx_effekseer_core_GDXJNI_SIMDVec3f_1getZ(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_) {
   jfloat jresult = 0 ;
   Effekseer::SIMD::Vec3f *arg1 = (Effekseer::SIMD::Vec3f *) 0 ;
   float result;
@@ -3106,7 +3105,7 @@ SWIGEXPORT jfloat JNICALL Java_io_github_srjohnathan_gdx_effekseer_core_GDXJNI_S
 }
 
 
-SWIGEXPORT void JNICALL Java_io_github_srjohnathan_gdx_effekseer_core_GDXJNI_SIMDVec3f_1SetX(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_, jfloat jarg2) {
+SWIGEXPORT void JNICALL Java_io_github_srjohnathan_gdx_effekseer_core_GDXJNI_SIMDVec3f_1setX(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_, jfloat jarg2) {
   Effekseer::SIMD::Vec3f *arg1 = (Effekseer::SIMD::Vec3f *) 0 ;
   float arg2 ;
   
@@ -3119,7 +3118,7 @@ SWIGEXPORT void JNICALL Java_io_github_srjohnathan_gdx_effekseer_core_GDXJNI_SIM
 }
 
 
-SWIGEXPORT void JNICALL Java_io_github_srjohnathan_gdx_effekseer_core_GDXJNI_SIMDVec3f_1SetY(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_, jfloat jarg2) {
+SWIGEXPORT void JNICALL Java_io_github_srjohnathan_gdx_effekseer_core_GDXJNI_SIMDVec3f_1setY(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_, jfloat jarg2) {
   Effekseer::SIMD::Vec3f *arg1 = (Effekseer::SIMD::Vec3f *) 0 ;
   float arg2 ;
   
@@ -3132,7 +3131,7 @@ SWIGEXPORT void JNICALL Java_io_github_srjohnathan_gdx_effekseer_core_GDXJNI_SIM
 }
 
 
-SWIGEXPORT void JNICALL Java_io_github_srjohnathan_gdx_effekseer_core_GDXJNI_SIMDVec3f_1SetZ(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_, jfloat jarg2) {
+SWIGEXPORT void JNICALL Java_io_github_srjohnathan_gdx_effekseer_core_GDXJNI_SIMDVec3f_1setZ(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_, jfloat jarg2) {
   Effekseer::SIMD::Vec3f *arg1 = (Effekseer::SIMD::Vec3f *) 0 ;
   float arg2 ;
   
@@ -3410,7 +3409,7 @@ SWIGEXPORT jint JNICALL Java_io_github_srjohnathan_gdx_effekseer_core_GDXJNI_COL
 }
 
 
-SWIGEXPORT void JNICALL Java_io_github_srjohnathan_gdx_effekseer_core_GDXJNI_Color_1R_1set(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_, jshort jarg2) {
+SWIGEXPORT void JNICALL Java_io_github_srjohnathan_gdx_effekseer_core_GDXJNI_Color_1r_1set(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_, jshort jarg2) {
   Effekseer::Color *arg1 = (Effekseer::Color *) 0 ;
   uint8_t arg2 ;
   
@@ -3423,7 +3422,7 @@ SWIGEXPORT void JNICALL Java_io_github_srjohnathan_gdx_effekseer_core_GDXJNI_Col
 }
 
 
-SWIGEXPORT jshort JNICALL Java_io_github_srjohnathan_gdx_effekseer_core_GDXJNI_Color_1R_1get(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_) {
+SWIGEXPORT jshort JNICALL Java_io_github_srjohnathan_gdx_effekseer_core_GDXJNI_Color_1r_1get(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_) {
   jshort jresult = 0 ;
   Effekseer::Color *arg1 = (Effekseer::Color *) 0 ;
   uint8_t result;
@@ -3438,7 +3437,7 @@ SWIGEXPORT jshort JNICALL Java_io_github_srjohnathan_gdx_effekseer_core_GDXJNI_C
 }
 
 
-SWIGEXPORT void JNICALL Java_io_github_srjohnathan_gdx_effekseer_core_GDXJNI_Color_1G_1set(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_, jshort jarg2) {
+SWIGEXPORT void JNICALL Java_io_github_srjohnathan_gdx_effekseer_core_GDXJNI_Color_1g_1set(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_, jshort jarg2) {
   Effekseer::Color *arg1 = (Effekseer::Color *) 0 ;
   uint8_t arg2 ;
   
@@ -3451,7 +3450,7 @@ SWIGEXPORT void JNICALL Java_io_github_srjohnathan_gdx_effekseer_core_GDXJNI_Col
 }
 
 
-SWIGEXPORT jshort JNICALL Java_io_github_srjohnathan_gdx_effekseer_core_GDXJNI_Color_1G_1get(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_) {
+SWIGEXPORT jshort JNICALL Java_io_github_srjohnathan_gdx_effekseer_core_GDXJNI_Color_1g_1get(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_) {
   jshort jresult = 0 ;
   Effekseer::Color *arg1 = (Effekseer::Color *) 0 ;
   uint8_t result;
@@ -3466,7 +3465,7 @@ SWIGEXPORT jshort JNICALL Java_io_github_srjohnathan_gdx_effekseer_core_GDXJNI_C
 }
 
 
-SWIGEXPORT void JNICALL Java_io_github_srjohnathan_gdx_effekseer_core_GDXJNI_Color_1B_1set(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_, jshort jarg2) {
+SWIGEXPORT void JNICALL Java_io_github_srjohnathan_gdx_effekseer_core_GDXJNI_Color_1b_1set(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_, jshort jarg2) {
   Effekseer::Color *arg1 = (Effekseer::Color *) 0 ;
   uint8_t arg2 ;
   
@@ -3479,7 +3478,7 @@ SWIGEXPORT void JNICALL Java_io_github_srjohnathan_gdx_effekseer_core_GDXJNI_Col
 }
 
 
-SWIGEXPORT jshort JNICALL Java_io_github_srjohnathan_gdx_effekseer_core_GDXJNI_Color_1B_1get(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_) {
+SWIGEXPORT jshort JNICALL Java_io_github_srjohnathan_gdx_effekseer_core_GDXJNI_Color_1b_1get(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_) {
   jshort jresult = 0 ;
   Effekseer::Color *arg1 = (Effekseer::Color *) 0 ;
   uint8_t result;
@@ -3494,7 +3493,7 @@ SWIGEXPORT jshort JNICALL Java_io_github_srjohnathan_gdx_effekseer_core_GDXJNI_C
 }
 
 
-SWIGEXPORT void JNICALL Java_io_github_srjohnathan_gdx_effekseer_core_GDXJNI_Color_1A_1set(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_, jshort jarg2) {
+SWIGEXPORT void JNICALL Java_io_github_srjohnathan_gdx_effekseer_core_GDXJNI_Color_1a_1set(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_, jshort jarg2) {
   Effekseer::Color *arg1 = (Effekseer::Color *) 0 ;
   uint8_t arg2 ;
   
@@ -3507,7 +3506,7 @@ SWIGEXPORT void JNICALL Java_io_github_srjohnathan_gdx_effekseer_core_GDXJNI_Col
 }
 
 
-SWIGEXPORT jshort JNICALL Java_io_github_srjohnathan_gdx_effekseer_core_GDXJNI_Color_1A_1get(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_) {
+SWIGEXPORT jshort JNICALL Java_io_github_srjohnathan_gdx_effekseer_core_GDXJNI_Color_1a_1get(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_) {
   jshort jresult = 0 ;
   Effekseer::Color *arg1 = (Effekseer::Color *) 0 ;
   uint8_t result;
@@ -10744,7 +10743,7 @@ SWIGEXPORT void JNICALL Java_io_github_srjohnathan_gdx_effekseer_core_GDXJNI_del
 }
 
 
-SWIGEXPORT jlong JNICALL Java_io_github_srjohnathan_gdx_effekseer_core_GDXJNI_EffectNode_1GetEffect(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_) {
+SWIGEXPORT jlong JNICALL Java_io_github_srjohnathan_gdx_effekseer_core_GDXJNI_EffectNode_1getEffect(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_) {
   jlong jresult = 0 ;
   Effekseer::EffectNode *arg1 = (Effekseer::EffectNode *) 0 ;
   Effekseer::Effect *result = 0 ;
@@ -10759,7 +10758,7 @@ SWIGEXPORT jlong JNICALL Java_io_github_srjohnathan_gdx_effekseer_core_GDXJNI_Ef
 }
 
 
-SWIGEXPORT jint JNICALL Java_io_github_srjohnathan_gdx_effekseer_core_GDXJNI_EffectNode_1GetGeneration(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_) {
+SWIGEXPORT jint JNICALL Java_io_github_srjohnathan_gdx_effekseer_core_GDXJNI_EffectNode_1getGeneration(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_) {
   jint jresult = 0 ;
   Effekseer::EffectNode *arg1 = (Effekseer::EffectNode *) 0 ;
   int result;
@@ -10774,7 +10773,7 @@ SWIGEXPORT jint JNICALL Java_io_github_srjohnathan_gdx_effekseer_core_GDXJNI_Eff
 }
 
 
-SWIGEXPORT jint JNICALL Java_io_github_srjohnathan_gdx_effekseer_core_GDXJNI_EffectNode_1GetChildrenCount(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_) {
+SWIGEXPORT jint JNICALL Java_io_github_srjohnathan_gdx_effekseer_core_GDXJNI_EffectNode_1getChildrenCount(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_) {
   jint jresult = 0 ;
   Effekseer::EffectNode *arg1 = (Effekseer::EffectNode *) 0 ;
   int result;
@@ -10789,7 +10788,7 @@ SWIGEXPORT jint JNICALL Java_io_github_srjohnathan_gdx_effekseer_core_GDXJNI_Eff
 }
 
 
-SWIGEXPORT jlong JNICALL Java_io_github_srjohnathan_gdx_effekseer_core_GDXJNI_EffectNode_1GetChild(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_, jint jarg2) {
+SWIGEXPORT jlong JNICALL Java_io_github_srjohnathan_gdx_effekseer_core_GDXJNI_EffectNode_1getChild(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_, jint jarg2) {
   jlong jresult = 0 ;
   Effekseer::EffectNode *arg1 = (Effekseer::EffectNode *) 0 ;
   int arg2 ;
@@ -10806,7 +10805,7 @@ SWIGEXPORT jlong JNICALL Java_io_github_srjohnathan_gdx_effekseer_core_GDXJNI_Ef
 }
 
 
-SWIGEXPORT jlong JNICALL Java_io_github_srjohnathan_gdx_effekseer_core_GDXJNI_EffectNode_1GetBasicRenderParameter(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_) {
+SWIGEXPORT jlong JNICALL Java_io_github_srjohnathan_gdx_effekseer_core_GDXJNI_EffectNode_1getBasicRenderParameter(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_) {
   jlong jresult = 0 ;
   Effekseer::EffectNode *arg1 = (Effekseer::EffectNode *) 0 ;
   Effekseer::EffectBasicRenderParameter result;
@@ -10821,7 +10820,7 @@ SWIGEXPORT jlong JNICALL Java_io_github_srjohnathan_gdx_effekseer_core_GDXJNI_Ef
 }
 
 
-SWIGEXPORT void JNICALL Java_io_github_srjohnathan_gdx_effekseer_core_GDXJNI_EffectNode_1SetBasicRenderParameter(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_, jlong jarg2, jobject jarg2_) {
+SWIGEXPORT void JNICALL Java_io_github_srjohnathan_gdx_effekseer_core_GDXJNI_EffectNode_1setBasicRenderParameter(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_, jlong jarg2, jobject jarg2_) {
   Effekseer::EffectNode *arg1 = (Effekseer::EffectNode *) 0 ;
   Effekseer::EffectBasicRenderParameter arg2 ;
   Effekseer::EffectBasicRenderParameter *argp2 ;
@@ -10841,7 +10840,7 @@ SWIGEXPORT void JNICALL Java_io_github_srjohnathan_gdx_effekseer_core_GDXJNI_Eff
 }
 
 
-SWIGEXPORT jlong JNICALL Java_io_github_srjohnathan_gdx_effekseer_core_GDXJNI_EffectNode_1GetEffectModelParameter(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_) {
+SWIGEXPORT jlong JNICALL Java_io_github_srjohnathan_gdx_effekseer_core_GDXJNI_EffectNode_1getEffectModelParameter(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_) {
   jlong jresult = 0 ;
   Effekseer::EffectNode *arg1 = (Effekseer::EffectNode *) 0 ;
   Effekseer::EffectModelParameter result;
@@ -10856,7 +10855,7 @@ SWIGEXPORT jlong JNICALL Java_io_github_srjohnathan_gdx_effekseer_core_GDXJNI_Ef
 }
 
 
-SWIGEXPORT jlong JNICALL Java_io_github_srjohnathan_gdx_effekseer_core_GDXJNI_EffectNode_1CalculateInstanceTerm(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_, jlong jarg2, jobject jarg2_) {
+SWIGEXPORT jlong JNICALL Java_io_github_srjohnathan_gdx_effekseer_core_GDXJNI_EffectNode_1calculateInstanceTerm(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_, jlong jarg2, jobject jarg2_) {
   jlong jresult = 0 ;
   Effekseer::EffectNode *arg1 = (Effekseer::EffectNode *) 0 ;
   Effekseer::EffectInstanceTerm *arg2 = 0 ;

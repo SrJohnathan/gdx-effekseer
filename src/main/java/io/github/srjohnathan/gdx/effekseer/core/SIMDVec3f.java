@@ -56,28 +56,28 @@ public class SIMDVec3f {
     this(GDXJNI.new_SIMDVec3f__SWIG_4(InternalStructVector3D.getCPtr(vec), vec), true);
   }
 
-  public float GetX() {
-    return GDXJNI.SIMDVec3f_GetX(swigCPtr, this);
+  public float getX() {
+    return GDXJNI.SIMDVec3f_getX(swigCPtr, this);
   }
 
-  public float GetY() {
-    return GDXJNI.SIMDVec3f_GetY(swigCPtr, this);
+  public float getY() {
+    return GDXJNI.SIMDVec3f_getY(swigCPtr, this);
   }
 
-  public float GetZ() {
-    return GDXJNI.SIMDVec3f_GetZ(swigCPtr, this);
+  public float getZ() {
+    return GDXJNI.SIMDVec3f_getZ(swigCPtr, this);
   }
 
-  public void SetX(float o) {
-    GDXJNI.SIMDVec3f_SetX(swigCPtr, this, o);
+  public void setX(float o) {
+    GDXJNI.SIMDVec3f_setX(swigCPtr, this, o);
   }
 
-  public void SetY(float o) {
-    GDXJNI.SIMDVec3f_SetY(swigCPtr, this, o);
+  public void setY(float o) {
+    GDXJNI.SIMDVec3f_setY(swigCPtr, this, o);
   }
 
-  public void SetZ(float o) {
-    GDXJNI.SIMDVec3f_SetZ(swigCPtr, this, o);
+  public void setZ(float o) {
+    GDXJNI.SIMDVec3f_setZ(swigCPtr, this, o);
   }
 
 }

@@ -37,27 +37,27 @@ public class Vector3D {
   }
 
   public void setX(float value) {
-    GDXJNI.Vector3D_X_set(swigCPtr, this, value);
+    GDXJNI.Vector3D_x_set(swigCPtr, this, value);
   }
 
   public float getX() {
-    return GDXJNI.Vector3D_X_get(swigCPtr, this);
+    return GDXJNI.Vector3D_x_get(swigCPtr, this);
   }
 
   public void setY(float value) {
-    GDXJNI.Vector3D_Y_set(swigCPtr, this, value);
+    GDXJNI.Vector3D_y_set(swigCPtr, this, value);
   }
 
   public float getY() {
-    return GDXJNI.Vector3D_Y_get(swigCPtr, this);
+    return GDXJNI.Vector3D_y_get(swigCPtr, this);
   }
 
   public void setZ(float value) {
-    GDXJNI.Vector3D_Z_set(swigCPtr, this, value);
+    GDXJNI.Vector3D_z_set(swigCPtr, this, value);
   }
 
   public float getZ() {
-    return GDXJNI.Vector3D_Z_get(swigCPtr, this);
+    return GDXJNI.Vector3D_z_get(swigCPtr, this);
   }
 
   public Vector3D() {
