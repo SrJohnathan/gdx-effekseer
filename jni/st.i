@@ -6,6 +6,24 @@
 #include "lib/EffekseerBackendCore.h"
 #include "lib/EffekseerEffectCore.h"
 #include "lib/EffekseerManagerCore.h"
+#include "Effekseer/Dev/Cpp/Effekseer/Effekseer/SIMD/Vec2f.h"
+#include "Effekseer/Dev/Cpp/Effekseer/Effekseer/SIMD/Vec3f.h"
+#include "Effekseer/Dev/Cpp/Effekseer/Effekseer/Effekseer.InternalStruct.h"
+#include "Effekseer/Dev/Cpp/Effekseer/Effekseer/Parameter/Effekseer.Parameters.h"
+#include "Effekseer/Dev/Cpp/Effekseer/Effekseer/Parameter/DynamicParameter.h"
+// Undefine min/max function
+#ifdef max
+#undef max
+#endif
+
+#ifdef min
+#undef min
+#endif
+#include "Effekseer/Dev/Cpp/Effekseer/Effekseer/Parameter/Easing.h"
+#include "Effekseer/Dev/Cpp/Effekseer/Effekseer/Effekseer.FCurves.h"
+#include "Effekseer/Dev/Cpp/Effekseer/Effekseer/Noise/CurlNoise.h"
+#include "Effekseer/Dev/Cpp/Effekseer/Effekseer/ForceField/ForceFields.h"
+#include "Effekseer/Dev/Cpp/Effekseer/Effekseer/Effekseer.EffectNode.h"
 
 #define FillMeInAsSizeCannotBeDeterminedAutomatically = 16;
 
@@ -62,33 +80,43 @@ struct Effekseer::Color;
 // Ignore all functions
 %rename($ignore, %$isfunction) "";
 
-// Vector3D with only the fields and constructor and destructor
-%rename("Vector3D", fullname=1) "Effekseer::Vector3D";
-%rename("Vector3D", fullname=1) "Effekseer::Vector3D::Vector3D";
-%rename("~Vector3D", fullname=1) "Effekseer::Vector3D::~Vector3D";
-%rename("X", fullname=1) "Effekseer::Vector3D::X";
-%rename("Y", fullname=1) "Effekseer::Vector3D::Y";
-%rename("Z", fullname=1) "Effekseer::Vector3D::Z";
-%include "/cpp/Effekseer/Dev/Cpp/Effekseer/Effekseer/Effekseer.Vector3D.h"
+%include "effekseer_math.i"
 
 // Color with only the fields and constructor and destructor
 %rename("Color", fullname=1) "Effekseer::Color";
-%rename("Color", fullname=1) "Effekseer::Color::Vector3D";
-%rename("~Color", fullname=1) "Effekseer::Color::~Vector3D";
+%rename("Color", fullname=1) "Effekseer::Color::Color";
+%rename("~Color", fullname=1) "Effekseer::Color::~Color";
 %rename("R", fullname=1) "Effekseer::Color::R";
 %rename("G", fullname=1) "Effekseer::Color::G";
 %rename("B", fullname=1) "Effekseer::Color::B";
 %rename("A", fullname=1) "Effekseer::Color::A";
 %include "/cpp/Effekseer/Dev/Cpp/Effekseer/Effekseer/Effekseer.Color.h"
 
+%include "effekseer_base.i"
+
+%include "effekseer_parameters.i"
+
+// All needed enum classes and structs in Effekseer.FCurves.h
+%rename("EffectNodeImplemented", fullname=1) "Effekseer::EffectNodeImplemented";
+%rename("FCurve", fullname=1) "Effekseer::FCurve";
+%rename("FCurveScalar", fullname=1) "Effekseer::FCurveScalar";
+%rename("FCurveVector2D", fullname=1) "Effekseer::FCurveVector2D";
+%rename("FCurveVector3D", fullname=1) "Effekseer::FCurveVector3D";
+%rename("FCurveVectorColor", fullname=1) "Effekseer::FCurveVectorColor";
+%include "/cpp/Effekseer/Dev/Cpp/Effekseer/Effekseer/Effekseer.FCurves.h"
+
+%include "effekseer_noise.i"
+
+%include "effekseer_force_fields.i"
+
+%include "effekseer_effect.i"
+%include "effekseer_effect_nodes.i"
+
+
 // The Effekseer Manager, with just the parameter structs
 %rename("EffekseerManagerParameters", fullname=1) "Effekseer::Manager";
 %rename("UpdateParameter", fullname=1) "Effekseer::Manager::UpdateParameter";
+%rename("UpdateParameter", fullname=1) "Effekseer::Manager::UpdateParameter::UpdateParameter";
 %rename("DrawParameter", fullname=1) "Effekseer::Manager::DrawParameter";
+%rename("DrawParameter", fullname=1) "Effekseer::Manager::DrawParameter::DrawParameter";
 %include "/cpp/Effekseer/Dev/Cpp/Effekseer/Effekseer/Effekseer.Manager.h"
-
-
-
-
-
-

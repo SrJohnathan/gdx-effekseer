@@ -19,7 +19,6 @@
 #include "Effekseer.h"
 #include "EffekseerManagerCore.h"
 #include "EffekseerSettingCore.h"
-//#include "effekseernode.h"
 
 class EffekseerManagerCore;
 
@@ -35,7 +34,6 @@ class EffekseerEffectCore
 private:
     Effekseer::EffectRef effect_ = nullptr;
     Effekseer::EffectNode* node = nullptr;
-  //  EffekseerNode *efknode = nullptr;
 
 public:
     EffekseerEffectCore();
@@ -65,7 +63,6 @@ public:
     bool HasMaterialLoaded(int32_t index);
 
     int32_t NodeCount();
-    //  EffekseerNode getNode();
 
 #ifndef SWIG
     Effekseer::EffectRef GetInternal() const;

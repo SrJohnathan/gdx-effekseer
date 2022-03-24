@@ -142,11 +142,7 @@ public class ParticleEffekseer {
     //region Protected Methods
 
     protected void update(float delta) {
-     /*   if (nodes.size() > 0) {
-            nodes.forEach(effekseerNode -> {
-                effekseerNode.update(delta);
-            });
-        }    */
+
     }
 
     protected void setToStopState() {
@@ -297,13 +293,6 @@ public class ParticleEffekseer {
         this.handle = this.manager.play(this.effekseerEffectCore);
 
         this.queueUpdateTransformMatrix();
-
-      /*  if (nodes.size() > 0) {
-            nodes.forEach(effekseerNode -> {
-                effekseerNode.setPlay(play);
-            });
-        }
-            */
 
         return this.handle;
     }
