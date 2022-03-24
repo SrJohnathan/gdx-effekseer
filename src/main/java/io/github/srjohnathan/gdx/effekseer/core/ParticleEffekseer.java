@@ -24,7 +24,8 @@ public class ParticleEffekseer {
     private boolean play;
     private float magnification = 1.0f;
 
-    private boolean isMatrixUpdateQueued = false;
+    private boolean isTransformMatrixUpdateQueued = false;
+    private boolean isGetTransformMatrixFromEffekseerQueued = true;
 
     //endregion
 
@@ -42,9 +43,10 @@ public class ParticleEffekseer {
     //region Transform Matrix Methods
 
     protected void updateTransformMatrixIfQueued() {
-        if (this.isMatrixUpdateQueued) {
+        if (this.isTransformMatrixUpdateQueued) {
             this.transform.extract4x3Matrix(this.mtx);
             this.manager.effekseerManagerCore.SetMatrix(this.handle, this.mtx);
+            this.isTransformMatrixUpdateQueued = false;
         }
     }
 
@@ -69,7 +71,7 @@ public class ParticleEffekseer {
      * Queues an update (calls Effekseer's SetMatrix()) of the transform matrix call for this effect the next time this effect is drawn.
      */
     private void queueUpdateTransformMatrix() {
-        this.isMatrixUpdateQueued = true;
+        this.isTransformMatrixUpdateQueued = true;
     }
 
     public void setTranslation(float x, float y, float z) {
@@ -78,7 +80,6 @@ public class ParticleEffekseer {
     }
 
     public void translate(float x, float y, float z) {
-        this.getTransformFromEffekseer();
         this.transform.translate(x, y, z);
         this.queueUpdateTransformMatrix();
     }
@@ -94,13 +95,11 @@ public class ParticleEffekseer {
     }
 
     public void rotate(Vector3 axis, float angle) {
-        this.getTransformFromEffekseer();
         this.transform.rotate(axis, angle);
         this.queueUpdateTransformMatrix();
     }
 
     public void rotate(float axisX, float axisY, float axisZ, float degrees) {
-        this.getTransformFromEffekseer();
         this.transform.rotate(axisX, axisY, axisZ, degrees);
         this.queueUpdateTransformMatrix();
     }
@@ -111,7 +110,6 @@ public class ParticleEffekseer {
     }
 
     public void scale(float x, float y, float z) {
-        this.getTransformFromEffekseer();
         this.transform.scale(x, y, z);
         this.queueUpdateTransformMatrix();
     }
@@ -292,6 +290,11 @@ public class ParticleEffekseer {
         this.play = true;
         this.handle = this.manager.play(this.effekseerEffectCore);
 
+        if (this.isGetTransformMatrixFromEffekseerQueued) {
+            // Get the initial transforms from Effekseer
+            this.getTransformFromEffekseer();
+            this.isGetTransformMatrixFromEffekseerQueued = false;
+        }
         this.queueUpdateTransformMatrix();
 
         return this.handle;
