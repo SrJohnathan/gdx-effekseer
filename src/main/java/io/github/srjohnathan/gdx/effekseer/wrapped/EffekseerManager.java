@@ -1,4 +1,4 @@
-package io.github.srjohnathan.gdx.effekseer.core;
+package io.github.srjohnathan.gdx.effekseer.wrapped;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Camera;
@@ -8,6 +8,7 @@ import com.badlogic.gdx.graphics.PerspectiveCamera;
 import com.badlogic.gdx.utils.Array;
 import com.badlogic.gdx.utils.Disposable;
 import com.badlogic.gdx.utils.viewport.Viewport;
+import io.github.srjohnathan.gdx.effekseer.core.*;
 
 /**
  * The base class used to manage an Effekseer particle system instance.

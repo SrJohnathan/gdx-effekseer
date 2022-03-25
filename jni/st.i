@@ -6,6 +6,7 @@
 #include "lib/EffekseerBackendCore.h"
 #include "lib/EffekseerEffectCore.h"
 #include "lib/EffekseerManagerCore.h"
+#include "Effekseer/Dev/Cpp/Effekseer/Effekseer/Effekseer.Base.h"
 #include "Effekseer/Dev/Cpp/Effekseer/Effekseer/SIMD/Vec2f.h"
 #include "Effekseer/Dev/Cpp/Effekseer/Effekseer/SIMD/Vec3f.h"
 #include "Effekseer/Dev/Cpp/Effekseer/Effekseer/Effekseer.InternalStruct.h"
@@ -23,6 +24,8 @@
 #include "Effekseer/Dev/Cpp/Effekseer/Effekseer/Noise/CurlNoise.h"
 #include "Effekseer/Dev/Cpp/Effekseer/Effekseer/ForceField/ForceFields.h"
 #include "Effekseer/Dev/Cpp/Effekseer/Effekseer/Effekseer.EffectNode.h"
+#include "Effekseer/Dev/Cpp/Effekseer/Effekseer/Effekseer.EffectNodeRoot.h"
+#include "Effekseer/Dev/Cpp/Effekseer/Effekseer/Effekseer.EffectNodeSprite.h"
 
 #define FillMeInAsSizeCannotBeDeterminedAutomatically = 16;
 
@@ -73,6 +76,8 @@ struct Effekseer::Color;
 %include "/cpp/lib/EffekseerBackendCore.h"
 %include "/cpp/lib/EffekseerEffectCore.h"
 %include "/cpp/lib/EffekseerManagerCore.h"
+
+%include "extensions.i"
 
 // Ignore all classes
 %rename($ignore, %$isclass) "";

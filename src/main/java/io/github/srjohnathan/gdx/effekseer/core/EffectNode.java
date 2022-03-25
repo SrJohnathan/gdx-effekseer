@@ -49,8 +49,8 @@ public class EffectNode {
     return GDXJNI.EffectNode_getChildrenCount(swigCPtr, this);
   }
 
-  public EffectNode getChild(int index) {
-    long cPtr = GDXJNI.EffectNode_getChild(swigCPtr, this, index);
+  public EffectNode getNonImplementedChild(int index) {
+    long cPtr = GDXJNI.EffectNode_getNonImplementedChild(swigCPtr, this, index);
     return (cPtr == 0) ? null : new EffectNode(cPtr, false);
   }
 
@@ -68,6 +68,16 @@ public class EffectNode {
 
   public EffectInstanceTerm calculateInstanceTerm(EffectInstanceTerm parentTerm) {
     return new EffectInstanceTerm(GDXJNI.EffectNode_calculateInstanceTerm(swigCPtr, this, EffectInstanceTerm.getCPtr(parentTerm), parentTerm), true);
+  }
+
+  public EffectNodeImplemented getChild(int index) {
+    long cPtr = GDXJNI.EffectNode_getChild(swigCPtr, this, index);
+    return (cPtr == 0) ? null : new EffectNodeImplemented(cPtr, false);
+  }
+
+  public EffectNodeSprite getChildAsSprite(int index) {
+    long cPtr = GDXJNI.EffectNode_getChildAsSprite(swigCPtr, this, index);
+    return (cPtr == 0) ? null : new EffectNodeSprite(cPtr, false);
   }
 
 }

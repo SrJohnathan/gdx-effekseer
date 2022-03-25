@@ -12,6 +12,9 @@
 %rename($ignore, fullname=1) "Effekseer::NodeRendererBasicParameter::TextureWraps";
 %include "/cpp/Effekseer/Dev/Cpp/Effekseer/Effekseer/Effekseer.Base.Pre.h"
 
+// All enum classes in Effekseer.Base.h
+%include "/cpp/Effekseer/Dev/Cpp/Effekseer/Effekseer/Effekseer.Base.h"
+
 // All structs in Effekseer.Internal.h
 %rename("InternalStructRandomFloat", fullname=1) "Effekseer::random_float";
 %rename("InternalStructRandomInt", fullname=1) "Effekseer::random_int";

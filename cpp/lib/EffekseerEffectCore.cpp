@@ -246,8 +246,8 @@ int32_t EffekseerEffectCore::NodeCount()
 }
 
 
-Effekseer::EffectNodeImplemented* EffekseerEffectCore::GetRootNode() {
-    return static_cast<Effekseer::EffectNodeImplemented*>(effect_->GetRoot());
+Effekseer::EffectNodeRoot* EffekseerEffectCore::GetRootNode() {
+    return static_cast<Effekseer::EffectNodeRoot*>(effect_->GetRoot());
 }
 
 Effekseer::EffectRef EffekseerEffectCore::GetInternal() const { return effect_; }

@@ -108,9 +108,9 @@ public class EffekseerEffectCore {
     return GDXJNI.EffekseerEffectCore_NodeCount(swigCPtr, this);
   }
 
-  public EffectNodeImplemented GetRootNode() {
+  public EffectNodeRoot GetRootNode() {
     long cPtr = GDXJNI.EffekseerEffectCore_GetRootNode(swigCPtr, this);
-    return (cPtr == 0) ? null : new EffectNodeImplemented(cPtr, false);
+    return (cPtr == 0) ? null : new EffectNodeRoot(cPtr, false);
   }
 
 }

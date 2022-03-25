@@ -347,4 +347,8 @@ public class EffectNodeImplemented extends EffectNode {
     return (cPtr == 0) ? null : new DynamicFactorParameter(cPtr, false);
   }
 
+  public eEffectNodeType getType() {
+    return eEffectNodeType.swigToEnum(GDXJNI.EffectNodeImplemented_getType(swigCPtr, this));
+  }
+
 }

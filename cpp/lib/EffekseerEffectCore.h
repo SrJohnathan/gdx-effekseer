@@ -27,6 +27,7 @@
     #undef min
 #endif
 #include "Effekseer/Effekseer.EffectNode.h"
+#include "Effekseer/Effekseer.EffectNodeRoot.h"
 
 class EffekseerManagerCore;
 
@@ -70,7 +71,7 @@ public:
     bool HasMaterialLoaded(int32_t index);
 
     int32_t NodeCount();
-    Effekseer::EffectNodeImplemented* GetRootNode();
+    Effekseer::EffectNodeRoot* GetRootNode();
 
 #ifndef SWIG
     Effekseer::EffectRef GetInternal() const;

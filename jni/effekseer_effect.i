@@ -9,7 +9,7 @@
 %rename("getEffect", fullname=1) "Effekseer::EffectNode::GetEffect";
 %rename("getGeneration", fullname=1) "Effekseer::EffectNode::GetGeneration";
 %rename("getChildrenCount", fullname=1) "Effekseer::EffectNode::GetChildrenCount";
-%rename("getChild", fullname=1) "Effekseer::EffectNode::GetChild";
+%rename("getNonImplementedChild", fullname=1) "Effekseer::EffectNode::GetChild";
 %rename("getBasicRenderParameter", fullname=1) "Effekseer::EffectNode::GetBasicRenderParameter";
 %rename("setBasicRenderParameter", fullname=1) "Effekseer::EffectNode::SetBasicRenderParameter";
 %rename("getEffectModelParameter", fullname=1) "Effekseer::EffectNode::GetEffectModelParameter";

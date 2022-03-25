@@ -1,5 +1,5 @@
 // All needed enum classes and structs in Effekseer.EffectNode.h
-%rename("StandardColorParameter", fullname=1) "Effekseer::StandardColorParameter";
+%rename("StandardColorParameterCore", fullname=1) "Effekseer::StandardColorParameter";
 %rename("ParameterCommonValues_8", fullname=1) "Effekseer::ParameterCommonValues_8";
 %rename("ParameterCommonValues", fullname=1) "Effekseer::ParameterCommonValues";
 %rename("ParameterDepthValues", fullname=1) "Effekseer::ParameterDepthValues";
@@ -44,5 +44,17 @@
 %rename($ignore, fullname=1) "Effekseer::DynamicFactorParameter::Scale";
 %rename($ignore, fullname=1) "Effekseer::DynamicFactorParameter::ScaleInv";
 %rename("EffectNodeImplemented", fullname=1) "Effekseer::EffectNodeImplemented";
+%rename("getType", fullname=1) "Effekseer::EffectNodeImplemented::GetType";
 %rename($ignore, fullname=1) "Effekseer::EffectNodeImplemented::LocalForceField";
 %include "/cpp/Effekseer/Dev/Cpp/Effekseer/Effekseer/Effekseer.EffectNode.h"
+
+// Root node
+%rename("EffectNodeRoot", fullname=1) "Effekseer::EffectNodeRoot";
+%include "/cpp/Effekseer/Dev/Cpp/Effekseer/Effekseer/Effekseer.EffectNodeRoot.h"
+
+// Sprite node
+%rename("SpriteColorParameterCore", fullname=1) "Effekseer::SpriteColorParameter";
+%rename("SpritePositionParameterCore", fullname=1) "Effekseer::SpritePositionParameter";
+%rename("EffectNodeSprite", fullname=1) "Effekseer::EffectNodeSprite";
+%rename($ignore, fullname=1) Effekseer::EffectNodeSprite::LocalForceField;
+%include "/cpp/Effekseer/Dev/Cpp/Effekseer/Effekseer/Effekseer.EffectNodeSprite.h"

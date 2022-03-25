@@ -1,11 +1,16 @@
-package io.github.srjohnathan.gdx.effekseer.core;
+package io.github.srjohnathan.gdx.effekseer.wrapped;
 
 import com.badlogic.gdx.Files;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.files.FileHandle;
 import com.badlogic.gdx.math.Matrix4;
 import com.badlogic.gdx.math.Vector3;
+import io.github.srjohnathan.gdx.effekseer.core.*;
+import io.github.srjohnathan.gdx.effekseer.wrapped.node.EffekseerNode;
+import io.github.srjohnathan.gdx.effekseer.wrapped.node.EffekseerNodeRoot;
+
 import java.util.Objects;
+import java.util.function.Function;
 
 public class ParticleEffekseer {
 
@@ -14,8 +19,6 @@ public class ParticleEffekseer {
     public final Matrix4 transform = new Matrix4();
 
     private final EffekseerEffectCore effekseerEffectCore;
-    // private int nodeSize = 0;
-    // private ArrayList<EffekseerNode> nodes;
 
     private final float[] mtx = new float[12];
     private EffekseerManager manager;
@@ -27,6 +30,19 @@ public class ParticleEffekseer {
     private boolean isTransformMatrixUpdateQueued = false;
     private boolean isGetTransformMatrixFromEffekseerQueued = true;
 
+    private EffekseerFieldWrapper<EffekseerNode> rootNode = new EffekseerFieldWrapper<EffekseerNode>(new Function<Void, EffekseerNode>() {
+        @Override
+        public EffekseerNode apply(Void unused) {
+            return new EffekseerNodeRoot(ParticleEffekseer.this, effekseerEffectCore.GetRootNode());
+        }
+    }, new Function<EffekseerNode, Void>() {
+        @Override
+        public Void apply(EffekseerNode effekseerNode) {
+            // Can't set root node
+            return null;
+        }
+    });
+
     //endregion
 
     //region Constructors
@@ -35,7 +51,6 @@ public class ParticleEffekseer {
         this.manager = Objects.requireNonNull(manager);
         this.manager.addParticleEffekseer(this);
         this.effekseerEffectCore = new EffekseerEffectCore();
-        // nodes = new ArrayList<>();
     }
 
     //endregion
@@ -176,16 +191,6 @@ public class ParticleEffekseer {
         return play;
     }
 
-   /* public ArrayList<EffekseerNode> getNodes() {
-        return nodes;
-    }
-    */
-
-  /*  public EffekseerNode getNode() {
-        return effekseerEffectCore.getNode();
-    }
-    */
-
     public void load(FileHandle effectFileHandle) throws IllegalStateException {
         // Check that the manager core is available
         if (this.manager.effekseerManagerCore == null) {
@@ -255,16 +260,6 @@ public class ParticleEffekseer {
         }
 
         // TODO sound
-
-        /*
-        nodeSize = effekseerEffectCore.getNodesSize();
-        for (int i = 0; i < nodeSize; i++) {
-            EffekseerNode node = new EffekseerNode(effekseerEffectCore.swigCPtr, i, true);
-            node.setMagnification(magnification);
-            node.setManager(manager);
-            nodes.add(node);
-        }
-         */
     }
 
     public void load(String path, boolean isInternalStorage) throws IllegalStateException {
@@ -393,8 +388,8 @@ public class ParticleEffekseer {
         return this.effekseerEffectCore.GetVersion();
     }
 
-    public EffectNodeImplemented getRootNode() {
-        return this.effekseerEffectCore.GetRootNode();
+    public EffekseerNode getRootNode() {
+        return this.rootNode.get();
     }
 
     //endregion
