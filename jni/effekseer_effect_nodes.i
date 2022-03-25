@@ -56,5 +56,9 @@
 %rename("SpriteColorParameterCore", fullname=1) "Effekseer::SpriteColorParameter";
 %rename("SpritePositionParameterCore", fullname=1) "Effekseer::SpritePositionParameter";
 %rename("EffectNodeSprite", fullname=1) "Effekseer::EffectNodeSprite";
-%rename($ignore, fullname=1) Effekseer::EffectNodeSprite::LocalForceField;
 %include "/cpp/Effekseer/Dev/Cpp/Effekseer/Effekseer/Effekseer.EffectNodeSprite.h"
+
+// Track node
+%rename("TrackSizeParameterCore", fullname=1) "Effekseer::TrackSizeParameter";
+%rename("EffectNodeTrack", fullname=1) "Effekseer::EffectNodeTrack";
+%include "/cpp/Effekseer/Dev/Cpp/Effekseer/Effekseer/Effekseer.EffectNodeTrack.h"

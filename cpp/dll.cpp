@@ -256,6 +256,7 @@ static void SWIGUNUSED SWIG_JavaThrowException(JNIEnv *jenv, SWIG_JavaExceptionC
 #include "Effekseer/Dev/Cpp/Effekseer/Effekseer/Effekseer.EffectNode.h"
 #include "Effekseer/Dev/Cpp/Effekseer/Effekseer/Effekseer.EffectNodeRoot.h"
 #include "Effekseer/Dev/Cpp/Effekseer/Effekseer/Effekseer.EffectNodeSprite.h"
+#include "Effekseer/Dev/Cpp/Effekseer/Effekseer/Effekseer.EffectNodeTrack.h"
 
 #define FillMeInAsSizeCannotBeDeterminedAutomatically = 16;
 
@@ -980,6 +981,11 @@ SWIGINTERN Effekseer::EffectNodeSprite *Effekseer_EffectNode_getChildAsSprite(Ef
             return nullptr;
         return static_cast<Effekseer::EffectNodeSprite*>(self->GetChild(index));
     }
+SWIGINTERN Effekseer::EffectNodeTrack *Effekseer_EffectNode_getChildAsTrack(Effekseer::EffectNode *self,int index){
+        if (index >= self->GetChildrenCount())
+            return nullptr;
+        return static_cast<Effekseer::EffectNodeTrack*>(self->GetChild(index));
+    }
 SWIGINTERN Effekseer::Color Effekseer_StandardColorParameter_getFixed(Effekseer::StandardColorParameter *self){ return self->fixed.all; }
 SWIGINTERN void Effekseer_StandardColorParameter_setFixed(Effekseer::StandardColorParameter *self,Effekseer::Color value){ self->fixed.all = value; }
 SWIGINTERN Effekseer::random_color Effekseer_StandardColorParameter_getRandom(Effekseer::StandardColorParameter *self){ return self->random.all; }
@@ -1004,6 +1010,8 @@ SWIGINTERN Effekseer::SIMD::Vec2f Effekseer_SpritePositionParameter_getFixedUppe
 SWIGINTERN void Effekseer_SpritePositionParameter_setFixedUpperLeftPos(Effekseer::SpritePositionParameter *self,Effekseer::SIMD::Vec2f value){ self->fixed.ul = value; }
 SWIGINTERN Effekseer::SIMD::Vec2f Effekseer_SpritePositionParameter_getFixedUpperRightPos(Effekseer::SpritePositionParameter *self){ return self->fixed.ur; }
 SWIGINTERN void Effekseer_SpritePositionParameter_setFixedUpperRightPos(Effekseer::SpritePositionParameter *self,Effekseer::SIMD::Vec2f value){ self->fixed.ur = value; }
+SWIGINTERN float Effekseer_TrackSizeParameter_getFixedSize(Effekseer::TrackSizeParameter *self){ return self->fixed.size; }
+SWIGINTERN void Effekseer_TrackSizeParameter_setFixedSize(Effekseer::TrackSizeParameter *self,float value){ self->fixed.size = value; }
 
 #ifdef __cplusplus
 extern "C" {
@@ -11056,6 +11064,23 @@ SWIGEXPORT jlong JNICALL Java_io_github_srjohnathan_gdx_effekseer_core_GDXJNI_Ef
 }
 
 
+SWIGEXPORT jlong JNICALL Java_io_github_srjohnathan_gdx_effekseer_core_GDXJNI_EffectNode_1getChildAsTrack(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_, jint jarg2) {
+  jlong jresult = 0 ;
+  Effekseer::EffectNode *arg1 = (Effekseer::EffectNode *) 0 ;
+  int arg2 ;
+  Effekseer::EffectNodeTrack *result = 0 ;
+  
+  (void)jenv;
+  (void)jcls;
+  (void)jarg1_;
+  arg1 = *(Effekseer::EffectNode **)&jarg1; 
+  arg2 = (int)jarg2; 
+  result = (Effekseer::EffectNodeTrack *)Effekseer_EffectNode_getChildAsTrack(arg1,arg2);
+  *(Effekseer::EffectNodeTrack **)&jresult = result; 
+  return jresult;
+}
+
+
 SWIGEXPORT jint JNICALL Java_io_github_srjohnathan_gdx_effekseer_core_GDXJNI_BindType_1NotBind_1get(JNIEnv *jenv, jclass jcls) {
   jint jresult = 0 ;
   Effekseer::BindType result;
@@ -18499,6 +18524,597 @@ SWIGEXPORT void JNICALL Java_io_github_srjohnathan_gdx_effekseer_core_GDXJNI_del
 }
 
 
+SWIGEXPORT jint JNICALL Java_io_github_srjohnathan_gdx_effekseer_core_GDXJNI_TrackSizeParameterCore_1Fixed_1get(JNIEnv *jenv, jclass jcls) {
+  jint jresult = 0 ;
+  int result;
+  
+  (void)jenv;
+  (void)jcls;
+  result = (int)Effekseer::TrackSizeParameter::Fixed;
+  jresult = (jint)result; 
+  return jresult;
+}
+
+
+SWIGEXPORT jint JNICALL Java_io_github_srjohnathan_gdx_effekseer_core_GDXJNI_TrackSizeParameterCore_1Parameter_1DWORD_1get(JNIEnv *jenv, jclass jcls) {
+  jint jresult = 0 ;
+  int result;
+  
+  (void)jenv;
+  (void)jcls;
+  result = (int)Effekseer::TrackSizeParameter::Parameter_DWORD;
+  jresult = (jint)result; 
+  return jresult;
+}
+
+
+SWIGEXPORT void JNICALL Java_io_github_srjohnathan_gdx_effekseer_core_GDXJNI_TrackSizeParameterCore_1type_1set(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_, jint jarg2) {
+  Effekseer::TrackSizeParameter *arg1 = (Effekseer::TrackSizeParameter *) 0 ;
+  int arg2 ;
+  
+  (void)jenv;
+  (void)jcls;
+  (void)jarg1_;
+  arg1 = *(Effekseer::TrackSizeParameter **)&jarg1; 
+  arg2 = (int)jarg2; 
+  if (arg1 && sizeof(int) == sizeof((arg1)->type)) *(int*)(void*)&((arg1)->type) = arg2;
+}
+
+
+SWIGEXPORT jint JNICALL Java_io_github_srjohnathan_gdx_effekseer_core_GDXJNI_TrackSizeParameterCore_1type_1get(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_) {
+  jint jresult = 0 ;
+  Effekseer::TrackSizeParameter *arg1 = (Effekseer::TrackSizeParameter *) 0 ;
+  int result;
+  
+  (void)jenv;
+  (void)jcls;
+  (void)jarg1_;
+  arg1 = *(Effekseer::TrackSizeParameter **)&jarg1; 
+  result = (int) ((arg1)->type);
+  jresult = (jint)result; 
+  return jresult;
+}
+
+
+SWIGEXPORT jfloat JNICALL Java_io_github_srjohnathan_gdx_effekseer_core_GDXJNI_TrackSizeParameterCore_1getFixedSize(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_) {
+  jfloat jresult = 0 ;
+  Effekseer::TrackSizeParameter *arg1 = (Effekseer::TrackSizeParameter *) 0 ;
+  float result;
+  
+  (void)jenv;
+  (void)jcls;
+  (void)jarg1_;
+  arg1 = *(Effekseer::TrackSizeParameter **)&jarg1; 
+  result = (float)Effekseer_TrackSizeParameter_getFixedSize(arg1);
+  jresult = (jfloat)result; 
+  return jresult;
+}
+
+
+SWIGEXPORT void JNICALL Java_io_github_srjohnathan_gdx_effekseer_core_GDXJNI_TrackSizeParameterCore_1setFixedSize(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_, jfloat jarg2) {
+  Effekseer::TrackSizeParameter *arg1 = (Effekseer::TrackSizeParameter *) 0 ;
+  float arg2 ;
+  
+  (void)jenv;
+  (void)jcls;
+  (void)jarg1_;
+  arg1 = *(Effekseer::TrackSizeParameter **)&jarg1; 
+  arg2 = (float)jarg2; 
+  Effekseer_TrackSizeParameter_setFixedSize(arg1,arg2);
+}
+
+
+SWIGEXPORT jlong JNICALL Java_io_github_srjohnathan_gdx_effekseer_core_GDXJNI_new_1TrackSizeParameterCore(JNIEnv *jenv, jclass jcls) {
+  jlong jresult = 0 ;
+  Effekseer::TrackSizeParameter *result = 0 ;
+  
+  (void)jenv;
+  (void)jcls;
+  result = (Effekseer::TrackSizeParameter *)new Effekseer::TrackSizeParameter();
+  *(Effekseer::TrackSizeParameter **)&jresult = result; 
+  return jresult;
+}
+
+
+SWIGEXPORT void JNICALL Java_io_github_srjohnathan_gdx_effekseer_core_GDXJNI_delete_1TrackSizeParameterCore(JNIEnv *jenv, jclass jcls, jlong jarg1) {
+  Effekseer::TrackSizeParameter *arg1 = (Effekseer::TrackSizeParameter *) 0 ;
+  
+  (void)jenv;
+  (void)jcls;
+  arg1 = *(Effekseer::TrackSizeParameter **)&jarg1; 
+  delete arg1;
+}
+
+
+SWIGEXPORT void JNICALL Java_io_github_srjohnathan_gdx_effekseer_core_GDXJNI_EffectNodeTrack_1m_1nodeParameter_1set(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_, jlong jarg2) {
+  Effekseer::EffectNodeTrack *arg1 = (Effekseer::EffectNodeTrack *) 0 ;
+  Effekseer::TrackRenderer::NodeParameter *arg2 = (Effekseer::TrackRenderer::NodeParameter *) 0 ;
+  
+  (void)jenv;
+  (void)jcls;
+  (void)jarg1_;
+  arg1 = *(Effekseer::EffectNodeTrack **)&jarg1; 
+  arg2 = *(Effekseer::TrackRenderer::NodeParameter **)&jarg2; 
+  if (arg1) (arg1)->m_nodeParameter = *arg2;
+}
+
+
+SWIGEXPORT jlong JNICALL Java_io_github_srjohnathan_gdx_effekseer_core_GDXJNI_EffectNodeTrack_1m_1nodeParameter_1get(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_) {
+  jlong jresult = 0 ;
+  Effekseer::EffectNodeTrack *arg1 = (Effekseer::EffectNodeTrack *) 0 ;
+  Effekseer::TrackRenderer::NodeParameter *result = 0 ;
+  
+  (void)jenv;
+  (void)jcls;
+  (void)jarg1_;
+  arg1 = *(Effekseer::EffectNodeTrack **)&jarg1; 
+  result = (Effekseer::TrackRenderer::NodeParameter *)& ((arg1)->m_nodeParameter);
+  *(Effekseer::TrackRenderer::NodeParameter **)&jresult = result; 
+  return jresult;
+}
+
+
+SWIGEXPORT void JNICALL Java_io_github_srjohnathan_gdx_effekseer_core_GDXJNI_EffectNodeTrack_1m_1instanceParameter_1set(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_, jlong jarg2) {
+  Effekseer::EffectNodeTrack *arg1 = (Effekseer::EffectNodeTrack *) 0 ;
+  Effekseer::TrackRenderer::InstanceParameter *arg2 = (Effekseer::TrackRenderer::InstanceParameter *) 0 ;
+  
+  (void)jenv;
+  (void)jcls;
+  (void)jarg1_;
+  arg1 = *(Effekseer::EffectNodeTrack **)&jarg1; 
+  arg2 = *(Effekseer::TrackRenderer::InstanceParameter **)&jarg2; 
+  if (arg1) (arg1)->m_instanceParameter = *arg2;
+}
+
+
+SWIGEXPORT jlong JNICALL Java_io_github_srjohnathan_gdx_effekseer_core_GDXJNI_EffectNodeTrack_1m_1instanceParameter_1get(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_) {
+  jlong jresult = 0 ;
+  Effekseer::EffectNodeTrack *arg1 = (Effekseer::EffectNodeTrack *) 0 ;
+  Effekseer::TrackRenderer::InstanceParameter *result = 0 ;
+  
+  (void)jenv;
+  (void)jcls;
+  (void)jarg1_;
+  arg1 = *(Effekseer::EffectNodeTrack **)&jarg1; 
+  result = (Effekseer::TrackRenderer::InstanceParameter *)& ((arg1)->m_instanceParameter);
+  *(Effekseer::TrackRenderer::InstanceParameter **)&jresult = result; 
+  return jresult;
+}
+
+
+SWIGEXPORT void JNICALL Java_io_github_srjohnathan_gdx_effekseer_core_GDXJNI_EffectNodeTrack_1m_1currentGroupValues_1set(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_, jlong jarg2) {
+  Effekseer::EffectNodeTrack *arg1 = (Effekseer::EffectNodeTrack *) 0 ;
+  Effekseer::EffectNodeTrack::InstanceGroupValues *arg2 = (Effekseer::EffectNodeTrack::InstanceGroupValues *) 0 ;
+  
+  (void)jenv;
+  (void)jcls;
+  (void)jarg1_;
+  arg1 = *(Effekseer::EffectNodeTrack **)&jarg1; 
+  arg2 = *(Effekseer::EffectNodeTrack::InstanceGroupValues **)&jarg2; 
+  if (arg1) (arg1)->m_currentGroupValues = *arg2;
+}
+
+
+SWIGEXPORT jlong JNICALL Java_io_github_srjohnathan_gdx_effekseer_core_GDXJNI_EffectNodeTrack_1m_1currentGroupValues_1get(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_) {
+  jlong jresult = 0 ;
+  Effekseer::EffectNodeTrack *arg1 = (Effekseer::EffectNodeTrack *) 0 ;
+  Effekseer::EffectNodeTrack::InstanceGroupValues *result = 0 ;
+  
+  (void)jenv;
+  (void)jcls;
+  (void)jarg1_;
+  arg1 = *(Effekseer::EffectNodeTrack **)&jarg1; 
+  result = (Effekseer::EffectNodeTrack::InstanceGroupValues *)& ((arg1)->m_currentGroupValues);
+  *(Effekseer::EffectNodeTrack::InstanceGroupValues **)&jresult = result; 
+  return jresult;
+}
+
+
+SWIGEXPORT void JNICALL Java_io_github_srjohnathan_gdx_effekseer_core_GDXJNI_EffectNodeTrack_1AlphaBlend_1set(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_, jint jarg2) {
+  Effekseer::EffectNodeTrack *arg1 = (Effekseer::EffectNodeTrack *) 0 ;
+  Effekseer::AlphaBlendType arg2 ;
+  
+  (void)jenv;
+  (void)jcls;
+  (void)jarg1_;
+  arg1 = *(Effekseer::EffectNodeTrack **)&jarg1; 
+  arg2 = (Effekseer::AlphaBlendType)jarg2; 
+  if (arg1) (arg1)->AlphaBlend = arg2;
+}
+
+
+SWIGEXPORT jint JNICALL Java_io_github_srjohnathan_gdx_effekseer_core_GDXJNI_EffectNodeTrack_1AlphaBlend_1get(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_) {
+  jint jresult = 0 ;
+  Effekseer::EffectNodeTrack *arg1 = (Effekseer::EffectNodeTrack *) 0 ;
+  Effekseer::AlphaBlendType result;
+  
+  (void)jenv;
+  (void)jcls;
+  (void)jarg1_;
+  arg1 = *(Effekseer::EffectNodeTrack **)&jarg1; 
+  result = (Effekseer::AlphaBlendType) ((arg1)->AlphaBlend);
+  jresult = (jint)result; 
+  return jresult;
+}
+
+
+SWIGEXPORT void JNICALL Java_io_github_srjohnathan_gdx_effekseer_core_GDXJNI_EffectNodeTrack_1TrackColorLeft_1set(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_, jlong jarg2, jobject jarg2_) {
+  Effekseer::EffectNodeTrack *arg1 = (Effekseer::EffectNodeTrack *) 0 ;
+  Effekseer::StandardColorParameter *arg2 = (Effekseer::StandardColorParameter *) 0 ;
+  
+  (void)jenv;
+  (void)jcls;
+  (void)jarg1_;
+  (void)jarg2_;
+  arg1 = *(Effekseer::EffectNodeTrack **)&jarg1; 
+  arg2 = *(Effekseer::StandardColorParameter **)&jarg2; 
+  if (arg1) (arg1)->TrackColorLeft = *arg2;
+}
+
+
+SWIGEXPORT jlong JNICALL Java_io_github_srjohnathan_gdx_effekseer_core_GDXJNI_EffectNodeTrack_1TrackColorLeft_1get(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_) {
+  jlong jresult = 0 ;
+  Effekseer::EffectNodeTrack *arg1 = (Effekseer::EffectNodeTrack *) 0 ;
+  Effekseer::StandardColorParameter *result = 0 ;
+  
+  (void)jenv;
+  (void)jcls;
+  (void)jarg1_;
+  arg1 = *(Effekseer::EffectNodeTrack **)&jarg1; 
+  result = (Effekseer::StandardColorParameter *)& ((arg1)->TrackColorLeft);
+  *(Effekseer::StandardColorParameter **)&jresult = result; 
+  return jresult;
+}
+
+
+SWIGEXPORT void JNICALL Java_io_github_srjohnathan_gdx_effekseer_core_GDXJNI_EffectNodeTrack_1TrackColorCenter_1set(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_, jlong jarg2, jobject jarg2_) {
+  Effekseer::EffectNodeTrack *arg1 = (Effekseer::EffectNodeTrack *) 0 ;
+  Effekseer::StandardColorParameter *arg2 = (Effekseer::StandardColorParameter *) 0 ;
+  
+  (void)jenv;
+  (void)jcls;
+  (void)jarg1_;
+  (void)jarg2_;
+  arg1 = *(Effekseer::EffectNodeTrack **)&jarg1; 
+  arg2 = *(Effekseer::StandardColorParameter **)&jarg2; 
+  if (arg1) (arg1)->TrackColorCenter = *arg2;
+}
+
+
+SWIGEXPORT jlong JNICALL Java_io_github_srjohnathan_gdx_effekseer_core_GDXJNI_EffectNodeTrack_1TrackColorCenter_1get(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_) {
+  jlong jresult = 0 ;
+  Effekseer::EffectNodeTrack *arg1 = (Effekseer::EffectNodeTrack *) 0 ;
+  Effekseer::StandardColorParameter *result = 0 ;
+  
+  (void)jenv;
+  (void)jcls;
+  (void)jarg1_;
+  arg1 = *(Effekseer::EffectNodeTrack **)&jarg1; 
+  result = (Effekseer::StandardColorParameter *)& ((arg1)->TrackColorCenter);
+  *(Effekseer::StandardColorParameter **)&jresult = result; 
+  return jresult;
+}
+
+
+SWIGEXPORT void JNICALL Java_io_github_srjohnathan_gdx_effekseer_core_GDXJNI_EffectNodeTrack_1TrackColorRight_1set(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_, jlong jarg2, jobject jarg2_) {
+  Effekseer::EffectNodeTrack *arg1 = (Effekseer::EffectNodeTrack *) 0 ;
+  Effekseer::StandardColorParameter *arg2 = (Effekseer::StandardColorParameter *) 0 ;
+  
+  (void)jenv;
+  (void)jcls;
+  (void)jarg1_;
+  (void)jarg2_;
+  arg1 = *(Effekseer::EffectNodeTrack **)&jarg1; 
+  arg2 = *(Effekseer::StandardColorParameter **)&jarg2; 
+  if (arg1) (arg1)->TrackColorRight = *arg2;
+}
+
+
+SWIGEXPORT jlong JNICALL Java_io_github_srjohnathan_gdx_effekseer_core_GDXJNI_EffectNodeTrack_1TrackColorRight_1get(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_) {
+  jlong jresult = 0 ;
+  Effekseer::EffectNodeTrack *arg1 = (Effekseer::EffectNodeTrack *) 0 ;
+  Effekseer::StandardColorParameter *result = 0 ;
+  
+  (void)jenv;
+  (void)jcls;
+  (void)jarg1_;
+  arg1 = *(Effekseer::EffectNodeTrack **)&jarg1; 
+  result = (Effekseer::StandardColorParameter *)& ((arg1)->TrackColorRight);
+  *(Effekseer::StandardColorParameter **)&jresult = result; 
+  return jresult;
+}
+
+
+SWIGEXPORT void JNICALL Java_io_github_srjohnathan_gdx_effekseer_core_GDXJNI_EffectNodeTrack_1TrackColorLeftMiddle_1set(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_, jlong jarg2, jobject jarg2_) {
+  Effekseer::EffectNodeTrack *arg1 = (Effekseer::EffectNodeTrack *) 0 ;
+  Effekseer::StandardColorParameter *arg2 = (Effekseer::StandardColorParameter *) 0 ;
+  
+  (void)jenv;
+  (void)jcls;
+  (void)jarg1_;
+  (void)jarg2_;
+  arg1 = *(Effekseer::EffectNodeTrack **)&jarg1; 
+  arg2 = *(Effekseer::StandardColorParameter **)&jarg2; 
+  if (arg1) (arg1)->TrackColorLeftMiddle = *arg2;
+}
+
+
+SWIGEXPORT jlong JNICALL Java_io_github_srjohnathan_gdx_effekseer_core_GDXJNI_EffectNodeTrack_1TrackColorLeftMiddle_1get(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_) {
+  jlong jresult = 0 ;
+  Effekseer::EffectNodeTrack *arg1 = (Effekseer::EffectNodeTrack *) 0 ;
+  Effekseer::StandardColorParameter *result = 0 ;
+  
+  (void)jenv;
+  (void)jcls;
+  (void)jarg1_;
+  arg1 = *(Effekseer::EffectNodeTrack **)&jarg1; 
+  result = (Effekseer::StandardColorParameter *)& ((arg1)->TrackColorLeftMiddle);
+  *(Effekseer::StandardColorParameter **)&jresult = result; 
+  return jresult;
+}
+
+
+SWIGEXPORT void JNICALL Java_io_github_srjohnathan_gdx_effekseer_core_GDXJNI_EffectNodeTrack_1TrackColorCenterMiddle_1set(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_, jlong jarg2, jobject jarg2_) {
+  Effekseer::EffectNodeTrack *arg1 = (Effekseer::EffectNodeTrack *) 0 ;
+  Effekseer::StandardColorParameter *arg2 = (Effekseer::StandardColorParameter *) 0 ;
+  
+  (void)jenv;
+  (void)jcls;
+  (void)jarg1_;
+  (void)jarg2_;
+  arg1 = *(Effekseer::EffectNodeTrack **)&jarg1; 
+  arg2 = *(Effekseer::StandardColorParameter **)&jarg2; 
+  if (arg1) (arg1)->TrackColorCenterMiddle = *arg2;
+}
+
+
+SWIGEXPORT jlong JNICALL Java_io_github_srjohnathan_gdx_effekseer_core_GDXJNI_EffectNodeTrack_1TrackColorCenterMiddle_1get(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_) {
+  jlong jresult = 0 ;
+  Effekseer::EffectNodeTrack *arg1 = (Effekseer::EffectNodeTrack *) 0 ;
+  Effekseer::StandardColorParameter *result = 0 ;
+  
+  (void)jenv;
+  (void)jcls;
+  (void)jarg1_;
+  arg1 = *(Effekseer::EffectNodeTrack **)&jarg1; 
+  result = (Effekseer::StandardColorParameter *)& ((arg1)->TrackColorCenterMiddle);
+  *(Effekseer::StandardColorParameter **)&jresult = result; 
+  return jresult;
+}
+
+
+SWIGEXPORT void JNICALL Java_io_github_srjohnathan_gdx_effekseer_core_GDXJNI_EffectNodeTrack_1TrackColorRightMiddle_1set(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_, jlong jarg2, jobject jarg2_) {
+  Effekseer::EffectNodeTrack *arg1 = (Effekseer::EffectNodeTrack *) 0 ;
+  Effekseer::StandardColorParameter *arg2 = (Effekseer::StandardColorParameter *) 0 ;
+  
+  (void)jenv;
+  (void)jcls;
+  (void)jarg1_;
+  (void)jarg2_;
+  arg1 = *(Effekseer::EffectNodeTrack **)&jarg1; 
+  arg2 = *(Effekseer::StandardColorParameter **)&jarg2; 
+  if (arg1) (arg1)->TrackColorRightMiddle = *arg2;
+}
+
+
+SWIGEXPORT jlong JNICALL Java_io_github_srjohnathan_gdx_effekseer_core_GDXJNI_EffectNodeTrack_1TrackColorRightMiddle_1get(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_) {
+  jlong jresult = 0 ;
+  Effekseer::EffectNodeTrack *arg1 = (Effekseer::EffectNodeTrack *) 0 ;
+  Effekseer::StandardColorParameter *result = 0 ;
+  
+  (void)jenv;
+  (void)jcls;
+  (void)jarg1_;
+  arg1 = *(Effekseer::EffectNodeTrack **)&jarg1; 
+  result = (Effekseer::StandardColorParameter *)& ((arg1)->TrackColorRightMiddle);
+  *(Effekseer::StandardColorParameter **)&jresult = result; 
+  return jresult;
+}
+
+
+SWIGEXPORT void JNICALL Java_io_github_srjohnathan_gdx_effekseer_core_GDXJNI_EffectNodeTrack_1TrackSizeFor_1set(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_, jlong jarg2, jobject jarg2_) {
+  Effekseer::EffectNodeTrack *arg1 = (Effekseer::EffectNodeTrack *) 0 ;
+  Effekseer::TrackSizeParameter *arg2 = (Effekseer::TrackSizeParameter *) 0 ;
+  
+  (void)jenv;
+  (void)jcls;
+  (void)jarg1_;
+  (void)jarg2_;
+  arg1 = *(Effekseer::EffectNodeTrack **)&jarg1; 
+  arg2 = *(Effekseer::TrackSizeParameter **)&jarg2; 
+  if (arg1) (arg1)->TrackSizeFor = *arg2;
+}
+
+
+SWIGEXPORT jlong JNICALL Java_io_github_srjohnathan_gdx_effekseer_core_GDXJNI_EffectNodeTrack_1TrackSizeFor_1get(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_) {
+  jlong jresult = 0 ;
+  Effekseer::EffectNodeTrack *arg1 = (Effekseer::EffectNodeTrack *) 0 ;
+  Effekseer::TrackSizeParameter *result = 0 ;
+  
+  (void)jenv;
+  (void)jcls;
+  (void)jarg1_;
+  arg1 = *(Effekseer::EffectNodeTrack **)&jarg1; 
+  result = (Effekseer::TrackSizeParameter *)& ((arg1)->TrackSizeFor);
+  *(Effekseer::TrackSizeParameter **)&jresult = result; 
+  return jresult;
+}
+
+
+SWIGEXPORT void JNICALL Java_io_github_srjohnathan_gdx_effekseer_core_GDXJNI_EffectNodeTrack_1TrackSizeMiddle_1set(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_, jlong jarg2, jobject jarg2_) {
+  Effekseer::EffectNodeTrack *arg1 = (Effekseer::EffectNodeTrack *) 0 ;
+  Effekseer::TrackSizeParameter *arg2 = (Effekseer::TrackSizeParameter *) 0 ;
+  
+  (void)jenv;
+  (void)jcls;
+  (void)jarg1_;
+  (void)jarg2_;
+  arg1 = *(Effekseer::EffectNodeTrack **)&jarg1; 
+  arg2 = *(Effekseer::TrackSizeParameter **)&jarg2; 
+  if (arg1) (arg1)->TrackSizeMiddle = *arg2;
+}
+
+
+SWIGEXPORT jlong JNICALL Java_io_github_srjohnathan_gdx_effekseer_core_GDXJNI_EffectNodeTrack_1TrackSizeMiddle_1get(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_) {
+  jlong jresult = 0 ;
+  Effekseer::EffectNodeTrack *arg1 = (Effekseer::EffectNodeTrack *) 0 ;
+  Effekseer::TrackSizeParameter *result = 0 ;
+  
+  (void)jenv;
+  (void)jcls;
+  (void)jarg1_;
+  arg1 = *(Effekseer::EffectNodeTrack **)&jarg1; 
+  result = (Effekseer::TrackSizeParameter *)& ((arg1)->TrackSizeMiddle);
+  *(Effekseer::TrackSizeParameter **)&jresult = result; 
+  return jresult;
+}
+
+
+SWIGEXPORT void JNICALL Java_io_github_srjohnathan_gdx_effekseer_core_GDXJNI_EffectNodeTrack_1TrackSizeBack_1set(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_, jlong jarg2, jobject jarg2_) {
+  Effekseer::EffectNodeTrack *arg1 = (Effekseer::EffectNodeTrack *) 0 ;
+  Effekseer::TrackSizeParameter *arg2 = (Effekseer::TrackSizeParameter *) 0 ;
+  
+  (void)jenv;
+  (void)jcls;
+  (void)jarg1_;
+  (void)jarg2_;
+  arg1 = *(Effekseer::EffectNodeTrack **)&jarg1; 
+  arg2 = *(Effekseer::TrackSizeParameter **)&jarg2; 
+  if (arg1) (arg1)->TrackSizeBack = *arg2;
+}
+
+
+SWIGEXPORT jlong JNICALL Java_io_github_srjohnathan_gdx_effekseer_core_GDXJNI_EffectNodeTrack_1TrackSizeBack_1get(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_) {
+  jlong jresult = 0 ;
+  Effekseer::EffectNodeTrack *arg1 = (Effekseer::EffectNodeTrack *) 0 ;
+  Effekseer::TrackSizeParameter *result = 0 ;
+  
+  (void)jenv;
+  (void)jcls;
+  (void)jarg1_;
+  arg1 = *(Effekseer::EffectNodeTrack **)&jarg1; 
+  result = (Effekseer::TrackSizeParameter *)& ((arg1)->TrackSizeBack);
+  *(Effekseer::TrackSizeParameter **)&jresult = result; 
+  return jresult;
+}
+
+
+SWIGEXPORT void JNICALL Java_io_github_srjohnathan_gdx_effekseer_core_GDXJNI_EffectNodeTrack_1TrackTexture_1set(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_, jint jarg2) {
+  Effekseer::EffectNodeTrack *arg1 = (Effekseer::EffectNodeTrack *) 0 ;
+  int arg2 ;
+  
+  (void)jenv;
+  (void)jcls;
+  (void)jarg1_;
+  arg1 = *(Effekseer::EffectNodeTrack **)&jarg1; 
+  arg2 = (int)jarg2; 
+  if (arg1) (arg1)->TrackTexture = arg2;
+}
+
+
+SWIGEXPORT jint JNICALL Java_io_github_srjohnathan_gdx_effekseer_core_GDXJNI_EffectNodeTrack_1TrackTexture_1get(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_) {
+  jint jresult = 0 ;
+  Effekseer::EffectNodeTrack *arg1 = (Effekseer::EffectNodeTrack *) 0 ;
+  int result;
+  
+  (void)jenv;
+  (void)jcls;
+  (void)jarg1_;
+  arg1 = *(Effekseer::EffectNodeTrack **)&jarg1; 
+  result = (int) ((arg1)->TrackTexture);
+  jresult = (jint)result; 
+  return jresult;
+}
+
+
+SWIGEXPORT void JNICALL Java_io_github_srjohnathan_gdx_effekseer_core_GDXJNI_EffectNodeTrack_1SplineDivision_1set(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_, jint jarg2) {
+  Effekseer::EffectNodeTrack *arg1 = (Effekseer::EffectNodeTrack *) 0 ;
+  int32_t arg2 ;
+  
+  (void)jenv;
+  (void)jcls;
+  (void)jarg1_;
+  arg1 = *(Effekseer::EffectNodeTrack **)&jarg1; 
+  arg2 = (int32_t)jarg2; 
+  if (arg1) (arg1)->SplineDivision = arg2;
+}
+
+
+SWIGEXPORT jint JNICALL Java_io_github_srjohnathan_gdx_effekseer_core_GDXJNI_EffectNodeTrack_1SplineDivision_1get(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_) {
+  jint jresult = 0 ;
+  Effekseer::EffectNodeTrack *arg1 = (Effekseer::EffectNodeTrack *) 0 ;
+  int32_t result;
+  
+  (void)jenv;
+  (void)jcls;
+  (void)jarg1_;
+  arg1 = *(Effekseer::EffectNodeTrack **)&jarg1; 
+  result = (int32_t) ((arg1)->SplineDivision);
+  jresult = (jint)result; 
+  return jresult;
+}
+
+
+SWIGEXPORT void JNICALL Java_io_github_srjohnathan_gdx_effekseer_core_GDXJNI_EffectNodeTrack_1TextureUVType_1set(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_, jlong jarg2, jobject jarg2_) {
+  Effekseer::EffectNodeTrack *arg1 = (Effekseer::EffectNodeTrack *) 0 ;
+  Effekseer::NodeRendererTextureUVTypeParameter *arg2 = (Effekseer::NodeRendererTextureUVTypeParameter *) 0 ;
+  
+  (void)jenv;
+  (void)jcls;
+  (void)jarg1_;
+  (void)jarg2_;
+  arg1 = *(Effekseer::EffectNodeTrack **)&jarg1; 
+  arg2 = *(Effekseer::NodeRendererTextureUVTypeParameter **)&jarg2; 
+  if (arg1) (arg1)->TextureUVType = *arg2;
+}
+
+
+SWIGEXPORT jlong JNICALL Java_io_github_srjohnathan_gdx_effekseer_core_GDXJNI_EffectNodeTrack_1TextureUVType_1get(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_) {
+  jlong jresult = 0 ;
+  Effekseer::EffectNodeTrack *arg1 = (Effekseer::EffectNodeTrack *) 0 ;
+  Effekseer::NodeRendererTextureUVTypeParameter *result = 0 ;
+  
+  (void)jenv;
+  (void)jcls;
+  (void)jarg1_;
+  arg1 = *(Effekseer::EffectNodeTrack **)&jarg1; 
+  result = (Effekseer::NodeRendererTextureUVTypeParameter *)& ((arg1)->TextureUVType);
+  *(Effekseer::NodeRendererTextureUVTypeParameter **)&jresult = result; 
+  return jresult;
+}
+
+
+SWIGEXPORT jlong JNICALL Java_io_github_srjohnathan_gdx_effekseer_core_GDXJNI_new_1EffectNodeTrack(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_, jlong jarg2) {
+  jlong jresult = 0 ;
+  Effekseer::Effect *arg1 = (Effekseer::Effect *) 0 ;
+  unsigned char **arg2 = 0 ;
+  Effekseer::EffectNodeTrack *result = 0 ;
+  
+  (void)jenv;
+  (void)jcls;
+  (void)jarg1_;
+  arg1 = *(Effekseer::Effect **)&jarg1; 
+  arg2 = *(unsigned char ***)&jarg2;
+  if (!arg2) {
+    SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "unsigned char *& reference is null");
+    return 0;
+  } 
+  result = (Effekseer::EffectNodeTrack *)new Effekseer::EffectNodeTrack(arg1,*arg2);
+  *(Effekseer::EffectNodeTrack **)&jresult = result; 
+  return jresult;
+}
+
+
+SWIGEXPORT void JNICALL Java_io_github_srjohnathan_gdx_effekseer_core_GDXJNI_delete_1EffectNodeTrack(JNIEnv *jenv, jclass jcls, jlong jarg1) {
+  Effekseer::EffectNodeTrack *arg1 = (Effekseer::EffectNodeTrack *) 0 ;
+  
+  (void)jenv;
+  (void)jcls;
+  arg1 = *(Effekseer::EffectNodeTrack **)&jarg1; 
+  delete arg1;
+}
+
+
 SWIGEXPORT void JNICALL Java_io_github_srjohnathan_gdx_effekseer_core_GDXJNI_EffekseerManagerParameters_1UpdateParameter_1DeltaFrame_1set(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_, jfloat jarg2) {
   Effekseer::Manager::UpdateParameter *arg1 = (Effekseer::Manager::UpdateParameter *) 0 ;
   float arg2 ;
@@ -18762,6 +19378,14 @@ SWIGEXPORT jlong JNICALL Java_io_github_srjohnathan_gdx_effekseer_core_GDXJNI_Ef
     (void)jenv;
     (void)jcls;
     *(Effekseer::EffectNodeImplemented **)&baseptr = *(Effekseer::EffectNodeSprite **)&jarg1;
+    return baseptr;
+}
+
+SWIGEXPORT jlong JNICALL Java_io_github_srjohnathan_gdx_effekseer_core_GDXJNI_EffectNodeTrack_1SWIGUpcast(JNIEnv *jenv, jclass jcls, jlong jarg1) {
+    jlong baseptr = 0;
+    (void)jenv;
+    (void)jcls;
+    *(Effekseer::EffectNodeImplemented **)&baseptr = *(Effekseer::EffectNodeTrack **)&jarg1;
     return baseptr;
 }
 

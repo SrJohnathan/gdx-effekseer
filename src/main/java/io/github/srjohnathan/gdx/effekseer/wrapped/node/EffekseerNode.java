@@ -487,6 +487,10 @@ public class EffekseerNode<T extends EffectNodeImplemented> {
                 // Set the cached sprite node
                 cachedNode = new EffekseerNodeSprite(this.effect, this.coreNode.getChildAsSprite(index));
             }
+            else if (childNodeType == eEffectNodeType.EFFECT_NODE_TYPE_TRACK) {
+                // Set the cached track node
+                cachedNode = new EffekseerNodeTrack(this.effect, this.coreNode.getChildAsTrack(index));
+            }
             else {
                 // Default node instance
                 cachedNode = new EffekseerNode<EffectNodeImplemented>(this.effect, this.coreNode.getChild(index));

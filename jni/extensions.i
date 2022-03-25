@@ -23,6 +23,12 @@
             return nullptr;
         return static_cast<Effekseer::EffectNodeSprite*>(self->GetChild(index));
     }
+
+    Effekseer::EffectNodeTrack* getChildAsTrack(int index) {
+        if (index >= self->GetChildrenCount())
+            return nullptr;
+        return static_cast<Effekseer::EffectNodeTrack*>(self->GetChild(index));
+    }
 };
 
 // SpriteColorParameter
@@ -46,4 +52,10 @@
     void setFixedUpperLeftPos(Effekseer::SIMD::Vec2f value) { self->fixed.ul = value; }
     Effekseer::SIMD::Vec2f getFixedUpperRightPos() { return self->fixed.ur; }
     void setFixedUpperRightPos(Effekseer::SIMD::Vec2f value) { self->fixed.ur = value; }
+};
+
+// TrackSizeParameter
+%extend Effekseer::TrackSizeParameter {
+    float getFixedSize() { return self->fixed.size; }
+    void setFixedSize(float value) { self->fixed.size = value; }
 };

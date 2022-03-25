@@ -10,7 +10,7 @@ import java.util.function.Function;
 /**
  * An Effekseer Sprite node that contains the specific Sprite properties.
  */
-class EffekseerNodeSprite extends EffekseerNode<EffectNodeSprite> {
+public class EffekseerNodeSprite extends EffekseerNode<EffectNodeSprite> {
 
     //region Field Wrappers
 

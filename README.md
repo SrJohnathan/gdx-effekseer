@@ -185,6 +185,7 @@ effekseer.getRootNode();
 EffekseerNode // The base node class for all node classes below
 EffekseerNodeRoot // The root node of an effect
 EffekseerNodeSprite
+EffekseerNodeTrack
         
 ```
 
