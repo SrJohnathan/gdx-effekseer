@@ -34,7 +34,7 @@ public class EffekseerManager implements Disposable {
     /**
      * Contains all the added Effekseer particle effects.
      */
-    private final Array<ParticleEffekseer> effekseers;
+    private final Array<EffekseerParticle> effekseers;
 
     //endregion
 
@@ -66,11 +66,11 @@ public class EffekseerManager implements Disposable {
 
     //region Protected Methods
 
-    protected void addParticleEffekseer(ParticleEffekseer effekseer) {
+    protected void addParticleEffekseer(EffekseerParticle effekseer) {
         this.effekseers.add(effekseer);
     }
 
-    protected void removeParticleEffekseer(ParticleEffekseer effekseer) {
+    protected void removeParticleEffekseer(EffekseerParticle effekseer) {
         this.effekseers.removeValue(effekseer, true);
     }
 
@@ -163,7 +163,7 @@ public class EffekseerManager implements Disposable {
 
     /**
      * To avoid multiple ways of setting the transform of a particle effect these methods are commented out.
-     * Use {@link ParticleEffekseer}'s transform methods instead.
+     * Use {@link EffekseerParticle}'s transform methods instead.
      */
     /*
     public void setMatrix(int handle, float[] matrix43) {
@@ -223,7 +223,7 @@ public class EffekseerManager implements Disposable {
         effekseerManagerCore.SetDynamicInput(handle, index, value);
     }
 
-    public boolean isPlaying(ParticleEffekseer effekseer) {
+    public boolean isPlaying(EffekseerParticle effekseer) {
         return this.effekseerManagerCore.GetShown(effekseer.getHandle());
     }
 
@@ -307,7 +307,7 @@ public class EffekseerManager implements Disposable {
         }
 
         // Update and draw each particle effect
-        for (ParticleEffekseer effekseer : this.effekseers) {
+        for (EffekseerParticle effekseer : this.effekseers) {
             effekseer.update(delta);
 
             // Check if the current effect has just finished playing. If so, call its animation completed callback if available.

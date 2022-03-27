@@ -1,18 +1,20 @@
 package io.github.srjohnathan.gdx.effekseer.wrapped;
 
-import com.badlogic.gdx.Files;
 import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.assets.AssetDescriptor;
+import com.badlogic.gdx.assets.AssetManager;
 import com.badlogic.gdx.files.FileHandle;
 import com.badlogic.gdx.math.Matrix4;
 import com.badlogic.gdx.math.Vector3;
 import io.github.srjohnathan.gdx.effekseer.core.*;
+import io.github.srjohnathan.gdx.effekseer.loader.EffekseerParticleAssetLoader;
 import io.github.srjohnathan.gdx.effekseer.wrapped.node.EffekseerNode;
 import io.github.srjohnathan.gdx.effekseer.wrapped.node.EffekseerNodeRoot;
 
 import java.util.Objects;
 import java.util.function.Function;
 
-public class ParticleEffekseer {
+public class EffekseerParticle {
 
     //region State
 
@@ -30,10 +32,12 @@ public class ParticleEffekseer {
     private boolean isTransformMatrixUpdateQueued = false;
     private boolean isGetTransformMatrixFromEffekseerQueued = true;
 
+    private AssetManager loadingInAssetManager;
+
     private EffekseerFieldWrapper<EffekseerNode> rootNode = new EffekseerFieldWrapper<EffekseerNode>(new Function<Void, EffekseerNode>() {
         @Override
         public EffekseerNode apply(Void unused) {
-            return new EffekseerNodeRoot(ParticleEffekseer.this, effekseerEffectCore.GetRootNode());
+            return new EffekseerNodeRoot(EffekseerParticle.this, effekseerEffectCore.GetRootNode());
         }
     }, new Function<EffekseerNode, Void>() {
         @Override
@@ -47,7 +51,7 @@ public class ParticleEffekseer {
 
     //region Constructors
 
-    public ParticleEffekseer( EffekseerManager manager) {
+    public EffekseerParticle(EffekseerManager manager) {
         this.manager = Objects.requireNonNull(manager);
         this.manager.addParticleEffekseer(this);
         this.effekseerEffectCore = new EffekseerEffectCore();
@@ -131,31 +135,13 @@ public class ParticleEffekseer {
 
     //endregion
 
-    //region Private Methods
-
-    private FileHandle getPathAsFileHandle(String path, Files.FileType fileType) {
-        switch (fileType) {
-            case Classpath:
-                return Gdx.files.classpath(path);
-            case Internal:
-                return Gdx.files.internal(path);
-            case External:
-                return Gdx.files.external(path);
-            case Absolute:
-                return Gdx.files.absolute(path);
-            case Local:
-                return Gdx.files.local(path);
-        }
-
-        return Gdx.files.internal(path);
-    }
-
-    //endregion
-
     //region Protected Methods
 
     protected void update(float delta) {
-
+        // Check for loading
+        if (this.loadingInAssetManager != null) {
+            this.loadingInAssetManager.update();
+        }
     }
 
     protected void setToStopState() {
@@ -191,78 +177,41 @@ public class ParticleEffekseer {
         return play;
     }
 
-    public void load(FileHandle effectFileHandle) throws IllegalStateException {
-        // Check that the manager core is available
-        if (this.manager.effekseerManagerCore == null) {
-            throw new IllegalStateException("add particle on manager");
-        }
+    //region Loading
 
-        byte[] byt = effectFileHandle.readBytes();
+    /**
+     * Asynchronously loads the given effect file. An optional {@link LoadedListener} can be given for listening to when the
+     * effect has finished loading.
+     */
+    public void asyncLoad(AssetManager assetManager, FileHandle effectFileHandle, LoadedListener loadedListener) {
+        // Track the asset manager for updating load state
+        this.loadingInAssetManager = assetManager;
 
-        try {
-            if (!this.effekseerEffectCore.load(manager.effekseerManagerCore, byt, byt.length, this.magnification)) {
-                System.out.print("Failed to load.");
+        // Create the asset descriptor for sending to the given AssetManager
+        AssetDescriptor<EffekseerParticleAssetLoader.Result> assetDescriptor = EffekseerParticleAssetLoader.getMainFileAssetDescriptor(effectFileHandle, this.manager.effekseerManagerCore, this.effekseerEffectCore, this.magnification);
+        // Listen for finish loading
+        assetDescriptor.params.loadedCallback = (assetManager1, fileName, type) -> {
+            // Reset the tracked asset manager
+            loadingInAssetManager = null;
+            // Load the data into the effect
+            EffekseerParticleAssetLoader.Result loadedData = assetManager1.get(assetDescriptor);
+            loadedData.loadInfoEffect(manager.effekseerManagerCore, effekseerEffectCore, magnification);
+
+            // Call listener
+            if (loadedListener != null) {
+                loadedListener.onEffectLoaded();
             }
-        }
-        catch (Exception e) {
-            e.printStackTrace();
-        }
-
-        // load textures
-        EffekseerTextureType[] textureTypes = new EffekseerTextureType[]{
-            EffekseerTextureType.Color,
-            EffekseerTextureType.Normal,
-            EffekseerTextureType.Distortion,
         };
 
-        for (int t = 0; t < 3; t++) {
-            for (int i = 0; i < this.effekseerEffectCore.GetTextureCount(textureTypes[t]); i++) {
-                String path = effectFileHandle.file().getParent();
-                if (path != null) {
-                    path += "/" + this.effekseerEffectCore.GetTexturePath(i, textureTypes[t]);
-                }
-                else {
-                    path = this.effekseerEffectCore.GetTexturePath(i, textureTypes[t]);
-                }
-
-                FileHandle textureFileHandle = this.getPathAsFileHandle(path, effectFileHandle.type());
-                byte[] bytes = textureFileHandle.readBytes();
-                this.effekseerEffectCore.LoadTexture(bytes, bytes.length, i, textureTypes[t]);
-            }
-        }
-
-        for (int i = 0; i < this.effekseerEffectCore.GetModelCount(); i++) {
-            String path = effectFileHandle.file().getParent();
-            if (path != null) {
-                path += "/" + this.effekseerEffectCore.GetModelPath(i);
-            }
-            else {
-                path = this.effekseerEffectCore.GetModelPath(i);
-            }
-
-            FileHandle modelFileHandle = this.getPathAsFileHandle(path, effectFileHandle.type());
-            byte[] bytes = modelFileHandle.readBytes();
-            this.effekseerEffectCore.LoadModel(bytes, bytes.length, i);
-        }
-
-        for (int i = 0; i < effekseerEffectCore.GetMaterialCount(); i++) {
-            String path = effectFileHandle.file().getParent();
-            if (path != null) {
-                path += "/" + effekseerEffectCore.GetMaterialPath(i);
-            }
-            else {
-                path = effekseerEffectCore.GetMaterialPath(i);
-            }
-
-            FileHandle materialFileHandle = this.getPathAsFileHandle(path, effectFileHandle.type());
-            byte[] bytes = materialFileHandle.readBytes();
-            effekseerEffectCore.LoadMaterial(bytes, bytes.length, i);
-        }
-
-        // TODO sound
+        // Now start the load
+        assetManager.load(assetDescriptor);
     }
 
-    public void load(String path, boolean isInternalStorage) throws IllegalStateException {
+    /**
+     * Asynchronously loads the given effect file. An optional {@link LoadedListener} can be given for listening to when the
+     * effect has finished loading.
+     */
+    public void asyncLoad(AssetManager assetManager, String path, boolean isInternalStorage, LoadedListener loadedListener) {
         // Get the file handle
         FileHandle effectFileHandle = null;
         if (isInternalStorage) {
@@ -272,8 +221,33 @@ public class ParticleEffekseer {
         }
 
         // Call load() with the generated file handle
-        this.load(effectFileHandle);
+        this.asyncLoad(assetManager, effectFileHandle, loadedListener);
     }
+
+    /**
+     * Synchronously loads the given effect file.
+     */
+    public void syncLoad(AssetManager assetManager, FileHandle effectFileHandle) throws IllegalStateException {
+        EffekseerParticleAssetLoader.syncLoad(assetManager, effectFileHandle, this.manager.effekseerManagerCore, this.effekseerEffectCore, this.magnification);
+    }
+
+    /**
+     * Synchronously loads the given effect file.
+     */
+    public void syncLoad(AssetManager assetManager, String path, boolean isInternalStorage) throws IllegalStateException {
+        // Get the file handle
+        FileHandle effectFileHandle = null;
+        if (isInternalStorage) {
+            effectFileHandle = Gdx.files.internal(path);
+        } else {
+            effectFileHandle = Gdx.files.external(path);
+        }
+
+        // Call load() with the generated file handle
+        this.syncLoad(assetManager, effectFileHandle);
+    }
+
+    //endregion
 
     public void setOnAnimationComplete(OnAnimationComplete onAnimationComplete) {
         this.onAnimationComplete = onAnimationComplete;
@@ -396,13 +370,11 @@ public class ParticleEffekseer {
 
     //endregion
 
-  /*  public interface EffekseerXYZListener {
-        void fixed(VectorFixed Class);
+    //region Interfaces
 
-        void pva(VectorPVA Class);
+    public interface LoadedListener {
+        void onEffectLoaded();
+    }
 
-        void easing(EasingVector3d Class);
-
-        void single(VectorPVASingle Class);
-    }     */
+    //endregion
 }

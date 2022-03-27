@@ -4,7 +4,7 @@ import io.github.srjohnathan.gdx.effekseer.core.AlphaBlendType;
 import io.github.srjohnathan.gdx.effekseer.core.EffectNodeTrack;
 import io.github.srjohnathan.gdx.effekseer.core.NodeRendererTextureUVTypeParameter;
 import io.github.srjohnathan.gdx.effekseer.wrapped.EffekseerFieldWrapper;
-import io.github.srjohnathan.gdx.effekseer.wrapped.ParticleEffekseer;
+import io.github.srjohnathan.gdx.effekseer.wrapped.EffekseerParticle;
 import io.github.srjohnathan.gdx.effekseer.wrapped.StandardColorParameter;
 
 import java.util.function.Function;
@@ -111,7 +111,7 @@ public class EffekseerNodeTrack extends EffekseerNode<EffectNodeTrack> {
 
     //region Constructors
 
-    public EffekseerNodeTrack(ParticleEffekseer effect, EffectNodeTrack coreNode) {
+    public EffekseerNodeTrack(EffekseerParticle effect, EffectNodeTrack coreNode) {
         super(effect, coreNode);
     }
 

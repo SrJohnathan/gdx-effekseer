@@ -3,7 +3,7 @@ package io.github.srjohnathan.gdx.effekseer.wrapped.node;
 import com.badlogic.gdx.utils.Array;
 import io.github.srjohnathan.gdx.effekseer.core.*;
 import io.github.srjohnathan.gdx.effekseer.wrapped.EffekseerFieldWrapper;
-import io.github.srjohnathan.gdx.effekseer.wrapped.ParticleEffekseer;
+import io.github.srjohnathan.gdx.effekseer.wrapped.EffekseerParticle;
 
 import java.util.function.Function;
 
@@ -16,7 +16,7 @@ public class EffekseerNode<T extends EffectNodeImplemented> {
 
     //region State
 
-    protected ParticleEffekseer effect;
+    protected EffekseerParticle effect;
     protected T coreNode;
     private Array<EffekseerNode> children = new Array<>(0);
 
@@ -420,7 +420,7 @@ public class EffekseerNode<T extends EffectNodeImplemented> {
 
     //region Constructors
 
-    public EffekseerNode(ParticleEffekseer effect, T coreNode) {
+    public EffekseerNode(EffekseerParticle effect, T coreNode) {
         this.effect = effect;
         this.coreNode = coreNode;
     }
@@ -449,7 +449,7 @@ public class EffekseerNode<T extends EffectNodeImplemented> {
 
     //region Public Methods
 
-    public ParticleEffekseer getEffect() {
+    public EffekseerParticle getEffect() {
         return this.effect;
     }
 

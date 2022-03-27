@@ -2,7 +2,7 @@ package io.github.srjohnathan.gdx.effekseer.wrapped.node;
 
 import io.github.srjohnathan.gdx.effekseer.core.*;
 import io.github.srjohnathan.gdx.effekseer.wrapped.EffekseerFieldWrapper;
-import io.github.srjohnathan.gdx.effekseer.wrapped.ParticleEffekseer;
+import io.github.srjohnathan.gdx.effekseer.wrapped.EffekseerParticle;
 import io.github.srjohnathan.gdx.effekseer.wrapped.StandardColorParameter;
 
 import java.util.function.Function;
@@ -57,7 +57,7 @@ public class EffekseerNodeSprite extends EffekseerNode<EffectNodeSprite> {
 
     //region Constructors
 
-    public EffekseerNodeSprite(ParticleEffekseer effect, EffectNodeSprite coreNode) {
+    public EffekseerNodeSprite(EffekseerParticle effect, EffectNodeSprite coreNode) {
         super(effect, coreNode);
     }
 
