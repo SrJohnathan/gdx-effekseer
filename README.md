@@ -94,23 +94,24 @@ run copyEffekseerNatives
 ```java
 // Effekseer start
   EffekseerGdx.init()
+  AssetManager assetManager = new AssetManager(fileHandleResolver);
   PerspectiveCamera  perspectiveCamera = new PerspectiveCamera(67, 1280f, 720);
 
   // Create a new manager for the particles
           if( Gdx.app.type == Application.ApplicationType.Android){
-          manager = EffekseerManager(perspectiveCamera, EffekseerCore.TypeOpenGL.OPEN_GLES2);
+          manager = EffekseerManager(perspectiveCamera, EffekseerCore.TypeOpenGL.OPEN_GLES2, 600);
           }else{
-          manager = EffekseerManager(perspectiveCamera, EffekseerCore.TypeOpenGL.OPEN_GL2);
+          manager = EffekseerManager(perspectiveCamera, EffekseerCore.TypeOpenGL.OPEN_GL2, 1000);
           }
         // create a new particle
-        effekseer = new ParticleEffekseer(manager);
+        effekseer = new EffekseerParticle(manager);
         effekseer.setMagnification(20f);
         try {
             
             // true = InternalStorage
             // false = ExternalStorage
 
-            effekseer.load("data/tu.efk",false);
+            effekseer.syncLoad(assetManager, "data/tu.efk", false);
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -118,6 +119,21 @@ run copyEffekseerNatives
     effekseer.play();
 ```
 
+### Loading Effects
+```java
+effekseer = new EffekseerParticle(manager);
+AssetManager assetManager = new AssetManager(fileHandleResolver);
+
+// For immediate loading
+effekseer.syncLoad(assetManager, "data/tu.efk", false);
+// For asynchronous loading
+effekseer.asyncLoad(assetManager, "data/tu.efk", false, new LoadedListener() {
+    @Override
+    public void onEffectLoaded() {
+        ...
+    }
+});
+```
 
 #### Render function
 
@@ -149,31 +165,48 @@ manager.dispose();
 ### animation functions
 
 ```java
-  effekseer = new ParticleEffekseer(manager);
+  effekseer = new EffekseerParticle(manager);
 
 
 
 try {
-            effekseer.load("data/ring.efk",true);
+            effekseer.syncLoad("data/ring.efk",true);
         } catch (Exception e) {
             e.printStackTrace();
         }
 
 effekseer.play();
 
-// called after the play function
+// Following is a subset of the methods in EffekseerParticle
 
-effekseer.setPosition2D(); //2d animation;
-effekseer.getScale(); 
-effekseer.setScale();
-effekseer.getNodeSize();
-effekseer.rotate();
-effekseer.translate();
-effekseer.getNode();
+effekseer.play();
 effekseer.pause();
 effekseer.resume();
+effekseer.stop();
 effekseer.setOnAnimationComplete();
-effekseer.transform    //3d animation;
+
+effekseer.setTranslation();
+effekseer.translate();
+effekseer.setRotation();
+effekseer.roatate();
+effekseer.setScale();
+effekseer.scale();
+effekseer.transform; // For direct access for transformation
+
+effekseer.getNodeCount();
+effekseer.getRootNode();
+
+
+        
+```
+
+```
+// The following are the supported node classes for accessing/modification.
+
+EffekseerNode // The base node class for all node classes below
+EffekseerNodeRoot // The root node of an effect
+EffekseerNodeSprite
+EffekseerNodeTrack
 ```
 
 [![paypal](https://www.paypalobjects.com/en_US/i/btn/btn_donateCC_LG.gif)](https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=ZESRVEEVLLCY6)

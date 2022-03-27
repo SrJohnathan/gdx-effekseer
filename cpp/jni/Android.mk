@@ -25,7 +25,7 @@ LOCAL_SRC_FILES := \
 	$(LOCAL_PATH)/lib/EffekseerEffectCore.cpp \
 	$(LOCAL_PATH)/lib/EffekseerManagerCore.cpp \
 	$(LOCAL_PATH)/lib/Vector4Map.cpp \
-	$(LOCAL_PATH)/lib/distotion.cpp \
+	$(LOCAL_PATH)/lib/distortion.cpp \
 	
 	
 	
@@ -81,7 +81,6 @@ LOCAL_SRC_FILES += \
 	$(LIB_SRC_PATH)/Model/ProceduralModelGenerator.cpp \
 	$(LIB_SRC_PATH)/Model/SplineGenerator.cpp \
 	$(LIB_SRC_PATH)/Noise/CurlNoise.cpp \
-	$(LIB_SRC_PATH)/Noise/PerlinNoise.cpp \
 	$(LIB_SRC_PATH)/Parameter/Effekseer.Parameters.cpp \
 	$(LIB_SRC_PATH)/Parameter/Easing.cpp \
 	$(LIB_SRC_PATH)/SIMD/Mat43f.cpp \

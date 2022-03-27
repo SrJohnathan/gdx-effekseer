@@ -1403,8 +1403,8 @@ build cpp/lib/CMakeFiles/lib.dir/EffekseerSettingCore.cpp.o: CXX_COMPILER__lib .
   OBJECT_DIR = cpp/lib/CMakeFiles/lib.dir
   OBJECT_FILE_DIR = cpp/lib/CMakeFiles/lib.dir
 
-build cpp/lib/CMakeFiles/lib.dir/distotion.cpp.o: CXX_COMPILER__lib ../../../cpp/lib/distotion.cpp || cmake_object_order_depends_target_lib
-  DEP_FILE = cpp/lib/CMakeFiles/lib.dir/distotion.cpp.o.d
+build cpp/lib/CMakeFiles/lib.dir/distortion.cpp.o: CXX_COMPILER__lib ../../../cpp/lib/distortion.cpp || cmake_object_order_depends_target_lib
+  DEP_FILE = cpp/lib/CMakeFiles/lib.dir/distortion.cpp.o.d
   FLAGS = -g -DANDROID -fdata-sections -ffunction-sections -funwind-tables -fstack-protector-strong -no-canonical-prefixes -D_FORTIFY_SOURCE=2 -march=armv7-a -mthumb -Wformat -Werror=format-security   -fPIC
   INCLUDES = -I../../../cpp/lib/../Effekseer/Dev/Cpp/Effekseer -I../../../cpp/lib/../Effekseer/Dev/Cpp/EffekseerRendererGL
   OBJECT_DIR = cpp/lib/CMakeFiles/lib.dir
@@ -1425,7 +1425,7 @@ build cpp/lib/CMakeFiles/lib.dir/Vector4Map.cpp.o: CXX_COMPILER__lib ../../../cp
 #############################################
 # Link the static library cpp/lib/liblib.a
 
-build cpp/lib/liblib.a: CXX_STATIC_LIBRARY_LINKER__lib cpp/lib/CMakeFiles/lib.dir/EffekseerBackendCore.cpp.o cpp/lib/CMakeFiles/lib.dir/EffekseerEffectCore.cpp.o cpp/lib/CMakeFiles/lib.dir/EffekseerManagerCore.cpp.o cpp/lib/CMakeFiles/lib.dir/EffekseerSettingCore.cpp.o cpp/lib/CMakeFiles/lib.dir/distotion.cpp.o cpp/lib/CMakeFiles/lib.dir/Vector4Map.cpp.o || cpp/Effekseer/Dev/Cpp/Effekseer/libEffekseer.a cpp/Effekseer/Dev/Cpp/EffekseerRendererGL/libEffekseerRendererGL.a
+build cpp/lib/liblib.a: CXX_STATIC_LIBRARY_LINKER__lib cpp/lib/CMakeFiles/lib.dir/EffekseerBackendCore.cpp.o cpp/lib/CMakeFiles/lib.dir/EffekseerEffectCore.cpp.o cpp/lib/CMakeFiles/lib.dir/EffekseerManagerCore.cpp.o cpp/lib/CMakeFiles/lib.dir/EffekseerSettingCore.cpp.o cpp/lib/CMakeFiles/lib.dir/distortion.cpp.o cpp/lib/CMakeFiles/lib.dir/Vector4Map.cpp.o || cpp/Effekseer/Dev/Cpp/Effekseer/libEffekseer.a cpp/Effekseer/Dev/Cpp/EffekseerRendererGL/libEffekseerRendererGL.a
   LANGUAGE_COMPILE_FLAGS = -g -DANDROID -fdata-sections -ffunction-sections -funwind-tables -fstack-protector-strong -no-canonical-prefixes -D_FORTIFY_SOURCE=2 -march=armv7-a -mthumb -Wformat -Werror=format-security
   OBJECT_DIR = cpp/lib/CMakeFiles/lib.dir
   POST_BUILD = :

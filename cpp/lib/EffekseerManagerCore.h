@@ -3,9 +3,8 @@
 #include "EffekseerBackendCore.h"
 #include "EffekseerEffectCore.h"
 #include "Effekseer.h"
-#include "distotion.h"
+#include "distortion.h"
 #include "Vector4Map.h"
-#include "distotion.h"
 #include <array>
 
 
@@ -14,6 +13,11 @@
 
 
 class EffekseerEffectCore;
+
+typedef ::Effekseer::Vector3D Vector3D;
+typedef ::Effekseer::Color Color;
+typedef ::Effekseer::Manager::UpdateParameter UpdateParameter;
+typedef ::Effekseer::Manager::DrawParameter DrawParameter;
 
 
 
@@ -38,30 +42,69 @@ public:
 #ifndef SWIG
     Effekseer::ManagerRef manager_ = nullptr;
 #endif
-    bool Initialize(int32_t spriteMaxCount, int32_t id, bool sgbd);
-    void Update(float deltaFrames);
-    int Play(EffekseerEffectCore *effect);
-    bool IsPlaing(int handle);
-    float Speed(int handle);
- /*   bool Exists(int handle);
-    void SetDynamicInput(int handle, int32_t index, float value);
-    float GetDynamicInput(int handle, int32_t index);
-    void LaunchWorkerThreads(int32_t n); */
-    void DrawBack();
-    void DrawFront();
-    void SetPause(int handle,bool pause);
-    void SetProjectionMatrix(float matrix44[],float matrix44C[], bool view,float width,float heith);
-    void SetEffectRotateAxis(int handle, float x, float y, float z,float angle);
-    void SetEffectPosition(int handle, float x, float y, float z);
-    void SetEffectScale(int handle, float x, float y, float z);
-    void Stop(int i);
-    int32_t InstacieCount(int handle);
+    bool Initialize(int32_t spriteMaxCount, int32_t id, bool isSrgbMode);
+    void LaunchWorkerThreads(uint32_t threadCount);
 
+    bool Exists(int handle);
+
+    int Play(EffekseerEffectCore *effect);
+    void StopEffect(int handle);
+    void StopAllEffects();
+    void StopRoot(int handle);
+
+    int32_t GetInstanceCount(int handle);
+    int32_t GetTotalInstanceCount();
 
     float* GetMatrix(int handle);
-
-
     void SetMatrix(int handle,float matrix43[]);
+    float* GetBaseMatrix(int handle);
+    void SetBaseMatrix(int handle, float matrix43[]);
+    Vector3D GetLocation(int handle);
+    void SetLocation(int handle, float x, float y, float z);
+    void SetLocation(int handle, const Vector3D& location);
+    void AddLocation(int handle, const Vector3D& location);
+    void SetRotation(int handle, float x, float y, float z);
+    void SetRotation(int handle, const Vector3D& axis, float angle);
+    void SetScale(int handle, float x, float y, float z);
+    void SetAllColor(int handle, Color color);
+    void SetTargetLocation(int handle, float x, float y, float z);
+    void SetTargetLocation(int handle, const Vector3D& location);
+    void SetProjectionMatrix(float matrix44[],float matrix44C[], bool view,float width,float height);
+
+    float GetDynamicInput(int handle, int32_t index);
+    void SetDynamicInput(int handle, int32_t index, float value);
+
+    bool GetShown(int handle);
+    void SetShown(int handle, bool shown);
+    bool GetPaused(int handle);
+    void SetPaused(int handle, bool paused);
+    void SetPausedToAllEffects(bool paused);
+    int GetLayer(int handle);
+    void SetLayer(int handle, int32_t layer);
+    int64_t GetGroupMask(int handle);
+    void SetGroupMask(int handle, int64_t groupmask);
+
+    float GetSpeed(int handle);
+    void SetSpeed(int handle, float speed);
+    void SetTimeScaleByGroup(int64_t groupmask, float timeScale);
+    void SetTimeScaleByHandle(int handle, float timeScale);
+    void SetAutoDrawing(int handle, bool autoDraw);
+    //void* GetUserData(int handle);
+    //void SetUserData(int handle, void* userData);
+
+    void Flip();
+    void Update(float deltaFrames);
+    void Update(const UpdateParameter& parameter);
+	void BeginUpdate();
+	void EndUpdate();
+	void UpdateHandle(int handle, float deltaFrame = 1.0f);
+	void UpdateHandleToMoveToFrame(int handle, float frame);
+
+    void BeginRendering();
+    void Draw(const Effekseer::Manager::DrawParameter& drawParameter);
+    void DrawBack();
+    void DrawFront();
+    void EndRendering();
 
 
  /*   void SetBackground(uint32_t glid,bool hasMipmap);

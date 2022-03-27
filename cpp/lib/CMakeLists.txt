@@ -4,22 +4,21 @@ cmake_minimum_required(VERSION 3.15)
 project(lib CXX)
 
 add_library(
-  lib
-  STATIC
-  EffekseerBackendCore.h
-  EffekseerBackendCore.cpp
-  EffekseerEffectCore.h
-  EffekseerEffectCore.cpp
-  EffekseerManagerCore.h
-  EffekseerManagerCore.cpp
-  EffekseerSettingCore.h
-  EffekseerSettingCore.cpp
-  distotion.h
-  distotion.cpp
+    lib
+    STATIC
+    EffekseerBackendCore.h
+    EffekseerBackendCore.cpp
+    EffekseerEffectCore.h
+    EffekseerEffectCore.cpp
+    EffekseerManagerCore.h
+    EffekseerManagerCore.cpp
+    EffekseerSettingCore.h
+    EffekseerSettingCore.cpp
+    distortion.h
+    distortion.cpp
 
-
-        Vector4Map.cpp
-        Vector4Map.h
+    Vector4Map.cpp
+    Vector4Map.h
 )
 
 target_include_directories(

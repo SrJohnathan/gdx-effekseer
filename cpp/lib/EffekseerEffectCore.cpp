@@ -47,6 +47,33 @@ EffekseerEffectCore::~EffekseerEffectCore() {   }
 
 
 
+const char16_t* EffekseerEffectCore::GetName() {
+    if (effect_ == nullptr) {
+        return nullptr;
+    }
+
+    return effect_->GetName();
+}
+
+void EffekseerEffectCore::SetName(const char16_t*name) {
+    if (effect_ == nullptr) {
+        return;
+    }
+
+    return effect_->SetName(name);
+}
+
+int EffekseerEffectCore::GetVersion() {
+    if (effect_ == nullptr) {
+        return -1;
+    }
+
+    return effect_->GetVersion();
+}
+
+
+
+
 /*
 bool EffekseerEffectCore::load(EffekseerManagerCore *maneger,char* data, int len, float magnification) { return load((const unsigned char*)data, len, magnification); }
 
@@ -216,6 +243,11 @@ int32_t EffekseerEffectCore::NodeCount()
 {
     int i = effect_->GetRoot()->GetChildrenCount();
     return i;
+}
+
+
+Effekseer::EffectNodeRoot* EffekseerEffectCore::GetRootNode() {
+    return static_cast<Effekseer::EffectNodeRoot*>(effect_->GetRoot());
 }
 
 Effekseer::EffectRef EffekseerEffectCore::GetInternal() const { return effect_; }
