@@ -210,13 +210,15 @@ public class EffekseerParticleAssetLoader extends AsynchronousAssetLoader<Effeks
             }
 
             try {
-                // Main file load
-                if (!effekseerEffectCore.load(effekseerManagerCore, this.effectFileData.data, this.effectFileData.data.length, magnification)) {
-                    System.out.printf("Failed to load main Effekseer particle file %s.", this.effectFileData.fileHandle.toString());
-                }
+                if (this.loadedWithEffekseerEffectCore != effekseerEffectCore) {
+                    // Main file load
+                    if (!effekseerEffectCore.load(effekseerManagerCore, this.effectFileData.data, this.effectFileData.data.length, magnification)) {
+                        System.out.printf("Failed to load main Effekseer particle file %s.", this.effectFileData.fileHandle.toString());
+                    }
 
-                // Sub assets load
-                this.loadSubAssetsIntoEffect(effekseerManagerCore, effekseerEffectCore, magnification);
+                    // Sub assets load
+                    this.loadSubAssetsIntoEffect(effekseerManagerCore, effekseerEffectCore, magnification);
+                }
             }
             catch (Exception e) {
                 e.printStackTrace();
@@ -237,9 +239,7 @@ public class EffekseerParticleAssetLoader extends AsynchronousAssetLoader<Effeks
 
         // Now send the loaded file data to the effect if it wasn't already sent
         Result loadedData = assetManager.get(mainAssetDescriptor);
-        if (loadedData.loadedWithEffekseerEffectCore != effekseerEffectCore) {
-            loadedData.loadInfoEffect(effekseerManagerCore, effekseerEffectCore, magnification);
-        }
+        loadedData.loadInfoEffect(effekseerManagerCore, effekseerEffectCore, magnification);
     }
 
     //endregion
