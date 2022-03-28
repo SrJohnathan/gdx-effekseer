@@ -994,6 +994,30 @@ SWIGINTERN Effekseer::easing_color Effekseer_StandardColorParameter_getEasing(Ef
 SWIGINTERN void Effekseer_StandardColorParameter_setEasing(Effekseer::StandardColorParameter *self,Effekseer::easing_color value){ self->easing.all = value; }
 SWIGINTERN Effekseer::FCurveVectorColor *Effekseer_StandardColorParameter_getFCurveRGBA(Effekseer::StandardColorParameter *self){ return self->fcurve_rgba.FCurve; }
 SWIGINTERN void Effekseer_StandardColorParameter_setFCurveRGBA(Effekseer::StandardColorParameter *self,Effekseer::FCurveVectorColor *value){ self->fcurve_rgba.FCurve = value; }
+SWIGINTERN int Effekseer_ParameterRendererCommon_getUVTypes(Effekseer::ParameterRendererCommon *self,int index){ return self->UVTypes[index]; }
+SWIGINTERN void Effekseer_ParameterRendererCommon_setUVTypes(Effekseer::ParameterRendererCommon *self,int index,int value){
+        if (value == Effekseer::ParameterRendererCommon::UV_DEFAULT) {
+            self->UVTypes[index] = Effekseer::ParameterRendererCommon::UV_DEFAULT;
+        }
+        else if (value == Effekseer::ParameterRendererCommon::UV_FIXED) {
+            self->UVTypes[index] = Effekseer::ParameterRendererCommon::UV_FIXED;
+        }
+        else if (value == Effekseer::ParameterRendererCommon::UV_ANIMATION) {
+            self->UVTypes[index] = Effekseer::ParameterRendererCommon::UV_ANIMATION;
+        }
+        else if (value == Effekseer::ParameterRendererCommon::UV_SCROLL) {
+            self->UVTypes[index] = Effekseer::ParameterRendererCommon::UV_SCROLL;
+        }
+        else if (value == Effekseer::ParameterRendererCommon::UV_FCURVE) {
+            self->UVTypes[index] = Effekseer::ParameterRendererCommon::UV_FCURVE;
+        }
+        else if (value == Effekseer::ParameterRendererCommon::UV_DWORD) {
+            self->UVTypes[index] = Effekseer::ParameterRendererCommon::UV_DWORD;
+        }
+        else {
+            self->UVTypes[index] = Effekseer::ParameterRendererCommon::UV_DEFAULT;
+        }
+    }
 SWIGINTERN Effekseer::Color Effekseer_SpriteColorParameter_getFixedLowerLeftColor(Effekseer::SpriteColorParameter *self){ return self->fixed.ll; }
 SWIGINTERN void Effekseer_SpriteColorParameter_setFixedLowerLeftColor(Effekseer::SpriteColorParameter *self,Effekseer::Color value){ self->fixed.ll = value; }
 SWIGINTERN Effekseer::Color Effekseer_SpriteColorParameter_getFixedLowerRightColor(Effekseer::SpriteColorParameter *self){ return self->fixed.lr; }
@@ -16206,38 +16230,6 @@ SWIGEXPORT jint JNICALL Java_io_github_srjohnathan_gdx_effekseer_core_GDXJNI_Par
 }
 
 
-SWIGEXPORT void JNICALL Java_io_github_srjohnathan_gdx_effekseer_core_GDXJNI_ParameterRendererCommon_1UVTypes_1set(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_, jint jarg2) {
-  Effekseer::ParameterRendererCommon *arg1 = (Effekseer::ParameterRendererCommon *) 0 ;
-  int arg2 ;
-  
-  (void)jenv;
-  (void)jcls;
-  (void)jarg1_;
-  arg1 = *(Effekseer::ParameterRendererCommon **)&jarg1; 
-  arg2 = (int)jarg2; 
-  {
-    size_t ii;
-    enum $unnamed24$ *b = (enum $unnamed24$ *) arg1->UVTypes;
-    for (ii = 0; ii < (size_t)Effekseer::ParameterRendererCommon::UVParameterNum; ii++) b[ii] = *((enum $unnamed24$ *) arg2 + ii);
-  }
-}
-
-
-SWIGEXPORT jint JNICALL Java_io_github_srjohnathan_gdx_effekseer_core_GDXJNI_ParameterRendererCommon_1UVTypes_1get(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_) {
-  jint jresult = 0 ;
-  Effekseer::ParameterRendererCommon *arg1 = (Effekseer::ParameterRendererCommon *) 0 ;
-  int result;
-  
-  (void)jenv;
-  (void)jcls;
-  (void)jarg1_;
-  arg1 = *(Effekseer::ParameterRendererCommon **)&jarg1; 
-  result = (int)(enum $unnamed24$ *) ((arg1)->UVTypes);
-  jresult = (jint)result; 
-  return jresult;
-}
-
-
 SWIGEXPORT jlong JNICALL Java_io_github_srjohnathan_gdx_effekseer_core_GDXJNI_new_1ParameterRendererCommon(JNIEnv *jenv, jclass jcls) {
   jlong jresult = 0 ;
   Effekseer::ParameterRendererCommon *result = 0 ;
@@ -16257,6 +16249,38 @@ SWIGEXPORT void JNICALL Java_io_github_srjohnathan_gdx_effekseer_core_GDXJNI_del
   (void)jcls;
   arg1 = *(Effekseer::ParameterRendererCommon **)&jarg1; 
   delete arg1;
+}
+
+
+SWIGEXPORT jint JNICALL Java_io_github_srjohnathan_gdx_effekseer_core_GDXJNI_ParameterRendererCommon_1getUVTypes(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_, jint jarg2) {
+  jint jresult = 0 ;
+  Effekseer::ParameterRendererCommon *arg1 = (Effekseer::ParameterRendererCommon *) 0 ;
+  int arg2 ;
+  int result;
+  
+  (void)jenv;
+  (void)jcls;
+  (void)jarg1_;
+  arg1 = *(Effekseer::ParameterRendererCommon **)&jarg1; 
+  arg2 = (int)jarg2; 
+  result = (int)Effekseer_ParameterRendererCommon_getUVTypes(arg1,arg2);
+  jresult = (jint)result; 
+  return jresult;
+}
+
+
+SWIGEXPORT void JNICALL Java_io_github_srjohnathan_gdx_effekseer_core_GDXJNI_ParameterRendererCommon_1setUVTypes(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_, jint jarg2, jint jarg3) {
+  Effekseer::ParameterRendererCommon *arg1 = (Effekseer::ParameterRendererCommon *) 0 ;
+  int arg2 ;
+  int arg3 ;
+  
+  (void)jenv;
+  (void)jcls;
+  (void)jarg1_;
+  arg1 = *(Effekseer::ParameterRendererCommon **)&jarg1; 
+  arg2 = (int)jarg2; 
+  arg3 = (int)jarg3; 
+  Effekseer_ParameterRendererCommon_setUVTypes(arg1,arg2,arg3);
 }
 
 

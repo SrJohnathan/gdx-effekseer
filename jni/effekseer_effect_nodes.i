@@ -33,6 +33,8 @@
 // Ignore boost data structures
 %rename($ignore, fullname=1) "Effekseer::ParameterRendererCommon::FilterTypes";
 %rename($ignore, fullname=1) "Effekseer::ParameterRendererCommon::WrapTypes";
+// Ignore UVTypes and extend instead so that we can use an index for accessing/modifying this array
+%rename($ignore, fullname=1) "Effekseer::ParameterRendererCommon::UVTypes";
 %rename("ParameterAlphaCutoff", fullname=1) "Effekseer::ParameterAlphaCutoff";
 %rename("ParameterSound", fullname=1) "Effekseer::ParameterSound";
 %rename("DynamicFactorParameter", fullname=1) "Effekseer::DynamicFactorParameter";

@@ -232,16 +232,16 @@ public class ParameterRendererCommon {
     return GDXJNI.ParameterRendererCommon_FadeOutType_get(swigCPtr, this);
   }
 
-  public void setUVTypes(int value) {
-    GDXJNI.ParameterRendererCommon_UVTypes_set(swigCPtr, this, value);
-  }
-
-  public int getUVTypes() {
-    return GDXJNI.ParameterRendererCommon_UVTypes_get(swigCPtr, this);
-  }
-
   public ParameterRendererCommon() {
     this(GDXJNI.new_ParameterRendererCommon(), true);
+  }
+
+  public int getUVTypes(int index) {
+    return GDXJNI.ParameterRendererCommon_getUVTypes(swigCPtr, this, index);
+  }
+
+  public void setUVTypes(int index, int value) {
+    GDXJNI.ParameterRendererCommon_setUVTypes(swigCPtr, this, index, value);
   }
 
   public final static int UVParameterNum = GDXJNI.ParameterRendererCommon_UVParameterNum_get();
