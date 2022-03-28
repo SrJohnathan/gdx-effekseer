@@ -10,6 +10,34 @@
     void setFCurveRGBA(Effekseer::FCurveVectorColor* value) { self->fcurve_rgba.FCurve = value; }
 };
 
+// ParameterRendererCommon
+%extend Effekseer::ParameterRendererCommon {
+    int getUVTypes(int index) { return self->UVTypes[index]; }
+    void setUVTypes(int index, int value) {
+        if (value == Effekseer::ParameterRendererCommon::UV_DEFAULT) {
+            self->UVTypes[index] = Effekseer::ParameterRendererCommon::UV_DEFAULT;
+        }
+        else if (value == Effekseer::ParameterRendererCommon::UV_FIXED) {
+            self->UVTypes[index] = Effekseer::ParameterRendererCommon::UV_FIXED;
+        }
+        else if (value == Effekseer::ParameterRendererCommon::UV_ANIMATION) {
+            self->UVTypes[index] = Effekseer::ParameterRendererCommon::UV_ANIMATION;
+        }
+        else if (value == Effekseer::ParameterRendererCommon::UV_SCROLL) {
+            self->UVTypes[index] = Effekseer::ParameterRendererCommon::UV_SCROLL;
+        }
+        else if (value == Effekseer::ParameterRendererCommon::UV_FCURVE) {
+            self->UVTypes[index] = Effekseer::ParameterRendererCommon::UV_FCURVE;
+        }
+        else if (value == Effekseer::ParameterRendererCommon::UV_DWORD) {
+            self->UVTypes[index] = Effekseer::ParameterRendererCommon::UV_DWORD;
+        }
+        else {
+            self->UVTypes[index] = Effekseer::ParameterRendererCommon::UV_DEFAULT;
+        }
+    }
+};
+
 // EffectNode
 %extend Effekseer::EffectNode {
     Effekseer::EffectNodeImplemented* getChild(int index) {

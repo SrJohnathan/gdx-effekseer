@@ -1112,10 +1112,10 @@ public class GDXJNI {
   public final static native int ParameterRendererCommon_UV_SCROLL_get();
   public final static native int ParameterRendererCommon_UV_FCURVE_get();
   public final static native int ParameterRendererCommon_UV_DWORD_get();
-  public final static native void ParameterRendererCommon_UVTypes_set(long jarg1, ParameterRendererCommon jarg1_, int jarg2);
-  public final static native int ParameterRendererCommon_UVTypes_get(long jarg1, ParameterRendererCommon jarg1_);
   public final static native long new_ParameterRendererCommon();
   public final static native void delete_ParameterRendererCommon(long jarg1);
+  public final static native int ParameterRendererCommon_getUVTypes(long jarg1, ParameterRendererCommon jarg1_, int jarg2);
+  public final static native void ParameterRendererCommon_setUVTypes(long jarg1, ParameterRendererCommon jarg1_, int jarg2, int jarg3);
   public final static native int ParameterAlphaCutoff_FPI_get();
   public final static native void ParameterAlphaCutoff_Type_set(long jarg1, ParameterAlphaCutoff jarg1_, int jarg2);
   public final static native int ParameterAlphaCutoff_Type_get(long jarg1, ParameterAlphaCutoff jarg1_);
