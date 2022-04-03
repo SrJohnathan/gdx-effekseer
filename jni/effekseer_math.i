@@ -24,8 +24,6 @@
 // Ignore the SIMD fields in Vec2f because I can't seem to figure out why the preprocessor definitions in Effekseer/SIMD/Base.h won't work.
 %rename($ignore, fullname=1) "Effekseer::SIMD::Vec2f::s";
 %rename($ignore, fullname=1) Effekseer::SIMD::Vec2f::Vec2f(const Float4&);
-// Ignore boost data structures
-%rename($ignore, fullname=1) Effekseer::SIMD::Vec2f::Vec2f(const std::array<float, 2>&);
 // Getters and Setters
 %rename("getX", fullname=1) "Effekseer::SIMD::Vec3f::GetX";
 %rename("getY", fullname=1) "Effekseer::SIMD::Vec3f::GetY";
@@ -37,8 +35,6 @@
 // Ignore the SIMD fields in Vec3f because I can't seem to figure out why the preprocessor definitions in Effekseer/SIMD/Base.h won't work.
 %rename($ignore, fullname=1) "Effekseer::SIMD::Vec3f::s";
 %rename($ignore, fullname=1) Effekseer::SIMD::Vec3f::Vec3f(const Float4&);
-// Ignore boost data structures
-%rename($ignore, fullname=1) Effekseer::SIMD::Vec3f::Vec3f(const std::array<float, 3>&);
 // Getters and Setters
 %rename("getX", fullname=1) "Effekseer::SIMD::Vec3f::GetX";
 %rename("getY", fullname=1) "Effekseer::SIMD::Vec3f::GetY";

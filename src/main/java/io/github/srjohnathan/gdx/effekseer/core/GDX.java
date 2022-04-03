@@ -9,16 +9,16 @@
 package io.github.srjohnathan.gdx.effekseer.core;
 
 public class GDX {
+  public static int getTextureSlotMax() {
+    return GDXJNI.TextureSlotMax_get();
+  }
+
   public static int getUserTextureSlotMax() {
     return GDXJNI.UserTextureSlotMax_get();
   }
 
   public static int getUserUniformSlotMax() {
     return GDXJNI.UserUniformSlotMax_get();
-  }
-
-  public static int getTextureSlotMax() {
-    return GDXJNI.TextureSlotMax_get();
   }
 
   public static int getLocalFieldSlotMax() {

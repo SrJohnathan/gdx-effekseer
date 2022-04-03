@@ -80,6 +80,15 @@ public class ParameterCustomData {
     return (cPtr == 0) ? null : new ParameterCustomDataFCurve(cPtr, false);
   }
 
+  public void setFixed4D(FloatArray4 value) {
+    GDXJNI.ParameterCustomData_Fixed4D_set(swigCPtr, this, FloatArray4.getCPtr(value), value);
+  }
+
+  public FloatArray4 getFixed4D() {
+    long cPtr = GDXJNI.ParameterCustomData_Fixed4D_get(swigCPtr, this);
+    return (cPtr == 0) ? null : new FloatArray4(cPtr, false);
+  }
+
   public void setFCurveColor(ParameterCustomDataFCurveColor value) {
     GDXJNI.ParameterCustomData_FCurveColor_set(swigCPtr, this, ParameterCustomDataFCurveColor.getCPtr(value), value);
   }

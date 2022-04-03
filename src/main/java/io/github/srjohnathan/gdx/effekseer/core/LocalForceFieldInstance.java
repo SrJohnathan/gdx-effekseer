@@ -36,6 +36,15 @@ public class LocalForceFieldInstance {
     }
   }
 
+  public void setVelocities(ArrayLocalForceFieldVelocities value) {
+    GDXJNI.LocalForceFieldInstance_Velocities_set(swigCPtr, this, ArrayLocalForceFieldVelocities.getCPtr(value), value);
+  }
+
+  public ArrayLocalForceFieldVelocities getVelocities() {
+    long cPtr = GDXJNI.LocalForceFieldInstance_Velocities_get(swigCPtr, this);
+    return (cPtr == 0) ? null : new ArrayLocalForceFieldVelocities(cPtr, false);
+  }
+
   public void setExternalVelocity(SIMDVec3f value) {
     GDXJNI.LocalForceFieldInstance_ExternalVelocity_set(swigCPtr, this, SIMDVec3f.getCPtr(value), value);
   }

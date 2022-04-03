@@ -8,16 +8,16 @@
 
 package io.github.srjohnathan.gdx.effekseer.core;
 
-public class SIMDVec2f {
+public class FloatArray2 {
   private transient long swigCPtr;
   protected transient boolean swigCMemOwn;
 
-  protected SIMDVec2f(long cPtr, boolean cMemoryOwn) {
+  protected FloatArray2(long cPtr, boolean cMemoryOwn) {
     swigCMemOwn = cMemoryOwn;
     swigCPtr = cPtr;
   }
 
-  protected static long getCPtr(SIMDVec2f obj) {
+  protected static long getCPtr(FloatArray2 obj) {
     return (obj == null) ? 0 : obj.swigCPtr;
   }
 
@@ -30,34 +30,38 @@ public class SIMDVec2f {
     if (swigCPtr != 0) {
       if (swigCMemOwn) {
         swigCMemOwn = false;
-        GDXJNI.delete_SIMDVec2f(swigCPtr);
+        GDXJNI.delete_FloatArray2(swigCPtr);
       }
       swigCPtr = 0;
     }
   }
 
-  public SIMDVec2f() {
-    this(GDXJNI.new_SIMDVec2f__SWIG_0(), true);
+  public FloatArray2() {
+    this(GDXJNI.new_FloatArray2__SWIG_0(), true);
   }
 
-  public SIMDVec2f(SIMDVec2f vec) {
-    this(GDXJNI.new_SIMDVec2f__SWIG_1(SIMDVec2f.getCPtr(vec), vec), true);
+  public FloatArray2(FloatArray2 other) {
+    this(GDXJNI.new_FloatArray2__SWIG_1(FloatArray2.getCPtr(other), other), true);
   }
 
-  public SIMDVec2f(float x, float y) {
-    this(GDXJNI.new_SIMDVec2f__SWIG_2(x, y), true);
+  public long size() {
+    return GDXJNI.FloatArray2_size(swigCPtr, this);
   }
 
-  public SIMDVec2f(FloatArray2 v) {
-    this(GDXJNI.new_SIMDVec2f__SWIG_3(FloatArray2.getCPtr(v), v), true);
+  public boolean isEmpty() {
+    return GDXJNI.FloatArray2_isEmpty(swigCPtr, this);
   }
 
-  public SIMDVec2f(Vector2D vec) {
-    this(GDXJNI.new_SIMDVec2f__SWIG_4(Vector2D.getCPtr(vec), vec), true);
+  public void fill(float u) {
+    GDXJNI.FloatArray2_fill(swigCPtr, this, u);
   }
 
-  public SIMDVec2f(InternalStructVector2D vec) {
-    this(GDXJNI.new_SIMDVec2f__SWIG_5(InternalStructVector2D.getCPtr(vec), vec), true);
+  public float get(int i) {
+    return GDXJNI.FloatArray2_get(swigCPtr, this, i);
+  }
+
+  public void set(int i, float val) {
+    GDXJNI.FloatArray2_set(swigCPtr, this, i, val);
   }
 
 }

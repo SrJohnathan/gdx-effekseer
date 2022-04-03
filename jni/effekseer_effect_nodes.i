@@ -27,24 +27,12 @@
 %rename("ParameterCustomDataFCurve", fullname=1) "Effekseer::ParameterCustomDataFCurve";
 %rename("ParameterCustomDataFCurveColor", fullname=1) "Effekseer::ParameterCustomDataFCurveColor";
 %rename("ParameterCustomData", fullname=1) "Effekseer::ParameterCustomData";
-// Ignore boost data structures
-%rename($ignore, fullname=1) "Effekseer::ParameterCustomData::Fixed4D";
 %rename("ParameterRendererCommon", fullname=1) "Effekseer::ParameterRendererCommon";
-// Ignore boost data structures
-%rename($ignore, fullname=1) "Effekseer::ParameterRendererCommon::FilterTypes";
-%rename($ignore, fullname=1) "Effekseer::ParameterRendererCommon::WrapTypes";
 // Ignore UVTypes and extend instead so that we can use an index for accessing/modifying this array
 %rename($ignore, fullname=1) "Effekseer::ParameterRendererCommon::UVTypes";
 %rename("ParameterAlphaCutoff", fullname=1) "Effekseer::ParameterAlphaCutoff";
 %rename("ParameterSound", fullname=1) "Effekseer::ParameterSound";
 %rename("DynamicFactorParameter", fullname=1) "Effekseer::DynamicFactorParameter";
-// Ignore boost data structures
-%rename($ignore, fullname=1) "Effekseer::DynamicFactorParameter::Tra";
-%rename($ignore, fullname=1) "Effekseer::DynamicFactorParameter::TraInv";
-%rename($ignore, fullname=1) "Effekseer::DynamicFactorParameter::Rot";
-%rename($ignore, fullname=1) "Effekseer::DynamicFactorParameter::RotInv";
-%rename($ignore, fullname=1) "Effekseer::DynamicFactorParameter::Scale";
-%rename($ignore, fullname=1) "Effekseer::DynamicFactorParameter::ScaleInv";
 %rename("EffectNodeImplemented", fullname=1) "Effekseer::EffectNodeImplemented";
 %rename("getType", fullname=1) "Effekseer::EffectNodeImplemented::GetType";
 %rename($ignore, fullname=1) "Effekseer::EffectNodeImplemented::LocalForceField";

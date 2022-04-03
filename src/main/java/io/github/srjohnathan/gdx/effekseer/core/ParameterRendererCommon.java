@@ -117,6 +117,24 @@ public class ParameterRendererCommon {
     return AlphaBlendType.swigToEnum(GDXJNI.ParameterRendererCommon_AlphaBlend_get(swigCPtr, this));
   }
 
+  public void setFilterTypes(ArrayTextureFilters value) {
+    GDXJNI.ParameterRendererCommon_FilterTypes_set(swigCPtr, this, ArrayTextureFilters.getCPtr(value), value);
+  }
+
+  public ArrayTextureFilters getFilterTypes() {
+    long cPtr = GDXJNI.ParameterRendererCommon_FilterTypes_get(swigCPtr, this);
+    return (cPtr == 0) ? null : new ArrayTextureFilters(cPtr, false);
+  }
+
+  public void setWrapTypes(ArrayTextureWraps value) {
+    GDXJNI.ParameterRendererCommon_WrapTypes_set(swigCPtr, this, ArrayTextureWraps.getCPtr(value), value);
+  }
+
+  public ArrayTextureWraps getWrapTypes() {
+    long cPtr = GDXJNI.ParameterRendererCommon_WrapTypes_get(swigCPtr, this);
+    return (cPtr == 0) ? null : new ArrayTextureWraps(cPtr, false);
+  }
+
   public void setUVDistortionIntensity(float value) {
     GDXJNI.ParameterRendererCommon_UVDistortionIntensity_set(swigCPtr, this, value);
   }
