@@ -99,6 +99,7 @@ public:
 	void EndUpdate();
 	void UpdateHandle(int handle, float deltaFrame = 1.0f);
 	void UpdateHandleToMoveToFrame(int handle, float frame);
+    void SetTime(float time);
 
     void BeginRendering();
     void Draw(const Effekseer::Manager::DrawParameter& drawParameter);

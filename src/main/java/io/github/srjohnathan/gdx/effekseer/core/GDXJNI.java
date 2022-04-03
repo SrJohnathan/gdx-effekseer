@@ -137,6 +137,7 @@ public class GDXJNI {
   public final static native void EffekseerManagerCore_UpdateHandle__SWIG_0(long jarg1, EffekseerManagerCore jarg1_, int jarg2, float jarg3);
   public final static native void EffekseerManagerCore_UpdateHandle__SWIG_1(long jarg1, EffekseerManagerCore jarg1_, int jarg2);
   public final static native void EffekseerManagerCore_UpdateHandleToMoveToFrame(long jarg1, EffekseerManagerCore jarg1_, int jarg2, float jarg3);
+  public final static native void EffekseerManagerCore_SetTime(long jarg1, EffekseerManagerCore jarg1_, float jarg2);
   public final static native void EffekseerManagerCore_BeginRendering(long jarg1, EffekseerManagerCore jarg1_);
   public final static native void EffekseerManagerCore_Draw(long jarg1, EffekseerManagerCore jarg1_, long jarg2, EffekseerManagerParameters.DrawParameter jarg2_);
   public final static native void EffekseerManagerCore_DrawBack(long jarg1, EffekseerManagerCore jarg1_);

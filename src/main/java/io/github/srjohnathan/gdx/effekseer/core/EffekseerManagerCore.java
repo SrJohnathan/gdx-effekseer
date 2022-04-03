@@ -232,6 +232,10 @@ public class EffekseerManagerCore {
     GDXJNI.EffekseerManagerCore_UpdateHandleToMoveToFrame(swigCPtr, this, handle, frame);
   }
 
+  public void SetTime(float time) {
+    GDXJNI.EffekseerManagerCore_SetTime(swigCPtr, this, time);
+  }
+
   public void BeginRendering() {
     GDXJNI.EffekseerManagerCore_BeginRendering(swigCPtr, this);
   }

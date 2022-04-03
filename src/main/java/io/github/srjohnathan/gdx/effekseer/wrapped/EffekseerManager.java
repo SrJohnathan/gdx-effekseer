@@ -45,6 +45,11 @@ public class EffekseerManager implements Disposable {
      */
     private final EffekseerManagerParameters.DrawParameter drawParameter;
 
+    /**
+     * The time passed in seconds since the start.
+     */
+    private float timeInSeconds = 0f;
+
     //endregion
 
     //region Constructors
@@ -301,6 +306,8 @@ public class EffekseerManager implements Disposable {
     public void draw(float delta) {
         this.onPreDraw();
 
+        this.timeInSeconds += delta;
+
         // If the LibGDX camera state should be updated here
         if (this.shouldCameraBeUpdatedInDraw()) {
             this.camera.update();
@@ -341,6 +348,8 @@ public class EffekseerManager implements Disposable {
 
         // Update the manager core
         this.effekseerManagerCore.Update(delta * SINGLE_FRAME_TIME_SECONDS_INV);
+        this.effekseerManagerCore.SetTime(this.timeInSeconds);
+
         // Draw
         this.effekseerManagerCore.BeginRendering();
         this.effekseerManagerCore.Draw(this.drawParameter);

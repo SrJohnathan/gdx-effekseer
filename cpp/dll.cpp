@@ -3423,6 +3423,19 @@ SWIGEXPORT void JNICALL Java_io_github_srjohnathan_gdx_effekseer_core_GDXJNI_Eff
 }
 
 
+SWIGEXPORT void JNICALL Java_io_github_srjohnathan_gdx_effekseer_core_GDXJNI_EffekseerManagerCore_1SetTime(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_, jfloat jarg2) {
+  EffekseerManagerCore *arg1 = (EffekseerManagerCore *) 0 ;
+  float arg2 ;
+  
+  (void)jenv;
+  (void)jcls;
+  (void)jarg1_;
+  arg1 = *(EffekseerManagerCore **)&jarg1; 
+  arg2 = (float)jarg2; 
+  (arg1)->SetTime(arg2);
+}
+
+
 SWIGEXPORT void JNICALL Java_io_github_srjohnathan_gdx_effekseer_core_GDXJNI_EffekseerManagerCore_1BeginRendering(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_) {
   EffekseerManagerCore *arg1 = (EffekseerManagerCore *) 0 ;
   
