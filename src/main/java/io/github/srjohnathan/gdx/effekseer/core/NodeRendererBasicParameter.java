@@ -44,6 +44,15 @@ public class NodeRendererBasicParameter {
     return RendererMaterialType.swigToEnum(GDXJNI.NodeRendererBasicParameter_MaterialType_get(swigCPtr, this));
   }
 
+  public void setTextureIndexes(ArrayTextureIndexes value) {
+    GDXJNI.NodeRendererBasicParameter_TextureIndexes_set(swigCPtr, this, ArrayTextureIndexes.getCPtr(value), value);
+  }
+
+  public ArrayTextureIndexes getTextureIndexes() {
+    long cPtr = GDXJNI.NodeRendererBasicParameter_TextureIndexes_get(swigCPtr, this);
+    return (cPtr == 0) ? null : new ArrayTextureIndexes(cPtr, false);
+  }
+
   public void setDistortionIntensity(float value) {
     GDXJNI.NodeRendererBasicParameter_DistortionIntensity_set(swigCPtr, this, value);
   }
@@ -67,6 +76,24 @@ public class NodeRendererBasicParameter {
 
   public AlphaBlendType getAlphaBlend() {
     return AlphaBlendType.swigToEnum(GDXJNI.NodeRendererBasicParameter_AlphaBlend_get(swigCPtr, this));
+  }
+
+  public void setTextureFilters(ArrayTextureFilters value) {
+    GDXJNI.NodeRendererBasicParameter_TextureFilters_set(swigCPtr, this, ArrayTextureFilters.getCPtr(value), value);
+  }
+
+  public ArrayTextureFilters getTextureFilters() {
+    long cPtr = GDXJNI.NodeRendererBasicParameter_TextureFilters_get(swigCPtr, this);
+    return (cPtr == 0) ? null : new ArrayTextureFilters(cPtr, false);
+  }
+
+  public void setTextureWraps(ArrayTextureWraps value) {
+    GDXJNI.NodeRendererBasicParameter_TextureWraps_set(swigCPtr, this, ArrayTextureWraps.getCPtr(value), value);
+  }
+
+  public ArrayTextureWraps getTextureWraps() {
+    long cPtr = GDXJNI.NodeRendererBasicParameter_TextureWraps_get(swigCPtr, this);
+    return (cPtr == 0) ? null : new ArrayTextureWraps(cPtr, false);
   }
 
   public void setUVDistortionIntensity(float value) {

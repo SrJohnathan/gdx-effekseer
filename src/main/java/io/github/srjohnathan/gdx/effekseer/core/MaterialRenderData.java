@@ -44,6 +44,24 @@ public class MaterialRenderData {
     return GDXJNI.MaterialRenderData_MaterialIndex_get(swigCPtr, this);
   }
 
+  public void setMaterialTextures(VectorMaterialTextureParameter value) {
+    GDXJNI.MaterialRenderData_MaterialTextures_set(swigCPtr, this, VectorMaterialTextureParameter.getCPtr(value), value);
+  }
+
+  public VectorMaterialTextureParameter getMaterialTextures() {
+    long cPtr = GDXJNI.MaterialRenderData_MaterialTextures_get(swigCPtr, this);
+    return (cPtr == 0) ? null : new VectorMaterialTextureParameter(cPtr, false);
+  }
+
+  public void setMaterialUniforms(VectorFloatArray4 value) {
+    GDXJNI.MaterialRenderData_MaterialUniforms_set(swigCPtr, this, VectorFloatArray4.getCPtr(value), value);
+  }
+
+  public VectorFloatArray4 getMaterialUniforms() {
+    long cPtr = GDXJNI.MaterialRenderData_MaterialUniforms_get(swigCPtr, this);
+    return (cPtr == 0) ? null : new VectorFloatArray4(cPtr, false);
+  }
+
   public MaterialRenderData() {
     this(GDXJNI.new_MaterialRenderData(), true);
   }

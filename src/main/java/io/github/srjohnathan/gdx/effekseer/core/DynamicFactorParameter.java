@@ -36,6 +36,60 @@ public class DynamicFactorParameter {
     }
   }
 
+  public void setTra(FloatArray3 value) {
+    GDXJNI.DynamicFactorParameter_Tra_set(swigCPtr, this, FloatArray3.getCPtr(value), value);
+  }
+
+  public FloatArray3 getTra() {
+    long cPtr = GDXJNI.DynamicFactorParameter_Tra_get(swigCPtr, this);
+    return (cPtr == 0) ? null : new FloatArray3(cPtr, false);
+  }
+
+  public void setTraInv(FloatArray3 value) {
+    GDXJNI.DynamicFactorParameter_TraInv_set(swigCPtr, this, FloatArray3.getCPtr(value), value);
+  }
+
+  public FloatArray3 getTraInv() {
+    long cPtr = GDXJNI.DynamicFactorParameter_TraInv_get(swigCPtr, this);
+    return (cPtr == 0) ? null : new FloatArray3(cPtr, false);
+  }
+
+  public void setRot(FloatArray3 value) {
+    GDXJNI.DynamicFactorParameter_Rot_set(swigCPtr, this, FloatArray3.getCPtr(value), value);
+  }
+
+  public FloatArray3 getRot() {
+    long cPtr = GDXJNI.DynamicFactorParameter_Rot_get(swigCPtr, this);
+    return (cPtr == 0) ? null : new FloatArray3(cPtr, false);
+  }
+
+  public void setRotInv(FloatArray3 value) {
+    GDXJNI.DynamicFactorParameter_RotInv_set(swigCPtr, this, FloatArray3.getCPtr(value), value);
+  }
+
+  public FloatArray3 getRotInv() {
+    long cPtr = GDXJNI.DynamicFactorParameter_RotInv_get(swigCPtr, this);
+    return (cPtr == 0) ? null : new FloatArray3(cPtr, false);
+  }
+
+  public void setScale(FloatArray3 value) {
+    GDXJNI.DynamicFactorParameter_Scale_set(swigCPtr, this, FloatArray3.getCPtr(value), value);
+  }
+
+  public FloatArray3 getScale() {
+    long cPtr = GDXJNI.DynamicFactorParameter_Scale_get(swigCPtr, this);
+    return (cPtr == 0) ? null : new FloatArray3(cPtr, false);
+  }
+
+  public void setScaleInv(FloatArray3 value) {
+    GDXJNI.DynamicFactorParameter_ScaleInv_set(swigCPtr, this, FloatArray3.getCPtr(value), value);
+  }
+
+  public FloatArray3 getScaleInv() {
+    long cPtr = GDXJNI.DynamicFactorParameter_ScaleInv_get(swigCPtr, this);
+    return (cPtr == 0) ? null : new FloatArray3(cPtr, false);
+  }
+
   public DynamicFactorParameter() {
     this(GDXJNI.new_DynamicFactorParameter(), true);
   }

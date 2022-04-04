@@ -971,6 +971,212 @@ SWIGINTERN void std_vector_Sl_float_Sg__doRemoveRange(std::vector< float > *self
           throw std::out_of_range("vector index out of range");
         }
       }
+SWIGINTERN std::array< float,2 >::const_reference std_array_Sl_float_Sc_2_Sg__get(std::array< float,2 > *self,int i){
+        int size = int(self->size());
+        if (i>=0 && i<size)
+          return (*self)[i];
+        else
+          throw std::out_of_range("array index out of range");
+      }
+SWIGINTERN void std_array_Sl_float_Sc_2_Sg__set(std::array< float,2 > *self,int i,std::array< float,2 >::value_type const &val){
+        int size = int(self->size());
+        if (i>=0 && i<size)
+          (*self)[i] = val;
+        else
+          throw std::out_of_range("array index out of range");
+      }
+SWIGINTERN std::array< float,3 >::const_reference std_array_Sl_float_Sc_3_Sg__get(std::array< float,3 > *self,int i){
+        int size = int(self->size());
+        if (i>=0 && i<size)
+          return (*self)[i];
+        else
+          throw std::out_of_range("array index out of range");
+      }
+SWIGINTERN void std_array_Sl_float_Sc_3_Sg__set(std::array< float,3 > *self,int i,std::array< float,3 >::value_type const &val){
+        int size = int(self->size());
+        if (i>=0 && i<size)
+          (*self)[i] = val;
+        else
+          throw std::out_of_range("array index out of range");
+      }
+SWIGINTERN std::array< float,4 >::const_reference std_array_Sl_float_Sc_4_Sg__get(std::array< float,4 > *self,int i){
+        int size = int(self->size());
+        if (i>=0 && i<size)
+          return (*self)[i];
+        else
+          throw std::out_of_range("array index out of range");
+      }
+SWIGINTERN void std_array_Sl_float_Sc_4_Sg__set(std::array< float,4 > *self,int i,std::array< float,4 >::value_type const &val){
+        int size = int(self->size());
+        if (i>=0 && i<size)
+          (*self)[i] = val;
+        else
+          throw std::out_of_range("array index out of range");
+      }
+SWIGINTERN std::vector< std::array< float,4 > > *new_std_vector_Sl_std_array_Sl_float_Sc_4_Sg__Sg___SWIG_2(jint count,std::array< float,4 > const &value){
+        if (count < 0)
+          throw std::out_of_range("vector count must be positive");
+        return new std::vector< std::array< float,4 > >(static_cast<std::vector< std::array< float,4 > >::size_type>(count), value);
+      }
+SWIGINTERN jint std_vector_Sl_std_array_Sl_float_Sc_4_Sg__Sg__doSize(std::vector< std::array< float,4 > > const *self){
+        return SWIG_VectorSize(self->size());
+      }
+SWIGINTERN void std_vector_Sl_std_array_Sl_float_Sc_4_Sg__Sg__doAdd__SWIG_0(std::vector< std::array< float,4 > > *self,std::vector< std::array< float,4 > >::value_type const &x){
+        self->push_back(x);
+      }
+SWIGINTERN void std_vector_Sl_std_array_Sl_float_Sc_4_Sg__Sg__doAdd__SWIG_1(std::vector< std::array< float,4 > > *self,jint index,std::vector< std::array< float,4 > >::value_type const &x){
+        jint size = static_cast<jint>(self->size());
+        if (0 <= index && index <= size) {
+          self->insert(self->begin() + index, x);
+        } else {
+          throw std::out_of_range("vector index out of range");
+        }
+      }
+SWIGINTERN std::vector< std::array< float,4 > >::value_type std_vector_Sl_std_array_Sl_float_Sc_4_Sg__Sg__doRemove(std::vector< std::array< float,4 > > *self,jint index){
+        jint size = static_cast<jint>(self->size());
+        if (0 <= index && index < size) {
+          std::array< float,4 > const old_value = (*self)[index];
+          self->erase(self->begin() + index);
+          return old_value;
+        } else {
+          throw std::out_of_range("vector index out of range");
+        }
+      }
+SWIGINTERN std::vector< std::array< float,4 > >::value_type const &std_vector_Sl_std_array_Sl_float_Sc_4_Sg__Sg__doGet(std::vector< std::array< float,4 > > *self,jint index){
+        jint size = static_cast<jint>(self->size());
+        if (index >= 0 && index < size)
+          return (*self)[index];
+        else
+          throw std::out_of_range("vector index out of range");
+      }
+SWIGINTERN std::vector< std::array< float,4 > >::value_type std_vector_Sl_std_array_Sl_float_Sc_4_Sg__Sg__doSet(std::vector< std::array< float,4 > > *self,jint index,std::vector< std::array< float,4 > >::value_type const &val){
+        jint size = static_cast<jint>(self->size());
+        if (index >= 0 && index < size) {
+          std::array< float,4 > const old_value = (*self)[index];
+          (*self)[index] = val;
+          return old_value;
+        }
+        else
+          throw std::out_of_range("vector index out of range");
+      }
+SWIGINTERN void std_vector_Sl_std_array_Sl_float_Sc_4_Sg__Sg__doRemoveRange(std::vector< std::array< float,4 > > *self,jint fromIndex,jint toIndex){
+        jint size = static_cast<jint>(self->size());
+        if (0 <= fromIndex && fromIndex <= toIndex && toIndex <= size) {
+          self->erase(self->begin() + fromIndex, self->begin() + toIndex);
+        } else {
+          throw std::out_of_range("vector index out of range");
+        }
+      }
+SWIGINTERN std::vector< Effekseer::MaterialTextureParameter > *new_std_vector_Sl_Effekseer_MaterialTextureParameter_Sg___SWIG_2(jint count,Effekseer::MaterialTextureParameter const &value){
+        if (count < 0)
+          throw std::out_of_range("vector count must be positive");
+        return new std::vector< Effekseer::MaterialTextureParameter >(static_cast<std::vector< Effekseer::MaterialTextureParameter >::size_type>(count), value);
+      }
+SWIGINTERN jint std_vector_Sl_Effekseer_MaterialTextureParameter_Sg__doSize(std::vector< Effekseer::MaterialTextureParameter > const *self){
+        return SWIG_VectorSize(self->size());
+      }
+SWIGINTERN void std_vector_Sl_Effekseer_MaterialTextureParameter_Sg__doAdd__SWIG_0(std::vector< Effekseer::MaterialTextureParameter > *self,std::vector< Effekseer::MaterialTextureParameter >::value_type const &x){
+        self->push_back(x);
+      }
+SWIGINTERN void std_vector_Sl_Effekseer_MaterialTextureParameter_Sg__doAdd__SWIG_1(std::vector< Effekseer::MaterialTextureParameter > *self,jint index,std::vector< Effekseer::MaterialTextureParameter >::value_type const &x){
+        jint size = static_cast<jint>(self->size());
+        if (0 <= index && index <= size) {
+          self->insert(self->begin() + index, x);
+        } else {
+          throw std::out_of_range("vector index out of range");
+        }
+      }
+SWIGINTERN std::vector< Effekseer::MaterialTextureParameter >::value_type std_vector_Sl_Effekseer_MaterialTextureParameter_Sg__doRemove(std::vector< Effekseer::MaterialTextureParameter > *self,jint index){
+        jint size = static_cast<jint>(self->size());
+        if (0 <= index && index < size) {
+          Effekseer::MaterialTextureParameter const old_value = (*self)[index];
+          self->erase(self->begin() + index);
+          return old_value;
+        } else {
+          throw std::out_of_range("vector index out of range");
+        }
+      }
+SWIGINTERN std::vector< Effekseer::MaterialTextureParameter >::value_type const &std_vector_Sl_Effekseer_MaterialTextureParameter_Sg__doGet(std::vector< Effekseer::MaterialTextureParameter > *self,jint index){
+        jint size = static_cast<jint>(self->size());
+        if (index >= 0 && index < size)
+          return (*self)[index];
+        else
+          throw std::out_of_range("vector index out of range");
+      }
+SWIGINTERN std::vector< Effekseer::MaterialTextureParameter >::value_type std_vector_Sl_Effekseer_MaterialTextureParameter_Sg__doSet(std::vector< Effekseer::MaterialTextureParameter > *self,jint index,std::vector< Effekseer::MaterialTextureParameter >::value_type const &val){
+        jint size = static_cast<jint>(self->size());
+        if (index >= 0 && index < size) {
+          Effekseer::MaterialTextureParameter const old_value = (*self)[index];
+          (*self)[index] = val;
+          return old_value;
+        }
+        else
+          throw std::out_of_range("vector index out of range");
+      }
+SWIGINTERN void std_vector_Sl_Effekseer_MaterialTextureParameter_Sg__doRemoveRange(std::vector< Effekseer::MaterialTextureParameter > *self,jint fromIndex,jint toIndex){
+        jint size = static_cast<jint>(self->size());
+        if (0 <= fromIndex && fromIndex <= toIndex && toIndex <= size) {
+          self->erase(self->begin() + fromIndex, self->begin() + toIndex);
+        } else {
+          throw std::out_of_range("vector index out of range");
+        }
+      }
+SWIGINTERN std::array< int,8 >::const_reference std_array_Sl_int32_t_Sc_8_Sg__get(std::array< int32_t,8 > *self,int i){
+        int size = int(self->size());
+        if (i>=0 && i<size)
+          return (*self)[i];
+        else
+          throw std::out_of_range("array index out of range");
+      }
+SWIGINTERN void std_array_Sl_int32_t_Sc_8_Sg__set(std::array< int32_t,8 > *self,int i,std::array< int,8 >::value_type const &val){
+        int size = int(self->size());
+        if (i>=0 && i<size)
+          (*self)[i] = val;
+        else
+          throw std::out_of_range("array index out of range");
+      }
+SWIGINTERN std::array< enum Effekseer::TextureFilterType,8 >::const_reference std_array_Sl_Effekseer_TextureFilterType_Sc_8_Sg__get(std::array< Effekseer::TextureFilterType,8 > *self,int i){
+        int size = int(self->size());
+        if (i>=0 && i<size)
+          return (*self)[i];
+        else
+          throw std::out_of_range("array index out of range");
+      }
+SWIGINTERN void std_array_Sl_Effekseer_TextureFilterType_Sc_8_Sg__set(std::array< Effekseer::TextureFilterType,8 > *self,int i,std::array< enum Effekseer::TextureFilterType,8 >::value_type const &val){
+        int size = int(self->size());
+        if (i>=0 && i<size)
+          (*self)[i] = val;
+        else
+          throw std::out_of_range("array index out of range");
+      }
+SWIGINTERN std::array< enum Effekseer::TextureWrapType,8 >::const_reference std_array_Sl_Effekseer_TextureWrapType_Sc_8_Sg__get(std::array< Effekseer::TextureWrapType,8 > *self,int i){
+        int size = int(self->size());
+        if (i>=0 && i<size)
+          return (*self)[i];
+        else
+          throw std::out_of_range("array index out of range");
+      }
+SWIGINTERN void std_array_Sl_Effekseer_TextureWrapType_Sc_8_Sg__set(std::array< Effekseer::TextureWrapType,8 > *self,int i,std::array< enum Effekseer::TextureWrapType,8 >::value_type const &val){
+        int size = int(self->size());
+        if (i>=0 && i<size)
+          (*self)[i] = val;
+        else
+          throw std::out_of_range("array index out of range");
+      }
+SWIGINTERN std::array< Effekseer::SIMD::Vec3f,4 >::const_reference std_array_Sl_Effekseer_SIMD_Vec3f_Sc_4_Sg__get(std::array< Effekseer::SIMD::Vec3f,4 > *self,int i){
+        int size = int(self->size());
+        if (i>=0 && i<size)
+          return (*self)[i];
+        else
+          throw std::out_of_range("array index out of range");
+      }
+SWIGINTERN void std_array_Sl_Effekseer_SIMD_Vec3f_Sc_4_Sg__set(std::array< Effekseer::SIMD::Vec3f,4 > *self,int i,std::array< Effekseer::SIMD::Vec3f,4 >::value_type const &val){
+        int size = int(self->size());
+        if (i>=0 && i<size)
+          (*self)[i] = val;
+        else
+          throw std::out_of_range("array index out of range");
+      }
 SWIGINTERN Effekseer::EffectNodeImplemented *Effekseer_EffectNode_getChild(Effekseer::EffectNode *self,int index){
         if (index >= self->GetChildrenCount())
             return nullptr;
@@ -1307,6 +1513,678 @@ SWIGEXPORT void JNICALL Java_io_github_srjohnathan_gdx_effekseer_core_GDXJNI_del
   (void)jenv;
   (void)jcls;
   arg1 = *(std::vector< float > **)&jarg1; 
+  delete arg1;
+}
+
+
+SWIGEXPORT jlong JNICALL Java_io_github_srjohnathan_gdx_effekseer_core_GDXJNI_new_1FloatArray2_1_1SWIG_10(JNIEnv *jenv, jclass jcls) {
+  jlong jresult = 0 ;
+  std::array< float,2 > *result = 0 ;
+  
+  (void)jenv;
+  (void)jcls;
+  result = (std::array< float,2 > *)new std::array< float,2 >();
+  *(std::array< float,2 > **)&jresult = result; 
+  return jresult;
+}
+
+
+SWIGEXPORT jlong JNICALL Java_io_github_srjohnathan_gdx_effekseer_core_GDXJNI_new_1FloatArray2_1_1SWIG_11(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_) {
+  jlong jresult = 0 ;
+  std::array< float,2 > *arg1 = 0 ;
+  std::array< float,2 > *result = 0 ;
+  
+  (void)jenv;
+  (void)jcls;
+  (void)jarg1_;
+  arg1 = *(std::array< float,2 > **)&jarg1;
+  if (!arg1) {
+    SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "std::array< float,2 > const & reference is null");
+    return 0;
+  } 
+  result = (std::array< float,2 > *)new std::array< float,2 >((std::array< float,2 > const &)*arg1);
+  *(std::array< float,2 > **)&jresult = result; 
+  return jresult;
+}
+
+
+SWIGEXPORT jlong JNICALL Java_io_github_srjohnathan_gdx_effekseer_core_GDXJNI_FloatArray2_1size(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_) {
+  jlong jresult = 0 ;
+  std::array< float,2 > *arg1 = (std::array< float,2 > *) 0 ;
+  std::array< float,2 >::size_type result;
+  
+  (void)jenv;
+  (void)jcls;
+  (void)jarg1_;
+  arg1 = *(std::array< float,2 > **)&jarg1; 
+  result = ((std::array< float,2 > const *)arg1)->size();
+  jresult = (jlong)result; 
+  return jresult;
+}
+
+
+SWIGEXPORT jboolean JNICALL Java_io_github_srjohnathan_gdx_effekseer_core_GDXJNI_FloatArray2_1isEmpty(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_) {
+  jboolean jresult = 0 ;
+  std::array< float,2 > *arg1 = (std::array< float,2 > *) 0 ;
+  bool result;
+  
+  (void)jenv;
+  (void)jcls;
+  (void)jarg1_;
+  arg1 = *(std::array< float,2 > **)&jarg1; 
+  result = (bool)((std::array< float,2 > const *)arg1)->empty();
+  jresult = (jboolean)result; 
+  return jresult;
+}
+
+
+SWIGEXPORT void JNICALL Java_io_github_srjohnathan_gdx_effekseer_core_GDXJNI_FloatArray2_1fill(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_, jfloat jarg2) {
+  std::array< float,2 > *arg1 = (std::array< float,2 > *) 0 ;
+  float *arg2 = 0 ;
+  float temp2 ;
+  
+  (void)jenv;
+  (void)jcls;
+  (void)jarg1_;
+  arg1 = *(std::array< float,2 > **)&jarg1; 
+  temp2 = (float)jarg2; 
+  arg2 = &temp2; 
+  (arg1)->fill((float const &)*arg2);
+}
+
+
+SWIGEXPORT jfloat JNICALL Java_io_github_srjohnathan_gdx_effekseer_core_GDXJNI_FloatArray2_1get(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_, jint jarg2) {
+  jfloat jresult = 0 ;
+  std::array< float,2 > *arg1 = (std::array< float,2 > *) 0 ;
+  int arg2 ;
+  std::array< float,2 >::value_type *result = 0 ;
+  
+  (void)jenv;
+  (void)jcls;
+  (void)jarg1_;
+  arg1 = *(std::array< float,2 > **)&jarg1; 
+  arg2 = (int)jarg2; 
+  try {
+    result = (std::array< float,2 >::value_type *) &std_array_Sl_float_Sc_2_Sg__get(arg1,arg2);
+  } catch(std::out_of_range &_e) {
+    SWIG_JavaThrowException(jenv, SWIG_JavaIndexOutOfBoundsException, (&_e)->what());
+    return 0;
+  }
+  jresult = (jfloat)*result; 
+  return jresult;
+}
+
+
+SWIGEXPORT void JNICALL Java_io_github_srjohnathan_gdx_effekseer_core_GDXJNI_FloatArray2_1set(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_, jint jarg2, jfloat jarg3) {
+  std::array< float,2 > *arg1 = (std::array< float,2 > *) 0 ;
+  int arg2 ;
+  std::array< float,2 >::value_type *arg3 = 0 ;
+  std::array< float,2 >::value_type temp3 ;
+  
+  (void)jenv;
+  (void)jcls;
+  (void)jarg1_;
+  arg1 = *(std::array< float,2 > **)&jarg1; 
+  arg2 = (int)jarg2; 
+  temp3 = (std::array< float,2 >::value_type)jarg3; 
+  arg3 = &temp3; 
+  try {
+    std_array_Sl_float_Sc_2_Sg__set(arg1,arg2,(float const &)*arg3);
+  } catch(std::out_of_range &_e) {
+    SWIG_JavaThrowException(jenv, SWIG_JavaIndexOutOfBoundsException, (&_e)->what());
+    return ;
+  }
+}
+
+
+SWIGEXPORT void JNICALL Java_io_github_srjohnathan_gdx_effekseer_core_GDXJNI_delete_1FloatArray2(JNIEnv *jenv, jclass jcls, jlong jarg1) {
+  std::array< float,2 > *arg1 = (std::array< float,2 > *) 0 ;
+  
+  (void)jenv;
+  (void)jcls;
+  arg1 = *(std::array< float,2 > **)&jarg1; 
+  delete arg1;
+}
+
+
+SWIGEXPORT jlong JNICALL Java_io_github_srjohnathan_gdx_effekseer_core_GDXJNI_new_1FloatArray3_1_1SWIG_10(JNIEnv *jenv, jclass jcls) {
+  jlong jresult = 0 ;
+  std::array< float,3 > *result = 0 ;
+  
+  (void)jenv;
+  (void)jcls;
+  result = (std::array< float,3 > *)new std::array< float,3 >();
+  *(std::array< float,3 > **)&jresult = result; 
+  return jresult;
+}
+
+
+SWIGEXPORT jlong JNICALL Java_io_github_srjohnathan_gdx_effekseer_core_GDXJNI_new_1FloatArray3_1_1SWIG_11(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_) {
+  jlong jresult = 0 ;
+  std::array< float,3 > *arg1 = 0 ;
+  std::array< float,3 > *result = 0 ;
+  
+  (void)jenv;
+  (void)jcls;
+  (void)jarg1_;
+  arg1 = *(std::array< float,3 > **)&jarg1;
+  if (!arg1) {
+    SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "std::array< float,3 > const & reference is null");
+    return 0;
+  } 
+  result = (std::array< float,3 > *)new std::array< float,3 >((std::array< float,3 > const &)*arg1);
+  *(std::array< float,3 > **)&jresult = result; 
+  return jresult;
+}
+
+
+SWIGEXPORT jlong JNICALL Java_io_github_srjohnathan_gdx_effekseer_core_GDXJNI_FloatArray3_1size(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_) {
+  jlong jresult = 0 ;
+  std::array< float,3 > *arg1 = (std::array< float,3 > *) 0 ;
+  std::array< float,3 >::size_type result;
+  
+  (void)jenv;
+  (void)jcls;
+  (void)jarg1_;
+  arg1 = *(std::array< float,3 > **)&jarg1; 
+  result = ((std::array< float,3 > const *)arg1)->size();
+  jresult = (jlong)result; 
+  return jresult;
+}
+
+
+SWIGEXPORT jboolean JNICALL Java_io_github_srjohnathan_gdx_effekseer_core_GDXJNI_FloatArray3_1isEmpty(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_) {
+  jboolean jresult = 0 ;
+  std::array< float,3 > *arg1 = (std::array< float,3 > *) 0 ;
+  bool result;
+  
+  (void)jenv;
+  (void)jcls;
+  (void)jarg1_;
+  arg1 = *(std::array< float,3 > **)&jarg1; 
+  result = (bool)((std::array< float,3 > const *)arg1)->empty();
+  jresult = (jboolean)result; 
+  return jresult;
+}
+
+
+SWIGEXPORT void JNICALL Java_io_github_srjohnathan_gdx_effekseer_core_GDXJNI_FloatArray3_1fill(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_, jfloat jarg2) {
+  std::array< float,3 > *arg1 = (std::array< float,3 > *) 0 ;
+  float *arg2 = 0 ;
+  float temp2 ;
+  
+  (void)jenv;
+  (void)jcls;
+  (void)jarg1_;
+  arg1 = *(std::array< float,3 > **)&jarg1; 
+  temp2 = (float)jarg2; 
+  arg2 = &temp2; 
+  (arg1)->fill((float const &)*arg2);
+}
+
+
+SWIGEXPORT jfloat JNICALL Java_io_github_srjohnathan_gdx_effekseer_core_GDXJNI_FloatArray3_1get(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_, jint jarg2) {
+  jfloat jresult = 0 ;
+  std::array< float,3 > *arg1 = (std::array< float,3 > *) 0 ;
+  int arg2 ;
+  std::array< float,3 >::value_type *result = 0 ;
+  
+  (void)jenv;
+  (void)jcls;
+  (void)jarg1_;
+  arg1 = *(std::array< float,3 > **)&jarg1; 
+  arg2 = (int)jarg2; 
+  try {
+    result = (std::array< float,3 >::value_type *) &std_array_Sl_float_Sc_3_Sg__get(arg1,arg2);
+  } catch(std::out_of_range &_e) {
+    SWIG_JavaThrowException(jenv, SWIG_JavaIndexOutOfBoundsException, (&_e)->what());
+    return 0;
+  }
+  jresult = (jfloat)*result; 
+  return jresult;
+}
+
+
+SWIGEXPORT void JNICALL Java_io_github_srjohnathan_gdx_effekseer_core_GDXJNI_FloatArray3_1set(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_, jint jarg2, jfloat jarg3) {
+  std::array< float,3 > *arg1 = (std::array< float,3 > *) 0 ;
+  int arg2 ;
+  std::array< float,3 >::value_type *arg3 = 0 ;
+  std::array< float,3 >::value_type temp3 ;
+  
+  (void)jenv;
+  (void)jcls;
+  (void)jarg1_;
+  arg1 = *(std::array< float,3 > **)&jarg1; 
+  arg2 = (int)jarg2; 
+  temp3 = (std::array< float,3 >::value_type)jarg3; 
+  arg3 = &temp3; 
+  try {
+    std_array_Sl_float_Sc_3_Sg__set(arg1,arg2,(float const &)*arg3);
+  } catch(std::out_of_range &_e) {
+    SWIG_JavaThrowException(jenv, SWIG_JavaIndexOutOfBoundsException, (&_e)->what());
+    return ;
+  }
+}
+
+
+SWIGEXPORT void JNICALL Java_io_github_srjohnathan_gdx_effekseer_core_GDXJNI_delete_1FloatArray3(JNIEnv *jenv, jclass jcls, jlong jarg1) {
+  std::array< float,3 > *arg1 = (std::array< float,3 > *) 0 ;
+  
+  (void)jenv;
+  (void)jcls;
+  arg1 = *(std::array< float,3 > **)&jarg1; 
+  delete arg1;
+}
+
+
+SWIGEXPORT jlong JNICALL Java_io_github_srjohnathan_gdx_effekseer_core_GDXJNI_new_1FloatArray4_1_1SWIG_10(JNIEnv *jenv, jclass jcls) {
+  jlong jresult = 0 ;
+  std::array< float,4 > *result = 0 ;
+  
+  (void)jenv;
+  (void)jcls;
+  result = (std::array< float,4 > *)new std::array< float,4 >();
+  *(std::array< float,4 > **)&jresult = result; 
+  return jresult;
+}
+
+
+SWIGEXPORT jlong JNICALL Java_io_github_srjohnathan_gdx_effekseer_core_GDXJNI_new_1FloatArray4_1_1SWIG_11(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_) {
+  jlong jresult = 0 ;
+  std::array< float,4 > *arg1 = 0 ;
+  std::array< float,4 > *result = 0 ;
+  
+  (void)jenv;
+  (void)jcls;
+  (void)jarg1_;
+  arg1 = *(std::array< float,4 > **)&jarg1;
+  if (!arg1) {
+    SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "std::array< float,4 > const & reference is null");
+    return 0;
+  } 
+  result = (std::array< float,4 > *)new std::array< float,4 >((std::array< float,4 > const &)*arg1);
+  *(std::array< float,4 > **)&jresult = result; 
+  return jresult;
+}
+
+
+SWIGEXPORT jlong JNICALL Java_io_github_srjohnathan_gdx_effekseer_core_GDXJNI_FloatArray4_1size(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_) {
+  jlong jresult = 0 ;
+  std::array< float,4 > *arg1 = (std::array< float,4 > *) 0 ;
+  std::array< float,4 >::size_type result;
+  
+  (void)jenv;
+  (void)jcls;
+  (void)jarg1_;
+  arg1 = *(std::array< float,4 > **)&jarg1; 
+  result = ((std::array< float,4 > const *)arg1)->size();
+  jresult = (jlong)result; 
+  return jresult;
+}
+
+
+SWIGEXPORT jboolean JNICALL Java_io_github_srjohnathan_gdx_effekseer_core_GDXJNI_FloatArray4_1isEmpty(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_) {
+  jboolean jresult = 0 ;
+  std::array< float,4 > *arg1 = (std::array< float,4 > *) 0 ;
+  bool result;
+  
+  (void)jenv;
+  (void)jcls;
+  (void)jarg1_;
+  arg1 = *(std::array< float,4 > **)&jarg1; 
+  result = (bool)((std::array< float,4 > const *)arg1)->empty();
+  jresult = (jboolean)result; 
+  return jresult;
+}
+
+
+SWIGEXPORT void JNICALL Java_io_github_srjohnathan_gdx_effekseer_core_GDXJNI_FloatArray4_1fill(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_, jfloat jarg2) {
+  std::array< float,4 > *arg1 = (std::array< float,4 > *) 0 ;
+  float *arg2 = 0 ;
+  float temp2 ;
+  
+  (void)jenv;
+  (void)jcls;
+  (void)jarg1_;
+  arg1 = *(std::array< float,4 > **)&jarg1; 
+  temp2 = (float)jarg2; 
+  arg2 = &temp2; 
+  (arg1)->fill((float const &)*arg2);
+}
+
+
+SWIGEXPORT jfloat JNICALL Java_io_github_srjohnathan_gdx_effekseer_core_GDXJNI_FloatArray4_1get(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_, jint jarg2) {
+  jfloat jresult = 0 ;
+  std::array< float,4 > *arg1 = (std::array< float,4 > *) 0 ;
+  int arg2 ;
+  std::array< float,4 >::value_type *result = 0 ;
+  
+  (void)jenv;
+  (void)jcls;
+  (void)jarg1_;
+  arg1 = *(std::array< float,4 > **)&jarg1; 
+  arg2 = (int)jarg2; 
+  try {
+    result = (std::array< float,4 >::value_type *) &std_array_Sl_float_Sc_4_Sg__get(arg1,arg2);
+  } catch(std::out_of_range &_e) {
+    SWIG_JavaThrowException(jenv, SWIG_JavaIndexOutOfBoundsException, (&_e)->what());
+    return 0;
+  }
+  jresult = (jfloat)*result; 
+  return jresult;
+}
+
+
+SWIGEXPORT void JNICALL Java_io_github_srjohnathan_gdx_effekseer_core_GDXJNI_FloatArray4_1set(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_, jint jarg2, jfloat jarg3) {
+  std::array< float,4 > *arg1 = (std::array< float,4 > *) 0 ;
+  int arg2 ;
+  std::array< float,4 >::value_type *arg3 = 0 ;
+  std::array< float,4 >::value_type temp3 ;
+  
+  (void)jenv;
+  (void)jcls;
+  (void)jarg1_;
+  arg1 = *(std::array< float,4 > **)&jarg1; 
+  arg2 = (int)jarg2; 
+  temp3 = (std::array< float,4 >::value_type)jarg3; 
+  arg3 = &temp3; 
+  try {
+    std_array_Sl_float_Sc_4_Sg__set(arg1,arg2,(float const &)*arg3);
+  } catch(std::out_of_range &_e) {
+    SWIG_JavaThrowException(jenv, SWIG_JavaIndexOutOfBoundsException, (&_e)->what());
+    return ;
+  }
+}
+
+
+SWIGEXPORT void JNICALL Java_io_github_srjohnathan_gdx_effekseer_core_GDXJNI_delete_1FloatArray4(JNIEnv *jenv, jclass jcls, jlong jarg1) {
+  std::array< float,4 > *arg1 = (std::array< float,4 > *) 0 ;
+  
+  (void)jenv;
+  (void)jcls;
+  arg1 = *(std::array< float,4 > **)&jarg1; 
+  delete arg1;
+}
+
+
+SWIGEXPORT jlong JNICALL Java_io_github_srjohnathan_gdx_effekseer_core_GDXJNI_new_1VectorFloatArray4_1_1SWIG_10(JNIEnv *jenv, jclass jcls) {
+  jlong jresult = 0 ;
+  std::vector< std::array< float,4 > > *result = 0 ;
+  
+  (void)jenv;
+  (void)jcls;
+  result = (std::vector< std::array< float,4 > > *)new std::vector< std::array< float,4 > >();
+  *(std::vector< std::array< float,4 > > **)&jresult = result; 
+  return jresult;
+}
+
+
+SWIGEXPORT jlong JNICALL Java_io_github_srjohnathan_gdx_effekseer_core_GDXJNI_new_1VectorFloatArray4_1_1SWIG_11(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_) {
+  jlong jresult = 0 ;
+  std::vector< std::array< float,4 > > *arg1 = 0 ;
+  std::vector< std::array< float,4 > > *result = 0 ;
+  
+  (void)jenv;
+  (void)jcls;
+  (void)jarg1_;
+  arg1 = *(std::vector< std::array< float,4 > > **)&jarg1;
+  if (!arg1) {
+    SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "std::vector< std::array< float,4 > > const & reference is null");
+    return 0;
+  } 
+  result = (std::vector< std::array< float,4 > > *)new std::vector< std::array< float,4 > >((std::vector< std::array< float,4 > > const &)*arg1);
+  *(std::vector< std::array< float,4 > > **)&jresult = result; 
+  return jresult;
+}
+
+
+SWIGEXPORT jlong JNICALL Java_io_github_srjohnathan_gdx_effekseer_core_GDXJNI_VectorFloatArray4_1capacity(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_) {
+  jlong jresult = 0 ;
+  std::vector< std::array< float,4 > > *arg1 = (std::vector< std::array< float,4 > > *) 0 ;
+  std::vector< std::array< float,4 > >::size_type result;
+  
+  (void)jenv;
+  (void)jcls;
+  (void)jarg1_;
+  arg1 = *(std::vector< std::array< float,4 > > **)&jarg1; 
+  result = ((std::vector< std::array< float,4 > > const *)arg1)->capacity();
+  jresult = (jlong)result; 
+  return jresult;
+}
+
+
+SWIGEXPORT void JNICALL Java_io_github_srjohnathan_gdx_effekseer_core_GDXJNI_VectorFloatArray4_1reserve(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_, jlong jarg2) {
+  std::vector< std::array< float,4 > > *arg1 = (std::vector< std::array< float,4 > > *) 0 ;
+  std::vector< std::array< float,4 > >::size_type arg2 ;
+  
+  (void)jenv;
+  (void)jcls;
+  (void)jarg1_;
+  arg1 = *(std::vector< std::array< float,4 > > **)&jarg1; 
+  arg2 = (std::vector< std::array< float,4 > >::size_type)jarg2; 
+  try {
+    (arg1)->reserve(arg2);
+  } catch(std::length_error &_e) {
+    SWIG_JavaThrowException(jenv, SWIG_JavaIndexOutOfBoundsException, (&_e)->what());
+    return ;
+  }
+}
+
+
+SWIGEXPORT jboolean JNICALL Java_io_github_srjohnathan_gdx_effekseer_core_GDXJNI_VectorFloatArray4_1isEmpty(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_) {
+  jboolean jresult = 0 ;
+  std::vector< std::array< float,4 > > *arg1 = (std::vector< std::array< float,4 > > *) 0 ;
+  bool result;
+  
+  (void)jenv;
+  (void)jcls;
+  (void)jarg1_;
+  arg1 = *(std::vector< std::array< float,4 > > **)&jarg1; 
+  result = (bool)((std::vector< std::array< float,4 > > const *)arg1)->empty();
+  jresult = (jboolean)result; 
+  return jresult;
+}
+
+
+SWIGEXPORT void JNICALL Java_io_github_srjohnathan_gdx_effekseer_core_GDXJNI_VectorFloatArray4_1clear(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_) {
+  std::vector< std::array< float,4 > > *arg1 = (std::vector< std::array< float,4 > > *) 0 ;
+  
+  (void)jenv;
+  (void)jcls;
+  (void)jarg1_;
+  arg1 = *(std::vector< std::array< float,4 > > **)&jarg1; 
+  (arg1)->clear();
+}
+
+
+SWIGEXPORT jlong JNICALL Java_io_github_srjohnathan_gdx_effekseer_core_GDXJNI_new_1VectorFloatArray4_1_1SWIG_12(JNIEnv *jenv, jclass jcls, jint jarg1, jlong jarg2, jobject jarg2_) {
+  jlong jresult = 0 ;
+  jint arg1 ;
+  std::array< float,4 > *arg2 = 0 ;
+  std::vector< std::array< float,4 > > *result = 0 ;
+  
+  (void)jenv;
+  (void)jcls;
+  (void)jarg2_;
+  arg1 = jarg1; 
+  arg2 = *(std::array< float,4 > **)&jarg2;
+  if (!arg2) {
+    SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "std::array< float,4 > const & reference is null");
+    return 0;
+  } 
+  try {
+    result = (std::vector< std::array< float,4 > > *)new_std_vector_Sl_std_array_Sl_float_Sc_4_Sg__Sg___SWIG_2(arg1,(std::array< float,4 > const &)*arg2);
+  } catch(std::out_of_range &_e) {
+    SWIG_JavaThrowException(jenv, SWIG_JavaIndexOutOfBoundsException, (&_e)->what());
+    return 0;
+  }
+  *(std::vector< std::array< float,4 > > **)&jresult = result; 
+  return jresult;
+}
+
+
+SWIGEXPORT jint JNICALL Java_io_github_srjohnathan_gdx_effekseer_core_GDXJNI_VectorFloatArray4_1doSize(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_) {
+  jint jresult = 0 ;
+  std::vector< std::array< float,4 > > *arg1 = (std::vector< std::array< float,4 > > *) 0 ;
+  jint result;
+  
+  (void)jenv;
+  (void)jcls;
+  (void)jarg1_;
+  arg1 = *(std::vector< std::array< float,4 > > **)&jarg1; 
+  try {
+    result = std_vector_Sl_std_array_Sl_float_Sc_4_Sg__Sg__doSize((std::vector< std::array< float,4 > > const *)arg1);
+  } catch(std::out_of_range &_e) {
+    SWIG_JavaThrowException(jenv, SWIG_JavaIndexOutOfBoundsException, (&_e)->what());
+    return 0;
+  }
+  jresult = result; 
+  return jresult;
+}
+
+
+SWIGEXPORT void JNICALL Java_io_github_srjohnathan_gdx_effekseer_core_GDXJNI_VectorFloatArray4_1doAdd_1_1SWIG_10(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_, jlong jarg2, jobject jarg2_) {
+  std::vector< std::array< float,4 > > *arg1 = (std::vector< std::array< float,4 > > *) 0 ;
+  std::vector< std::array< float,4 > >::value_type *arg2 = 0 ;
+  
+  (void)jenv;
+  (void)jcls;
+  (void)jarg1_;
+  (void)jarg2_;
+  arg1 = *(std::vector< std::array< float,4 > > **)&jarg1; 
+  arg2 = *(std::vector< std::array< float,4 > >::value_type **)&jarg2;
+  if (!arg2) {
+    SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "std::vector< std::array< float,4 > >::value_type const & reference is null");
+    return ;
+  } 
+  std_vector_Sl_std_array_Sl_float_Sc_4_Sg__Sg__doAdd__SWIG_0(arg1,(std::array< float,4 > const &)*arg2);
+}
+
+
+SWIGEXPORT void JNICALL Java_io_github_srjohnathan_gdx_effekseer_core_GDXJNI_VectorFloatArray4_1doAdd_1_1SWIG_11(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_, jint jarg2, jlong jarg3, jobject jarg3_) {
+  std::vector< std::array< float,4 > > *arg1 = (std::vector< std::array< float,4 > > *) 0 ;
+  jint arg2 ;
+  std::vector< std::array< float,4 > >::value_type *arg3 = 0 ;
+  
+  (void)jenv;
+  (void)jcls;
+  (void)jarg1_;
+  (void)jarg3_;
+  arg1 = *(std::vector< std::array< float,4 > > **)&jarg1; 
+  arg2 = jarg2; 
+  arg3 = *(std::vector< std::array< float,4 > >::value_type **)&jarg3;
+  if (!arg3) {
+    SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "std::vector< std::array< float,4 > >::value_type const & reference is null");
+    return ;
+  } 
+  try {
+    std_vector_Sl_std_array_Sl_float_Sc_4_Sg__Sg__doAdd__SWIG_1(arg1,arg2,(std::array< float,4 > const &)*arg3);
+  } catch(std::out_of_range &_e) {
+    SWIG_JavaThrowException(jenv, SWIG_JavaIndexOutOfBoundsException, (&_e)->what());
+    return ;
+  }
+}
+
+
+SWIGEXPORT jlong JNICALL Java_io_github_srjohnathan_gdx_effekseer_core_GDXJNI_VectorFloatArray4_1doRemove(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_, jint jarg2) {
+  jlong jresult = 0 ;
+  std::vector< std::array< float,4 > > *arg1 = (std::vector< std::array< float,4 > > *) 0 ;
+  jint arg2 ;
+  std::vector< std::array< float,4 > >::value_type result;
+  
+  (void)jenv;
+  (void)jcls;
+  (void)jarg1_;
+  arg1 = *(std::vector< std::array< float,4 > > **)&jarg1; 
+  arg2 = jarg2; 
+  try {
+    result = std_vector_Sl_std_array_Sl_float_Sc_4_Sg__Sg__doRemove(arg1,arg2);
+  } catch(std::out_of_range &_e) {
+    SWIG_JavaThrowException(jenv, SWIG_JavaIndexOutOfBoundsException, (&_e)->what());
+    return 0;
+  }
+  *(std::vector< std::array< float,4 > >::value_type **)&jresult = new std::vector< std::array< float,4 > >::value_type((const std::vector< std::array< float,4 > >::value_type &)result); 
+  return jresult;
+}
+
+
+SWIGEXPORT jlong JNICALL Java_io_github_srjohnathan_gdx_effekseer_core_GDXJNI_VectorFloatArray4_1doGet(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_, jint jarg2) {
+  jlong jresult = 0 ;
+  std::vector< std::array< float,4 > > *arg1 = (std::vector< std::array< float,4 > > *) 0 ;
+  jint arg2 ;
+  std::vector< std::array< float,4 > >::value_type *result = 0 ;
+  
+  (void)jenv;
+  (void)jcls;
+  (void)jarg1_;
+  arg1 = *(std::vector< std::array< float,4 > > **)&jarg1; 
+  arg2 = jarg2; 
+  try {
+    result = (std::vector< std::array< float,4 > >::value_type *) &std_vector_Sl_std_array_Sl_float_Sc_4_Sg__Sg__doGet(arg1,arg2);
+  } catch(std::out_of_range &_e) {
+    SWIG_JavaThrowException(jenv, SWIG_JavaIndexOutOfBoundsException, (&_e)->what());
+    return 0;
+  }
+  *(std::vector< std::array< float,4 > >::value_type **)&jresult = result; 
+  return jresult;
+}
+
+
+SWIGEXPORT jlong JNICALL Java_io_github_srjohnathan_gdx_effekseer_core_GDXJNI_VectorFloatArray4_1doSet(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_, jint jarg2, jlong jarg3, jobject jarg3_) {
+  jlong jresult = 0 ;
+  std::vector< std::array< float,4 > > *arg1 = (std::vector< std::array< float,4 > > *) 0 ;
+  jint arg2 ;
+  std::vector< std::array< float,4 > >::value_type *arg3 = 0 ;
+  std::vector< std::array< float,4 > >::value_type result;
+  
+  (void)jenv;
+  (void)jcls;
+  (void)jarg1_;
+  (void)jarg3_;
+  arg1 = *(std::vector< std::array< float,4 > > **)&jarg1; 
+  arg2 = jarg2; 
+  arg3 = *(std::vector< std::array< float,4 > >::value_type **)&jarg3;
+  if (!arg3) {
+    SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "std::vector< std::array< float,4 > >::value_type const & reference is null");
+    return 0;
+  } 
+  try {
+    result = std_vector_Sl_std_array_Sl_float_Sc_4_Sg__Sg__doSet(arg1,arg2,(std::array< float,4 > const &)*arg3);
+  } catch(std::out_of_range &_e) {
+    SWIG_JavaThrowException(jenv, SWIG_JavaIndexOutOfBoundsException, (&_e)->what());
+    return 0;
+  }
+  *(std::vector< std::array< float,4 > >::value_type **)&jresult = new std::vector< std::array< float,4 > >::value_type((const std::vector< std::array< float,4 > >::value_type &)result); 
+  return jresult;
+}
+
+
+SWIGEXPORT void JNICALL Java_io_github_srjohnathan_gdx_effekseer_core_GDXJNI_VectorFloatArray4_1doRemoveRange(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_, jint jarg2, jint jarg3) {
+  std::vector< std::array< float,4 > > *arg1 = (std::vector< std::array< float,4 > > *) 0 ;
+  jint arg2 ;
+  jint arg3 ;
+  
+  (void)jenv;
+  (void)jcls;
+  (void)jarg1_;
+  arg1 = *(std::vector< std::array< float,4 > > **)&jarg1; 
+  arg2 = jarg2; 
+  arg3 = jarg3; 
+  try {
+    std_vector_Sl_std_array_Sl_float_Sc_4_Sg__Sg__doRemoveRange(arg1,arg2,arg3);
+  } catch(std::out_of_range &_e) {
+    SWIG_JavaThrowException(jenv, SWIG_JavaIndexOutOfBoundsException, (&_e)->what());
+    return ;
+  }
+}
+
+
+SWIGEXPORT void JNICALL Java_io_github_srjohnathan_gdx_effekseer_core_GDXJNI_delete_1VectorFloatArray4(JNIEnv *jenv, jclass jcls, jlong jarg1) {
+  std::vector< std::array< float,4 > > *arg1 = (std::vector< std::array< float,4 > > *) 0 ;
+  
+  (void)jenv;
+  (void)jcls;
+  arg1 = *(std::vector< std::array< float,4 > > **)&jarg1; 
   delete arg1;
 }
 
@@ -2545,6 +3423,19 @@ SWIGEXPORT void JNICALL Java_io_github_srjohnathan_gdx_effekseer_core_GDXJNI_Eff
 }
 
 
+SWIGEXPORT void JNICALL Java_io_github_srjohnathan_gdx_effekseer_core_GDXJNI_EffekseerManagerCore_1SetTime(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_, jfloat jarg2) {
+  EffekseerManagerCore *arg1 = (EffekseerManagerCore *) 0 ;
+  float arg2 ;
+  
+  (void)jenv;
+  (void)jcls;
+  (void)jarg1_;
+  arg1 = *(EffekseerManagerCore **)&jarg1; 
+  arg2 = (float)jarg2; 
+  (arg1)->SetTime(arg2);
+}
+
+
 SWIGEXPORT void JNICALL Java_io_github_srjohnathan_gdx_effekseer_core_GDXJNI_EffekseerManagerCore_1BeginRendering(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_) {
   EffekseerManagerCore *arg1 = (EffekseerManagerCore *) 0 ;
   
@@ -2996,6 +3887,25 @@ SWIGEXPORT jlong JNICALL Java_io_github_srjohnathan_gdx_effekseer_core_GDXJNI_ne
 
 SWIGEXPORT jlong JNICALL Java_io_github_srjohnathan_gdx_effekseer_core_GDXJNI_new_1SIMDVec2f_1_1SWIG_13(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_) {
   jlong jresult = 0 ;
+  std::array< float,2 > *arg1 = 0 ;
+  Effekseer::SIMD::Vec2f *result = 0 ;
+  
+  (void)jenv;
+  (void)jcls;
+  (void)jarg1_;
+  arg1 = *(std::array< float,2 > **)&jarg1;
+  if (!arg1) {
+    SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "std::array< float,2 > const & reference is null");
+    return 0;
+  } 
+  result = (Effekseer::SIMD::Vec2f *)new Effekseer::SIMD::Vec2f((std::array< float,2 > const &)*arg1);
+  *(Effekseer::SIMD::Vec2f **)&jresult = result; 
+  return jresult;
+}
+
+
+SWIGEXPORT jlong JNICALL Java_io_github_srjohnathan_gdx_effekseer_core_GDXJNI_new_1SIMDVec2f_1_1SWIG_14(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_) {
+  jlong jresult = 0 ;
   Effekseer::Vector2D *arg1 = 0 ;
   Effekseer::SIMD::Vec2f *result = 0 ;
   
@@ -3013,7 +3923,7 @@ SWIGEXPORT jlong JNICALL Java_io_github_srjohnathan_gdx_effekseer_core_GDXJNI_ne
 }
 
 
-SWIGEXPORT jlong JNICALL Java_io_github_srjohnathan_gdx_effekseer_core_GDXJNI_new_1SIMDVec2f_1_1SWIG_14(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_) {
+SWIGEXPORT jlong JNICALL Java_io_github_srjohnathan_gdx_effekseer_core_GDXJNI_new_1SIMDVec2f_1_1SWIG_15(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_) {
   jlong jresult = 0 ;
   Effekseer::vector2d *arg1 = 0 ;
   Effekseer::SIMD::Vec2f *result = 0 ;
@@ -3124,6 +4034,25 @@ SWIGEXPORT jlong JNICALL Java_io_github_srjohnathan_gdx_effekseer_core_GDXJNI_ne
     return 0;
   } 
   result = (Effekseer::SIMD::Vec3f *)new Effekseer::SIMD::Vec3f((Effekseer::vector3d const &)*arg1);
+  *(Effekseer::SIMD::Vec3f **)&jresult = result; 
+  return jresult;
+}
+
+
+SWIGEXPORT jlong JNICALL Java_io_github_srjohnathan_gdx_effekseer_core_GDXJNI_new_1SIMDVec3f_1_1SWIG_15(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_) {
+  jlong jresult = 0 ;
+  std::array< float,3 > *arg1 = 0 ;
+  Effekseer::SIMD::Vec3f *result = 0 ;
+  
+  (void)jenv;
+  (void)jcls;
+  (void)jarg1_;
+  arg1 = *(std::array< float,3 > **)&jarg1;
+  if (!arg1) {
+    SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "std::array< float,3 > const & reference is null");
+    return 0;
+  } 
+  result = (Effekseer::SIMD::Vec3f *)new Effekseer::SIMD::Vec3f((std::array< float,3 > const &)*arg1);
   *(Effekseer::SIMD::Vec3f **)&jresult = result; 
   return jresult;
 }
@@ -3650,6 +4579,664 @@ SWIGEXPORT void JNICALL Java_io_github_srjohnathan_gdx_effekseer_core_GDXJNI_del
 }
 
 
+SWIGEXPORT jlong JNICALL Java_io_github_srjohnathan_gdx_effekseer_core_GDXJNI_new_1VectorMaterialTextureParameter_1_1SWIG_10(JNIEnv *jenv, jclass jcls) {
+  jlong jresult = 0 ;
+  std::vector< Effekseer::MaterialTextureParameter > *result = 0 ;
+  
+  (void)jenv;
+  (void)jcls;
+  result = (std::vector< Effekseer::MaterialTextureParameter > *)new std::vector< Effekseer::MaterialTextureParameter >();
+  *(std::vector< Effekseer::MaterialTextureParameter > **)&jresult = result; 
+  return jresult;
+}
+
+
+SWIGEXPORT jlong JNICALL Java_io_github_srjohnathan_gdx_effekseer_core_GDXJNI_new_1VectorMaterialTextureParameter_1_1SWIG_11(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_) {
+  jlong jresult = 0 ;
+  std::vector< Effekseer::MaterialTextureParameter > *arg1 = 0 ;
+  std::vector< Effekseer::MaterialTextureParameter > *result = 0 ;
+  
+  (void)jenv;
+  (void)jcls;
+  (void)jarg1_;
+  arg1 = *(std::vector< Effekseer::MaterialTextureParameter > **)&jarg1;
+  if (!arg1) {
+    SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "std::vector< Effekseer::MaterialTextureParameter > const & reference is null");
+    return 0;
+  } 
+  result = (std::vector< Effekseer::MaterialTextureParameter > *)new std::vector< Effekseer::MaterialTextureParameter >((std::vector< Effekseer::MaterialTextureParameter > const &)*arg1);
+  *(std::vector< Effekseer::MaterialTextureParameter > **)&jresult = result; 
+  return jresult;
+}
+
+
+SWIGEXPORT void JNICALL Java_io_github_srjohnathan_gdx_effekseer_core_GDXJNI_VectorMaterialTextureParameter_1reserve(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_, jlong jarg2) {
+  std::vector< Effekseer::MaterialTextureParameter > *arg1 = (std::vector< Effekseer::MaterialTextureParameter > *) 0 ;
+  std::vector< Effekseer::MaterialTextureParameter >::size_type arg2 ;
+  
+  (void)jenv;
+  (void)jcls;
+  (void)jarg1_;
+  arg1 = *(std::vector< Effekseer::MaterialTextureParameter > **)&jarg1; 
+  arg2 = (std::vector< Effekseer::MaterialTextureParameter >::size_type)jarg2; 
+  try {
+    (arg1)->reserve(arg2);
+  } catch(std::length_error &_e) {
+    SWIG_JavaThrowException(jenv, SWIG_JavaIndexOutOfBoundsException, (&_e)->what());
+    return ;
+  }
+}
+
+
+SWIGEXPORT jboolean JNICALL Java_io_github_srjohnathan_gdx_effekseer_core_GDXJNI_VectorMaterialTextureParameter_1isEmpty(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_) {
+  jboolean jresult = 0 ;
+  std::vector< Effekseer::MaterialTextureParameter > *arg1 = (std::vector< Effekseer::MaterialTextureParameter > *) 0 ;
+  bool result;
+  
+  (void)jenv;
+  (void)jcls;
+  (void)jarg1_;
+  arg1 = *(std::vector< Effekseer::MaterialTextureParameter > **)&jarg1; 
+  result = (bool)((std::vector< Effekseer::MaterialTextureParameter > const *)arg1)->empty();
+  jresult = (jboolean)result; 
+  return jresult;
+}
+
+
+SWIGEXPORT jlong JNICALL Java_io_github_srjohnathan_gdx_effekseer_core_GDXJNI_new_1VectorMaterialTextureParameter_1_1SWIG_12(JNIEnv *jenv, jclass jcls, jint jarg1, jlong jarg2, jobject jarg2_) {
+  jlong jresult = 0 ;
+  jint arg1 ;
+  Effekseer::MaterialTextureParameter *arg2 = 0 ;
+  std::vector< Effekseer::MaterialTextureParameter > *result = 0 ;
+  
+  (void)jenv;
+  (void)jcls;
+  (void)jarg2_;
+  arg1 = jarg1; 
+  arg2 = *(Effekseer::MaterialTextureParameter **)&jarg2;
+  if (!arg2) {
+    SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "Effekseer::MaterialTextureParameter const & reference is null");
+    return 0;
+  } 
+  try {
+    result = (std::vector< Effekseer::MaterialTextureParameter > *)new_std_vector_Sl_Effekseer_MaterialTextureParameter_Sg___SWIG_2(arg1,(Effekseer::MaterialTextureParameter const &)*arg2);
+  } catch(std::out_of_range &_e) {
+    SWIG_JavaThrowException(jenv, SWIG_JavaIndexOutOfBoundsException, (&_e)->what());
+    return 0;
+  }
+  *(std::vector< Effekseer::MaterialTextureParameter > **)&jresult = result; 
+  return jresult;
+}
+
+
+SWIGEXPORT jint JNICALL Java_io_github_srjohnathan_gdx_effekseer_core_GDXJNI_VectorMaterialTextureParameter_1doSize(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_) {
+  jint jresult = 0 ;
+  std::vector< Effekseer::MaterialTextureParameter > *arg1 = (std::vector< Effekseer::MaterialTextureParameter > *) 0 ;
+  jint result;
+  
+  (void)jenv;
+  (void)jcls;
+  (void)jarg1_;
+  arg1 = *(std::vector< Effekseer::MaterialTextureParameter > **)&jarg1; 
+  try {
+    result = std_vector_Sl_Effekseer_MaterialTextureParameter_Sg__doSize((std::vector< Effekseer::MaterialTextureParameter > const *)arg1);
+  } catch(std::out_of_range &_e) {
+    SWIG_JavaThrowException(jenv, SWIG_JavaIndexOutOfBoundsException, (&_e)->what());
+    return 0;
+  }
+  jresult = result; 
+  return jresult;
+}
+
+
+SWIGEXPORT void JNICALL Java_io_github_srjohnathan_gdx_effekseer_core_GDXJNI_VectorMaterialTextureParameter_1doAdd_1_1SWIG_10(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_, jlong jarg2, jobject jarg2_) {
+  std::vector< Effekseer::MaterialTextureParameter > *arg1 = (std::vector< Effekseer::MaterialTextureParameter > *) 0 ;
+  std::vector< Effekseer::MaterialTextureParameter >::value_type *arg2 = 0 ;
+  
+  (void)jenv;
+  (void)jcls;
+  (void)jarg1_;
+  (void)jarg2_;
+  arg1 = *(std::vector< Effekseer::MaterialTextureParameter > **)&jarg1; 
+  arg2 = *(std::vector< Effekseer::MaterialTextureParameter >::value_type **)&jarg2;
+  if (!arg2) {
+    SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "std::vector< Effekseer::MaterialTextureParameter >::value_type const & reference is null");
+    return ;
+  } 
+  std_vector_Sl_Effekseer_MaterialTextureParameter_Sg__doAdd__SWIG_0(arg1,(Effekseer::MaterialTextureParameter const &)*arg2);
+}
+
+
+SWIGEXPORT void JNICALL Java_io_github_srjohnathan_gdx_effekseer_core_GDXJNI_VectorMaterialTextureParameter_1doAdd_1_1SWIG_11(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_, jint jarg2, jlong jarg3, jobject jarg3_) {
+  std::vector< Effekseer::MaterialTextureParameter > *arg1 = (std::vector< Effekseer::MaterialTextureParameter > *) 0 ;
+  jint arg2 ;
+  std::vector< Effekseer::MaterialTextureParameter >::value_type *arg3 = 0 ;
+  
+  (void)jenv;
+  (void)jcls;
+  (void)jarg1_;
+  (void)jarg3_;
+  arg1 = *(std::vector< Effekseer::MaterialTextureParameter > **)&jarg1; 
+  arg2 = jarg2; 
+  arg3 = *(std::vector< Effekseer::MaterialTextureParameter >::value_type **)&jarg3;
+  if (!arg3) {
+    SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "std::vector< Effekseer::MaterialTextureParameter >::value_type const & reference is null");
+    return ;
+  } 
+  try {
+    std_vector_Sl_Effekseer_MaterialTextureParameter_Sg__doAdd__SWIG_1(arg1,arg2,(Effekseer::MaterialTextureParameter const &)*arg3);
+  } catch(std::out_of_range &_e) {
+    SWIG_JavaThrowException(jenv, SWIG_JavaIndexOutOfBoundsException, (&_e)->what());
+    return ;
+  }
+}
+
+
+SWIGEXPORT jlong JNICALL Java_io_github_srjohnathan_gdx_effekseer_core_GDXJNI_VectorMaterialTextureParameter_1doRemove(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_, jint jarg2) {
+  jlong jresult = 0 ;
+  std::vector< Effekseer::MaterialTextureParameter > *arg1 = (std::vector< Effekseer::MaterialTextureParameter > *) 0 ;
+  jint arg2 ;
+  std::vector< Effekseer::MaterialTextureParameter >::value_type result;
+  
+  (void)jenv;
+  (void)jcls;
+  (void)jarg1_;
+  arg1 = *(std::vector< Effekseer::MaterialTextureParameter > **)&jarg1; 
+  arg2 = jarg2; 
+  try {
+    result = std_vector_Sl_Effekseer_MaterialTextureParameter_Sg__doRemove(arg1,arg2);
+  } catch(std::out_of_range &_e) {
+    SWIG_JavaThrowException(jenv, SWIG_JavaIndexOutOfBoundsException, (&_e)->what());
+    return 0;
+  }
+  *(std::vector< Effekseer::MaterialTextureParameter >::value_type **)&jresult = new std::vector< Effekseer::MaterialTextureParameter >::value_type((const std::vector< Effekseer::MaterialTextureParameter >::value_type &)result); 
+  return jresult;
+}
+
+
+SWIGEXPORT jlong JNICALL Java_io_github_srjohnathan_gdx_effekseer_core_GDXJNI_VectorMaterialTextureParameter_1doGet(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_, jint jarg2) {
+  jlong jresult = 0 ;
+  std::vector< Effekseer::MaterialTextureParameter > *arg1 = (std::vector< Effekseer::MaterialTextureParameter > *) 0 ;
+  jint arg2 ;
+  std::vector< Effekseer::MaterialTextureParameter >::value_type *result = 0 ;
+  
+  (void)jenv;
+  (void)jcls;
+  (void)jarg1_;
+  arg1 = *(std::vector< Effekseer::MaterialTextureParameter > **)&jarg1; 
+  arg2 = jarg2; 
+  try {
+    result = (std::vector< Effekseer::MaterialTextureParameter >::value_type *) &std_vector_Sl_Effekseer_MaterialTextureParameter_Sg__doGet(arg1,arg2);
+  } catch(std::out_of_range &_e) {
+    SWIG_JavaThrowException(jenv, SWIG_JavaIndexOutOfBoundsException, (&_e)->what());
+    return 0;
+  }
+  *(std::vector< Effekseer::MaterialTextureParameter >::value_type **)&jresult = result; 
+  return jresult;
+}
+
+
+SWIGEXPORT jlong JNICALL Java_io_github_srjohnathan_gdx_effekseer_core_GDXJNI_VectorMaterialTextureParameter_1doSet(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_, jint jarg2, jlong jarg3, jobject jarg3_) {
+  jlong jresult = 0 ;
+  std::vector< Effekseer::MaterialTextureParameter > *arg1 = (std::vector< Effekseer::MaterialTextureParameter > *) 0 ;
+  jint arg2 ;
+  std::vector< Effekseer::MaterialTextureParameter >::value_type *arg3 = 0 ;
+  std::vector< Effekseer::MaterialTextureParameter >::value_type result;
+  
+  (void)jenv;
+  (void)jcls;
+  (void)jarg1_;
+  (void)jarg3_;
+  arg1 = *(std::vector< Effekseer::MaterialTextureParameter > **)&jarg1; 
+  arg2 = jarg2; 
+  arg3 = *(std::vector< Effekseer::MaterialTextureParameter >::value_type **)&jarg3;
+  if (!arg3) {
+    SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "std::vector< Effekseer::MaterialTextureParameter >::value_type const & reference is null");
+    return 0;
+  } 
+  try {
+    result = std_vector_Sl_Effekseer_MaterialTextureParameter_Sg__doSet(arg1,arg2,(Effekseer::MaterialTextureParameter const &)*arg3);
+  } catch(std::out_of_range &_e) {
+    SWIG_JavaThrowException(jenv, SWIG_JavaIndexOutOfBoundsException, (&_e)->what());
+    return 0;
+  }
+  *(std::vector< Effekseer::MaterialTextureParameter >::value_type **)&jresult = new std::vector< Effekseer::MaterialTextureParameter >::value_type((const std::vector< Effekseer::MaterialTextureParameter >::value_type &)result); 
+  return jresult;
+}
+
+
+SWIGEXPORT void JNICALL Java_io_github_srjohnathan_gdx_effekseer_core_GDXJNI_VectorMaterialTextureParameter_1doRemoveRange(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_, jint jarg2, jint jarg3) {
+  std::vector< Effekseer::MaterialTextureParameter > *arg1 = (std::vector< Effekseer::MaterialTextureParameter > *) 0 ;
+  jint arg2 ;
+  jint arg3 ;
+  
+  (void)jenv;
+  (void)jcls;
+  (void)jarg1_;
+  arg1 = *(std::vector< Effekseer::MaterialTextureParameter > **)&jarg1; 
+  arg2 = jarg2; 
+  arg3 = jarg3; 
+  try {
+    std_vector_Sl_Effekseer_MaterialTextureParameter_Sg__doRemoveRange(arg1,arg2,arg3);
+  } catch(std::out_of_range &_e) {
+    SWIG_JavaThrowException(jenv, SWIG_JavaIndexOutOfBoundsException, (&_e)->what());
+    return ;
+  }
+}
+
+
+SWIGEXPORT void JNICALL Java_io_github_srjohnathan_gdx_effekseer_core_GDXJNI_delete_1VectorMaterialTextureParameter(JNIEnv *jenv, jclass jcls, jlong jarg1) {
+  std::vector< Effekseer::MaterialTextureParameter > *arg1 = (std::vector< Effekseer::MaterialTextureParameter > *) 0 ;
+  
+  (void)jenv;
+  (void)jcls;
+  arg1 = *(std::vector< Effekseer::MaterialTextureParameter > **)&jarg1; 
+  delete arg1;
+}
+
+
+SWIGEXPORT jint JNICALL Java_io_github_srjohnathan_gdx_effekseer_core_GDXJNI_TextureSlotMax_1get(JNIEnv *jenv, jclass jcls) {
+  jint jresult = 0 ;
+  int32_t result;
+  
+  (void)jenv;
+  (void)jcls;
+  result = (int32_t)(int32_t)Effekseer::TextureSlotMax;
+  jresult = (jint)result; 
+  return jresult;
+}
+
+
+SWIGEXPORT jlong JNICALL Java_io_github_srjohnathan_gdx_effekseer_core_GDXJNI_new_1ArrayTextureIndexes_1_1SWIG_10(JNIEnv *jenv, jclass jcls) {
+  jlong jresult = 0 ;
+  std::array< int32_t,8 > *result = 0 ;
+  
+  (void)jenv;
+  (void)jcls;
+  result = (std::array< int32_t,8 > *)new std::array< int32_t,8 >();
+  *(std::array< int32_t,8 > **)&jresult = result; 
+  return jresult;
+}
+
+
+SWIGEXPORT jlong JNICALL Java_io_github_srjohnathan_gdx_effekseer_core_GDXJNI_new_1ArrayTextureIndexes_1_1SWIG_11(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_) {
+  jlong jresult = 0 ;
+  std::array< int32_t,8 > *arg1 = 0 ;
+  std::array< int32_t,8 > *result = 0 ;
+  
+  (void)jenv;
+  (void)jcls;
+  (void)jarg1_;
+  arg1 = *(std::array< int32_t,8 > **)&jarg1;
+  if (!arg1) {
+    SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "std::array< int32_t,8 > const & reference is null");
+    return 0;
+  } 
+  result = (std::array< int32_t,8 > *)new std::array< int32_t,8 >((std::array< int32_t,8 > const &)*arg1);
+  *(std::array< int32_t,8 > **)&jresult = result; 
+  return jresult;
+}
+
+
+SWIGEXPORT jlong JNICALL Java_io_github_srjohnathan_gdx_effekseer_core_GDXJNI_ArrayTextureIndexes_1size(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_) {
+  jlong jresult = 0 ;
+  std::array< int32_t,8 > *arg1 = (std::array< int32_t,8 > *) 0 ;
+  std::array< int,8 >::size_type result;
+  
+  (void)jenv;
+  (void)jcls;
+  (void)jarg1_;
+  arg1 = *(std::array< int32_t,8 > **)&jarg1; 
+  result = ((std::array< int32_t,8 > const *)arg1)->size();
+  jresult = (jlong)result; 
+  return jresult;
+}
+
+
+SWIGEXPORT jboolean JNICALL Java_io_github_srjohnathan_gdx_effekseer_core_GDXJNI_ArrayTextureIndexes_1isEmpty(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_) {
+  jboolean jresult = 0 ;
+  std::array< int32_t,8 > *arg1 = (std::array< int32_t,8 > *) 0 ;
+  bool result;
+  
+  (void)jenv;
+  (void)jcls;
+  (void)jarg1_;
+  arg1 = *(std::array< int32_t,8 > **)&jarg1; 
+  result = (bool)((std::array< int32_t,8 > const *)arg1)->empty();
+  jresult = (jboolean)result; 
+  return jresult;
+}
+
+
+SWIGEXPORT void JNICALL Java_io_github_srjohnathan_gdx_effekseer_core_GDXJNI_ArrayTextureIndexes_1fill(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_, jint jarg2) {
+  std::array< int32_t,8 > *arg1 = (std::array< int32_t,8 > *) 0 ;
+  int *arg2 = 0 ;
+  int temp2 ;
+  
+  (void)jenv;
+  (void)jcls;
+  (void)jarg1_;
+  arg1 = *(std::array< int32_t,8 > **)&jarg1; 
+  temp2 = (int)jarg2; 
+  arg2 = &temp2; 
+  (arg1)->fill((int const &)*arg2);
+}
+
+
+SWIGEXPORT jint JNICALL Java_io_github_srjohnathan_gdx_effekseer_core_GDXJNI_ArrayTextureIndexes_1get(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_, jint jarg2) {
+  jint jresult = 0 ;
+  std::array< int32_t,8 > *arg1 = (std::array< int32_t,8 > *) 0 ;
+  int arg2 ;
+  std::array< int,8 >::value_type *result = 0 ;
+  
+  (void)jenv;
+  (void)jcls;
+  (void)jarg1_;
+  arg1 = *(std::array< int32_t,8 > **)&jarg1; 
+  arg2 = (int)jarg2; 
+  try {
+    result = (std::array< int,8 >::value_type *) &std_array_Sl_int32_t_Sc_8_Sg__get(arg1,arg2);
+  } catch(std::out_of_range &_e) {
+    SWIG_JavaThrowException(jenv, SWIG_JavaIndexOutOfBoundsException, (&_e)->what());
+    return 0;
+  }
+  jresult = (jint)*result; 
+  return jresult;
+}
+
+
+SWIGEXPORT void JNICALL Java_io_github_srjohnathan_gdx_effekseer_core_GDXJNI_ArrayTextureIndexes_1set(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_, jint jarg2, jint jarg3) {
+  std::array< int32_t,8 > *arg1 = (std::array< int32_t,8 > *) 0 ;
+  int arg2 ;
+  std::array< int,8 >::value_type *arg3 = 0 ;
+  std::array< int,8 >::value_type temp3 ;
+  
+  (void)jenv;
+  (void)jcls;
+  (void)jarg1_;
+  arg1 = *(std::array< int32_t,8 > **)&jarg1; 
+  arg2 = (int)jarg2; 
+  temp3 = (std::array< int,8 >::value_type)jarg3; 
+  arg3 = &temp3; 
+  try {
+    std_array_Sl_int32_t_Sc_8_Sg__set(arg1,arg2,(int const &)*arg3);
+  } catch(std::out_of_range &_e) {
+    SWIG_JavaThrowException(jenv, SWIG_JavaIndexOutOfBoundsException, (&_e)->what());
+    return ;
+  }
+}
+
+
+SWIGEXPORT void JNICALL Java_io_github_srjohnathan_gdx_effekseer_core_GDXJNI_delete_1ArrayTextureIndexes(JNIEnv *jenv, jclass jcls, jlong jarg1) {
+  std::array< int32_t,8 > *arg1 = (std::array< int32_t,8 > *) 0 ;
+  
+  (void)jenv;
+  (void)jcls;
+  arg1 = *(std::array< int32_t,8 > **)&jarg1; 
+  delete arg1;
+}
+
+
+SWIGEXPORT jlong JNICALL Java_io_github_srjohnathan_gdx_effekseer_core_GDXJNI_new_1ArrayTextureFilters_1_1SWIG_10(JNIEnv *jenv, jclass jcls) {
+  jlong jresult = 0 ;
+  std::array< Effekseer::TextureFilterType,8 > *result = 0 ;
+  
+  (void)jenv;
+  (void)jcls;
+  result = (std::array< Effekseer::TextureFilterType,8 > *)new std::array< Effekseer::TextureFilterType,8 >();
+  *(std::array< Effekseer::TextureFilterType,8 > **)&jresult = result; 
+  return jresult;
+}
+
+
+SWIGEXPORT jlong JNICALL Java_io_github_srjohnathan_gdx_effekseer_core_GDXJNI_new_1ArrayTextureFilters_1_1SWIG_11(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_) {
+  jlong jresult = 0 ;
+  std::array< Effekseer::TextureFilterType,8 > *arg1 = 0 ;
+  std::array< Effekseer::TextureFilterType,8 > *result = 0 ;
+  
+  (void)jenv;
+  (void)jcls;
+  (void)jarg1_;
+  arg1 = *(std::array< Effekseer::TextureFilterType,8 > **)&jarg1;
+  if (!arg1) {
+    SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "std::array< Effekseer::TextureFilterType,8 > const & reference is null");
+    return 0;
+  } 
+  result = (std::array< Effekseer::TextureFilterType,8 > *)new std::array< Effekseer::TextureFilterType,8 >((std::array< Effekseer::TextureFilterType,8 > const &)*arg1);
+  *(std::array< Effekseer::TextureFilterType,8 > **)&jresult = result; 
+  return jresult;
+}
+
+
+SWIGEXPORT jlong JNICALL Java_io_github_srjohnathan_gdx_effekseer_core_GDXJNI_ArrayTextureFilters_1size(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_) {
+  jlong jresult = 0 ;
+  std::array< Effekseer::TextureFilterType,8 > *arg1 = (std::array< Effekseer::TextureFilterType,8 > *) 0 ;
+  std::array< enum Effekseer::TextureFilterType,8 >::size_type result;
+  
+  (void)jenv;
+  (void)jcls;
+  (void)jarg1_;
+  arg1 = *(std::array< Effekseer::TextureFilterType,8 > **)&jarg1; 
+  result = ((std::array< Effekseer::TextureFilterType,8 > const *)arg1)->size();
+  jresult = (jlong)result; 
+  return jresult;
+}
+
+
+SWIGEXPORT jboolean JNICALL Java_io_github_srjohnathan_gdx_effekseer_core_GDXJNI_ArrayTextureFilters_1isEmpty(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_) {
+  jboolean jresult = 0 ;
+  std::array< Effekseer::TextureFilterType,8 > *arg1 = (std::array< Effekseer::TextureFilterType,8 > *) 0 ;
+  bool result;
+  
+  (void)jenv;
+  (void)jcls;
+  (void)jarg1_;
+  arg1 = *(std::array< Effekseer::TextureFilterType,8 > **)&jarg1; 
+  result = (bool)((std::array< Effekseer::TextureFilterType,8 > const *)arg1)->empty();
+  jresult = (jboolean)result; 
+  return jresult;
+}
+
+
+SWIGEXPORT void JNICALL Java_io_github_srjohnathan_gdx_effekseer_core_GDXJNI_ArrayTextureFilters_1fill(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_, jint jarg2) {
+  std::array< Effekseer::TextureFilterType,8 > *arg1 = (std::array< Effekseer::TextureFilterType,8 > *) 0 ;
+  Effekseer::TextureFilterType *arg2 = 0 ;
+  Effekseer::TextureFilterType temp2 ;
+  
+  (void)jenv;
+  (void)jcls;
+  (void)jarg1_;
+  arg1 = *(std::array< Effekseer::TextureFilterType,8 > **)&jarg1; 
+  temp2 = (Effekseer::TextureFilterType)jarg2; 
+  arg2 = &temp2; 
+  (arg1)->fill((Effekseer::TextureFilterType const &)*arg2);
+}
+
+
+SWIGEXPORT jint JNICALL Java_io_github_srjohnathan_gdx_effekseer_core_GDXJNI_ArrayTextureFilters_1get(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_, jint jarg2) {
+  jint jresult = 0 ;
+  std::array< Effekseer::TextureFilterType,8 > *arg1 = (std::array< Effekseer::TextureFilterType,8 > *) 0 ;
+  int arg2 ;
+  std::array< enum Effekseer::TextureFilterType,8 >::value_type *result = 0 ;
+  
+  (void)jenv;
+  (void)jcls;
+  (void)jarg1_;
+  arg1 = *(std::array< Effekseer::TextureFilterType,8 > **)&jarg1; 
+  arg2 = (int)jarg2; 
+  try {
+    result = (std::array< enum Effekseer::TextureFilterType,8 >::value_type *) &std_array_Sl_Effekseer_TextureFilterType_Sc_8_Sg__get(arg1,arg2);
+  } catch(std::out_of_range &_e) {
+    SWIG_JavaThrowException(jenv, SWIG_JavaIndexOutOfBoundsException, (&_e)->what());
+    return 0;
+  }
+  jresult = (jint)*result; 
+  return jresult;
+}
+
+
+SWIGEXPORT void JNICALL Java_io_github_srjohnathan_gdx_effekseer_core_GDXJNI_ArrayTextureFilters_1set(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_, jint jarg2, jint jarg3) {
+  std::array< Effekseer::TextureFilterType,8 > *arg1 = (std::array< Effekseer::TextureFilterType,8 > *) 0 ;
+  int arg2 ;
+  std::array< enum Effekseer::TextureFilterType,8 >::value_type *arg3 = 0 ;
+  std::array< enum Effekseer::TextureFilterType,8 >::value_type temp3 ;
+  
+  (void)jenv;
+  (void)jcls;
+  (void)jarg1_;
+  arg1 = *(std::array< Effekseer::TextureFilterType,8 > **)&jarg1; 
+  arg2 = (int)jarg2; 
+  temp3 = (std::array< enum Effekseer::TextureFilterType,8 >::value_type)jarg3; 
+  arg3 = &temp3; 
+  try {
+    std_array_Sl_Effekseer_TextureFilterType_Sc_8_Sg__set(arg1,arg2,(enum Effekseer::TextureFilterType const &)*arg3);
+  } catch(std::out_of_range &_e) {
+    SWIG_JavaThrowException(jenv, SWIG_JavaIndexOutOfBoundsException, (&_e)->what());
+    return ;
+  }
+}
+
+
+SWIGEXPORT void JNICALL Java_io_github_srjohnathan_gdx_effekseer_core_GDXJNI_delete_1ArrayTextureFilters(JNIEnv *jenv, jclass jcls, jlong jarg1) {
+  std::array< Effekseer::TextureFilterType,8 > *arg1 = (std::array< Effekseer::TextureFilterType,8 > *) 0 ;
+  
+  (void)jenv;
+  (void)jcls;
+  arg1 = *(std::array< Effekseer::TextureFilterType,8 > **)&jarg1; 
+  delete arg1;
+}
+
+
+SWIGEXPORT jlong JNICALL Java_io_github_srjohnathan_gdx_effekseer_core_GDXJNI_new_1ArrayTextureWraps_1_1SWIG_10(JNIEnv *jenv, jclass jcls) {
+  jlong jresult = 0 ;
+  std::array< Effekseer::TextureWrapType,8 > *result = 0 ;
+  
+  (void)jenv;
+  (void)jcls;
+  result = (std::array< Effekseer::TextureWrapType,8 > *)new std::array< Effekseer::TextureWrapType,8 >();
+  *(std::array< Effekseer::TextureWrapType,8 > **)&jresult = result; 
+  return jresult;
+}
+
+
+SWIGEXPORT jlong JNICALL Java_io_github_srjohnathan_gdx_effekseer_core_GDXJNI_new_1ArrayTextureWraps_1_1SWIG_11(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_) {
+  jlong jresult = 0 ;
+  std::array< Effekseer::TextureWrapType,8 > *arg1 = 0 ;
+  std::array< Effekseer::TextureWrapType,8 > *result = 0 ;
+  
+  (void)jenv;
+  (void)jcls;
+  (void)jarg1_;
+  arg1 = *(std::array< Effekseer::TextureWrapType,8 > **)&jarg1;
+  if (!arg1) {
+    SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "std::array< Effekseer::TextureWrapType,8 > const & reference is null");
+    return 0;
+  } 
+  result = (std::array< Effekseer::TextureWrapType,8 > *)new std::array< Effekseer::TextureWrapType,8 >((std::array< Effekseer::TextureWrapType,8 > const &)*arg1);
+  *(std::array< Effekseer::TextureWrapType,8 > **)&jresult = result; 
+  return jresult;
+}
+
+
+SWIGEXPORT jlong JNICALL Java_io_github_srjohnathan_gdx_effekseer_core_GDXJNI_ArrayTextureWraps_1size(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_) {
+  jlong jresult = 0 ;
+  std::array< Effekseer::TextureWrapType,8 > *arg1 = (std::array< Effekseer::TextureWrapType,8 > *) 0 ;
+  std::array< enum Effekseer::TextureWrapType,8 >::size_type result;
+  
+  (void)jenv;
+  (void)jcls;
+  (void)jarg1_;
+  arg1 = *(std::array< Effekseer::TextureWrapType,8 > **)&jarg1; 
+  result = ((std::array< Effekseer::TextureWrapType,8 > const *)arg1)->size();
+  jresult = (jlong)result; 
+  return jresult;
+}
+
+
+SWIGEXPORT jboolean JNICALL Java_io_github_srjohnathan_gdx_effekseer_core_GDXJNI_ArrayTextureWraps_1isEmpty(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_) {
+  jboolean jresult = 0 ;
+  std::array< Effekseer::TextureWrapType,8 > *arg1 = (std::array< Effekseer::TextureWrapType,8 > *) 0 ;
+  bool result;
+  
+  (void)jenv;
+  (void)jcls;
+  (void)jarg1_;
+  arg1 = *(std::array< Effekseer::TextureWrapType,8 > **)&jarg1; 
+  result = (bool)((std::array< Effekseer::TextureWrapType,8 > const *)arg1)->empty();
+  jresult = (jboolean)result; 
+  return jresult;
+}
+
+
+SWIGEXPORT void JNICALL Java_io_github_srjohnathan_gdx_effekseer_core_GDXJNI_ArrayTextureWraps_1fill(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_, jint jarg2) {
+  std::array< Effekseer::TextureWrapType,8 > *arg1 = (std::array< Effekseer::TextureWrapType,8 > *) 0 ;
+  Effekseer::TextureWrapType *arg2 = 0 ;
+  Effekseer::TextureWrapType temp2 ;
+  
+  (void)jenv;
+  (void)jcls;
+  (void)jarg1_;
+  arg1 = *(std::array< Effekseer::TextureWrapType,8 > **)&jarg1; 
+  temp2 = (Effekseer::TextureWrapType)jarg2; 
+  arg2 = &temp2; 
+  (arg1)->fill((Effekseer::TextureWrapType const &)*arg2);
+}
+
+
+SWIGEXPORT jint JNICALL Java_io_github_srjohnathan_gdx_effekseer_core_GDXJNI_ArrayTextureWraps_1get(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_, jint jarg2) {
+  jint jresult = 0 ;
+  std::array< Effekseer::TextureWrapType,8 > *arg1 = (std::array< Effekseer::TextureWrapType,8 > *) 0 ;
+  int arg2 ;
+  std::array< enum Effekseer::TextureWrapType,8 >::value_type *result = 0 ;
+  
+  (void)jenv;
+  (void)jcls;
+  (void)jarg1_;
+  arg1 = *(std::array< Effekseer::TextureWrapType,8 > **)&jarg1; 
+  arg2 = (int)jarg2; 
+  try {
+    result = (std::array< enum Effekseer::TextureWrapType,8 >::value_type *) &std_array_Sl_Effekseer_TextureWrapType_Sc_8_Sg__get(arg1,arg2);
+  } catch(std::out_of_range &_e) {
+    SWIG_JavaThrowException(jenv, SWIG_JavaIndexOutOfBoundsException, (&_e)->what());
+    return 0;
+  }
+  jresult = (jint)*result; 
+  return jresult;
+}
+
+
+SWIGEXPORT void JNICALL Java_io_github_srjohnathan_gdx_effekseer_core_GDXJNI_ArrayTextureWraps_1set(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_, jint jarg2, jint jarg3) {
+  std::array< Effekseer::TextureWrapType,8 > *arg1 = (std::array< Effekseer::TextureWrapType,8 > *) 0 ;
+  int arg2 ;
+  std::array< enum Effekseer::TextureWrapType,8 >::value_type *arg3 = 0 ;
+  std::array< enum Effekseer::TextureWrapType,8 >::value_type temp3 ;
+  
+  (void)jenv;
+  (void)jcls;
+  (void)jarg1_;
+  arg1 = *(std::array< Effekseer::TextureWrapType,8 > **)&jarg1; 
+  arg2 = (int)jarg2; 
+  temp3 = (std::array< enum Effekseer::TextureWrapType,8 >::value_type)jarg3; 
+  arg3 = &temp3; 
+  try {
+    std_array_Sl_Effekseer_TextureWrapType_Sc_8_Sg__set(arg1,arg2,(enum Effekseer::TextureWrapType const &)*arg3);
+  } catch(std::out_of_range &_e) {
+    SWIG_JavaThrowException(jenv, SWIG_JavaIndexOutOfBoundsException, (&_e)->what());
+    return ;
+  }
+}
+
+
+SWIGEXPORT void JNICALL Java_io_github_srjohnathan_gdx_effekseer_core_GDXJNI_delete_1ArrayTextureWraps(JNIEnv *jenv, jclass jcls, jlong jarg1) {
+  std::array< Effekseer::TextureWrapType,8 > *arg1 = (std::array< Effekseer::TextureWrapType,8 > *) 0 ;
+  
+  (void)jenv;
+  (void)jcls;
+  arg1 = *(std::array< Effekseer::TextureWrapType,8 > **)&jarg1; 
+  delete arg1;
+}
+
+
 SWIGEXPORT jint JNICALL Java_io_github_srjohnathan_gdx_effekseer_core_GDXJNI_UserTextureSlotMax_1get(JNIEnv *jenv, jclass jcls) {
   jint jresult = 0 ;
   int32_t result;
@@ -3669,18 +5256,6 @@ SWIGEXPORT jint JNICALL Java_io_github_srjohnathan_gdx_effekseer_core_GDXJNI_Use
   (void)jenv;
   (void)jcls;
   result = (int32_t)(int32_t)Effekseer::UserUniformSlotMax;
-  jresult = (jint)result; 
-  return jresult;
-}
-
-
-SWIGEXPORT jint JNICALL Java_io_github_srjohnathan_gdx_effekseer_core_GDXJNI_TextureSlotMax_1get(JNIEnv *jenv, jclass jcls) {
-  jint jresult = 0 ;
-  int32_t result;
-  
-  (void)jenv;
-  (void)jcls;
-  result = (int32_t)(int32_t)Effekseer::TextureSlotMax;
   jresult = (jint)result; 
   return jresult;
 }
@@ -4080,6 +5655,64 @@ SWIGEXPORT jint JNICALL Java_io_github_srjohnathan_gdx_effekseer_core_GDXJNI_Mat
 }
 
 
+SWIGEXPORT void JNICALL Java_io_github_srjohnathan_gdx_effekseer_core_GDXJNI_MaterialRenderData_1MaterialTextures_1set(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_, jlong jarg2, jobject jarg2_) {
+  Effekseer::MaterialRenderData *arg1 = (Effekseer::MaterialRenderData *) 0 ;
+  std::vector< Effekseer::MaterialTextureParameter > *arg2 = (std::vector< Effekseer::MaterialTextureParameter > *) 0 ;
+  
+  (void)jenv;
+  (void)jcls;
+  (void)jarg1_;
+  (void)jarg2_;
+  arg1 = *(Effekseer::MaterialRenderData **)&jarg1; 
+  arg2 = *(std::vector< Effekseer::MaterialTextureParameter > **)&jarg2; 
+  if (arg1) (arg1)->MaterialTextures = *arg2;
+}
+
+
+SWIGEXPORT jlong JNICALL Java_io_github_srjohnathan_gdx_effekseer_core_GDXJNI_MaterialRenderData_1MaterialTextures_1get(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_) {
+  jlong jresult = 0 ;
+  Effekseer::MaterialRenderData *arg1 = (Effekseer::MaterialRenderData *) 0 ;
+  std::vector< Effekseer::MaterialTextureParameter > *result = 0 ;
+  
+  (void)jenv;
+  (void)jcls;
+  (void)jarg1_;
+  arg1 = *(Effekseer::MaterialRenderData **)&jarg1; 
+  result = (std::vector< Effekseer::MaterialTextureParameter > *)& ((arg1)->MaterialTextures);
+  *(std::vector< Effekseer::MaterialTextureParameter > **)&jresult = result; 
+  return jresult;
+}
+
+
+SWIGEXPORT void JNICALL Java_io_github_srjohnathan_gdx_effekseer_core_GDXJNI_MaterialRenderData_1MaterialUniforms_1set(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_, jlong jarg2, jobject jarg2_) {
+  Effekseer::MaterialRenderData *arg1 = (Effekseer::MaterialRenderData *) 0 ;
+  std::vector< std::array< float,4 > > *arg2 = (std::vector< std::array< float,4 > > *) 0 ;
+  
+  (void)jenv;
+  (void)jcls;
+  (void)jarg1_;
+  (void)jarg2_;
+  arg1 = *(Effekseer::MaterialRenderData **)&jarg1; 
+  arg2 = *(std::vector< std::array< float,4 > > **)&jarg2; 
+  if (arg1) (arg1)->MaterialUniforms = *arg2;
+}
+
+
+SWIGEXPORT jlong JNICALL Java_io_github_srjohnathan_gdx_effekseer_core_GDXJNI_MaterialRenderData_1MaterialUniforms_1get(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_) {
+  jlong jresult = 0 ;
+  Effekseer::MaterialRenderData *arg1 = (Effekseer::MaterialRenderData *) 0 ;
+  std::vector< std::array< float,4 > > *result = 0 ;
+  
+  (void)jenv;
+  (void)jcls;
+  (void)jarg1_;
+  arg1 = *(Effekseer::MaterialRenderData **)&jarg1; 
+  result = (std::vector< std::array< float,4 > > *)& ((arg1)->MaterialUniforms);
+  *(std::vector< std::array< float,4 > > **)&jresult = result; 
+  return jresult;
+}
+
+
 SWIGEXPORT jlong JNICALL Java_io_github_srjohnathan_gdx_effekseer_core_GDXJNI_new_1MaterialRenderData(JNIEnv *jenv, jclass jcls) {
   jlong jresult = 0 ;
   Effekseer::MaterialRenderData *result = 0 ;
@@ -4320,6 +5953,35 @@ SWIGEXPORT jint JNICALL Java_io_github_srjohnathan_gdx_effekseer_core_GDXJNI_Nod
 }
 
 
+SWIGEXPORT void JNICALL Java_io_github_srjohnathan_gdx_effekseer_core_GDXJNI_NodeRendererBasicParameter_1TextureIndexes_1set(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_, jlong jarg2, jobject jarg2_) {
+  Effekseer::NodeRendererBasicParameter *arg1 = (Effekseer::NodeRendererBasicParameter *) 0 ;
+  std::array< int32_t,8 > *arg2 = (std::array< int32_t,8 > *) 0 ;
+  
+  (void)jenv;
+  (void)jcls;
+  (void)jarg1_;
+  (void)jarg2_;
+  arg1 = *(Effekseer::NodeRendererBasicParameter **)&jarg1; 
+  arg2 = *(std::array< int32_t,8 > **)&jarg2; 
+  if (arg1) (arg1)->TextureIndexes = *arg2;
+}
+
+
+SWIGEXPORT jlong JNICALL Java_io_github_srjohnathan_gdx_effekseer_core_GDXJNI_NodeRendererBasicParameter_1TextureIndexes_1get(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_) {
+  jlong jresult = 0 ;
+  Effekseer::NodeRendererBasicParameter *arg1 = (Effekseer::NodeRendererBasicParameter *) 0 ;
+  std::array< int32_t,8 > *result = 0 ;
+  
+  (void)jenv;
+  (void)jcls;
+  (void)jarg1_;
+  arg1 = *(Effekseer::NodeRendererBasicParameter **)&jarg1; 
+  result = (std::array< int32_t,8 > *)& ((arg1)->TextureIndexes);
+  *(std::array< int32_t,8 > **)&jresult = result; 
+  return jresult;
+}
+
+
 SWIGEXPORT void JNICALL Java_io_github_srjohnathan_gdx_effekseer_core_GDXJNI_NodeRendererBasicParameter_1DistortionIntensity_1set(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_, jfloat jarg2) {
   Effekseer::NodeRendererBasicParameter *arg1 = (Effekseer::NodeRendererBasicParameter *) 0 ;
   float arg2 ;
@@ -4401,6 +6063,64 @@ SWIGEXPORT jint JNICALL Java_io_github_srjohnathan_gdx_effekseer_core_GDXJNI_Nod
   arg1 = *(Effekseer::NodeRendererBasicParameter **)&jarg1; 
   result = (Effekseer::AlphaBlendType) ((arg1)->AlphaBlend);
   jresult = (jint)result; 
+  return jresult;
+}
+
+
+SWIGEXPORT void JNICALL Java_io_github_srjohnathan_gdx_effekseer_core_GDXJNI_NodeRendererBasicParameter_1TextureFilters_1set(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_, jlong jarg2, jobject jarg2_) {
+  Effekseer::NodeRendererBasicParameter *arg1 = (Effekseer::NodeRendererBasicParameter *) 0 ;
+  std::array< Effekseer::TextureFilterType,8 > *arg2 = (std::array< Effekseer::TextureFilterType,8 > *) 0 ;
+  
+  (void)jenv;
+  (void)jcls;
+  (void)jarg1_;
+  (void)jarg2_;
+  arg1 = *(Effekseer::NodeRendererBasicParameter **)&jarg1; 
+  arg2 = *(std::array< Effekseer::TextureFilterType,8 > **)&jarg2; 
+  if (arg1) (arg1)->TextureFilters = *arg2;
+}
+
+
+SWIGEXPORT jlong JNICALL Java_io_github_srjohnathan_gdx_effekseer_core_GDXJNI_NodeRendererBasicParameter_1TextureFilters_1get(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_) {
+  jlong jresult = 0 ;
+  Effekseer::NodeRendererBasicParameter *arg1 = (Effekseer::NodeRendererBasicParameter *) 0 ;
+  std::array< Effekseer::TextureFilterType,8 > *result = 0 ;
+  
+  (void)jenv;
+  (void)jcls;
+  (void)jarg1_;
+  arg1 = *(Effekseer::NodeRendererBasicParameter **)&jarg1; 
+  result = (std::array< Effekseer::TextureFilterType,8 > *)& ((arg1)->TextureFilters);
+  *(std::array< Effekseer::TextureFilterType,8 > **)&jresult = result; 
+  return jresult;
+}
+
+
+SWIGEXPORT void JNICALL Java_io_github_srjohnathan_gdx_effekseer_core_GDXJNI_NodeRendererBasicParameter_1TextureWraps_1set(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_, jlong jarg2, jobject jarg2_) {
+  Effekseer::NodeRendererBasicParameter *arg1 = (Effekseer::NodeRendererBasicParameter *) 0 ;
+  std::array< Effekseer::TextureWrapType,8 > *arg2 = (std::array< Effekseer::TextureWrapType,8 > *) 0 ;
+  
+  (void)jenv;
+  (void)jcls;
+  (void)jarg1_;
+  (void)jarg2_;
+  arg1 = *(Effekseer::NodeRendererBasicParameter **)&jarg1; 
+  arg2 = *(std::array< Effekseer::TextureWrapType,8 > **)&jarg2; 
+  if (arg1) (arg1)->TextureWraps = *arg2;
+}
+
+
+SWIGEXPORT jlong JNICALL Java_io_github_srjohnathan_gdx_effekseer_core_GDXJNI_NodeRendererBasicParameter_1TextureWraps_1get(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_) {
+  jlong jresult = 0 ;
+  Effekseer::NodeRendererBasicParameter *arg1 = (Effekseer::NodeRendererBasicParameter *) 0 ;
+  std::array< Effekseer::TextureWrapType,8 > *result = 0 ;
+  
+  (void)jenv;
+  (void)jcls;
+  (void)jarg1_;
+  arg1 = *(Effekseer::NodeRendererBasicParameter **)&jarg1; 
+  result = (std::array< Effekseer::TextureWrapType,8 > *)& ((arg1)->TextureWraps);
+  *(std::array< Effekseer::TextureWrapType,8 > **)&jresult = result; 
   return jresult;
 }
 
@@ -7800,6 +9520,142 @@ SWIGEXPORT void JNICALL Java_io_github_srjohnathan_gdx_effekseer_core_GDXJNI_del
 }
 
 
+SWIGEXPORT jlong JNICALL Java_io_github_srjohnathan_gdx_effekseer_core_GDXJNI_new_1ArrayLocalForceFieldVelocities_1_1SWIG_10(JNIEnv *jenv, jclass jcls) {
+  jlong jresult = 0 ;
+  std::array< Effekseer::SIMD::Vec3f,4 > *result = 0 ;
+  
+  (void)jenv;
+  (void)jcls;
+  result = (std::array< Effekseer::SIMD::Vec3f,4 > *)new std::array< Effekseer::SIMD::Vec3f,4 >();
+  *(std::array< Effekseer::SIMD::Vec3f,4 > **)&jresult = result; 
+  return jresult;
+}
+
+
+SWIGEXPORT jlong JNICALL Java_io_github_srjohnathan_gdx_effekseer_core_GDXJNI_new_1ArrayLocalForceFieldVelocities_1_1SWIG_11(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_) {
+  jlong jresult = 0 ;
+  std::array< Effekseer::SIMD::Vec3f,4 > *arg1 = 0 ;
+  std::array< Effekseer::SIMD::Vec3f,4 > *result = 0 ;
+  
+  (void)jenv;
+  (void)jcls;
+  (void)jarg1_;
+  arg1 = *(std::array< Effekseer::SIMD::Vec3f,4 > **)&jarg1;
+  if (!arg1) {
+    SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "std::array< Effekseer::SIMD::Vec3f,4 > const & reference is null");
+    return 0;
+  } 
+  result = (std::array< Effekseer::SIMD::Vec3f,4 > *)new std::array< Effekseer::SIMD::Vec3f,4 >((std::array< Effekseer::SIMD::Vec3f,4 > const &)*arg1);
+  *(std::array< Effekseer::SIMD::Vec3f,4 > **)&jresult = result; 
+  return jresult;
+}
+
+
+SWIGEXPORT jlong JNICALL Java_io_github_srjohnathan_gdx_effekseer_core_GDXJNI_ArrayLocalForceFieldVelocities_1size(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_) {
+  jlong jresult = 0 ;
+  std::array< Effekseer::SIMD::Vec3f,4 > *arg1 = (std::array< Effekseer::SIMD::Vec3f,4 > *) 0 ;
+  std::array< Effekseer::SIMD::Vec3f,4 >::size_type result;
+  
+  (void)jenv;
+  (void)jcls;
+  (void)jarg1_;
+  arg1 = *(std::array< Effekseer::SIMD::Vec3f,4 > **)&jarg1; 
+  result = ((std::array< Effekseer::SIMD::Vec3f,4 > const *)arg1)->size();
+  jresult = (jlong)result; 
+  return jresult;
+}
+
+
+SWIGEXPORT jboolean JNICALL Java_io_github_srjohnathan_gdx_effekseer_core_GDXJNI_ArrayLocalForceFieldVelocities_1isEmpty(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_) {
+  jboolean jresult = 0 ;
+  std::array< Effekseer::SIMD::Vec3f,4 > *arg1 = (std::array< Effekseer::SIMD::Vec3f,4 > *) 0 ;
+  bool result;
+  
+  (void)jenv;
+  (void)jcls;
+  (void)jarg1_;
+  arg1 = *(std::array< Effekseer::SIMD::Vec3f,4 > **)&jarg1; 
+  result = (bool)((std::array< Effekseer::SIMD::Vec3f,4 > const *)arg1)->empty();
+  jresult = (jboolean)result; 
+  return jresult;
+}
+
+
+SWIGEXPORT void JNICALL Java_io_github_srjohnathan_gdx_effekseer_core_GDXJNI_ArrayLocalForceFieldVelocities_1fill(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_, jlong jarg2, jobject jarg2_) {
+  std::array< Effekseer::SIMD::Vec3f,4 > *arg1 = (std::array< Effekseer::SIMD::Vec3f,4 > *) 0 ;
+  Effekseer::SIMD::Vec3f *arg2 = 0 ;
+  
+  (void)jenv;
+  (void)jcls;
+  (void)jarg1_;
+  (void)jarg2_;
+  arg1 = *(std::array< Effekseer::SIMD::Vec3f,4 > **)&jarg1; 
+  arg2 = *(Effekseer::SIMD::Vec3f **)&jarg2;
+  if (!arg2) {
+    SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "Effekseer::SIMD::Vec3f const & reference is null");
+    return ;
+  } 
+  (arg1)->fill((Effekseer::SIMD::Vec3f const &)*arg2);
+}
+
+
+SWIGEXPORT jlong JNICALL Java_io_github_srjohnathan_gdx_effekseer_core_GDXJNI_ArrayLocalForceFieldVelocities_1get(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_, jint jarg2) {
+  jlong jresult = 0 ;
+  std::array< Effekseer::SIMD::Vec3f,4 > *arg1 = (std::array< Effekseer::SIMD::Vec3f,4 > *) 0 ;
+  int arg2 ;
+  std::array< Effekseer::SIMD::Vec3f,4 >::value_type *result = 0 ;
+  
+  (void)jenv;
+  (void)jcls;
+  (void)jarg1_;
+  arg1 = *(std::array< Effekseer::SIMD::Vec3f,4 > **)&jarg1; 
+  arg2 = (int)jarg2; 
+  try {
+    result = (std::array< Effekseer::SIMD::Vec3f,4 >::value_type *) &std_array_Sl_Effekseer_SIMD_Vec3f_Sc_4_Sg__get(arg1,arg2);
+  } catch(std::out_of_range &_e) {
+    SWIG_JavaThrowException(jenv, SWIG_JavaIndexOutOfBoundsException, (&_e)->what());
+    return 0;
+  }
+  *(std::array< Effekseer::SIMD::Vec3f,4 >::value_type **)&jresult = result; 
+  return jresult;
+}
+
+
+SWIGEXPORT void JNICALL Java_io_github_srjohnathan_gdx_effekseer_core_GDXJNI_ArrayLocalForceFieldVelocities_1set(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_, jint jarg2, jlong jarg3, jobject jarg3_) {
+  std::array< Effekseer::SIMD::Vec3f,4 > *arg1 = (std::array< Effekseer::SIMD::Vec3f,4 > *) 0 ;
+  int arg2 ;
+  std::array< Effekseer::SIMD::Vec3f,4 >::value_type *arg3 = 0 ;
+  
+  (void)jenv;
+  (void)jcls;
+  (void)jarg1_;
+  (void)jarg3_;
+  arg1 = *(std::array< Effekseer::SIMD::Vec3f,4 > **)&jarg1; 
+  arg2 = (int)jarg2; 
+  arg3 = *(std::array< Effekseer::SIMD::Vec3f,4 >::value_type **)&jarg3;
+  if (!arg3) {
+    SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "std::array< Effekseer::SIMD::Vec3f,4 >::value_type const & reference is null");
+    return ;
+  } 
+  try {
+    std_array_Sl_Effekseer_SIMD_Vec3f_Sc_4_Sg__set(arg1,arg2,(Effekseer::SIMD::Vec3f const &)*arg3);
+  } catch(std::out_of_range &_e) {
+    SWIG_JavaThrowException(jenv, SWIG_JavaIndexOutOfBoundsException, (&_e)->what());
+    return ;
+  }
+}
+
+
+SWIGEXPORT void JNICALL Java_io_github_srjohnathan_gdx_effekseer_core_GDXJNI_delete_1ArrayLocalForceFieldVelocities(JNIEnv *jenv, jclass jcls, jlong jarg1) {
+  std::array< Effekseer::SIMD::Vec3f,4 > *arg1 = (std::array< Effekseer::SIMD::Vec3f,4 > *) 0 ;
+  
+  (void)jenv;
+  (void)jcls;
+  arg1 = *(std::array< Effekseer::SIMD::Vec3f,4 > **)&jarg1; 
+  delete arg1;
+}
+
+
 SWIGEXPORT void JNICALL Java_io_github_srjohnathan_gdx_effekseer_core_GDXJNI_ForceFieldCommonParameter_1Position_1set(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_, jlong jarg2, jobject jarg2_) {
   Effekseer::ForceFieldCommonParameter *arg1 = (Effekseer::ForceFieldCommonParameter *) 0 ;
   Effekseer::SIMD::Vec3f *arg2 = (Effekseer::SIMD::Vec3f *) 0 ;
@@ -9397,6 +11253,35 @@ SWIGEXPORT void JNICALL Java_io_github_srjohnathan_gdx_effekseer_core_GDXJNI_del
   (void)jcls;
   arg1 = *(Effekseer::LocalForceFieldParameter **)&jarg1; 
   delete arg1;
+}
+
+
+SWIGEXPORT void JNICALL Java_io_github_srjohnathan_gdx_effekseer_core_GDXJNI_LocalForceFieldInstance_1Velocities_1set(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_, jlong jarg2, jobject jarg2_) {
+  Effekseer::LocalForceFieldInstance *arg1 = (Effekseer::LocalForceFieldInstance *) 0 ;
+  std::array< Effekseer::SIMD::Vec3f,4 > *arg2 = (std::array< Effekseer::SIMD::Vec3f,4 > *) 0 ;
+  
+  (void)jenv;
+  (void)jcls;
+  (void)jarg1_;
+  (void)jarg2_;
+  arg1 = *(Effekseer::LocalForceFieldInstance **)&jarg1; 
+  arg2 = *(std::array< Effekseer::SIMD::Vec3f,4 > **)&jarg2; 
+  if (arg1) (arg1)->Velocities = *arg2;
+}
+
+
+SWIGEXPORT jlong JNICALL Java_io_github_srjohnathan_gdx_effekseer_core_GDXJNI_LocalForceFieldInstance_1Velocities_1get(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_) {
+  jlong jresult = 0 ;
+  Effekseer::LocalForceFieldInstance *arg1 = (Effekseer::LocalForceFieldInstance *) 0 ;
+  std::array< Effekseer::SIMD::Vec3f,4 > *result = 0 ;
+  
+  (void)jenv;
+  (void)jcls;
+  (void)jarg1_;
+  arg1 = *(Effekseer::LocalForceFieldInstance **)&jarg1; 
+  result = (std::array< Effekseer::SIMD::Vec3f,4 > *)& ((arg1)->Velocities);
+  *(std::array< Effekseer::SIMD::Vec3f,4 > **)&jresult = result; 
+  return jresult;
 }
 
 
@@ -15347,6 +17232,35 @@ SWIGEXPORT jlong JNICALL Java_io_github_srjohnathan_gdx_effekseer_core_GDXJNI_Pa
 }
 
 
+SWIGEXPORT void JNICALL Java_io_github_srjohnathan_gdx_effekseer_core_GDXJNI_ParameterCustomData_1Fixed4D_1set(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_, jlong jarg2, jobject jarg2_) {
+  Effekseer::ParameterCustomData *arg1 = (Effekseer::ParameterCustomData *) 0 ;
+  std::array< float,4 > *arg2 = (std::array< float,4 > *) 0 ;
+  
+  (void)jenv;
+  (void)jcls;
+  (void)jarg1_;
+  (void)jarg2_;
+  arg1 = *(Effekseer::ParameterCustomData **)&jarg1; 
+  arg2 = *(std::array< float,4 > **)&jarg2; 
+  if (arg1) (arg1)->Fixed4D = *arg2;
+}
+
+
+SWIGEXPORT jlong JNICALL Java_io_github_srjohnathan_gdx_effekseer_core_GDXJNI_ParameterCustomData_1Fixed4D_1get(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_) {
+  jlong jresult = 0 ;
+  Effekseer::ParameterCustomData *arg1 = (Effekseer::ParameterCustomData *) 0 ;
+  std::array< float,4 > *result = 0 ;
+  
+  (void)jenv;
+  (void)jcls;
+  (void)jarg1_;
+  arg1 = *(Effekseer::ParameterCustomData **)&jarg1; 
+  result = (std::array< float,4 > *)& ((arg1)->Fixed4D);
+  *(std::array< float,4 > **)&jresult = result; 
+  return jresult;
+}
+
+
 SWIGEXPORT void JNICALL Java_io_github_srjohnathan_gdx_effekseer_core_GDXJNI_ParameterCustomData_1FCurveColor_1set(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_, jlong jarg2, jobject jarg2_) {
   Effekseer::ParameterCustomData *arg1 = (Effekseer::ParameterCustomData *) 0 ;
   Effekseer::ParameterCustomDataFCurveColor *arg2 = (Effekseer::ParameterCustomDataFCurveColor *) 0 ;
@@ -15687,6 +17601,64 @@ SWIGEXPORT jint JNICALL Java_io_github_srjohnathan_gdx_effekseer_core_GDXJNI_Par
   arg1 = *(Effekseer::ParameterRendererCommon **)&jarg1; 
   result = (Effekseer::AlphaBlendType) ((arg1)->AlphaBlend);
   jresult = (jint)result; 
+  return jresult;
+}
+
+
+SWIGEXPORT void JNICALL Java_io_github_srjohnathan_gdx_effekseer_core_GDXJNI_ParameterRendererCommon_1FilterTypes_1set(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_, jlong jarg2, jobject jarg2_) {
+  Effekseer::ParameterRendererCommon *arg1 = (Effekseer::ParameterRendererCommon *) 0 ;
+  std::array< Effekseer::TextureFilterType,8 > *arg2 = (std::array< Effekseer::TextureFilterType,8 > *) 0 ;
+  
+  (void)jenv;
+  (void)jcls;
+  (void)jarg1_;
+  (void)jarg2_;
+  arg1 = *(Effekseer::ParameterRendererCommon **)&jarg1; 
+  arg2 = *(std::array< Effekseer::TextureFilterType,8 > **)&jarg2; 
+  if (arg1) (arg1)->FilterTypes = *arg2;
+}
+
+
+SWIGEXPORT jlong JNICALL Java_io_github_srjohnathan_gdx_effekseer_core_GDXJNI_ParameterRendererCommon_1FilterTypes_1get(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_) {
+  jlong jresult = 0 ;
+  Effekseer::ParameterRendererCommon *arg1 = (Effekseer::ParameterRendererCommon *) 0 ;
+  std::array< Effekseer::TextureFilterType,8 > *result = 0 ;
+  
+  (void)jenv;
+  (void)jcls;
+  (void)jarg1_;
+  arg1 = *(Effekseer::ParameterRendererCommon **)&jarg1; 
+  result = (std::array< Effekseer::TextureFilterType,8 > *)& ((arg1)->FilterTypes);
+  *(std::array< Effekseer::TextureFilterType,8 > **)&jresult = result; 
+  return jresult;
+}
+
+
+SWIGEXPORT void JNICALL Java_io_github_srjohnathan_gdx_effekseer_core_GDXJNI_ParameterRendererCommon_1WrapTypes_1set(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_, jlong jarg2, jobject jarg2_) {
+  Effekseer::ParameterRendererCommon *arg1 = (Effekseer::ParameterRendererCommon *) 0 ;
+  std::array< Effekseer::TextureWrapType,8 > *arg2 = (std::array< Effekseer::TextureWrapType,8 > *) 0 ;
+  
+  (void)jenv;
+  (void)jcls;
+  (void)jarg1_;
+  (void)jarg2_;
+  arg1 = *(Effekseer::ParameterRendererCommon **)&jarg1; 
+  arg2 = *(std::array< Effekseer::TextureWrapType,8 > **)&jarg2; 
+  if (arg1) (arg1)->WrapTypes = *arg2;
+}
+
+
+SWIGEXPORT jlong JNICALL Java_io_github_srjohnathan_gdx_effekseer_core_GDXJNI_ParameterRendererCommon_1WrapTypes_1get(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_) {
+  jlong jresult = 0 ;
+  Effekseer::ParameterRendererCommon *arg1 = (Effekseer::ParameterRendererCommon *) 0 ;
+  std::array< Effekseer::TextureWrapType,8 > *result = 0 ;
+  
+  (void)jenv;
+  (void)jcls;
+  (void)jarg1_;
+  arg1 = *(Effekseer::ParameterRendererCommon **)&jarg1; 
+  result = (std::array< Effekseer::TextureWrapType,8 > *)& ((arg1)->WrapTypes);
+  *(std::array< Effekseer::TextureWrapType,8 > **)&jresult = result; 
   return jresult;
 }
 
@@ -16751,6 +18723,180 @@ SWIGEXPORT void JNICALL Java_io_github_srjohnathan_gdx_effekseer_core_GDXJNI_del
   (void)jcls;
   arg1 = *(Effekseer::ParameterSound **)&jarg1; 
   delete arg1;
+}
+
+
+SWIGEXPORT void JNICALL Java_io_github_srjohnathan_gdx_effekseer_core_GDXJNI_DynamicFactorParameter_1Tra_1set(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_, jlong jarg2, jobject jarg2_) {
+  Effekseer::DynamicFactorParameter *arg1 = (Effekseer::DynamicFactorParameter *) 0 ;
+  std::array< float,3 > *arg2 = (std::array< float,3 > *) 0 ;
+  
+  (void)jenv;
+  (void)jcls;
+  (void)jarg1_;
+  (void)jarg2_;
+  arg1 = *(Effekseer::DynamicFactorParameter **)&jarg1; 
+  arg2 = *(std::array< float,3 > **)&jarg2; 
+  if (arg1) (arg1)->Tra = *arg2;
+}
+
+
+SWIGEXPORT jlong JNICALL Java_io_github_srjohnathan_gdx_effekseer_core_GDXJNI_DynamicFactorParameter_1Tra_1get(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_) {
+  jlong jresult = 0 ;
+  Effekseer::DynamicFactorParameter *arg1 = (Effekseer::DynamicFactorParameter *) 0 ;
+  std::array< float,3 > *result = 0 ;
+  
+  (void)jenv;
+  (void)jcls;
+  (void)jarg1_;
+  arg1 = *(Effekseer::DynamicFactorParameter **)&jarg1; 
+  result = (std::array< float,3 > *)& ((arg1)->Tra);
+  *(std::array< float,3 > **)&jresult = result; 
+  return jresult;
+}
+
+
+SWIGEXPORT void JNICALL Java_io_github_srjohnathan_gdx_effekseer_core_GDXJNI_DynamicFactorParameter_1TraInv_1set(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_, jlong jarg2, jobject jarg2_) {
+  Effekseer::DynamicFactorParameter *arg1 = (Effekseer::DynamicFactorParameter *) 0 ;
+  std::array< float,3 > *arg2 = (std::array< float,3 > *) 0 ;
+  
+  (void)jenv;
+  (void)jcls;
+  (void)jarg1_;
+  (void)jarg2_;
+  arg1 = *(Effekseer::DynamicFactorParameter **)&jarg1; 
+  arg2 = *(std::array< float,3 > **)&jarg2; 
+  if (arg1) (arg1)->TraInv = *arg2;
+}
+
+
+SWIGEXPORT jlong JNICALL Java_io_github_srjohnathan_gdx_effekseer_core_GDXJNI_DynamicFactorParameter_1TraInv_1get(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_) {
+  jlong jresult = 0 ;
+  Effekseer::DynamicFactorParameter *arg1 = (Effekseer::DynamicFactorParameter *) 0 ;
+  std::array< float,3 > *result = 0 ;
+  
+  (void)jenv;
+  (void)jcls;
+  (void)jarg1_;
+  arg1 = *(Effekseer::DynamicFactorParameter **)&jarg1; 
+  result = (std::array< float,3 > *)& ((arg1)->TraInv);
+  *(std::array< float,3 > **)&jresult = result; 
+  return jresult;
+}
+
+
+SWIGEXPORT void JNICALL Java_io_github_srjohnathan_gdx_effekseer_core_GDXJNI_DynamicFactorParameter_1Rot_1set(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_, jlong jarg2, jobject jarg2_) {
+  Effekseer::DynamicFactorParameter *arg1 = (Effekseer::DynamicFactorParameter *) 0 ;
+  std::array< float,3 > *arg2 = (std::array< float,3 > *) 0 ;
+  
+  (void)jenv;
+  (void)jcls;
+  (void)jarg1_;
+  (void)jarg2_;
+  arg1 = *(Effekseer::DynamicFactorParameter **)&jarg1; 
+  arg2 = *(std::array< float,3 > **)&jarg2; 
+  if (arg1) (arg1)->Rot = *arg2;
+}
+
+
+SWIGEXPORT jlong JNICALL Java_io_github_srjohnathan_gdx_effekseer_core_GDXJNI_DynamicFactorParameter_1Rot_1get(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_) {
+  jlong jresult = 0 ;
+  Effekseer::DynamicFactorParameter *arg1 = (Effekseer::DynamicFactorParameter *) 0 ;
+  std::array< float,3 > *result = 0 ;
+  
+  (void)jenv;
+  (void)jcls;
+  (void)jarg1_;
+  arg1 = *(Effekseer::DynamicFactorParameter **)&jarg1; 
+  result = (std::array< float,3 > *)& ((arg1)->Rot);
+  *(std::array< float,3 > **)&jresult = result; 
+  return jresult;
+}
+
+
+SWIGEXPORT void JNICALL Java_io_github_srjohnathan_gdx_effekseer_core_GDXJNI_DynamicFactorParameter_1RotInv_1set(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_, jlong jarg2, jobject jarg2_) {
+  Effekseer::DynamicFactorParameter *arg1 = (Effekseer::DynamicFactorParameter *) 0 ;
+  std::array< float,3 > *arg2 = (std::array< float,3 > *) 0 ;
+  
+  (void)jenv;
+  (void)jcls;
+  (void)jarg1_;
+  (void)jarg2_;
+  arg1 = *(Effekseer::DynamicFactorParameter **)&jarg1; 
+  arg2 = *(std::array< float,3 > **)&jarg2; 
+  if (arg1) (arg1)->RotInv = *arg2;
+}
+
+
+SWIGEXPORT jlong JNICALL Java_io_github_srjohnathan_gdx_effekseer_core_GDXJNI_DynamicFactorParameter_1RotInv_1get(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_) {
+  jlong jresult = 0 ;
+  Effekseer::DynamicFactorParameter *arg1 = (Effekseer::DynamicFactorParameter *) 0 ;
+  std::array< float,3 > *result = 0 ;
+  
+  (void)jenv;
+  (void)jcls;
+  (void)jarg1_;
+  arg1 = *(Effekseer::DynamicFactorParameter **)&jarg1; 
+  result = (std::array< float,3 > *)& ((arg1)->RotInv);
+  *(std::array< float,3 > **)&jresult = result; 
+  return jresult;
+}
+
+
+SWIGEXPORT void JNICALL Java_io_github_srjohnathan_gdx_effekseer_core_GDXJNI_DynamicFactorParameter_1Scale_1set(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_, jlong jarg2, jobject jarg2_) {
+  Effekseer::DynamicFactorParameter *arg1 = (Effekseer::DynamicFactorParameter *) 0 ;
+  std::array< float,3 > *arg2 = (std::array< float,3 > *) 0 ;
+  
+  (void)jenv;
+  (void)jcls;
+  (void)jarg1_;
+  (void)jarg2_;
+  arg1 = *(Effekseer::DynamicFactorParameter **)&jarg1; 
+  arg2 = *(std::array< float,3 > **)&jarg2; 
+  if (arg1) (arg1)->Scale = *arg2;
+}
+
+
+SWIGEXPORT jlong JNICALL Java_io_github_srjohnathan_gdx_effekseer_core_GDXJNI_DynamicFactorParameter_1Scale_1get(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_) {
+  jlong jresult = 0 ;
+  Effekseer::DynamicFactorParameter *arg1 = (Effekseer::DynamicFactorParameter *) 0 ;
+  std::array< float,3 > *result = 0 ;
+  
+  (void)jenv;
+  (void)jcls;
+  (void)jarg1_;
+  arg1 = *(Effekseer::DynamicFactorParameter **)&jarg1; 
+  result = (std::array< float,3 > *)& ((arg1)->Scale);
+  *(std::array< float,3 > **)&jresult = result; 
+  return jresult;
+}
+
+
+SWIGEXPORT void JNICALL Java_io_github_srjohnathan_gdx_effekseer_core_GDXJNI_DynamicFactorParameter_1ScaleInv_1set(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_, jlong jarg2, jobject jarg2_) {
+  Effekseer::DynamicFactorParameter *arg1 = (Effekseer::DynamicFactorParameter *) 0 ;
+  std::array< float,3 > *arg2 = (std::array< float,3 > *) 0 ;
+  
+  (void)jenv;
+  (void)jcls;
+  (void)jarg1_;
+  (void)jarg2_;
+  arg1 = *(Effekseer::DynamicFactorParameter **)&jarg1; 
+  arg2 = *(std::array< float,3 > **)&jarg2; 
+  if (arg1) (arg1)->ScaleInv = *arg2;
+}
+
+
+SWIGEXPORT jlong JNICALL Java_io_github_srjohnathan_gdx_effekseer_core_GDXJNI_DynamicFactorParameter_1ScaleInv_1get(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_) {
+  jlong jresult = 0 ;
+  Effekseer::DynamicFactorParameter *arg1 = (Effekseer::DynamicFactorParameter *) 0 ;
+  std::array< float,3 > *result = 0 ;
+  
+  (void)jenv;
+  (void)jcls;
+  (void)jarg1_;
+  arg1 = *(Effekseer::DynamicFactorParameter **)&jarg1; 
+  result = (std::array< float,3 > *)& ((arg1)->ScaleInv);
+  *(std::array< float,3 > **)&jresult = result; 
+  return jresult;
 }
 
 

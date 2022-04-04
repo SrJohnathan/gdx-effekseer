@@ -56,6 +56,10 @@ public class SIMDVec3f {
     this(GDXJNI.new_SIMDVec3f__SWIG_4(InternalStructVector3D.getCPtr(vec), vec), true);
   }
 
+  public SIMDVec3f(FloatArray3 vec) {
+    this(GDXJNI.new_SIMDVec3f__SWIG_5(FloatArray3.getCPtr(vec), vec), true);
+  }
+
   public float getX() {
     return GDXJNI.SIMDVec3f_getX(swigCPtr, this);
   }
