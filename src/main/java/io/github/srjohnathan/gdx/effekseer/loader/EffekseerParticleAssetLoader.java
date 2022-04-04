@@ -347,8 +347,9 @@ public class EffekseerParticleAssetLoader extends AsynchronousAssetLoader<Effeks
         }
 
         // Add the models
-        this.result.models = new Array<>(false, effekseerEffectCore.GetModelCount());
-        for (int i = 0; i < this.result.models.size; i++) {
+        int modelCount = effekseerEffectCore.GetModelCount();
+        this.result.models = new Array<>(false, modelCount);
+        for (int i = 0; i < modelCount; i++) {
             String path = getModelPath(effectFileHandle, i, effekseerEffectCore);
             FileHandle modelFileHandle = getPathAsFileHandle(path, effectFileHandle.type());
             if (manager.contains(modelFileHandle.path(), EffekseerParticleSubAssetLoader.Result.class)) {
@@ -362,8 +363,9 @@ public class EffekseerParticleAssetLoader extends AsynchronousAssetLoader<Effeks
         }
 
         // Add the materials
-        this.result.materials = new Array<>(false, effekseerEffectCore.GetMaterialCount());
-        for (int i = 0; i < this.result.materials.size; i++) {
+        int materialCount = effekseerEffectCore.GetMaterialCount();
+        this.result.materials = new Array<>(false, materialCount);
+        for (int i = 0; i < materialCount; i++) {
             String path = getMaterialPath(effectFileHandle, i, effekseerEffectCore);
             FileHandle materialFileHandle = getPathAsFileHandle(path, effectFileHandle.type());
             if (manager.contains(materialFileHandle.path(), EffekseerParticleSubAssetLoader.Result.class)) {

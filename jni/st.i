@@ -40,6 +40,7 @@
 %include "various.i"
 %include "arrays_java.i"
 %include "std_vector.i"
+%include "std_array.i"
 
 %include "carrays.i"
 
@@ -66,6 +67,10 @@
 
 namespace std {
     %template(VectorFloat) vector<float>;
+    %template(FloatArray2) array<float, 2>;
+    %template(FloatArray3) array<float, 3>;
+    %template(FloatArray4) array<float, 4>;
+    %template(VectorFloatArray4) vector<array<float, 4>>;
 };
 
 // Forward declaration of classes/structs that will be included later on in this file
@@ -84,6 +89,20 @@ struct Effekseer::Color;
 %rename($ignore, %$isclass) "";
 // Ignore all functions
 %rename($ignore, %$isfunction) "";
+// Un-ignore all methods in std vector classes
+%rename("%s") "std::vector::reserve";
+%rename("%s") "std::vector::doGet";
+%rename("%s") "std::vector::doSet";
+%rename("%s") "std::vector::doAdd";
+%rename("%s") "std::vector::doRemove";
+%rename("%s") "std::vector::doRemoveRange";
+%rename("%s") "std::vector::doSize";
+// Un-ignore all methods in std array classes
+%rename("%s") "std::array::size";
+%rename("%s") "std::array::isEmpty";
+%rename("%s") "std::array::fill";
+%rename("%s") "std::array::get";
+%rename("%s") "std::array::set";
 
 %include "effekseer_math.i"
 

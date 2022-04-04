@@ -522,6 +522,10 @@ void EffekseerManagerCore::UpdateHandleToMoveToFrame(int handle, float frame) {
     manager_->UpdateHandleToMoveToFrame(handle, frame);
 }
 
+void EffekseerManagerCore::SetTime(float time) {
+    renderer_->SetTime(time);
+}
+
 void EffekseerManagerCore::BeginRendering() {
     renderer_->BeginRendering();
 }

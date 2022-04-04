@@ -1,15 +1,24 @@
 // All needed enum classes and structs in Effekseer.Base.Pre.h
 %rename("MaterialTextureParameter", fullname=1) "Effekseer::MaterialTextureParameter";
 %rename("MaterialRenderData", fullname=1) "Effekseer::MaterialRenderData";
-// Ignore boost data structures
-%rename($ignore, fullname=1) "Effekseer::MaterialRenderData::MaterialTextures";
-%rename($ignore, fullname=1) "Effekseer::MaterialRenderData::MaterialUniforms";
+// std wrappers
+namespace std {
+   %template(VectorMaterialTextureParameter) vector<Effekseer::MaterialTextureParameter>;
+};
 %rename("NodeRendererDepthParameter", fullname=1) "Effekseer::NodeRendererDepthParameter";
 %rename("NodeRendererBasicParameter", fullname=1) "Effekseer::NodeRendererBasicParameter";
-// Ignore boost data structures
-%rename($ignore, fullname=1) "Effekseer::NodeRendererBasicParameter::TextureIndexes";
-%rename($ignore, fullname=1) "Effekseer::NodeRendererBasicParameter::TextureFilters";
-%rename($ignore, fullname=1) "Effekseer::NodeRendererBasicParameter::TextureWraps";
+// std wrappers
+namespace Effekseer {
+    //! the maximum number of texture slot including textures system specified
+    const int32_t TextureSlotMax = 8;
+    enum class TextureFilterType : int32_t;
+    enum class TextureWrapType : int32_t;
+};
+namespace std {
+   %template(ArrayTextureIndexes) array<int32_t, Effekseer::TextureSlotMax>;
+   %template(ArrayTextureFilters) array<Effekseer::TextureFilterType, Effekseer::TextureSlotMax>;
+   %template(ArrayTextureWraps) array<Effekseer::TextureWrapType, Effekseer::TextureSlotMax>;
+};
 %include "/cpp/Effekseer/Dev/Cpp/Effekseer/Effekseer/Effekseer.Base.Pre.h"
 
 // All enum classes in Effekseer.Base.h
