@@ -52,7 +52,7 @@ task copyEffekseerNatives {
     doFirst {
         configurations.natives.copy().files.each { jar ->
                                                         // 2.1-SNAPSHOT - version snapshot
-            if (jar.name.endsWith("gdx-effekseer-android-2.1.jar")){
+            if (jar.name.endsWith("gdx-effekseer-android-2.2.jar")){
 
                 zipTree(jar).files.each {file  ->
                     if( file.path.contains("arm64-v8a") ){

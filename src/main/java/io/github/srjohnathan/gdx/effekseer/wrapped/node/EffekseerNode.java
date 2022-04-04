@@ -437,7 +437,7 @@ public class EffekseerNode<T extends EffectNodeImplemented> {
             this.children.ensureCapacity(childCount);
 
             // Fill all empty slots with nulls
-            var currentIndexToFill = this.children.size;
+            int currentIndexToFill = this.children.size;
             while (currentIndexToFill < childCount) {
                 this.children.add(null);
                 currentIndexToFill += 1;
