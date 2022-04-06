@@ -129,6 +129,11 @@ run copyEffekseerNatives
 effekseer = new EffekseerParticle(manager);
 AssetManager assetManager = new AssetManager(fileHandleResolver);
 
+// Register the following asset loaders for the asset manager instance once before any loading is executed
+assetManager.setLoader(EffekseerParticleSubAssetLoader.Result.class, null, new EffekseerParticleSubAssetLoader(fileHandleResolver));
+assetManager.setLoader(EffekseerParticleAssetLoader.Result.class, null, new EffekseerParticleAssetLoader(fileHandleResolver));
+
+
 // For immediate loading
 effekseer.syncLoad(assetManager, "data/tu.efk", false);
 // For asynchronous loading

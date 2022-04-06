@@ -215,13 +215,8 @@ public class EffekseerParticle {
      */
     public void asyncLoad(AssetManager assetManager, String path, LoadedListener loadedListener) {
         // Get the file handle
-        FileHandle effectFileHandle = null;
+        FileHandle effectFileHandle = assetManager.getFileHandleResolver().resolve(path);
 
-        if ( assetManager.getFileHandleResolver()  instanceof InternalFileHandleResolver) {
-            effectFileHandle = Gdx.files.internal(path);
-        } else {
-            effectFileHandle = Gdx.files.external(path);
-        }
         // Call load() with the generated file handle
         this.asyncLoad(assetManager, effectFileHandle, loadedListener);
     }
@@ -238,15 +233,7 @@ public class EffekseerParticle {
      */
     public void syncLoad(AssetManager assetManager, String path) throws IllegalStateException {
         // Get the file handle
-        FileHandle effectFileHandle = null;
-
-
-
-        if ( assetManager.getFileHandleResolver()  instanceof InternalFileHandleResolver) {
-            effectFileHandle = Gdx.files.internal(path);
-        } else {
-            effectFileHandle = Gdx.files.external(path);
-        }
+        FileHandle effectFileHandle = assetManager.getFileHandleResolver().resolve(path);
 
         // Call load() with the generated file handle
         this.syncLoad(assetManager, effectFileHandle);
