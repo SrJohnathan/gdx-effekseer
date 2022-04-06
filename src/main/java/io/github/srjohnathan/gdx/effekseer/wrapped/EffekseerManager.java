@@ -25,7 +25,6 @@ public class EffekseerManager implements Disposable {
     private static final float SINGLE_FRAME_TIME_SECONDS_INV = 1.0f / SINGLE_FRAME_TIME_SECONDS;
 
     //endregion
-
     //region Properties
 
     protected EffekseerManagerCore effekseerManagerCore;
