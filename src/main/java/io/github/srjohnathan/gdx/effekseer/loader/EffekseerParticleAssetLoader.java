@@ -237,7 +237,6 @@ public class EffekseerParticleAssetLoader extends AsynchronousAssetLoader<Effeks
 
         assetManager.load(mainAssetDescriptor);
 
-        System.out.println(mainAssetDescriptor.toString());
         // Wait for load to finish
         assetManager.finishLoading();
 
