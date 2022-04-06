@@ -222,7 +222,6 @@ public class EffekseerParticle {
         } else {
             effectFileHandle = Gdx.files.external(path);
         }
-
         // Call load() with the generated file handle
         this.asyncLoad(assetManager, effectFileHandle, loadedListener);
     }
