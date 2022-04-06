@@ -6,7 +6,7 @@ plugins {
 
 
 group 'io.github.srjohnathan'
-version '2.1'
+version '2.2'
 def  isReleaseVersion = !version.endsWith("SNAPSHOT")
 
 repositories {

@@ -177,7 +177,7 @@ public class EffekseerParticleAssetLoader extends AsynchronousAssetLoader<Effeks
             }
 
             // Models load
-            var currentIndex = 0;
+            int currentIndex = 0;
             for (EffekseerParticleSubAssetLoader.Result modelAsset : this.models) {
                 if (!effekseerEffectCore.LoadModel(modelAsset.data, modelAsset.data.length, currentIndex)) {
                     System.out.printf("Failed to load Effekseer particle model file %s.\n", modelAsset.fileHandle.toString());
