@@ -109,7 +109,7 @@ public class EffekseerParticleAssetLoader extends AsynchronousAssetLoader<Effeks
      * @return The {@link AssetDescriptor} to use for the main effect file.
      */
     public static AssetDescriptor<Result> getMainFileAssetDescriptor(FileHandle effectFileHandle, EffekseerManagerCore effekseerManagerCore, EffekseerEffectCore effekseerEffectCore, float magnification) throws IllegalStateException {
-        return new AssetDescriptor<>(new FileHandle(prefixForMainFilePath + effectFileHandle.path()), Result.class, new Parameters(effectFileHandle, effekseerManagerCore, effekseerEffectCore, magnification));
+        return new AssetDescriptor<Result>(new FileHandle(prefixForMainFilePath + effectFileHandle.path()), Result.class, new Parameters(effectFileHandle, effekseerManagerCore, effekseerEffectCore, magnification));
     }
 
     /**
@@ -232,6 +232,9 @@ public class EffekseerParticleAssetLoader extends AsynchronousAssetLoader<Effeks
     public static void syncLoad(AssetManager assetManager, FileHandle effectFileHandle, EffekseerManagerCore effekseerManagerCore, EffekseerEffectCore effekseerEffectCore, float magnification) throws IllegalStateException {
         // Request load
         AssetDescriptor<Result> mainAssetDescriptor = getMainFileAssetDescriptor(effectFileHandle, effekseerManagerCore, effekseerEffectCore, magnification);
+
+
+
         assetManager.load(mainAssetDescriptor);
 
         // Wait for load to finish

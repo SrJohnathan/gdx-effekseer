@@ -3,6 +3,8 @@ package io.github.srjohnathan.gdx.effekseer.wrapped;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.assets.AssetDescriptor;
 import com.badlogic.gdx.assets.AssetManager;
+import com.badlogic.gdx.assets.loaders.FileHandleResolver;
+import com.badlogic.gdx.assets.loaders.resolvers.InternalFileHandleResolver;
 import com.badlogic.gdx.files.FileHandle;
 import com.badlogic.gdx.math.Matrix4;
 import com.badlogic.gdx.math.Vector3;
@@ -211,10 +213,11 @@ public class EffekseerParticle {
      * Asynchronously loads the given effect file. An optional {@link LoadedListener} can be given for listening to when the
      * effect has finished loading.
      */
-    public void asyncLoad(AssetManager assetManager, String path, boolean isInternalStorage, LoadedListener loadedListener) {
+    public void asyncLoad(AssetManager assetManager, String path, LoadedListener loadedListener) {
         // Get the file handle
         FileHandle effectFileHandle = null;
-        if (isInternalStorage) {
+
+        if ( assetManager.getFileHandleResolver()  instanceof InternalFileHandleResolver) {
             effectFileHandle = Gdx.files.internal(path);
         } else {
             effectFileHandle = Gdx.files.external(path);
@@ -234,10 +237,13 @@ public class EffekseerParticle {
     /**
      * Synchronously loads the given effect file.
      */
-    public void syncLoad(AssetManager assetManager, String path, boolean isInternalStorage) throws IllegalStateException {
+    public void syncLoad(AssetManager assetManager, String path) throws IllegalStateException {
         // Get the file handle
         FileHandle effectFileHandle = null;
-        if (isInternalStorage) {
+
+
+
+        if ( assetManager.getFileHandleResolver()  instanceof InternalFileHandleResolver) {
             effectFileHandle = Gdx.files.internal(path);
         } else {
             effectFileHandle = Gdx.files.external(path);
