@@ -95,6 +95,11 @@ run copyEffekseerNatives
 // Effekseer start
   EffekseerGdx.init()
   AssetManager assetManager = new AssetManager(fileHandleResolver);
+
+// set Loader
+    assetManager.setLoader(EffekseerParticleSubAssetLoader.Result.class, null, new EffekseerParticleSubAssetLoader(fileHandleResolver));
+    assetManager.setLoader(EffekseerParticleAssetLoader.Result.class, null, new EffekseerParticleAssetLoader(fileHandleResolver));
+    
   PerspectiveCamera  perspectiveCamera = new PerspectiveCamera(67, 1280f, 720);
 
   // Create a new manager for the particles
