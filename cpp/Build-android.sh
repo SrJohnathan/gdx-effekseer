@@ -1,0 +1,23 @@
+#!/bin/bash
+
+echo "build & copy Android x86"
+export  NDK_PROJECT_PATH="$PWD"
+export  NDK_APPLICATION_MK=jni/Application_x86.mk
+
+ndk-build clean NDK_PROJECT_PATH="$NDK_PROJECT_PATH" NDK_APPLICATION_MK="$NDK_APPLICATION_MK"
+ndk-build -j4 NDK_PROJECT_PATH="$NDK_PROJECT_PATH" NDK_APPLICATION_MK="$NDK_APPLICATION_MK"
+
+
+echo "build & copy Android armeabi-v7a"
+export NDK_APPLICATION_MK=jni/Application_armeabi-v7a.mk
+
+ndk-build clean NDK_PROJECT_PATH="$NDK_PROJECT_PATH" NDK_APPLICATION_MK="$NDK_APPLICATION_MK"
+ndk-build -j4 NDK_PROJECT_PATH="$NDK_PROJECT_PATH" NDK_APPLICATION_MK="$NDK_APPLICATION_MK"
+
+echo "build & copy Android arm64-v8a"
+export NDK_APPLICATION_MK=jni/Application_arm64-v8a.mk
+
+ndk-build clean NDK_PROJECT_PATH="$NDK_PROJECT_PATH" NDK_APPLICATION_MK="$NDK_APPLICATION_MK"
+ndk-build -j4 NDK_PROJECT_PATH="$NDK_PROJECT_PATH" NDK_APPLICATION_MK="$NDK_APPLICATION_MK"
+
+

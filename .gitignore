@@ -7,3 +7,6 @@
 /gdx-effekseer-desktop/build/
 /gdx-effekseer-android/build/
 
+/cpp/obj/local/x86/objs/
+/cpp/obj/local/arm64-v8a/objs/
+/cpp/obj/local/armeabi-v7a/objs/

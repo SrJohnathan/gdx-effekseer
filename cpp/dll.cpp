@@ -2780,7 +2780,7 @@ SWIGEXPORT jfloatArray JNICALL Java_io_github_srjohnathan_gdx_effekseer_core_GDX
   arg1 = *(EffekseerManagerCore **)&jarg1; 
   arg2 = (int)jarg2; 
   result = (float *)(arg1)->GetMatrix(arg2);
-  jresult = SWIG_JavaArrayOutFloat(jenv, (float *)result, FillMeInAsSizeCannotBeDeterminedAutomatically); 
+  jresult = SWIG_JavaArrayOutFloat(jenv, (float *)result, 16);
   return jresult;
 }
 
@@ -2815,7 +2815,7 @@ SWIGEXPORT jfloatArray JNICALL Java_io_github_srjohnathan_gdx_effekseer_core_GDX
   arg1 = *(EffekseerManagerCore **)&jarg1; 
   arg2 = (int)jarg2; 
   result = (float *)(arg1)->GetBaseMatrix(arg2);
-  jresult = SWIG_JavaArrayOutFloat(jenv, (float *)result, FillMeInAsSizeCannotBeDeterminedAutomatically); 
+  jresult = SWIG_JavaArrayOutFloat(jenv, (float *)result, 16);
   return jresult;
 }
 
