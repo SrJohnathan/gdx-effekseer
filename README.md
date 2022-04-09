@@ -149,20 +149,30 @@ effekseer.asyncLoad(assetManager, "data/tu.efk", false, new LoadedListener() {
 
 ``` java
 @Override
-        public void render() {
+public void render() {
 
-...
+    ...
 
-        manager.draw(Gdx.graphics.getDeltaTime());
+    manager.draw(Gdx.graphics.getDeltaTime());
+    
+    OR
+    
+    manager.update(Gdx.graphics.getDeltaTime());
+    // Can call this draw as many times as needed. For example one draw for post-processing and then the normal draw.
+    manager.drawAfterUpdate();
 } 
 ```
 
-#### dispose function
+#### Dispose function
 
 ```java  
 @Override
-    public void dispose() {
-manager.dispose();
+public void dispose() {
+    // Dispose a single effect
+    effekseerParticle.dispose();
+    
+    // Dispose entire manager
+    manager.dispose();
 } 
 ```
 
@@ -172,18 +182,17 @@ manager.dispose();
   EffekseerManager  manager = new EffekseerManager(orthographicCamera);
 ```
 
-### animation functions
+### Animation functions
 
 ```java
-  effekseer = new EffekseerParticle(manager);
-
+effekseer = new EffekseerParticle(manager);
 
 
 try {
-            effekseer.syncLoad("data/ring.efk",true);
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
+    effekseer.syncLoad("data/ring.efk",true);
+} catch (Exception e) {
+    e.printStackTrace();
+}
 
 effekseer.play();
 

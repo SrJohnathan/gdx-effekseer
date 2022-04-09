@@ -1,13 +1,11 @@
 package io.github.srjohnathan.gdx.effekseer.wrapped;
 
-import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.assets.AssetDescriptor;
 import com.badlogic.gdx.assets.AssetManager;
-import com.badlogic.gdx.assets.loaders.FileHandleResolver;
-import com.badlogic.gdx.assets.loaders.resolvers.InternalFileHandleResolver;
 import com.badlogic.gdx.files.FileHandle;
 import com.badlogic.gdx.math.Matrix4;
 import com.badlogic.gdx.math.Vector3;
+import com.badlogic.gdx.utils.Disposable;
 import io.github.srjohnathan.gdx.effekseer.core.*;
 import io.github.srjohnathan.gdx.effekseer.loader.EffekseerParticleAssetLoader;
 import io.github.srjohnathan.gdx.effekseer.wrapped.node.EffekseerNode;
@@ -16,7 +14,7 @@ import io.github.srjohnathan.gdx.effekseer.wrapped.node.EffekseerNodeRoot;
 import java.util.Objects;
 import java.util.function.Function;
 
-public class EffekseerParticle {
+public class EffekseerParticle implements Disposable {
 
     //region State
 
@@ -133,6 +131,16 @@ public class EffekseerParticle {
     public void scale(float x, float y, float z) {
         this.transform.scale(x, y, z);
         this.queueUpdateTransformMatrix();
+    }
+
+    //endregion
+
+    //region Overrides
+
+    @Override
+    public void dispose() {
+        this.stop();
+        this.delete();
     }
 
     //endregion
