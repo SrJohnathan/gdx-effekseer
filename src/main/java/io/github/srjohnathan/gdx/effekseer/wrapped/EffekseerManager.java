@@ -313,20 +313,21 @@ public class EffekseerManager implements Disposable {
 
         // Update and draw each particle effect
         for (EffekseerParticle effekseer : this.effekseers) {
-            effekseer.update(delta);
-
-            // Check if the current effect has just finished playing. If so, call its animation completed callback if available.
+            // Only update the particle effect if it is playing
             if (effekseer.isInPlayingState()) {
+                effekseer.update(delta);
+
+                // Check if the current effect has just finished playing. If so, call its animation completed callback if available.
                 if (!this.isPlaying(effekseer)) {
                     effekseer.setToStopState();
                     if (effekseer.getOnAnimationComplete() != null) {
                         effekseer.getOnAnimationComplete().finish();
                     }
                 }
-            }
 
-            if (this.camera instanceof PerspectiveCamera) {
-                effekseer.updateTransformMatrixIfQueued();
+                if (this.camera instanceof PerspectiveCamera) {
+                    effekseer.updateTransformMatrixIfQueued();
+                }
             }
         }
 
