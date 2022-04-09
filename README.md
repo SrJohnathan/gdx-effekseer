@@ -6,6 +6,12 @@ Dedicated library for using Effekseer particle tools in libGDX
 
 ![Alt text](https://thumbs.gfycat.com/ThickDistinctDunnart-size_restricted.gif?raw=true "Title")
 
+
+### outras libs
+LibGDX Water (in development) https://github.com/SrJohnathan/libgdx-water
+
+
+
 https://effekseer.github.io/en/
 
 https://libgdx.badlogicgames.com/
