@@ -298,13 +298,12 @@ public class EffekseerManager implements Disposable {
     //endregion
 
     /**
-     * Draws all added particle effects. Call {@link #getDrawParameter()} before this call, and update its state to further affect
-     * how the particles are drawn.
+     * Updates all state needed for the current step in the simulation. Call this only once per frame.
+     * If you only draw the simulation once per frame, you can call @link #draw(float)} instead which calls this
+     * update method and then the draw method.
      * @param delta The time in seconds since the last frame.
      */
-    public void draw(float delta) {
-        this.onPreDraw();
-
+    public void update(float delta) {
         this.timeInSeconds += delta;
 
         // If the LibGDX camera state should be updated here
@@ -348,6 +347,14 @@ public class EffekseerManager implements Disposable {
         // Update the manager core
         this.effekseerManagerCore.Update(delta * SINGLE_FRAME_TIME_SECONDS_INV);
         this.effekseerManagerCore.SetTime(this.timeInSeconds);
+    }
+
+    /**
+     * This draws all added particle effects. This should only be called after a {@link #update(float)} call and can be called
+     * multiple times without affecting the update step.
+     */
+    public void drawAfterUpdate() {
+        this.onPreDraw();
 
         // Draw
         this.effekseerManagerCore.BeginRendering();
@@ -355,6 +362,20 @@ public class EffekseerManager implements Disposable {
         this.effekseerManagerCore.EndRendering();
 
         this.onPostDraw();
+    }
+
+    /**
+     * This calls the updates methods and then draws all added particle effects. Call {@link #getDrawParameter()} before this call, and update its state to further affect
+     * how the particles are drawn.
+     * If you want to draw multiple times do NOT use this method. Call {@link #update(float)} and then call {@link #drawAfterUpdate()} however many times draw calls are needed.
+     * @param delta The time in seconds since the last frame.
+     */
+    public void draw(float delta) {
+        // Update
+        this.update(delta);
+
+        // Draw
+        this.drawAfterUpdate();
     }
 
     //endregion
