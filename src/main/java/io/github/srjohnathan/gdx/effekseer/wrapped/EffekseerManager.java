@@ -363,12 +363,12 @@ public class EffekseerManager implements Disposable {
 
     @Override
     public void dispose() {
-        // Delete the manager color
-        this.effekseerManagerCore.delete();
         // Delete all added effect instances. Use while loop to avoid nested iterator usages of LibGDX Array.
         while (!this.effekseers.isEmpty()) {
-            this.effekseers.first().delete();
+            this.effekseers.first().dispose();
         }
+        // Delete the manager core
+        this.effekseerManagerCore.delete();
         // Terminate the backend
         EffekseerBackendCore.Terminate();
     }
