@@ -18,7 +18,7 @@ public class EffekseerParticle implements Disposable {
 
     //region State
 
-    public final Matrix4 transform = new Matrix4();
+    private final Matrix4 transform = new Matrix4();
 
     private final EffekseerEffectCore effekseerEffectCore;
 
@@ -91,6 +91,16 @@ public class EffekseerParticle implements Disposable {
      */
     private void queueUpdateTransformMatrix() {
         this.isTransformMatrixUpdateQueued = true;
+    }
+
+    /**
+     *
+     * @return The {@link Matrix4} instance used for transforming this particle. Calling this will also queue a transform update
+     * for Effekseer so that this transform is reflected in Effekseer.
+     */
+    public Matrix4 getTransform() {
+        this.queueUpdateTransformMatrix();
+        return this.transform;
     }
 
     public void setTranslation(float x, float y, float z) {

@@ -210,7 +210,7 @@ effekseer.setRotation();
 effekseer.roatate();
 effekseer.setScale();
 effekseer.scale();
-effekseer.transform; // For direct access for transformation
+effekseer.getTransform(); // For direct access for transformation
 
 effekseer.getNodeCount();
 effekseer.getRootNode();
