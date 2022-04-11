@@ -8,7 +8,7 @@ import io.github.srjohnathan.gdx.effekseer.wrapped.StandardColorParameter;
 import java.util.function.Function;
 
 /**
- * An Effekseer Model node that contains the specific Track properties.
+ * An Effekseer Model node that contains the specific Model properties.
  */
 public class EffekseerNodeModel extends EffekseerNode<EffectNodeModel> {
 
@@ -38,6 +38,10 @@ public class EffekseerNodeModel extends EffekseerNode<EffectNodeModel> {
     //endregion
 
     //region Wrapper Methods
+
+    public void delete() {
+        this.coreNode.delete();
+    }
 
     public void setAlphaBlend(AlphaBlendType value) {
         this.coreNode.setAlphaBlend(value);
