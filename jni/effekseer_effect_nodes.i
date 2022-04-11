@@ -48,6 +48,17 @@
 %rename("EffectNodeSprite", fullname=1) "Effekseer::EffectNodeSprite";
 %include "/cpp/Effekseer/Dev/Cpp/Effekseer/Effekseer/Effekseer.EffectNodeSprite.h"
 
+// Ribbon node
+// Don't know why NodeParameter and InstanceParameter are not being wrapped
+%rename("RibbonRendererNodeParameter", fullname=1) "Effekseer::RibbonRenderer::NodeParameter";
+%rename("RibbonRendererInstanceParameter", fullname=1) "Effekseer::RibbonRenderer::InstanceParameter";
+%include "/cpp/Effekseer/Dev/Cpp/Effekseer/Effekseer/Renderer/Effekseer.RibbonRenderer.h"
+%rename("RibbonAllColorParameterCore", fullname=1) "Effekseer::RibbonAllColorParameter";
+%rename("RibbonColorParameterCore", fullname=1) "Effekseer::RibbonColorParameter";
+%rename("RibbonPositionParameterCore", fullname=1) "Effekseer::RibbonPositionParameter";
+%rename("EffectNodeRibbon", fullname=1) "Effekseer::EffectNodeRibbon";
+%include "/cpp/Effekseer/Dev/Cpp/Effekseer/Effekseer/Effekseer.EffectNodeRibbon.h"
+
 // Track node
 %rename("TrackSizeParameterCore", fullname=1) "Effekseer::TrackSizeParameter";
 %rename("EffectNodeTrack", fullname=1) "Effekseer::EffectNodeTrack";

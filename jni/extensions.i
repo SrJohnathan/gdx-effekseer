@@ -103,6 +103,12 @@
         return static_cast<Effekseer::EffectNodeSprite*>(self->GetChild(index));
     }
 
+    Effekseer::EffectNodeRibbon* getChildAsRibbon(int index) {
+        if (index >= self->GetChildrenCount())
+            return nullptr;
+        return static_cast<Effekseer::EffectNodeRibbon*>(self->GetChild(index));
+    }
+
     Effekseer::EffectNodeTrack* getChildAsTrack(int index) {
         if (index >= self->GetChildrenCount())
             return nullptr;
@@ -138,6 +144,43 @@
     Effekseer::SIMD::Vec2f getFixedUpperRightPos() { return self->fixed.ur; }
     void setFixedUpperRightPos(Effekseer::SIMD::Vec2f value) { self->fixed.ur = value; }
 };
+// SpriteColorParameter
+%extend Effekseer::SpriteColorParameter {
+    Effekseer::Color getFixedLowerLeftColor() { return self->fixed.ll; }
+    void setFixedLowerLeftColor(Effekseer::Color value) { self->fixed.ll = value; }
+    Effekseer::Color getFixedLowerRightColor() { return self->fixed.lr; }
+    void setFixedLowerRightColor(Effekseer::Color value) { self->fixed.lr = value; }
+    Effekseer::Color getFixedUpperLeftColor() { return self->fixed.ul; }
+    void setFixedUpperLeftColor(Effekseer::Color value) { self->fixed.ul = value; }
+    Effekseer::Color getFixedUpperRightColor() { return self->fixed.ur; }
+    void setFixedUpperRightColor(Effekseer::Color value) { self->fixed.ur = value; }
+};
+
+
+// RibbonAllColorParameter
+%extend Effekseer::RibbonAllColorParameter {
+    Effekseer::Color getFixedAllColor() { return self->fixed.all; }
+    void setFixedAllColor(Effekseer::Color value) { self->fixed.all = value; }
+    Effekseer::random_color getRandomAllColor() { return self->random.all; }
+    void setRandomAllColor(Effekseer::random_color value) { self->random.all = value; }
+    Effekseer::easing_color getEasingAllColor() { return self->easing.all; }
+    void setEasingAllColor(Effekseer::easing_color value) { self->easing.all = value; }
+};
+// RibbonColorParameter
+%extend Effekseer::RibbonColorParameter {
+    Effekseer::Color getFixedLeftColor() { return self->fixed.l; }
+    void setFixedLeftColor(Effekseer::Color value) { self->fixed.l = value; }
+    Effekseer::Color getFixedRightColor() { return self->fixed.r; }
+    void setFixedRightColor(Effekseer::Color value) { self->fixed.r = value; }
+};
+// RibbonPositionParameter
+%extend Effekseer::RibbonPositionParameter {
+    float getFixedLeftCoord() { return self->fixed.l; }
+    void setFixedLeftCoord(float value) { self->fixed.l = value; }
+    float getFixedRightCoord() { return self->fixed.r; }
+    void setFixedRightCoord(float value) { self->fixed.r = value; }
+};
+
 
 // TrackSizeParameter
 %extend Effekseer::TrackSizeParameter {

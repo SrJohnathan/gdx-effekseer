@@ -80,6 +80,11 @@ public class EffectNode {
     return (cPtr == 0) ? null : new EffectNodeSprite(cPtr, false);
   }
 
+  public EffectNodeRibbon getChildAsRibbon(int index) {
+    long cPtr = GDXJNI.EffectNode_getChildAsRibbon(swigCPtr, this, index);
+    return (cPtr == 0) ? null : new EffectNodeRibbon(cPtr, false);
+  }
+
   public EffectNodeTrack getChildAsTrack(int index) {
     long cPtr = GDXJNI.EffectNode_getChildAsTrack(swigCPtr, this, index);
     return (cPtr == 0) ? null : new EffectNodeTrack(cPtr, false);

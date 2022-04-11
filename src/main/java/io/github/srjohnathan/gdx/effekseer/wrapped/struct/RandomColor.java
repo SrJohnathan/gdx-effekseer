@@ -11,7 +11,7 @@ public class RandomColor {
 
     //region State
 
-    final InternalStructRandomColor core;
+    public final InternalStructRandomColor core;
 
     //region Field Wrappers
 

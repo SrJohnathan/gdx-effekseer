@@ -9,7 +9,7 @@ public class EasingColor {
 
     //region State
 
-    final InternalStructEasingColor core;
+    public final InternalStructEasingColor core;
 
     //region Field Wrappers
 
