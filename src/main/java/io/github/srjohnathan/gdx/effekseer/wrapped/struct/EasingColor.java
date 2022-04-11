@@ -1,9 +1,6 @@
 package io.github.srjohnathan.gdx.effekseer.wrapped.struct;
 
-import io.github.srjohnathan.gdx.effekseer.core.Color;
-import io.github.srjohnathan.gdx.effekseer.core.ColorMode;
 import io.github.srjohnathan.gdx.effekseer.core.InternalStructEasingColor;
-import io.github.srjohnathan.gdx.effekseer.core.InternalStructRandomColor;
 import io.github.srjohnathan.gdx.effekseer.wrapped.EffekseerFieldWrapper;
 
 import java.util.function.Function;
