@@ -52,3 +52,7 @@
 %rename("TrackSizeParameterCore", fullname=1) "Effekseer::TrackSizeParameter";
 %rename("EffectNodeTrack", fullname=1) "Effekseer::EffectNodeTrack";
 %include "/cpp/Effekseer/Dev/Cpp/Effekseer/Effekseer/Effekseer.EffectNodeTrack.h"
+
+// Model node
+%rename("EffectNodeModel", fullname=1) "Effekseer::EffectNodeModel";
+%include "/cpp/Effekseer/Dev/Cpp/Effekseer/Effekseer/Effekseer.EffectNodeModel.h"

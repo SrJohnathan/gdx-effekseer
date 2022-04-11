@@ -828,6 +828,7 @@ public class GDXJNI {
   public final static native long EffectNode_getChild(long jarg1, EffectNode jarg1_, int jarg2);
   public final static native long EffectNode_getChildAsSprite(long jarg1, EffectNode jarg1_, int jarg2);
   public final static native long EffectNode_getChildAsTrack(long jarg1, EffectNode jarg1_, int jarg2);
+  public final static native long EffectNode_getChildAsModel(long jarg1, EffectNode jarg1_, int jarg2);
   public final static native int BindType_NotBind_get();
   public final static native int BindType_NotBind_Root_get();
   public final static native int BindType_WhenCreating_get();
@@ -1472,6 +1473,24 @@ public class GDXJNI {
   public final static native long EffectNodeTrack_TextureUVType_get(long jarg1, EffectNodeTrack jarg1_);
   public final static native long new_EffectNodeTrack(long jarg1, EffekseerEffect jarg1_, long jarg2);
   public final static native void delete_EffectNodeTrack(long jarg1);
+  public final static native void EffectNodeModel_AlphaBlend_set(long jarg1, EffectNodeModel jarg1_, int jarg2);
+  public final static native int EffectNodeModel_AlphaBlend_get(long jarg1, EffectNodeModel jarg1_);
+  public final static native void EffectNodeModel_ModelIndex_set(long jarg1, EffectNodeModel jarg1_, int jarg2);
+  public final static native int EffectNodeModel_ModelIndex_get(long jarg1, EffectNodeModel jarg1_);
+  public final static native void EffectNodeModel_NormalTextureIndex_set(long jarg1, EffectNodeModel jarg1_, int jarg2);
+  public final static native int EffectNodeModel_NormalTextureIndex_get(long jarg1, EffectNodeModel jarg1_);
+  public final static native void EffectNodeModel_Billboard_set(long jarg1, EffectNodeModel jarg1_, int jarg2);
+  public final static native int EffectNodeModel_Billboard_get(long jarg1, EffectNodeModel jarg1_);
+  public final static native void EffectNodeModel_Lighting_set(long jarg1, EffectNodeModel jarg1_, boolean jarg2);
+  public final static native boolean EffectNodeModel_Lighting_get(long jarg1, EffectNodeModel jarg1_);
+  public final static native void EffectNodeModel_Culling_set(long jarg1, EffectNodeModel jarg1_, int jarg2);
+  public final static native int EffectNodeModel_Culling_get(long jarg1, EffectNodeModel jarg1_);
+  public final static native void EffectNodeModel_AllColor_set(long jarg1, EffectNodeModel jarg1_, long jarg2, StandardColorParameterCore jarg2_);
+  public final static native long EffectNodeModel_AllColor_get(long jarg1, EffectNodeModel jarg1_);
+  public final static native void EffectNodeModel_Mode_set(long jarg1, EffectNodeModel jarg1_, int jarg2);
+  public final static native int EffectNodeModel_Mode_get(long jarg1, EffectNodeModel jarg1_);
+  public final static native long new_EffectNodeModel(long jarg1, EffekseerEffect jarg1_, long jarg2);
+  public final static native void delete_EffectNodeModel(long jarg1);
   public final static native void EffekseerManagerParameters_UpdateParameter_DeltaFrame_set(long jarg1, EffekseerManagerParameters.UpdateParameter jarg1_, float jarg2);
   public final static native float EffekseerManagerParameters_UpdateParameter_DeltaFrame_get(long jarg1, EffekseerManagerParameters.UpdateParameter jarg1_);
   public final static native void EffekseerManagerParameters_UpdateParameter_UpdateInterval_set(long jarg1, EffekseerManagerParameters.UpdateParameter jarg1_, float jarg2);
@@ -1494,4 +1513,5 @@ public class GDXJNI {
   public final static native long EffectNodeRoot_SWIGUpcast(long jarg1);
   public final static native long EffectNodeSprite_SWIGUpcast(long jarg1);
   public final static native long EffectNodeTrack_SWIGUpcast(long jarg1);
+  public final static native long EffectNodeModel_SWIGUpcast(long jarg1);
 }

@@ -226,6 +226,7 @@ EffekseerNode // The base node class for all node classes below
 EffekseerNodeRoot // The root node of an effect
 EffekseerNodeSprite
 EffekseerNodeTrack
+EffekseerNodeModel
 ```
 
 [![paypal](https://www.paypalobjects.com/en_US/i/btn/btn_donateCC_LG.gif)](https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=ZESRVEEVLLCY6)

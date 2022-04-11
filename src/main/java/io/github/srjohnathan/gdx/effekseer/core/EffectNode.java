@@ -85,4 +85,9 @@ public class EffectNode {
     return (cPtr == 0) ? null : new EffectNodeTrack(cPtr, false);
   }
 
+  public EffectNodeModel getChildAsModel(int index) {
+    long cPtr = GDXJNI.EffectNode_getChildAsModel(swigCPtr, this, index);
+    return (cPtr == 0) ? null : new EffectNodeModel(cPtr, false);
+  }
+
 }
