@@ -1200,6 +1200,44 @@ SWIGINTERN Effekseer::easing_color Effekseer_StandardColorParameter_getEasing(Ef
 SWIGINTERN void Effekseer_StandardColorParameter_setEasing(Effekseer::StandardColorParameter *self,Effekseer::easing_color value){ self->easing.all = value; }
 SWIGINTERN Effekseer::FCurveVectorColor *Effekseer_StandardColorParameter_getFCurveRGBA(Effekseer::StandardColorParameter *self){ return self->fcurve_rgba.FCurve; }
 SWIGINTERN void Effekseer_StandardColorParameter_setFCurveRGBA(Effekseer::StandardColorParameter *self,Effekseer::FCurveVectorColor *value){ self->fcurve_rgba.FCurve = value; }
+SWIGINTERN Effekseer::random_vector3d Effekseer_ParameterGenerationLocation_getPointLocation(Effekseer::ParameterGenerationLocation *self){ return self->point.location; }
+SWIGINTERN void Effekseer_ParameterGenerationLocation_setPointLocation(Effekseer::ParameterGenerationLocation *self,Effekseer::random_vector3d value){ self->point.location = value; }
+SWIGINTERN Effekseer::random_float Effekseer_ParameterGenerationLocation_getSphereRadius(Effekseer::ParameterGenerationLocation *self){ return self->sphere.radius; }
+SWIGINTERN void Effekseer_ParameterGenerationLocation_setSphereRadius(Effekseer::ParameterGenerationLocation *self,Effekseer::random_float value){ self->sphere.radius = value; }
+SWIGINTERN Effekseer::random_float Effekseer_ParameterGenerationLocation_getSphereRotationX(Effekseer::ParameterGenerationLocation *self){ return self->sphere.rotation_x; }
+SWIGINTERN void Effekseer_ParameterGenerationLocation_setSphereRotationX(Effekseer::ParameterGenerationLocation *self,Effekseer::random_float value){ self->sphere.rotation_x = value; }
+SWIGINTERN Effekseer::random_float Effekseer_ParameterGenerationLocation_getSphereRotationY(Effekseer::ParameterGenerationLocation *self){ return self->sphere.rotation_y; }
+SWIGINTERN void Effekseer_ParameterGenerationLocation_setSphereRotationY(Effekseer::ParameterGenerationLocation *self,Effekseer::random_float value){ self->sphere.rotation_y = value; }
+SWIGINTERN Effekseer::ModelReferenceType Effekseer_ParameterGenerationLocation_getModelReferenceType(Effekseer::ParameterGenerationLocation *self){ return self->model.Reference; }
+SWIGINTERN void Effekseer_ParameterGenerationLocation_setModelReferenceType(Effekseer::ParameterGenerationLocation *self,Effekseer::ModelReferenceType value){ self->model.Reference = value; }
+SWIGINTERN int32_t Effekseer_ParameterGenerationLocation_getModelIndex(Effekseer::ParameterGenerationLocation *self){ return self->model.index; }
+SWIGINTERN void Effekseer_ParameterGenerationLocation_setModelIndex(Effekseer::ParameterGenerationLocation *self,int32_t value){ self->model.index = value; }
+SWIGINTERN Effekseer::ParameterGenerationLocation::eModelType Effekseer_ParameterGenerationLocation_getModelType(Effekseer::ParameterGenerationLocation *self){ return self->model.type; }
+SWIGINTERN void Effekseer_ParameterGenerationLocation_setModelType(Effekseer::ParameterGenerationLocation *self,Effekseer::ParameterGenerationLocation::eModelType value){ self->model.type = value; }
+SWIGINTERN int32_t Effekseer_ParameterGenerationLocation_getCircleDivision(Effekseer::ParameterGenerationLocation *self){ return self->circle.division; }
+SWIGINTERN void Effekseer_ParameterGenerationLocation_setCircleDivision(Effekseer::ParameterGenerationLocation *self,int32_t value){ self->circle.division = value; }
+SWIGINTERN Effekseer::random_float Effekseer_ParameterGenerationLocation_getCircleRadius(Effekseer::ParameterGenerationLocation *self){ return self->circle.radius; }
+SWIGINTERN void Effekseer_ParameterGenerationLocation_setCircleRadius(Effekseer::ParameterGenerationLocation *self,Effekseer::random_float value){ self->circle.radius = value; }
+SWIGINTERN Effekseer::random_float Effekseer_ParameterGenerationLocation_getCircleAngleStart(Effekseer::ParameterGenerationLocation *self){ return self->circle.angle_start; }
+SWIGINTERN void Effekseer_ParameterGenerationLocation_setCircleAngleStart(Effekseer::ParameterGenerationLocation *self,Effekseer::random_float value){ self->circle.angle_start = value; }
+SWIGINTERN Effekseer::random_float Effekseer_ParameterGenerationLocation_getCircleAngleEnd(Effekseer::ParameterGenerationLocation *self){ return self->circle.angle_end; }
+SWIGINTERN void Effekseer_ParameterGenerationLocation_setCircleAngleEnd(Effekseer::ParameterGenerationLocation *self,Effekseer::random_float value){ self->circle.angle_end = value; }
+SWIGINTERN Effekseer::ParameterGenerationLocation::eCircleType Effekseer_ParameterGenerationLocation_getCircleType(Effekseer::ParameterGenerationLocation *self){ return self->circle.type; }
+SWIGINTERN void Effekseer_ParameterGenerationLocation_setCircleType(Effekseer::ParameterGenerationLocation *self,Effekseer::ParameterGenerationLocation::eCircleType value){ self->circle.type = value; }
+SWIGINTERN Effekseer::ParameterGenerationLocation::AxisType Effekseer_ParameterGenerationLocation_getCircleAxisDirection(Effekseer::ParameterGenerationLocation *self){ return self->circle.axisDirection; }
+SWIGINTERN void Effekseer_ParameterGenerationLocation_setCircleAxisDirection(Effekseer::ParameterGenerationLocation *self,Effekseer::ParameterGenerationLocation::AxisType value){ self->circle.axisDirection = value; }
+SWIGINTERN Effekseer::random_float Effekseer_ParameterGenerationLocation_getCircleAngleNoise(Effekseer::ParameterGenerationLocation *self){ return self->circle.angle_noize; }
+SWIGINTERN void Effekseer_ParameterGenerationLocation_setCircleAngleNoise(Effekseer::ParameterGenerationLocation *self,Effekseer::random_float value){ self->circle.angle_noize = value; }
+SWIGINTERN int32_t Effekseer_ParameterGenerationLocation_getLineDivision(Effekseer::ParameterGenerationLocation *self){ return self->line.division; }
+SWIGINTERN void Effekseer_ParameterGenerationLocation_setLineDivision(Effekseer::ParameterGenerationLocation *self,int32_t value){ self->line.division = value; }
+SWIGINTERN Effekseer::random_vector3d Effekseer_ParameterGenerationLocation_getLinePositionStart(Effekseer::ParameterGenerationLocation *self){ return self->line.position_start; }
+SWIGINTERN void Effekseer_ParameterGenerationLocation_setLinePositionStart(Effekseer::ParameterGenerationLocation *self,Effekseer::random_vector3d value){ self->line.position_start = value; }
+SWIGINTERN Effekseer::random_vector3d Effekseer_ParameterGenerationLocation_getLinePositionEnd(Effekseer::ParameterGenerationLocation *self){ return self->line.position_end; }
+SWIGINTERN void Effekseer_ParameterGenerationLocation_setLinePositionEnd(Effekseer::ParameterGenerationLocation *self,Effekseer::random_vector3d value){ self->line.position_end = value; }
+SWIGINTERN Effekseer::random_float Effekseer_ParameterGenerationLocation_getLinePositionNoise(Effekseer::ParameterGenerationLocation *self){ return self->line.position_noize; }
+SWIGINTERN void Effekseer_ParameterGenerationLocation_setLinePositionNoise(Effekseer::ParameterGenerationLocation *self,Effekseer::random_float value){ self->line.position_noize = value; }
+SWIGINTERN Effekseer::ParameterGenerationLocation::LineType Effekseer_ParameterGenerationLocation_getLineType(Effekseer::ParameterGenerationLocation *self){ return self->line.type; }
+SWIGINTERN void Effekseer_ParameterGenerationLocation_setLineType(Effekseer::ParameterGenerationLocation *self,Effekseer::ParameterGenerationLocation::LineType value){ self->line.type = value; }
 SWIGINTERN int Effekseer_ParameterRendererCommon_getUVTypes(Effekseer::ParameterRendererCommon *self,int index){ return self->UVTypes[index]; }
 SWIGINTERN void Effekseer_ParameterRendererCommon_setUVTypes(Effekseer::ParameterRendererCommon *self,int index,int value){
         if (value == Effekseer::ParameterRendererCommon::UV_DEFAULT) {
@@ -2780,7 +2818,7 @@ SWIGEXPORT jfloatArray JNICALL Java_io_github_srjohnathan_gdx_effekseer_core_GDX
   arg1 = *(EffekseerManagerCore **)&jarg1; 
   arg2 = (int)jarg2; 
   result = (float *)(arg1)->GetMatrix(arg2);
-  jresult = SWIG_JavaArrayOutFloat(jenv, (float *)result, 16);
+  jresult = SWIG_JavaArrayOutFloat(jenv, (float *)result, 16); 
   return jresult;
 }
 
@@ -2815,7 +2853,7 @@ SWIGEXPORT jfloatArray JNICALL Java_io_github_srjohnathan_gdx_effekseer_core_GDX
   arg1 = *(EffekseerManagerCore **)&jarg1; 
   arg2 = (int)jarg2; 
   result = (float *)(arg1)->GetBaseMatrix(arg2);
-  jresult = SWIG_JavaArrayOutFloat(jenv, (float *)result, 16);
+  jresult = SWIG_JavaArrayOutFloat(jenv, (float *)result, 16); 
   return jresult;
 }
 
@@ -16712,6 +16750,615 @@ SWIGEXPORT jint JNICALL Java_io_github_srjohnathan_gdx_effekseer_core_GDXJNI_Par
   result = (Effekseer::ParameterGenerationLocation::LineType)Effekseer::ParameterGenerationLocation::LineType::Order;
   jresult = (jint)result; 
   return jresult;
+}
+
+
+SWIGEXPORT jlong JNICALL Java_io_github_srjohnathan_gdx_effekseer_core_GDXJNI_ParameterGenerationLocation_1getPointLocation(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_) {
+  jlong jresult = 0 ;
+  Effekseer::ParameterGenerationLocation *arg1 = (Effekseer::ParameterGenerationLocation *) 0 ;
+  Effekseer::random_vector3d result;
+  
+  (void)jenv;
+  (void)jcls;
+  (void)jarg1_;
+  arg1 = *(Effekseer::ParameterGenerationLocation **)&jarg1; 
+  result = Effekseer_ParameterGenerationLocation_getPointLocation(arg1);
+  *(Effekseer::random_vector3d **)&jresult = new Effekseer::random_vector3d((const Effekseer::random_vector3d &)result); 
+  return jresult;
+}
+
+
+SWIGEXPORT void JNICALL Java_io_github_srjohnathan_gdx_effekseer_core_GDXJNI_ParameterGenerationLocation_1setPointLocation(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_, jlong jarg2, jobject jarg2_) {
+  Effekseer::ParameterGenerationLocation *arg1 = (Effekseer::ParameterGenerationLocation *) 0 ;
+  Effekseer::random_vector3d arg2 ;
+  Effekseer::random_vector3d *argp2 ;
+  
+  (void)jenv;
+  (void)jcls;
+  (void)jarg1_;
+  (void)jarg2_;
+  arg1 = *(Effekseer::ParameterGenerationLocation **)&jarg1; 
+  argp2 = *(Effekseer::random_vector3d **)&jarg2; 
+  if (!argp2) {
+    SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "Attempt to dereference null Effekseer::random_vector3d");
+    return ;
+  }
+  arg2 = *argp2; 
+  Effekseer_ParameterGenerationLocation_setPointLocation(arg1,arg2);
+}
+
+
+SWIGEXPORT jlong JNICALL Java_io_github_srjohnathan_gdx_effekseer_core_GDXJNI_ParameterGenerationLocation_1getSphereRadius(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_) {
+  jlong jresult = 0 ;
+  Effekseer::ParameterGenerationLocation *arg1 = (Effekseer::ParameterGenerationLocation *) 0 ;
+  Effekseer::random_float result;
+  
+  (void)jenv;
+  (void)jcls;
+  (void)jarg1_;
+  arg1 = *(Effekseer::ParameterGenerationLocation **)&jarg1; 
+  result = Effekseer_ParameterGenerationLocation_getSphereRadius(arg1);
+  *(Effekseer::random_float **)&jresult = new Effekseer::random_float((const Effekseer::random_float &)result); 
+  return jresult;
+}
+
+
+SWIGEXPORT void JNICALL Java_io_github_srjohnathan_gdx_effekseer_core_GDXJNI_ParameterGenerationLocation_1setSphereRadius(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_, jlong jarg2, jobject jarg2_) {
+  Effekseer::ParameterGenerationLocation *arg1 = (Effekseer::ParameterGenerationLocation *) 0 ;
+  Effekseer::random_float arg2 ;
+  Effekseer::random_float *argp2 ;
+  
+  (void)jenv;
+  (void)jcls;
+  (void)jarg1_;
+  (void)jarg2_;
+  arg1 = *(Effekseer::ParameterGenerationLocation **)&jarg1; 
+  argp2 = *(Effekseer::random_float **)&jarg2; 
+  if (!argp2) {
+    SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "Attempt to dereference null Effekseer::random_float");
+    return ;
+  }
+  arg2 = *argp2; 
+  Effekseer_ParameterGenerationLocation_setSphereRadius(arg1,arg2);
+}
+
+
+SWIGEXPORT jlong JNICALL Java_io_github_srjohnathan_gdx_effekseer_core_GDXJNI_ParameterGenerationLocation_1getSphereRotationX(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_) {
+  jlong jresult = 0 ;
+  Effekseer::ParameterGenerationLocation *arg1 = (Effekseer::ParameterGenerationLocation *) 0 ;
+  Effekseer::random_float result;
+  
+  (void)jenv;
+  (void)jcls;
+  (void)jarg1_;
+  arg1 = *(Effekseer::ParameterGenerationLocation **)&jarg1; 
+  result = Effekseer_ParameterGenerationLocation_getSphereRotationX(arg1);
+  *(Effekseer::random_float **)&jresult = new Effekseer::random_float((const Effekseer::random_float &)result); 
+  return jresult;
+}
+
+
+SWIGEXPORT void JNICALL Java_io_github_srjohnathan_gdx_effekseer_core_GDXJNI_ParameterGenerationLocation_1setSphereRotationX(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_, jlong jarg2, jobject jarg2_) {
+  Effekseer::ParameterGenerationLocation *arg1 = (Effekseer::ParameterGenerationLocation *) 0 ;
+  Effekseer::random_float arg2 ;
+  Effekseer::random_float *argp2 ;
+  
+  (void)jenv;
+  (void)jcls;
+  (void)jarg1_;
+  (void)jarg2_;
+  arg1 = *(Effekseer::ParameterGenerationLocation **)&jarg1; 
+  argp2 = *(Effekseer::random_float **)&jarg2; 
+  if (!argp2) {
+    SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "Attempt to dereference null Effekseer::random_float");
+    return ;
+  }
+  arg2 = *argp2; 
+  Effekseer_ParameterGenerationLocation_setSphereRotationX(arg1,arg2);
+}
+
+
+SWIGEXPORT jlong JNICALL Java_io_github_srjohnathan_gdx_effekseer_core_GDXJNI_ParameterGenerationLocation_1getSphereRotationY(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_) {
+  jlong jresult = 0 ;
+  Effekseer::ParameterGenerationLocation *arg1 = (Effekseer::ParameterGenerationLocation *) 0 ;
+  Effekseer::random_float result;
+  
+  (void)jenv;
+  (void)jcls;
+  (void)jarg1_;
+  arg1 = *(Effekseer::ParameterGenerationLocation **)&jarg1; 
+  result = Effekseer_ParameterGenerationLocation_getSphereRotationY(arg1);
+  *(Effekseer::random_float **)&jresult = new Effekseer::random_float((const Effekseer::random_float &)result); 
+  return jresult;
+}
+
+
+SWIGEXPORT void JNICALL Java_io_github_srjohnathan_gdx_effekseer_core_GDXJNI_ParameterGenerationLocation_1setSphereRotationY(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_, jlong jarg2, jobject jarg2_) {
+  Effekseer::ParameterGenerationLocation *arg1 = (Effekseer::ParameterGenerationLocation *) 0 ;
+  Effekseer::random_float arg2 ;
+  Effekseer::random_float *argp2 ;
+  
+  (void)jenv;
+  (void)jcls;
+  (void)jarg1_;
+  (void)jarg2_;
+  arg1 = *(Effekseer::ParameterGenerationLocation **)&jarg1; 
+  argp2 = *(Effekseer::random_float **)&jarg2; 
+  if (!argp2) {
+    SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "Attempt to dereference null Effekseer::random_float");
+    return ;
+  }
+  arg2 = *argp2; 
+  Effekseer_ParameterGenerationLocation_setSphereRotationY(arg1,arg2);
+}
+
+
+SWIGEXPORT jint JNICALL Java_io_github_srjohnathan_gdx_effekseer_core_GDXJNI_ParameterGenerationLocation_1getModelReferenceType(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_) {
+  jint jresult = 0 ;
+  Effekseer::ParameterGenerationLocation *arg1 = (Effekseer::ParameterGenerationLocation *) 0 ;
+  Effekseer::ModelReferenceType result;
+  
+  (void)jenv;
+  (void)jcls;
+  (void)jarg1_;
+  arg1 = *(Effekseer::ParameterGenerationLocation **)&jarg1; 
+  result = (Effekseer::ModelReferenceType)Effekseer_ParameterGenerationLocation_getModelReferenceType(arg1);
+  jresult = (jint)result; 
+  return jresult;
+}
+
+
+SWIGEXPORT void JNICALL Java_io_github_srjohnathan_gdx_effekseer_core_GDXJNI_ParameterGenerationLocation_1setModelReferenceType(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_, jint jarg2) {
+  Effekseer::ParameterGenerationLocation *arg1 = (Effekseer::ParameterGenerationLocation *) 0 ;
+  Effekseer::ModelReferenceType arg2 ;
+  
+  (void)jenv;
+  (void)jcls;
+  (void)jarg1_;
+  arg1 = *(Effekseer::ParameterGenerationLocation **)&jarg1; 
+  arg2 = (Effekseer::ModelReferenceType)jarg2; 
+  Effekseer_ParameterGenerationLocation_setModelReferenceType(arg1,arg2);
+}
+
+
+SWIGEXPORT jint JNICALL Java_io_github_srjohnathan_gdx_effekseer_core_GDXJNI_ParameterGenerationLocation_1getModelIndex(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_) {
+  jint jresult = 0 ;
+  Effekseer::ParameterGenerationLocation *arg1 = (Effekseer::ParameterGenerationLocation *) 0 ;
+  int32_t result;
+  
+  (void)jenv;
+  (void)jcls;
+  (void)jarg1_;
+  arg1 = *(Effekseer::ParameterGenerationLocation **)&jarg1; 
+  result = (int32_t)Effekseer_ParameterGenerationLocation_getModelIndex(arg1);
+  jresult = (jint)result; 
+  return jresult;
+}
+
+
+SWIGEXPORT void JNICALL Java_io_github_srjohnathan_gdx_effekseer_core_GDXJNI_ParameterGenerationLocation_1setModelIndex(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_, jint jarg2) {
+  Effekseer::ParameterGenerationLocation *arg1 = (Effekseer::ParameterGenerationLocation *) 0 ;
+  int32_t arg2 ;
+  
+  (void)jenv;
+  (void)jcls;
+  (void)jarg1_;
+  arg1 = *(Effekseer::ParameterGenerationLocation **)&jarg1; 
+  arg2 = (int32_t)jarg2; 
+  Effekseer_ParameterGenerationLocation_setModelIndex(arg1,arg2);
+}
+
+
+SWIGEXPORT jint JNICALL Java_io_github_srjohnathan_gdx_effekseer_core_GDXJNI_ParameterGenerationLocation_1getModelType(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_) {
+  jint jresult = 0 ;
+  Effekseer::ParameterGenerationLocation *arg1 = (Effekseer::ParameterGenerationLocation *) 0 ;
+  Effekseer::ParameterGenerationLocation::eModelType result;
+  
+  (void)jenv;
+  (void)jcls;
+  (void)jarg1_;
+  arg1 = *(Effekseer::ParameterGenerationLocation **)&jarg1; 
+  result = (Effekseer::ParameterGenerationLocation::eModelType)Effekseer_ParameterGenerationLocation_getModelType(arg1);
+  jresult = (jint)result; 
+  return jresult;
+}
+
+
+SWIGEXPORT void JNICALL Java_io_github_srjohnathan_gdx_effekseer_core_GDXJNI_ParameterGenerationLocation_1setModelType(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_, jint jarg2) {
+  Effekseer::ParameterGenerationLocation *arg1 = (Effekseer::ParameterGenerationLocation *) 0 ;
+  Effekseer::ParameterGenerationLocation::eModelType arg2 ;
+  
+  (void)jenv;
+  (void)jcls;
+  (void)jarg1_;
+  arg1 = *(Effekseer::ParameterGenerationLocation **)&jarg1; 
+  arg2 = (Effekseer::ParameterGenerationLocation::eModelType)jarg2; 
+  Effekseer_ParameterGenerationLocation_setModelType(arg1,arg2);
+}
+
+
+SWIGEXPORT jint JNICALL Java_io_github_srjohnathan_gdx_effekseer_core_GDXJNI_ParameterGenerationLocation_1getCircleDivision(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_) {
+  jint jresult = 0 ;
+  Effekseer::ParameterGenerationLocation *arg1 = (Effekseer::ParameterGenerationLocation *) 0 ;
+  int32_t result;
+  
+  (void)jenv;
+  (void)jcls;
+  (void)jarg1_;
+  arg1 = *(Effekseer::ParameterGenerationLocation **)&jarg1; 
+  result = (int32_t)Effekseer_ParameterGenerationLocation_getCircleDivision(arg1);
+  jresult = (jint)result; 
+  return jresult;
+}
+
+
+SWIGEXPORT void JNICALL Java_io_github_srjohnathan_gdx_effekseer_core_GDXJNI_ParameterGenerationLocation_1setCircleDivision(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_, jint jarg2) {
+  Effekseer::ParameterGenerationLocation *arg1 = (Effekseer::ParameterGenerationLocation *) 0 ;
+  int32_t arg2 ;
+  
+  (void)jenv;
+  (void)jcls;
+  (void)jarg1_;
+  arg1 = *(Effekseer::ParameterGenerationLocation **)&jarg1; 
+  arg2 = (int32_t)jarg2; 
+  Effekseer_ParameterGenerationLocation_setCircleDivision(arg1,arg2);
+}
+
+
+SWIGEXPORT jlong JNICALL Java_io_github_srjohnathan_gdx_effekseer_core_GDXJNI_ParameterGenerationLocation_1getCircleRadius(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_) {
+  jlong jresult = 0 ;
+  Effekseer::ParameterGenerationLocation *arg1 = (Effekseer::ParameterGenerationLocation *) 0 ;
+  Effekseer::random_float result;
+  
+  (void)jenv;
+  (void)jcls;
+  (void)jarg1_;
+  arg1 = *(Effekseer::ParameterGenerationLocation **)&jarg1; 
+  result = Effekseer_ParameterGenerationLocation_getCircleRadius(arg1);
+  *(Effekseer::random_float **)&jresult = new Effekseer::random_float((const Effekseer::random_float &)result); 
+  return jresult;
+}
+
+
+SWIGEXPORT void JNICALL Java_io_github_srjohnathan_gdx_effekseer_core_GDXJNI_ParameterGenerationLocation_1setCircleRadius(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_, jlong jarg2, jobject jarg2_) {
+  Effekseer::ParameterGenerationLocation *arg1 = (Effekseer::ParameterGenerationLocation *) 0 ;
+  Effekseer::random_float arg2 ;
+  Effekseer::random_float *argp2 ;
+  
+  (void)jenv;
+  (void)jcls;
+  (void)jarg1_;
+  (void)jarg2_;
+  arg1 = *(Effekseer::ParameterGenerationLocation **)&jarg1; 
+  argp2 = *(Effekseer::random_float **)&jarg2; 
+  if (!argp2) {
+    SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "Attempt to dereference null Effekseer::random_float");
+    return ;
+  }
+  arg2 = *argp2; 
+  Effekseer_ParameterGenerationLocation_setCircleRadius(arg1,arg2);
+}
+
+
+SWIGEXPORT jlong JNICALL Java_io_github_srjohnathan_gdx_effekseer_core_GDXJNI_ParameterGenerationLocation_1getCircleAngleStart(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_) {
+  jlong jresult = 0 ;
+  Effekseer::ParameterGenerationLocation *arg1 = (Effekseer::ParameterGenerationLocation *) 0 ;
+  Effekseer::random_float result;
+  
+  (void)jenv;
+  (void)jcls;
+  (void)jarg1_;
+  arg1 = *(Effekseer::ParameterGenerationLocation **)&jarg1; 
+  result = Effekseer_ParameterGenerationLocation_getCircleAngleStart(arg1);
+  *(Effekseer::random_float **)&jresult = new Effekseer::random_float((const Effekseer::random_float &)result); 
+  return jresult;
+}
+
+
+SWIGEXPORT void JNICALL Java_io_github_srjohnathan_gdx_effekseer_core_GDXJNI_ParameterGenerationLocation_1setCircleAngleStart(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_, jlong jarg2, jobject jarg2_) {
+  Effekseer::ParameterGenerationLocation *arg1 = (Effekseer::ParameterGenerationLocation *) 0 ;
+  Effekseer::random_float arg2 ;
+  Effekseer::random_float *argp2 ;
+  
+  (void)jenv;
+  (void)jcls;
+  (void)jarg1_;
+  (void)jarg2_;
+  arg1 = *(Effekseer::ParameterGenerationLocation **)&jarg1; 
+  argp2 = *(Effekseer::random_float **)&jarg2; 
+  if (!argp2) {
+    SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "Attempt to dereference null Effekseer::random_float");
+    return ;
+  }
+  arg2 = *argp2; 
+  Effekseer_ParameterGenerationLocation_setCircleAngleStart(arg1,arg2);
+}
+
+
+SWIGEXPORT jlong JNICALL Java_io_github_srjohnathan_gdx_effekseer_core_GDXJNI_ParameterGenerationLocation_1getCircleAngleEnd(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_) {
+  jlong jresult = 0 ;
+  Effekseer::ParameterGenerationLocation *arg1 = (Effekseer::ParameterGenerationLocation *) 0 ;
+  Effekseer::random_float result;
+  
+  (void)jenv;
+  (void)jcls;
+  (void)jarg1_;
+  arg1 = *(Effekseer::ParameterGenerationLocation **)&jarg1; 
+  result = Effekseer_ParameterGenerationLocation_getCircleAngleEnd(arg1);
+  *(Effekseer::random_float **)&jresult = new Effekseer::random_float((const Effekseer::random_float &)result); 
+  return jresult;
+}
+
+
+SWIGEXPORT void JNICALL Java_io_github_srjohnathan_gdx_effekseer_core_GDXJNI_ParameterGenerationLocation_1setCircleAngleEnd(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_, jlong jarg2, jobject jarg2_) {
+  Effekseer::ParameterGenerationLocation *arg1 = (Effekseer::ParameterGenerationLocation *) 0 ;
+  Effekseer::random_float arg2 ;
+  Effekseer::random_float *argp2 ;
+  
+  (void)jenv;
+  (void)jcls;
+  (void)jarg1_;
+  (void)jarg2_;
+  arg1 = *(Effekseer::ParameterGenerationLocation **)&jarg1; 
+  argp2 = *(Effekseer::random_float **)&jarg2; 
+  if (!argp2) {
+    SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "Attempt to dereference null Effekseer::random_float");
+    return ;
+  }
+  arg2 = *argp2; 
+  Effekseer_ParameterGenerationLocation_setCircleAngleEnd(arg1,arg2);
+}
+
+
+SWIGEXPORT jint JNICALL Java_io_github_srjohnathan_gdx_effekseer_core_GDXJNI_ParameterGenerationLocation_1getCircleType(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_) {
+  jint jresult = 0 ;
+  Effekseer::ParameterGenerationLocation *arg1 = (Effekseer::ParameterGenerationLocation *) 0 ;
+  Effekseer::ParameterGenerationLocation::eCircleType result;
+  
+  (void)jenv;
+  (void)jcls;
+  (void)jarg1_;
+  arg1 = *(Effekseer::ParameterGenerationLocation **)&jarg1; 
+  result = (Effekseer::ParameterGenerationLocation::eCircleType)Effekseer_ParameterGenerationLocation_getCircleType(arg1);
+  jresult = (jint)result; 
+  return jresult;
+}
+
+
+SWIGEXPORT void JNICALL Java_io_github_srjohnathan_gdx_effekseer_core_GDXJNI_ParameterGenerationLocation_1setCircleType(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_, jint jarg2) {
+  Effekseer::ParameterGenerationLocation *arg1 = (Effekseer::ParameterGenerationLocation *) 0 ;
+  Effekseer::ParameterGenerationLocation::eCircleType arg2 ;
+  
+  (void)jenv;
+  (void)jcls;
+  (void)jarg1_;
+  arg1 = *(Effekseer::ParameterGenerationLocation **)&jarg1; 
+  arg2 = (Effekseer::ParameterGenerationLocation::eCircleType)jarg2; 
+  Effekseer_ParameterGenerationLocation_setCircleType(arg1,arg2);
+}
+
+
+SWIGEXPORT jint JNICALL Java_io_github_srjohnathan_gdx_effekseer_core_GDXJNI_ParameterGenerationLocation_1getCircleAxisDirection(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_) {
+  jint jresult = 0 ;
+  Effekseer::ParameterGenerationLocation *arg1 = (Effekseer::ParameterGenerationLocation *) 0 ;
+  Effekseer::ParameterGenerationLocation::AxisType result;
+  
+  (void)jenv;
+  (void)jcls;
+  (void)jarg1_;
+  arg1 = *(Effekseer::ParameterGenerationLocation **)&jarg1; 
+  result = (Effekseer::ParameterGenerationLocation::AxisType)Effekseer_ParameterGenerationLocation_getCircleAxisDirection(arg1);
+  jresult = (jint)result; 
+  return jresult;
+}
+
+
+SWIGEXPORT void JNICALL Java_io_github_srjohnathan_gdx_effekseer_core_GDXJNI_ParameterGenerationLocation_1setCircleAxisDirection(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_, jint jarg2) {
+  Effekseer::ParameterGenerationLocation *arg1 = (Effekseer::ParameterGenerationLocation *) 0 ;
+  Effekseer::ParameterGenerationLocation::AxisType arg2 ;
+  
+  (void)jenv;
+  (void)jcls;
+  (void)jarg1_;
+  arg1 = *(Effekseer::ParameterGenerationLocation **)&jarg1; 
+  arg2 = (Effekseer::ParameterGenerationLocation::AxisType)jarg2; 
+  Effekseer_ParameterGenerationLocation_setCircleAxisDirection(arg1,arg2);
+}
+
+
+SWIGEXPORT jlong JNICALL Java_io_github_srjohnathan_gdx_effekseer_core_GDXJNI_ParameterGenerationLocation_1getCircleAngleNoise(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_) {
+  jlong jresult = 0 ;
+  Effekseer::ParameterGenerationLocation *arg1 = (Effekseer::ParameterGenerationLocation *) 0 ;
+  Effekseer::random_float result;
+  
+  (void)jenv;
+  (void)jcls;
+  (void)jarg1_;
+  arg1 = *(Effekseer::ParameterGenerationLocation **)&jarg1; 
+  result = Effekseer_ParameterGenerationLocation_getCircleAngleNoise(arg1);
+  *(Effekseer::random_float **)&jresult = new Effekseer::random_float((const Effekseer::random_float &)result); 
+  return jresult;
+}
+
+
+SWIGEXPORT void JNICALL Java_io_github_srjohnathan_gdx_effekseer_core_GDXJNI_ParameterGenerationLocation_1setCircleAngleNoise(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_, jlong jarg2, jobject jarg2_) {
+  Effekseer::ParameterGenerationLocation *arg1 = (Effekseer::ParameterGenerationLocation *) 0 ;
+  Effekseer::random_float arg2 ;
+  Effekseer::random_float *argp2 ;
+  
+  (void)jenv;
+  (void)jcls;
+  (void)jarg1_;
+  (void)jarg2_;
+  arg1 = *(Effekseer::ParameterGenerationLocation **)&jarg1; 
+  argp2 = *(Effekseer::random_float **)&jarg2; 
+  if (!argp2) {
+    SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "Attempt to dereference null Effekseer::random_float");
+    return ;
+  }
+  arg2 = *argp2; 
+  Effekseer_ParameterGenerationLocation_setCircleAngleNoise(arg1,arg2);
+}
+
+
+SWIGEXPORT jint JNICALL Java_io_github_srjohnathan_gdx_effekseer_core_GDXJNI_ParameterGenerationLocation_1getLineDivision(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_) {
+  jint jresult = 0 ;
+  Effekseer::ParameterGenerationLocation *arg1 = (Effekseer::ParameterGenerationLocation *) 0 ;
+  int32_t result;
+  
+  (void)jenv;
+  (void)jcls;
+  (void)jarg1_;
+  arg1 = *(Effekseer::ParameterGenerationLocation **)&jarg1; 
+  result = (int32_t)Effekseer_ParameterGenerationLocation_getLineDivision(arg1);
+  jresult = (jint)result; 
+  return jresult;
+}
+
+
+SWIGEXPORT void JNICALL Java_io_github_srjohnathan_gdx_effekseer_core_GDXJNI_ParameterGenerationLocation_1setLineDivision(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_, jint jarg2) {
+  Effekseer::ParameterGenerationLocation *arg1 = (Effekseer::ParameterGenerationLocation *) 0 ;
+  int32_t arg2 ;
+  
+  (void)jenv;
+  (void)jcls;
+  (void)jarg1_;
+  arg1 = *(Effekseer::ParameterGenerationLocation **)&jarg1; 
+  arg2 = (int32_t)jarg2; 
+  Effekseer_ParameterGenerationLocation_setLineDivision(arg1,arg2);
+}
+
+
+SWIGEXPORT jlong JNICALL Java_io_github_srjohnathan_gdx_effekseer_core_GDXJNI_ParameterGenerationLocation_1getLinePositionStart(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_) {
+  jlong jresult = 0 ;
+  Effekseer::ParameterGenerationLocation *arg1 = (Effekseer::ParameterGenerationLocation *) 0 ;
+  Effekseer::random_vector3d result;
+  
+  (void)jenv;
+  (void)jcls;
+  (void)jarg1_;
+  arg1 = *(Effekseer::ParameterGenerationLocation **)&jarg1; 
+  result = Effekseer_ParameterGenerationLocation_getLinePositionStart(arg1);
+  *(Effekseer::random_vector3d **)&jresult = new Effekseer::random_vector3d((const Effekseer::random_vector3d &)result); 
+  return jresult;
+}
+
+
+SWIGEXPORT void JNICALL Java_io_github_srjohnathan_gdx_effekseer_core_GDXJNI_ParameterGenerationLocation_1setLinePositionStart(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_, jlong jarg2, jobject jarg2_) {
+  Effekseer::ParameterGenerationLocation *arg1 = (Effekseer::ParameterGenerationLocation *) 0 ;
+  Effekseer::random_vector3d arg2 ;
+  Effekseer::random_vector3d *argp2 ;
+  
+  (void)jenv;
+  (void)jcls;
+  (void)jarg1_;
+  (void)jarg2_;
+  arg1 = *(Effekseer::ParameterGenerationLocation **)&jarg1; 
+  argp2 = *(Effekseer::random_vector3d **)&jarg2; 
+  if (!argp2) {
+    SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "Attempt to dereference null Effekseer::random_vector3d");
+    return ;
+  }
+  arg2 = *argp2; 
+  Effekseer_ParameterGenerationLocation_setLinePositionStart(arg1,arg2);
+}
+
+
+SWIGEXPORT jlong JNICALL Java_io_github_srjohnathan_gdx_effekseer_core_GDXJNI_ParameterGenerationLocation_1getLinePositionEnd(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_) {
+  jlong jresult = 0 ;
+  Effekseer::ParameterGenerationLocation *arg1 = (Effekseer::ParameterGenerationLocation *) 0 ;
+  Effekseer::random_vector3d result;
+  
+  (void)jenv;
+  (void)jcls;
+  (void)jarg1_;
+  arg1 = *(Effekseer::ParameterGenerationLocation **)&jarg1; 
+  result = Effekseer_ParameterGenerationLocation_getLinePositionEnd(arg1);
+  *(Effekseer::random_vector3d **)&jresult = new Effekseer::random_vector3d((const Effekseer::random_vector3d &)result); 
+  return jresult;
+}
+
+
+SWIGEXPORT void JNICALL Java_io_github_srjohnathan_gdx_effekseer_core_GDXJNI_ParameterGenerationLocation_1setLinePositionEnd(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_, jlong jarg2, jobject jarg2_) {
+  Effekseer::ParameterGenerationLocation *arg1 = (Effekseer::ParameterGenerationLocation *) 0 ;
+  Effekseer::random_vector3d arg2 ;
+  Effekseer::random_vector3d *argp2 ;
+  
+  (void)jenv;
+  (void)jcls;
+  (void)jarg1_;
+  (void)jarg2_;
+  arg1 = *(Effekseer::ParameterGenerationLocation **)&jarg1; 
+  argp2 = *(Effekseer::random_vector3d **)&jarg2; 
+  if (!argp2) {
+    SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "Attempt to dereference null Effekseer::random_vector3d");
+    return ;
+  }
+  arg2 = *argp2; 
+  Effekseer_ParameterGenerationLocation_setLinePositionEnd(arg1,arg2);
+}
+
+
+SWIGEXPORT jlong JNICALL Java_io_github_srjohnathan_gdx_effekseer_core_GDXJNI_ParameterGenerationLocation_1getLinePositionNoise(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_) {
+  jlong jresult = 0 ;
+  Effekseer::ParameterGenerationLocation *arg1 = (Effekseer::ParameterGenerationLocation *) 0 ;
+  Effekseer::random_float result;
+  
+  (void)jenv;
+  (void)jcls;
+  (void)jarg1_;
+  arg1 = *(Effekseer::ParameterGenerationLocation **)&jarg1; 
+  result = Effekseer_ParameterGenerationLocation_getLinePositionNoise(arg1);
+  *(Effekseer::random_float **)&jresult = new Effekseer::random_float((const Effekseer::random_float &)result); 
+  return jresult;
+}
+
+
+SWIGEXPORT void JNICALL Java_io_github_srjohnathan_gdx_effekseer_core_GDXJNI_ParameterGenerationLocation_1setLinePositionNoise(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_, jlong jarg2, jobject jarg2_) {
+  Effekseer::ParameterGenerationLocation *arg1 = (Effekseer::ParameterGenerationLocation *) 0 ;
+  Effekseer::random_float arg2 ;
+  Effekseer::random_float *argp2 ;
+  
+  (void)jenv;
+  (void)jcls;
+  (void)jarg1_;
+  (void)jarg2_;
+  arg1 = *(Effekseer::ParameterGenerationLocation **)&jarg1; 
+  argp2 = *(Effekseer::random_float **)&jarg2; 
+  if (!argp2) {
+    SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "Attempt to dereference null Effekseer::random_float");
+    return ;
+  }
+  arg2 = *argp2; 
+  Effekseer_ParameterGenerationLocation_setLinePositionNoise(arg1,arg2);
+}
+
+
+SWIGEXPORT jint JNICALL Java_io_github_srjohnathan_gdx_effekseer_core_GDXJNI_ParameterGenerationLocation_1getLineType(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_) {
+  jint jresult = 0 ;
+  Effekseer::ParameterGenerationLocation *arg1 = (Effekseer::ParameterGenerationLocation *) 0 ;
+  Effekseer::ParameterGenerationLocation::LineType result;
+  
+  (void)jenv;
+  (void)jcls;
+  (void)jarg1_;
+  arg1 = *(Effekseer::ParameterGenerationLocation **)&jarg1; 
+  result = (Effekseer::ParameterGenerationLocation::LineType)Effekseer_ParameterGenerationLocation_getLineType(arg1);
+  jresult = (jint)result; 
+  return jresult;
+}
+
+
+SWIGEXPORT void JNICALL Java_io_github_srjohnathan_gdx_effekseer_core_GDXJNI_ParameterGenerationLocation_1setLineType(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_, jint jarg2) {
+  Effekseer::ParameterGenerationLocation *arg1 = (Effekseer::ParameterGenerationLocation *) 0 ;
+  Effekseer::ParameterGenerationLocation::LineType arg2 ;
+  
+  (void)jenv;
+  (void)jcls;
+  (void)jarg1_;
+  arg1 = *(Effekseer::ParameterGenerationLocation **)&jarg1; 
+  arg2 = (Effekseer::ParameterGenerationLocation::LineType)jarg2; 
+  Effekseer_ParameterGenerationLocation_setLineType(arg1,arg2);
 }
 
 

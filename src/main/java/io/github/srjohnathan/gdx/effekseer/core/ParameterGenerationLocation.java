@@ -52,6 +52,158 @@ public class ParameterGenerationLocation {
     return GDXJNI.ParameterGenerationLocation_type_get(swigCPtr, this);
   }
 
+  public InternalStructRandomVector3D getPointLocation() {
+    return new InternalStructRandomVector3D(GDXJNI.ParameterGenerationLocation_getPointLocation(swigCPtr, this), true);
+  }
+
+  public void setPointLocation(InternalStructRandomVector3D value) {
+    GDXJNI.ParameterGenerationLocation_setPointLocation(swigCPtr, this, InternalStructRandomVector3D.getCPtr(value), value);
+  }
+
+  public InternalStructRandomFloat getSphereRadius() {
+    return new InternalStructRandomFloat(GDXJNI.ParameterGenerationLocation_getSphereRadius(swigCPtr, this), true);
+  }
+
+  public void setSphereRadius(InternalStructRandomFloat value) {
+    GDXJNI.ParameterGenerationLocation_setSphereRadius(swigCPtr, this, InternalStructRandomFloat.getCPtr(value), value);
+  }
+
+  public InternalStructRandomFloat getSphereRotationX() {
+    return new InternalStructRandomFloat(GDXJNI.ParameterGenerationLocation_getSphereRotationX(swigCPtr, this), true);
+  }
+
+  public void setSphereRotationX(InternalStructRandomFloat value) {
+    GDXJNI.ParameterGenerationLocation_setSphereRotationX(swigCPtr, this, InternalStructRandomFloat.getCPtr(value), value);
+  }
+
+  public InternalStructRandomFloat getSphereRotationY() {
+    return new InternalStructRandomFloat(GDXJNI.ParameterGenerationLocation_getSphereRotationY(swigCPtr, this), true);
+  }
+
+  public void setSphereRotationY(InternalStructRandomFloat value) {
+    GDXJNI.ParameterGenerationLocation_setSphereRotationY(swigCPtr, this, InternalStructRandomFloat.getCPtr(value), value);
+  }
+
+  public ModelReferenceType getModelReferenceType() {
+    return ModelReferenceType.swigToEnum(GDXJNI.ParameterGenerationLocation_getModelReferenceType(swigCPtr, this));
+  }
+
+  public void setModelReferenceType(ModelReferenceType value) {
+    GDXJNI.ParameterGenerationLocation_setModelReferenceType(swigCPtr, this, value.swigValue());
+  }
+
+  public int getModelIndex() {
+    return GDXJNI.ParameterGenerationLocation_getModelIndex(swigCPtr, this);
+  }
+
+  public void setModelIndex(int value) {
+    GDXJNI.ParameterGenerationLocation_setModelIndex(swigCPtr, this, value);
+  }
+
+  public ParameterGenerationLocation.eModelType getModelType() {
+    return ParameterGenerationLocation.eModelType.swigToEnum(GDXJNI.ParameterGenerationLocation_getModelType(swigCPtr, this));
+  }
+
+  public void setModelType(ParameterGenerationLocation.eModelType value) {
+    GDXJNI.ParameterGenerationLocation_setModelType(swigCPtr, this, value.swigValue());
+  }
+
+  public int getCircleDivision() {
+    return GDXJNI.ParameterGenerationLocation_getCircleDivision(swigCPtr, this);
+  }
+
+  public void setCircleDivision(int value) {
+    GDXJNI.ParameterGenerationLocation_setCircleDivision(swigCPtr, this, value);
+  }
+
+  public InternalStructRandomFloat getCircleRadius() {
+    return new InternalStructRandomFloat(GDXJNI.ParameterGenerationLocation_getCircleRadius(swigCPtr, this), true);
+  }
+
+  public void setCircleRadius(InternalStructRandomFloat value) {
+    GDXJNI.ParameterGenerationLocation_setCircleRadius(swigCPtr, this, InternalStructRandomFloat.getCPtr(value), value);
+  }
+
+  public InternalStructRandomFloat getCircleAngleStart() {
+    return new InternalStructRandomFloat(GDXJNI.ParameterGenerationLocation_getCircleAngleStart(swigCPtr, this), true);
+  }
+
+  public void setCircleAngleStart(InternalStructRandomFloat value) {
+    GDXJNI.ParameterGenerationLocation_setCircleAngleStart(swigCPtr, this, InternalStructRandomFloat.getCPtr(value), value);
+  }
+
+  public InternalStructRandomFloat getCircleAngleEnd() {
+    return new InternalStructRandomFloat(GDXJNI.ParameterGenerationLocation_getCircleAngleEnd(swigCPtr, this), true);
+  }
+
+  public void setCircleAngleEnd(InternalStructRandomFloat value) {
+    GDXJNI.ParameterGenerationLocation_setCircleAngleEnd(swigCPtr, this, InternalStructRandomFloat.getCPtr(value), value);
+  }
+
+  public ParameterGenerationLocation.eCircleType getCircleType() {
+    return ParameterGenerationLocation.eCircleType.swigToEnum(GDXJNI.ParameterGenerationLocation_getCircleType(swigCPtr, this));
+  }
+
+  public void setCircleType(ParameterGenerationLocation.eCircleType value) {
+    GDXJNI.ParameterGenerationLocation_setCircleType(swigCPtr, this, value.swigValue());
+  }
+
+  public ParameterGenerationLocation.AxisType getCircleAxisDirection() {
+    return ParameterGenerationLocation.AxisType.swigToEnum(GDXJNI.ParameterGenerationLocation_getCircleAxisDirection(swigCPtr, this));
+  }
+
+  public void setCircleAxisDirection(ParameterGenerationLocation.AxisType value) {
+    GDXJNI.ParameterGenerationLocation_setCircleAxisDirection(swigCPtr, this, value.swigValue());
+  }
+
+  public InternalStructRandomFloat getCircleAngleNoise() {
+    return new InternalStructRandomFloat(GDXJNI.ParameterGenerationLocation_getCircleAngleNoise(swigCPtr, this), true);
+  }
+
+  public void setCircleAngleNoise(InternalStructRandomFloat value) {
+    GDXJNI.ParameterGenerationLocation_setCircleAngleNoise(swigCPtr, this, InternalStructRandomFloat.getCPtr(value), value);
+  }
+
+  public int getLineDivision() {
+    return GDXJNI.ParameterGenerationLocation_getLineDivision(swigCPtr, this);
+  }
+
+  public void setLineDivision(int value) {
+    GDXJNI.ParameterGenerationLocation_setLineDivision(swigCPtr, this, value);
+  }
+
+  public InternalStructRandomVector3D getLinePositionStart() {
+    return new InternalStructRandomVector3D(GDXJNI.ParameterGenerationLocation_getLinePositionStart(swigCPtr, this), true);
+  }
+
+  public void setLinePositionStart(InternalStructRandomVector3D value) {
+    GDXJNI.ParameterGenerationLocation_setLinePositionStart(swigCPtr, this, InternalStructRandomVector3D.getCPtr(value), value);
+  }
+
+  public InternalStructRandomVector3D getLinePositionEnd() {
+    return new InternalStructRandomVector3D(GDXJNI.ParameterGenerationLocation_getLinePositionEnd(swigCPtr, this), true);
+  }
+
+  public void setLinePositionEnd(InternalStructRandomVector3D value) {
+    GDXJNI.ParameterGenerationLocation_setLinePositionEnd(swigCPtr, this, InternalStructRandomVector3D.getCPtr(value), value);
+  }
+
+  public InternalStructRandomFloat getLinePositionNoise() {
+    return new InternalStructRandomFloat(GDXJNI.ParameterGenerationLocation_getLinePositionNoise(swigCPtr, this), true);
+  }
+
+  public void setLinePositionNoise(InternalStructRandomFloat value) {
+    GDXJNI.ParameterGenerationLocation_setLinePositionNoise(swigCPtr, this, InternalStructRandomFloat.getCPtr(value), value);
+  }
+
+  public ParameterGenerationLocation.LineType getLineType() {
+    return ParameterGenerationLocation.LineType.swigToEnum(GDXJNI.ParameterGenerationLocation_getLineType(swigCPtr, this));
+  }
+
+  public void setLineType(ParameterGenerationLocation.LineType value) {
+    GDXJNI.ParameterGenerationLocation_setLineType(swigCPtr, this, value.swigValue());
+  }
+
   public ParameterGenerationLocation() {
     this(GDXJNI.new_ParameterGenerationLocation(), true);
   }

@@ -336,15 +336,15 @@ public class EffekseerNode<T extends EffectNodeImplemented> {
 
     //endregion
 
-    private EffekseerFieldWrapper<ParameterGenerationLocation> generationLocation = new EffekseerFieldWrapper<ParameterGenerationLocation>(new Function<Void, ParameterGenerationLocation>() {
+    private EffekseerFieldWrapper<ParameterGenerationLocationWrapper> generationLocation = new EffekseerFieldWrapper<ParameterGenerationLocationWrapper>(new Function<Void, ParameterGenerationLocationWrapper>() {
         @Override
-        public ParameterGenerationLocation apply(Void unused) {
-            return coreNode.getGenerationLocation();
+        public ParameterGenerationLocationWrapper apply(Void unused) {
+            return new ParameterGenerationLocationWrapper(coreNode.getGenerationLocation());
         }
-    }, new Function<ParameterGenerationLocation, Void>() {
+    }, new Function<ParameterGenerationLocationWrapper, Void>() {
         @Override
-        public Void apply(ParameterGenerationLocation value) {
-            coreNode.setGenerationLocation(value);
+        public Void apply(ParameterGenerationLocationWrapper value) {
+            coreNode.setGenerationLocation(value.core);
             return null;
         }
     });
@@ -718,11 +718,11 @@ public class EffekseerNode<T extends EffectNodeImplemented> {
         return this.scalingSingleFCurve.get();
     }
 
-    public void setGenerationLocation(ParameterGenerationLocation value) {
+    public void setGenerationLocation(ParameterGenerationLocationWrapper value) {
         this.generationLocation.set(value);
     }
 
-    public ParameterGenerationLocation getGenerationLocation() {
+    public ParameterGenerationLocationWrapper getGenerationLocation() {
         return this.generationLocation.get();
     }
 
