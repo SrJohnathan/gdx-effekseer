@@ -288,8 +288,10 @@ public class EffekseerParticle implements Disposable {
     }
 
     public void stop() {
-        this.manager.stopEffect(this.handle);
-        this.setToStopState();
+        if (this.play) {
+            this.manager.stopEffect(this.handle);
+            this.setToStopState();
+        }
     }
 
     public int getInstanceCount() {
