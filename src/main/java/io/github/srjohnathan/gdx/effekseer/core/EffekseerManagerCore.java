@@ -84,6 +84,14 @@ public class EffekseerManagerCore {
     GDXJNI.EffekseerManagerCore_SetMatrix(swigCPtr, this, handle, matrix43);
   }
 
+  public void SetMatrixBatch2(int handle1, float[] matrix43_1, int handle2, float[] matrix43_2) {
+    GDXJNI.EffekseerManagerCore_SetMatrixBatch2(swigCPtr, this, handle1, matrix43_1, handle2, matrix43_2);
+  }
+
+  public void SetMatrixBatch4(int handle1, float[] matrix43_1, int handle2, float[] matrix43_2, int handle3, float[] matrix43_3, int handle4, float[] matrix43_4) {
+    GDXJNI.EffekseerManagerCore_SetMatrixBatch4(swigCPtr, this, handle1, matrix43_1, handle2, matrix43_2, handle3, matrix43_3, handle4, matrix43_4);
+  }
+
   public float[] GetBaseMatrix(int handle) {
     return GDXJNI.EffekseerManagerCore_GetBaseMatrix(swigCPtr, this, handle);
   }

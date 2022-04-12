@@ -24,7 +24,10 @@ public class EffekseerManager implements Disposable {
     private static final float SINGLE_FRAME_TIME_SECONDS = 1.0f / 60.0f;
     private static final float SINGLE_FRAME_TIME_SECONDS_INV = 1.0f / SINGLE_FRAME_TIME_SECONDS;
 
+    private static final int MAX_BATCH_SIZE_PENDING_PARTICLE_TRANSFORM = 4;
+
     //endregion
+
     //region Properties
 
     protected EffekseerManagerCore effekseerManagerCore;
@@ -48,6 +51,12 @@ public class EffekseerManager implements Disposable {
      * The time passed in seconds since the start.
      */
     private float timeInSeconds = 0f;
+
+    /**
+     * Keep track of effects that have transform changes that need to be sent to Effekseer. Using this allows for batch updating
+     * to reduce JNI calls.
+     */
+    private Array<EffekseerParticle> pendingEffectsWithTransformChanges = new Array<>(false, 4);
 
     //endregion
 
@@ -298,6 +307,38 @@ public class EffekseerManager implements Disposable {
     //endregion
 
     /**
+     * Batches multiple pending effect transforms to a single JNI call.
+     */
+    private void sendPendingEffectTransformsToEffekseer() {
+        while (!this.pendingEffectsWithTransformChanges.isEmpty()) {
+            if (this.pendingEffectsWithTransformChanges.size >= MAX_BATCH_SIZE_PENDING_PARTICLE_TRANSFORM) {
+                EffekseerParticle particle1 = this.pendingEffectsWithTransformChanges.pop();
+                EffekseerParticle particle2 = this.pendingEffectsWithTransformChanges.pop();
+                EffekseerParticle particle3 = this.pendingEffectsWithTransformChanges.pop();
+                EffekseerParticle particle4 = this.pendingEffectsWithTransformChanges.pop();
+
+                this.effekseerManagerCore.SetMatrixBatch4(
+                        particle1.getHandle(), particle1.getTransformValuesForEffekseer(),
+                        particle2.getHandle(), particle2.getTransformValuesForEffekseer(),
+                        particle3.getHandle(), particle3.getTransformValuesForEffekseer(),
+                        particle4.getHandle(), particle4.getTransformValuesForEffekseer());
+            }
+            else if (this.pendingEffectsWithTransformChanges.size >= 2) {
+                EffekseerParticle particle1 = this.pendingEffectsWithTransformChanges.pop();
+                EffekseerParticle particle2 = this.pendingEffectsWithTransformChanges.pop();
+
+                this.effekseerManagerCore.SetMatrixBatch2(
+                        particle1.getHandle(), particle1.getTransformValuesForEffekseer(),
+                        particle2.getHandle(), particle2.getTransformValuesForEffekseer());
+            }
+            else {
+                EffekseerParticle particle = this.pendingEffectsWithTransformChanges.pop();
+                this.effekseerManagerCore.SetMatrix(particle.getHandle(), particle.getTransformValuesForEffekseer());
+            }
+        }
+    }
+
+    /**
      * Updates all state needed for the current step in the simulation. Call this only once per frame.
      * If you only draw the simulation once per frame, you can call @link #draw(float)} instead which calls this
      * update method and then the draw method.
@@ -312,23 +353,34 @@ public class EffekseerManager implements Disposable {
         }
 
         // Update and draw each particle effect
-        for (EffekseerParticle effekseer : this.effekseers) {
+        for (EffekseerParticle particle : this.effekseers) {
             // Only update the particle effect if it is playing
-            if (effekseer.isInPlayingState()) {
-                effekseer.update(delta);
+            if (particle.isInPlayingState()) {
+                particle.update(delta);
 
                 // Check if the current effect has just finished playing. If so, call its animation completed callback if available.
-                if (!this.isPlaying(effekseer)) {
-                    effekseer.setToStopState();
-                    if (effekseer.getOnAnimationComplete() != null) {
-                        effekseer.getOnAnimationComplete().finish();
+                if (!this.isPlaying(particle)) {
+                    particle.setToStopState();
+                    if (particle.getOnAnimationComplete() != null) {
+                        particle.getOnAnimationComplete().finish();
                     }
                 }
 
                 if (this.camera instanceof PerspectiveCamera) {
-                    effekseer.updateTransformMatrixIfQueued();
+                    if (particle.updateTransformMatrixIfQueued()) {
+                        this.pendingEffectsWithTransformChanges.add(particle);
+
+                        // Send if there are enough for batching
+                        if (this.pendingEffectsWithTransformChanges.size >= MAX_BATCH_SIZE_PENDING_PARTICLE_TRANSFORM) {
+                            this.sendPendingEffectTransformsToEffekseer();
+                        }
+                    }
                 }
             }
+        }
+
+        if (!this.pendingEffectsWithTransformChanges.isEmpty()) {
+            this.sendPendingEffectTransformsToEffekseer();
         }
 
         // Get the camera width and height

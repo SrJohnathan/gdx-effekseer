@@ -198,6 +198,26 @@ void EffekseerManagerCore::SetMatrix(int handle, float *matrix43) {
     manager_->SetMatrix(handle, mat43);
 }
 
+void EffekseerManagerCore::SetMatrixBatch2(int handle1,float matrix43_1[], int handle2,float matrix43_2[]) {
+    if (manager_ == nullptr) {
+        return;
+    }
+
+    SetMatrix(handle1, matrix43_1);
+    SetMatrix(handle2, matrix43_2);
+}
+
+void EffekseerManagerCore::SetMatrixBatch4(int handle1,float matrix43_1[], int handle2,float matrix43_2[], int handle3,float matrix43_3[], int handle4,float matrix43_4[]) {
+    if (manager_ == nullptr) {
+        return;
+    }
+
+    SetMatrix(handle1, matrix43_1);
+    SetMatrix(handle2, matrix43_2);
+    SetMatrix(handle3, matrix43_3);
+    SetMatrix(handle4, matrix43_4);
+}
+
 float* EffekseerManagerCore::GetBaseMatrix(int handle) {
     if (manager_ == nullptr) {
         return nullptr;

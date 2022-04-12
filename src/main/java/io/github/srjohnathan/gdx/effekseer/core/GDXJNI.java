@@ -100,6 +100,8 @@ public class GDXJNI {
   public final static native int EffekseerManagerCore_GetTotalInstanceCount(long jarg1, EffekseerManagerCore jarg1_);
   public final static native float[] EffekseerManagerCore_GetMatrix(long jarg1, EffekseerManagerCore jarg1_, int jarg2);
   public final static native void EffekseerManagerCore_SetMatrix(long jarg1, EffekseerManagerCore jarg1_, int jarg2, float[] jarg3);
+  public final static native void EffekseerManagerCore_SetMatrixBatch2(long jarg1, EffekseerManagerCore jarg1_, int jarg2, float[] jarg3, int jarg4, float[] jarg5);
+  public final static native void EffekseerManagerCore_SetMatrixBatch4(long jarg1, EffekseerManagerCore jarg1_, int jarg2, float[] jarg3, int jarg4, float[] jarg5, int jarg6, float[] jarg7, int jarg8, float[] jarg9);
   public final static native float[] EffekseerManagerCore_GetBaseMatrix(long jarg1, EffekseerManagerCore jarg1_, int jarg2);
   public final static native void EffekseerManagerCore_SetBaseMatrix(long jarg1, EffekseerManagerCore jarg1_, int jarg2, float[] jarg3);
   public final static native long EffekseerManagerCore_GetLocation(long jarg1, EffekseerManagerCore jarg1_, int jarg2);
