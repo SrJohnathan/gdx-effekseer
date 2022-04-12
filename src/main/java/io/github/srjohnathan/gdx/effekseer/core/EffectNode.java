@@ -80,9 +80,24 @@ public class EffectNode {
     return (cPtr == 0) ? null : new EffectNodeSprite(cPtr, false);
   }
 
+  public EffectNodeRibbon getChildAsRibbon(int index) {
+    long cPtr = GDXJNI.EffectNode_getChildAsRibbon(swigCPtr, this, index);
+    return (cPtr == 0) ? null : new EffectNodeRibbon(cPtr, false);
+  }
+
   public EffectNodeTrack getChildAsTrack(int index) {
     long cPtr = GDXJNI.EffectNode_getChildAsTrack(swigCPtr, this, index);
     return (cPtr == 0) ? null : new EffectNodeTrack(cPtr, false);
+  }
+
+  public EffectNodeRing getChildAsRing(int index) {
+    long cPtr = GDXJNI.EffectNode_getChildAsRing(swigCPtr, this, index);
+    return (cPtr == 0) ? null : new EffectNodeRing(cPtr, false);
+  }
+
+  public EffectNodeModel getChildAsModel(int index) {
+    long cPtr = GDXJNI.EffectNode_getChildAsModel(swigCPtr, this, index);
+    return (cPtr == 0) ? null : new EffectNodeModel(cPtr, false);
   }
 
 }

@@ -45,13 +45,13 @@ public class ParameterRotationAxisEasing {
     return (cPtr == 0) ? null : new InternalStructRandomVector3D(cPtr, false);
   }
 
-  public void setEasing(ParameterEasingFloat value) {
-    GDXJNI.ParameterRotationAxisEasing_easing_set(swigCPtr, this, ParameterEasingFloat.getCPtr(value), value);
+  public void setEasing(ParameterEasingFloatCore value) {
+    GDXJNI.ParameterRotationAxisEasing_easing_set(swigCPtr, this, ParameterEasingFloatCore.getCPtr(value), value);
   }
 
-  public ParameterEasingFloat getEasing() {
+  public ParameterEasingFloatCore getEasing() {
     long cPtr = GDXJNI.ParameterRotationAxisEasing_easing_get(swigCPtr, this);
-    return (cPtr == 0) ? null : new ParameterEasingFloat(cPtr, false);
+    return (cPtr == 0) ? null : new ParameterEasingFloatCore(cPtr, false);
   }
 
   public ParameterRotationAxisEasing() {

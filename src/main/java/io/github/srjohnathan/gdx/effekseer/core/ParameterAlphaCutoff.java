@@ -44,13 +44,13 @@ public class ParameterAlphaCutoff {
     return ParameterAlphaCutoff.EType.swigToEnum(GDXJNI.ParameterAlphaCutoff_Type_get(swigCPtr, this));
   }
 
-  public void setEasing(ParameterEasingFloat value) {
-    GDXJNI.ParameterAlphaCutoff_Easing_set(swigCPtr, this, ParameterEasingFloat.getCPtr(value), value);
+  public void setEasing(ParameterEasingFloatCore value) {
+    GDXJNI.ParameterAlphaCutoff_Easing_set(swigCPtr, this, ParameterEasingFloatCore.getCPtr(value), value);
   }
 
-  public ParameterEasingFloat getEasing() {
+  public ParameterEasingFloatCore getEasing() {
     long cPtr = GDXJNI.ParameterAlphaCutoff_Easing_get(swigCPtr, this);
-    return (cPtr == 0) ? null : new ParameterEasingFloat(cPtr, false);
+    return (cPtr == 0) ? null : new ParameterEasingFloatCore(cPtr, false);
   }
 
   public void setEdgeThreshold(float value) {

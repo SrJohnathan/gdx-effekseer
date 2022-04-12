@@ -256,7 +256,10 @@ static void SWIGUNUSED SWIG_JavaThrowException(JNIEnv *jenv, SWIG_JavaExceptionC
 #include "Effekseer/Dev/Cpp/Effekseer/Effekseer/Effekseer.EffectNode.h"
 #include "Effekseer/Dev/Cpp/Effekseer/Effekseer/Effekseer.EffectNodeRoot.h"
 #include "Effekseer/Dev/Cpp/Effekseer/Effekseer/Effekseer.EffectNodeSprite.h"
+#include "Effekseer/Dev/Cpp/Effekseer/Effekseer/Effekseer.EffectNodeRibbon.h"
 #include "Effekseer/Dev/Cpp/Effekseer/Effekseer/Effekseer.EffectNodeTrack.h"
+#include "Effekseer/Dev/Cpp/Effekseer/Effekseer/Effekseer.EffectNodeRing.h"
+#include "Effekseer/Dev/Cpp/Effekseer/Effekseer/Effekseer.EffectNodeModel.h"
 
 #define FillMeInAsSizeCannotBeDeterminedAutomatically = 16;
 
@@ -1187,10 +1190,25 @@ SWIGINTERN Effekseer::EffectNodeSprite *Effekseer_EffectNode_getChildAsSprite(Ef
             return nullptr;
         return static_cast<Effekseer::EffectNodeSprite*>(self->GetChild(index));
     }
+SWIGINTERN Effekseer::EffectNodeRibbon *Effekseer_EffectNode_getChildAsRibbon(Effekseer::EffectNode *self,int index){
+        if (index >= self->GetChildrenCount())
+            return nullptr;
+        return static_cast<Effekseer::EffectNodeRibbon*>(self->GetChild(index));
+    }
 SWIGINTERN Effekseer::EffectNodeTrack *Effekseer_EffectNode_getChildAsTrack(Effekseer::EffectNode *self,int index){
         if (index >= self->GetChildrenCount())
             return nullptr;
         return static_cast<Effekseer::EffectNodeTrack*>(self->GetChild(index));
+    }
+SWIGINTERN Effekseer::EffectNodeRing *Effekseer_EffectNode_getChildAsRing(Effekseer::EffectNode *self,int index){
+        if (index >= self->GetChildrenCount())
+            return nullptr;
+        return static_cast<Effekseer::EffectNodeRing*>(self->GetChild(index));
+    }
+SWIGINTERN Effekseer::EffectNodeModel *Effekseer_EffectNode_getChildAsModel(Effekseer::EffectNode *self,int index){
+        if (index >= self->GetChildrenCount())
+            return nullptr;
+        return static_cast<Effekseer::EffectNodeModel*>(self->GetChild(index));
     }
 SWIGINTERN Effekseer::Color Effekseer_StandardColorParameter_getFixed(Effekseer::StandardColorParameter *self){ return self->fixed.all; }
 SWIGINTERN void Effekseer_StandardColorParameter_setFixed(Effekseer::StandardColorParameter *self,Effekseer::Color value){ self->fixed.all = value; }
@@ -1200,6 +1218,44 @@ SWIGINTERN Effekseer::easing_color Effekseer_StandardColorParameter_getEasing(Ef
 SWIGINTERN void Effekseer_StandardColorParameter_setEasing(Effekseer::StandardColorParameter *self,Effekseer::easing_color value){ self->easing.all = value; }
 SWIGINTERN Effekseer::FCurveVectorColor *Effekseer_StandardColorParameter_getFCurveRGBA(Effekseer::StandardColorParameter *self){ return self->fcurve_rgba.FCurve; }
 SWIGINTERN void Effekseer_StandardColorParameter_setFCurveRGBA(Effekseer::StandardColorParameter *self,Effekseer::FCurveVectorColor *value){ self->fcurve_rgba.FCurve = value; }
+SWIGINTERN Effekseer::random_vector3d Effekseer_ParameterGenerationLocation_getPointLocation(Effekseer::ParameterGenerationLocation *self){ return self->point.location; }
+SWIGINTERN void Effekseer_ParameterGenerationLocation_setPointLocation(Effekseer::ParameterGenerationLocation *self,Effekseer::random_vector3d value){ self->point.location = value; }
+SWIGINTERN Effekseer::random_float Effekseer_ParameterGenerationLocation_getSphereRadius(Effekseer::ParameterGenerationLocation *self){ return self->sphere.radius; }
+SWIGINTERN void Effekseer_ParameterGenerationLocation_setSphereRadius(Effekseer::ParameterGenerationLocation *self,Effekseer::random_float value){ self->sphere.radius = value; }
+SWIGINTERN Effekseer::random_float Effekseer_ParameterGenerationLocation_getSphereRotationX(Effekseer::ParameterGenerationLocation *self){ return self->sphere.rotation_x; }
+SWIGINTERN void Effekseer_ParameterGenerationLocation_setSphereRotationX(Effekseer::ParameterGenerationLocation *self,Effekseer::random_float value){ self->sphere.rotation_x = value; }
+SWIGINTERN Effekseer::random_float Effekseer_ParameterGenerationLocation_getSphereRotationY(Effekseer::ParameterGenerationLocation *self){ return self->sphere.rotation_y; }
+SWIGINTERN void Effekseer_ParameterGenerationLocation_setSphereRotationY(Effekseer::ParameterGenerationLocation *self,Effekseer::random_float value){ self->sphere.rotation_y = value; }
+SWIGINTERN Effekseer::ModelReferenceType Effekseer_ParameterGenerationLocation_getModelReferenceType(Effekseer::ParameterGenerationLocation *self){ return self->model.Reference; }
+SWIGINTERN void Effekseer_ParameterGenerationLocation_setModelReferenceType(Effekseer::ParameterGenerationLocation *self,Effekseer::ModelReferenceType value){ self->model.Reference = value; }
+SWIGINTERN int32_t Effekseer_ParameterGenerationLocation_getModelIndex(Effekseer::ParameterGenerationLocation *self){ return self->model.index; }
+SWIGINTERN void Effekseer_ParameterGenerationLocation_setModelIndex(Effekseer::ParameterGenerationLocation *self,int32_t value){ self->model.index = value; }
+SWIGINTERN Effekseer::ParameterGenerationLocation::eModelType Effekseer_ParameterGenerationLocation_getModelType(Effekseer::ParameterGenerationLocation *self){ return self->model.type; }
+SWIGINTERN void Effekseer_ParameterGenerationLocation_setModelType(Effekseer::ParameterGenerationLocation *self,Effekseer::ParameterGenerationLocation::eModelType value){ self->model.type = value; }
+SWIGINTERN int32_t Effekseer_ParameterGenerationLocation_getCircleDivision(Effekseer::ParameterGenerationLocation *self){ return self->circle.division; }
+SWIGINTERN void Effekseer_ParameterGenerationLocation_setCircleDivision(Effekseer::ParameterGenerationLocation *self,int32_t value){ self->circle.division = value; }
+SWIGINTERN Effekseer::random_float Effekseer_ParameterGenerationLocation_getCircleRadius(Effekseer::ParameterGenerationLocation *self){ return self->circle.radius; }
+SWIGINTERN void Effekseer_ParameterGenerationLocation_setCircleRadius(Effekseer::ParameterGenerationLocation *self,Effekseer::random_float value){ self->circle.radius = value; }
+SWIGINTERN Effekseer::random_float Effekseer_ParameterGenerationLocation_getCircleAngleStart(Effekseer::ParameterGenerationLocation *self){ return self->circle.angle_start; }
+SWIGINTERN void Effekseer_ParameterGenerationLocation_setCircleAngleStart(Effekseer::ParameterGenerationLocation *self,Effekseer::random_float value){ self->circle.angle_start = value; }
+SWIGINTERN Effekseer::random_float Effekseer_ParameterGenerationLocation_getCircleAngleEnd(Effekseer::ParameterGenerationLocation *self){ return self->circle.angle_end; }
+SWIGINTERN void Effekseer_ParameterGenerationLocation_setCircleAngleEnd(Effekseer::ParameterGenerationLocation *self,Effekseer::random_float value){ self->circle.angle_end = value; }
+SWIGINTERN Effekseer::ParameterGenerationLocation::eCircleType Effekseer_ParameterGenerationLocation_getCircleType(Effekseer::ParameterGenerationLocation *self){ return self->circle.type; }
+SWIGINTERN void Effekseer_ParameterGenerationLocation_setCircleType(Effekseer::ParameterGenerationLocation *self,Effekseer::ParameterGenerationLocation::eCircleType value){ self->circle.type = value; }
+SWIGINTERN Effekseer::ParameterGenerationLocation::AxisType Effekseer_ParameterGenerationLocation_getCircleAxisDirection(Effekseer::ParameterGenerationLocation *self){ return self->circle.axisDirection; }
+SWIGINTERN void Effekseer_ParameterGenerationLocation_setCircleAxisDirection(Effekseer::ParameterGenerationLocation *self,Effekseer::ParameterGenerationLocation::AxisType value){ self->circle.axisDirection = value; }
+SWIGINTERN Effekseer::random_float Effekseer_ParameterGenerationLocation_getCircleAngleNoise(Effekseer::ParameterGenerationLocation *self){ return self->circle.angle_noize; }
+SWIGINTERN void Effekseer_ParameterGenerationLocation_setCircleAngleNoise(Effekseer::ParameterGenerationLocation *self,Effekseer::random_float value){ self->circle.angle_noize = value; }
+SWIGINTERN int32_t Effekseer_ParameterGenerationLocation_getLineDivision(Effekseer::ParameterGenerationLocation *self){ return self->line.division; }
+SWIGINTERN void Effekseer_ParameterGenerationLocation_setLineDivision(Effekseer::ParameterGenerationLocation *self,int32_t value){ self->line.division = value; }
+SWIGINTERN Effekseer::random_vector3d Effekseer_ParameterGenerationLocation_getLinePositionStart(Effekseer::ParameterGenerationLocation *self){ return self->line.position_start; }
+SWIGINTERN void Effekseer_ParameterGenerationLocation_setLinePositionStart(Effekseer::ParameterGenerationLocation *self,Effekseer::random_vector3d value){ self->line.position_start = value; }
+SWIGINTERN Effekseer::random_vector3d Effekseer_ParameterGenerationLocation_getLinePositionEnd(Effekseer::ParameterGenerationLocation *self){ return self->line.position_end; }
+SWIGINTERN void Effekseer_ParameterGenerationLocation_setLinePositionEnd(Effekseer::ParameterGenerationLocation *self,Effekseer::random_vector3d value){ self->line.position_end = value; }
+SWIGINTERN Effekseer::random_float Effekseer_ParameterGenerationLocation_getLinePositionNoise(Effekseer::ParameterGenerationLocation *self){ return self->line.position_noize; }
+SWIGINTERN void Effekseer_ParameterGenerationLocation_setLinePositionNoise(Effekseer::ParameterGenerationLocation *self,Effekseer::random_float value){ self->line.position_noize = value; }
+SWIGINTERN Effekseer::ParameterGenerationLocation::LineType Effekseer_ParameterGenerationLocation_getLineType(Effekseer::ParameterGenerationLocation *self){ return self->line.type; }
+SWIGINTERN void Effekseer_ParameterGenerationLocation_setLineType(Effekseer::ParameterGenerationLocation *self,Effekseer::ParameterGenerationLocation::LineType value){ self->line.type = value; }
 SWIGINTERN int Effekseer_ParameterRendererCommon_getUVTypes(Effekseer::ParameterRendererCommon *self,int index){ return self->UVTypes[index]; }
 SWIGINTERN void Effekseer_ParameterRendererCommon_setUVTypes(Effekseer::ParameterRendererCommon *self,int index,int value){
         if (value == Effekseer::ParameterRendererCommon::UV_DEFAULT) {
@@ -1240,6 +1296,20 @@ SWIGINTERN Effekseer::SIMD::Vec2f Effekseer_SpritePositionParameter_getFixedUppe
 SWIGINTERN void Effekseer_SpritePositionParameter_setFixedUpperLeftPos(Effekseer::SpritePositionParameter *self,Effekseer::SIMD::Vec2f value){ self->fixed.ul = value; }
 SWIGINTERN Effekseer::SIMD::Vec2f Effekseer_SpritePositionParameter_getFixedUpperRightPos(Effekseer::SpritePositionParameter *self){ return self->fixed.ur; }
 SWIGINTERN void Effekseer_SpritePositionParameter_setFixedUpperRightPos(Effekseer::SpritePositionParameter *self,Effekseer::SIMD::Vec2f value){ self->fixed.ur = value; }
+SWIGINTERN Effekseer::Color Effekseer_RibbonAllColorParameter_getFixedAllColor(Effekseer::RibbonAllColorParameter *self){ return self->fixed.all; }
+SWIGINTERN void Effekseer_RibbonAllColorParameter_setFixedAllColor(Effekseer::RibbonAllColorParameter *self,Effekseer::Color value){ self->fixed.all = value; }
+SWIGINTERN Effekseer::random_color Effekseer_RibbonAllColorParameter_getRandomAllColor(Effekseer::RibbonAllColorParameter *self){ return self->random.all; }
+SWIGINTERN void Effekseer_RibbonAllColorParameter_setRandomAllColor(Effekseer::RibbonAllColorParameter *self,Effekseer::random_color value){ self->random.all = value; }
+SWIGINTERN Effekseer::easing_color Effekseer_RibbonAllColorParameter_getEasingAllColor(Effekseer::RibbonAllColorParameter *self){ return self->easing.all; }
+SWIGINTERN void Effekseer_RibbonAllColorParameter_setEasingAllColor(Effekseer::RibbonAllColorParameter *self,Effekseer::easing_color value){ self->easing.all = value; }
+SWIGINTERN Effekseer::Color Effekseer_RibbonColorParameter_getFixedLeftColor(Effekseer::RibbonColorParameter *self){ return self->fixed.l; }
+SWIGINTERN void Effekseer_RibbonColorParameter_setFixedLeftColor(Effekseer::RibbonColorParameter *self,Effekseer::Color value){ self->fixed.l = value; }
+SWIGINTERN Effekseer::Color Effekseer_RibbonColorParameter_getFixedRightColor(Effekseer::RibbonColorParameter *self){ return self->fixed.r; }
+SWIGINTERN void Effekseer_RibbonColorParameter_setFixedRightColor(Effekseer::RibbonColorParameter *self,Effekseer::Color value){ self->fixed.r = value; }
+SWIGINTERN float Effekseer_RibbonPositionParameter_getFixedLeftCoord(Effekseer::RibbonPositionParameter *self){ return self->fixed.l; }
+SWIGINTERN void Effekseer_RibbonPositionParameter_setFixedLeftCoord(Effekseer::RibbonPositionParameter *self,float value){ self->fixed.l = value; }
+SWIGINTERN float Effekseer_RibbonPositionParameter_getFixedRightCoord(Effekseer::RibbonPositionParameter *self){ return self->fixed.r; }
+SWIGINTERN void Effekseer_RibbonPositionParameter_setFixedRightCoord(Effekseer::RibbonPositionParameter *self,float value){ self->fixed.r = value; }
 SWIGINTERN float Effekseer_TrackSizeParameter_getFixedSize(Effekseer::TrackSizeParameter *self){ return self->fixed.size; }
 SWIGINTERN void Effekseer_TrackSizeParameter_setFixedSize(Effekseer::TrackSizeParameter *self,float value){ self->fixed.size = value; }
 
@@ -2780,7 +2850,7 @@ SWIGEXPORT jfloatArray JNICALL Java_io_github_srjohnathan_gdx_effekseer_core_GDX
   arg1 = *(EffekseerManagerCore **)&jarg1; 
   arg2 = (int)jarg2; 
   result = (float *)(arg1)->GetMatrix(arg2);
-  jresult = SWIG_JavaArrayOutFloat(jenv, (float *)result, 16);
+  jresult = SWIG_JavaArrayOutFloat(jenv, (float *)result, 16); 
   return jresult;
 }
 
@@ -2815,7 +2885,7 @@ SWIGEXPORT jfloatArray JNICALL Java_io_github_srjohnathan_gdx_effekseer_core_GDX
   arg1 = *(EffekseerManagerCore **)&jarg1; 
   arg2 = (int)jarg2; 
   result = (float *)(arg1)->GetBaseMatrix(arg2);
-  jresult = SWIG_JavaArrayOutFloat(jenv, (float *)result, 16);
+  jresult = SWIG_JavaArrayOutFloat(jenv, (float *)result, 16); 
   return jresult;
 }
 
@@ -8898,7 +8968,7 @@ SWIGEXPORT jint JNICALL Java_io_github_srjohnathan_gdx_effekseer_core_GDXJNI_Eas
 }
 
 
-SWIGEXPORT jlong JNICALL Java_io_github_srjohnathan_gdx_effekseer_core_GDXJNI_new_1ParameterEasingFloat(JNIEnv *jenv, jclass jcls, jint jarg1, jint jarg2) {
+SWIGEXPORT jlong JNICALL Java_io_github_srjohnathan_gdx_effekseer_core_GDXJNI_new_1ParameterEasingFloatCore(JNIEnv *jenv, jclass jcls, jint jarg1, jint jarg2) {
   jlong jresult = 0 ;
   int arg1 ;
   int32_t arg2 ;
@@ -8914,7 +8984,7 @@ SWIGEXPORT jlong JNICALL Java_io_github_srjohnathan_gdx_effekseer_core_GDXJNI_ne
 }
 
 
-SWIGEXPORT void JNICALL Java_io_github_srjohnathan_gdx_effekseer_core_GDXJNI_delete_1ParameterEasingFloat(JNIEnv *jenv, jclass jcls, jlong jarg1) {
+SWIGEXPORT void JNICALL Java_io_github_srjohnathan_gdx_effekseer_core_GDXJNI_delete_1ParameterEasingFloatCore(JNIEnv *jenv, jclass jcls, jlong jarg1) {
   Effekseer::ParameterEasingFloat *arg1 = (Effekseer::ParameterEasingFloat *) 0 ;
   
   (void)jenv;
@@ -8924,7 +8994,7 @@ SWIGEXPORT void JNICALL Java_io_github_srjohnathan_gdx_effekseer_core_GDXJNI_del
 }
 
 
-SWIGEXPORT jlong JNICALL Java_io_github_srjohnathan_gdx_effekseer_core_GDXJNI_new_1ParameterEasingSIMDVec3(JNIEnv *jenv, jclass jcls) {
+SWIGEXPORT jlong JNICALL Java_io_github_srjohnathan_gdx_effekseer_core_GDXJNI_new_1ParameterEasingSIMDVec3Core(JNIEnv *jenv, jclass jcls) {
   jlong jresult = 0 ;
   Effekseer::ParameterEasingSIMDVec3 *result = 0 ;
   
@@ -8936,12 +9006,384 @@ SWIGEXPORT jlong JNICALL Java_io_github_srjohnathan_gdx_effekseer_core_GDXJNI_ne
 }
 
 
-SWIGEXPORT void JNICALL Java_io_github_srjohnathan_gdx_effekseer_core_GDXJNI_delete_1ParameterEasingSIMDVec3(JNIEnv *jenv, jclass jcls, jlong jarg1) {
+SWIGEXPORT void JNICALL Java_io_github_srjohnathan_gdx_effekseer_core_GDXJNI_delete_1ParameterEasingSIMDVec3Core(JNIEnv *jenv, jclass jcls, jlong jarg1) {
   Effekseer::ParameterEasingSIMDVec3 *arg1 = (Effekseer::ParameterEasingSIMDVec3 *) 0 ;
   
   (void)jenv;
   (void)jcls;
   arg1 = *(Effekseer::ParameterEasingSIMDVec3 **)&jarg1; 
+  delete arg1;
+}
+
+
+SWIGEXPORT void JNICALL Java_io_github_srjohnathan_gdx_effekseer_core_GDXJNI_InstanceEasingFloat_1start_1set(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_, jfloat jarg2) {
+  Effekseer::InstanceEasing< float > *arg1 = (Effekseer::InstanceEasing< float > *) 0 ;
+  float arg2 ;
+  
+  (void)jenv;
+  (void)jcls;
+  (void)jarg1_;
+  arg1 = *(Effekseer::InstanceEasing< float > **)&jarg1; 
+  arg2 = (float)jarg2; 
+  if (arg1) (arg1)->start = arg2;
+}
+
+
+SWIGEXPORT jfloat JNICALL Java_io_github_srjohnathan_gdx_effekseer_core_GDXJNI_InstanceEasingFloat_1start_1get(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_) {
+  jfloat jresult = 0 ;
+  Effekseer::InstanceEasing< float > *arg1 = (Effekseer::InstanceEasing< float > *) 0 ;
+  float result;
+  
+  (void)jenv;
+  (void)jcls;
+  (void)jarg1_;
+  arg1 = *(Effekseer::InstanceEasing< float > **)&jarg1; 
+  result = (float) ((arg1)->start);
+  jresult = (jfloat)result; 
+  return jresult;
+}
+
+
+SWIGEXPORT void JNICALL Java_io_github_srjohnathan_gdx_effekseer_core_GDXJNI_InstanceEasingFloat_1middle_1set(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_, jfloat jarg2) {
+  Effekseer::InstanceEasing< float > *arg1 = (Effekseer::InstanceEasing< float > *) 0 ;
+  float arg2 ;
+  
+  (void)jenv;
+  (void)jcls;
+  (void)jarg1_;
+  arg1 = *(Effekseer::InstanceEasing< float > **)&jarg1; 
+  arg2 = (float)jarg2; 
+  if (arg1) (arg1)->middle = arg2;
+}
+
+
+SWIGEXPORT jfloat JNICALL Java_io_github_srjohnathan_gdx_effekseer_core_GDXJNI_InstanceEasingFloat_1middle_1get(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_) {
+  jfloat jresult = 0 ;
+  Effekseer::InstanceEasing< float > *arg1 = (Effekseer::InstanceEasing< float > *) 0 ;
+  float result;
+  
+  (void)jenv;
+  (void)jcls;
+  (void)jarg1_;
+  arg1 = *(Effekseer::InstanceEasing< float > **)&jarg1; 
+  result = (float) ((arg1)->middle);
+  jresult = (jfloat)result; 
+  return jresult;
+}
+
+
+SWIGEXPORT void JNICALL Java_io_github_srjohnathan_gdx_effekseer_core_GDXJNI_InstanceEasingFloat_1end_1set(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_, jfloat jarg2) {
+  Effekseer::InstanceEasing< float > *arg1 = (Effekseer::InstanceEasing< float > *) 0 ;
+  float arg2 ;
+  
+  (void)jenv;
+  (void)jcls;
+  (void)jarg1_;
+  arg1 = *(Effekseer::InstanceEasing< float > **)&jarg1; 
+  arg2 = (float)jarg2; 
+  if (arg1) (arg1)->end = arg2;
+}
+
+
+SWIGEXPORT jfloat JNICALL Java_io_github_srjohnathan_gdx_effekseer_core_GDXJNI_InstanceEasingFloat_1end_1get(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_) {
+  jfloat jresult = 0 ;
+  Effekseer::InstanceEasing< float > *arg1 = (Effekseer::InstanceEasing< float > *) 0 ;
+  float result;
+  
+  (void)jenv;
+  (void)jcls;
+  (void)jarg1_;
+  arg1 = *(Effekseer::InstanceEasing< float > **)&jarg1; 
+  result = (float) ((arg1)->end);
+  jresult = (jfloat)result; 
+  return jresult;
+}
+
+
+SWIGEXPORT void JNICALL Java_io_github_srjohnathan_gdx_effekseer_core_GDXJNI_InstanceEasingFloat_1Rate_1set(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_, jfloat jarg2) {
+  Effekseer::InstanceEasing< float > *arg1 = (Effekseer::InstanceEasing< float > *) 0 ;
+  float arg2 ;
+  
+  (void)jenv;
+  (void)jcls;
+  (void)jarg1_;
+  arg1 = *(Effekseer::InstanceEasing< float > **)&jarg1; 
+  arg2 = (float)jarg2; 
+  if (arg1) (arg1)->Rate = arg2;
+}
+
+
+SWIGEXPORT jfloat JNICALL Java_io_github_srjohnathan_gdx_effekseer_core_GDXJNI_InstanceEasingFloat_1Rate_1get(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_) {
+  jfloat jresult = 0 ;
+  Effekseer::InstanceEasing< float > *arg1 = (Effekseer::InstanceEasing< float > *) 0 ;
+  float result;
+  
+  (void)jenv;
+  (void)jcls;
+  (void)jarg1_;
+  arg1 = *(Effekseer::InstanceEasing< float > **)&jarg1; 
+  result = (float) ((arg1)->Rate);
+  jresult = (jfloat)result; 
+  return jresult;
+}
+
+
+SWIGEXPORT jlong JNICALL Java_io_github_srjohnathan_gdx_effekseer_core_GDXJNI_new_1InstanceEasingFloat(JNIEnv *jenv, jclass jcls) {
+  jlong jresult = 0 ;
+  Effekseer::InstanceEasing< float > *result = 0 ;
+  
+  (void)jenv;
+  (void)jcls;
+  result = (Effekseer::InstanceEasing< float > *)new Effekseer::InstanceEasing< float >();
+  *(Effekseer::InstanceEasing< float > **)&jresult = result; 
+  return jresult;
+}
+
+
+SWIGEXPORT void JNICALL Java_io_github_srjohnathan_gdx_effekseer_core_GDXJNI_delete_1InstanceEasingFloat(JNIEnv *jenv, jclass jcls, jlong jarg1) {
+  Effekseer::InstanceEasing< float > *arg1 = (Effekseer::InstanceEasing< float > *) 0 ;
+  
+  (void)jenv;
+  (void)jcls;
+  arg1 = *(Effekseer::InstanceEasing< float > **)&jarg1; 
+  delete arg1;
+}
+
+
+SWIGEXPORT void JNICALL Java_io_github_srjohnathan_gdx_effekseer_core_GDXJNI_ParameterEasingFloatBaseCore_1RefEqS_1set(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_, jlong jarg2, jobject jarg2_) {
+  Effekseer::ParameterEasing< float > *arg1 = (Effekseer::ParameterEasing< float > *) 0 ;
+  Effekseer::RefMinMax *arg2 = (Effekseer::RefMinMax *) 0 ;
+  
+  (void)jenv;
+  (void)jcls;
+  (void)jarg1_;
+  (void)jarg2_;
+  arg1 = *(Effekseer::ParameterEasing< float > **)&jarg1; 
+  arg2 = *(Effekseer::RefMinMax **)&jarg2; 
+  if (arg1) (arg1)->RefEqS = *arg2;
+}
+
+
+SWIGEXPORT jlong JNICALL Java_io_github_srjohnathan_gdx_effekseer_core_GDXJNI_ParameterEasingFloatBaseCore_1RefEqS_1get(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_) {
+  jlong jresult = 0 ;
+  Effekseer::ParameterEasing< float > *arg1 = (Effekseer::ParameterEasing< float > *) 0 ;
+  Effekseer::RefMinMax *result = 0 ;
+  
+  (void)jenv;
+  (void)jcls;
+  (void)jarg1_;
+  arg1 = *(Effekseer::ParameterEasing< float > **)&jarg1; 
+  result = (Effekseer::RefMinMax *)& ((arg1)->RefEqS);
+  *(Effekseer::RefMinMax **)&jresult = result; 
+  return jresult;
+}
+
+
+SWIGEXPORT void JNICALL Java_io_github_srjohnathan_gdx_effekseer_core_GDXJNI_ParameterEasingFloatBaseCore_1RefEqE_1set(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_, jlong jarg2, jobject jarg2_) {
+  Effekseer::ParameterEasing< float > *arg1 = (Effekseer::ParameterEasing< float > *) 0 ;
+  Effekseer::RefMinMax *arg2 = (Effekseer::RefMinMax *) 0 ;
+  
+  (void)jenv;
+  (void)jcls;
+  (void)jarg1_;
+  (void)jarg2_;
+  arg1 = *(Effekseer::ParameterEasing< float > **)&jarg1; 
+  arg2 = *(Effekseer::RefMinMax **)&jarg2; 
+  if (arg1) (arg1)->RefEqE = *arg2;
+}
+
+
+SWIGEXPORT jlong JNICALL Java_io_github_srjohnathan_gdx_effekseer_core_GDXJNI_ParameterEasingFloatBaseCore_1RefEqE_1get(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_) {
+  jlong jresult = 0 ;
+  Effekseer::ParameterEasing< float > *arg1 = (Effekseer::ParameterEasing< float > *) 0 ;
+  Effekseer::RefMinMax *result = 0 ;
+  
+  (void)jenv;
+  (void)jcls;
+  (void)jarg1_;
+  arg1 = *(Effekseer::ParameterEasing< float > **)&jarg1; 
+  result = (Effekseer::RefMinMax *)& ((arg1)->RefEqE);
+  *(Effekseer::RefMinMax **)&jresult = result; 
+  return jresult;
+}
+
+
+SWIGEXPORT void JNICALL Java_io_github_srjohnathan_gdx_effekseer_core_GDXJNI_ParameterEasingFloatBaseCore_1RefEqM_1set(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_, jlong jarg2, jobject jarg2_) {
+  Effekseer::ParameterEasing< float > *arg1 = (Effekseer::ParameterEasing< float > *) 0 ;
+  Effekseer::RefMinMax *arg2 = (Effekseer::RefMinMax *) 0 ;
+  
+  (void)jenv;
+  (void)jcls;
+  (void)jarg1_;
+  (void)jarg2_;
+  arg1 = *(Effekseer::ParameterEasing< float > **)&jarg1; 
+  arg2 = *(Effekseer::RefMinMax **)&jarg2; 
+  if (arg1) (arg1)->RefEqM = *arg2;
+}
+
+
+SWIGEXPORT jlong JNICALL Java_io_github_srjohnathan_gdx_effekseer_core_GDXJNI_ParameterEasingFloatBaseCore_1RefEqM_1get(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_) {
+  jlong jresult = 0 ;
+  Effekseer::ParameterEasing< float > *arg1 = (Effekseer::ParameterEasing< float > *) 0 ;
+  Effekseer::RefMinMax *result = 0 ;
+  
+  (void)jenv;
+  (void)jcls;
+  (void)jarg1_;
+  arg1 = *(Effekseer::ParameterEasing< float > **)&jarg1; 
+  result = (Effekseer::RefMinMax *)& ((arg1)->RefEqM);
+  *(Effekseer::RefMinMax **)&jresult = result; 
+  return jresult;
+}
+
+
+SWIGEXPORT void JNICALL Java_io_github_srjohnathan_gdx_effekseer_core_GDXJNI_ParameterEasingFloatBaseCore_1type_1_1set(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_, jint jarg2) {
+  Effekseer::ParameterEasing< float > *arg1 = (Effekseer::ParameterEasing< float > *) 0 ;
+  Effekseer::Easing3Type arg2 ;
+  
+  (void)jenv;
+  (void)jcls;
+  (void)jarg1_;
+  arg1 = *(Effekseer::ParameterEasing< float > **)&jarg1; 
+  arg2 = (Effekseer::Easing3Type)jarg2; 
+  if (arg1) (arg1)->type_ = arg2;
+}
+
+
+SWIGEXPORT jint JNICALL Java_io_github_srjohnathan_gdx_effekseer_core_GDXJNI_ParameterEasingFloatBaseCore_1type_1_1get(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_) {
+  jint jresult = 0 ;
+  Effekseer::ParameterEasing< float > *arg1 = (Effekseer::ParameterEasing< float > *) 0 ;
+  Effekseer::Easing3Type result;
+  
+  (void)jenv;
+  (void)jcls;
+  (void)jarg1_;
+  arg1 = *(Effekseer::ParameterEasing< float > **)&jarg1; 
+  result = (Effekseer::Easing3Type) ((arg1)->type_);
+  jresult = (jint)result; 
+  return jresult;
+}
+
+
+SWIGEXPORT void JNICALL Java_io_github_srjohnathan_gdx_effekseer_core_GDXJNI_ParameterEasingFloatBaseCore_1params_1set(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_, jlong jarg2, jobject jarg2_) {
+  Effekseer::ParameterEasing< float > *arg1 = (Effekseer::ParameterEasing< float > *) 0 ;
+  std::array< float,4 > *arg2 = (std::array< float,4 > *) 0 ;
+  
+  (void)jenv;
+  (void)jcls;
+  (void)jarg1_;
+  (void)jarg2_;
+  arg1 = *(Effekseer::ParameterEasing< float > **)&jarg1; 
+  arg2 = *(std::array< float,4 > **)&jarg2; 
+  if (arg1) (arg1)->params = *arg2;
+}
+
+
+SWIGEXPORT jlong JNICALL Java_io_github_srjohnathan_gdx_effekseer_core_GDXJNI_ParameterEasingFloatBaseCore_1params_1get(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_) {
+  jlong jresult = 0 ;
+  Effekseer::ParameterEasing< float > *arg1 = (Effekseer::ParameterEasing< float > *) 0 ;
+  std::array< float,4 > *result = 0 ;
+  
+  (void)jenv;
+  (void)jcls;
+  (void)jarg1_;
+  arg1 = *(Effekseer::ParameterEasing< float > **)&jarg1; 
+  result = (std::array< float,4 > *)& ((arg1)->params);
+  *(std::array< float,4 > **)&jresult = result; 
+  return jresult;
+}
+
+
+SWIGEXPORT void JNICALL Java_io_github_srjohnathan_gdx_effekseer_core_GDXJNI_ParameterEasingFloatBaseCore_1channelCount_1set(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_, jint jarg2) {
+  Effekseer::ParameterEasing< float > *arg1 = (Effekseer::ParameterEasing< float > *) 0 ;
+  int32_t arg2 ;
+  
+  (void)jenv;
+  (void)jcls;
+  (void)jarg1_;
+  arg1 = *(Effekseer::ParameterEasing< float > **)&jarg1; 
+  arg2 = (int32_t)jarg2; 
+  if (arg1) (arg1)->channelCount = arg2;
+}
+
+
+SWIGEXPORT jint JNICALL Java_io_github_srjohnathan_gdx_effekseer_core_GDXJNI_ParameterEasingFloatBaseCore_1channelCount_1get(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_) {
+  jint jresult = 0 ;
+  Effekseer::ParameterEasing< float > *arg1 = (Effekseer::ParameterEasing< float > *) 0 ;
+  int32_t result;
+  
+  (void)jenv;
+  (void)jcls;
+  (void)jarg1_;
+  arg1 = *(Effekseer::ParameterEasing< float > **)&jarg1; 
+  result = (int32_t) ((arg1)->channelCount);
+  jresult = (jint)result; 
+  return jresult;
+}
+
+
+SWIGEXPORT void JNICALL Java_io_github_srjohnathan_gdx_effekseer_core_GDXJNI_ParameterEasingFloatBaseCore_1isMiddleEnabled_1set(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_, jboolean jarg2) {
+  Effekseer::ParameterEasing< float > *arg1 = (Effekseer::ParameterEasing< float > *) 0 ;
+  bool arg2 ;
+  
+  (void)jenv;
+  (void)jcls;
+  (void)jarg1_;
+  arg1 = *(Effekseer::ParameterEasing< float > **)&jarg1; 
+  arg2 = jarg2 ? true : false; 
+  if (arg1) (arg1)->isMiddleEnabled = arg2;
+}
+
+
+SWIGEXPORT jboolean JNICALL Java_io_github_srjohnathan_gdx_effekseer_core_GDXJNI_ParameterEasingFloatBaseCore_1isMiddleEnabled_1get(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_) {
+  jboolean jresult = 0 ;
+  Effekseer::ParameterEasing< float > *arg1 = (Effekseer::ParameterEasing< float > *) 0 ;
+  bool result;
+  
+  (void)jenv;
+  (void)jcls;
+  (void)jarg1_;
+  arg1 = *(Effekseer::ParameterEasing< float > **)&jarg1; 
+  result = (bool) ((arg1)->isMiddleEnabled);
+  jresult = (jboolean)result; 
+  return jresult;
+}
+
+
+SWIGEXPORT void JNICALL Java_io_github_srjohnathan_gdx_effekseer_core_GDXJNI_ParameterEasingFloatBaseCore_1isIndividualEnabled_1set(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_, jboolean jarg2) {
+  Effekseer::ParameterEasing< float > *arg1 = (Effekseer::ParameterEasing< float > *) 0 ;
+  bool arg2 ;
+  
+  (void)jenv;
+  (void)jcls;
+  (void)jarg1_;
+  arg1 = *(Effekseer::ParameterEasing< float > **)&jarg1; 
+  arg2 = jarg2 ? true : false; 
+  if (arg1) (arg1)->isIndividualEnabled = arg2;
+}
+
+
+SWIGEXPORT jboolean JNICALL Java_io_github_srjohnathan_gdx_effekseer_core_GDXJNI_ParameterEasingFloatBaseCore_1isIndividualEnabled_1get(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_) {
+  jboolean jresult = 0 ;
+  Effekseer::ParameterEasing< float > *arg1 = (Effekseer::ParameterEasing< float > *) 0 ;
+  bool result;
+  
+  (void)jenv;
+  (void)jcls;
+  (void)jarg1_;
+  arg1 = *(Effekseer::ParameterEasing< float > **)&jarg1; 
+  result = (bool) ((arg1)->isIndividualEnabled);
+  jresult = (jboolean)result; 
+  return jresult;
+}
+
+
+SWIGEXPORT void JNICALL Java_io_github_srjohnathan_gdx_effekseer_core_GDXJNI_delete_1ParameterEasingFloatBaseCore(JNIEnv *jenv, jclass jcls, jlong jarg1) {
+  Effekseer::ParameterEasing< float > *arg1 = (Effekseer::ParameterEasing< float > *) 0 ;
+  
+  (void)jenv;
+  (void)jcls;
+  arg1 = *(Effekseer::ParameterEasing< float > **)&jarg1; 
   delete arg1;
 }
 
@@ -12973,6 +13415,23 @@ SWIGEXPORT jlong JNICALL Java_io_github_srjohnathan_gdx_effekseer_core_GDXJNI_Ef
 }
 
 
+SWIGEXPORT jlong JNICALL Java_io_github_srjohnathan_gdx_effekseer_core_GDXJNI_EffectNode_1getChildAsRibbon(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_, jint jarg2) {
+  jlong jresult = 0 ;
+  Effekseer::EffectNode *arg1 = (Effekseer::EffectNode *) 0 ;
+  int arg2 ;
+  Effekseer::EffectNodeRibbon *result = 0 ;
+  
+  (void)jenv;
+  (void)jcls;
+  (void)jarg1_;
+  arg1 = *(Effekseer::EffectNode **)&jarg1; 
+  arg2 = (int)jarg2; 
+  result = (Effekseer::EffectNodeRibbon *)Effekseer_EffectNode_getChildAsRibbon(arg1,arg2);
+  *(Effekseer::EffectNodeRibbon **)&jresult = result; 
+  return jresult;
+}
+
+
 SWIGEXPORT jlong JNICALL Java_io_github_srjohnathan_gdx_effekseer_core_GDXJNI_EffectNode_1getChildAsTrack(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_, jint jarg2) {
   jlong jresult = 0 ;
   Effekseer::EffectNode *arg1 = (Effekseer::EffectNode *) 0 ;
@@ -12986,6 +13445,40 @@ SWIGEXPORT jlong JNICALL Java_io_github_srjohnathan_gdx_effekseer_core_GDXJNI_Ef
   arg2 = (int)jarg2; 
   result = (Effekseer::EffectNodeTrack *)Effekseer_EffectNode_getChildAsTrack(arg1,arg2);
   *(Effekseer::EffectNodeTrack **)&jresult = result; 
+  return jresult;
+}
+
+
+SWIGEXPORT jlong JNICALL Java_io_github_srjohnathan_gdx_effekseer_core_GDXJNI_EffectNode_1getChildAsRing(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_, jint jarg2) {
+  jlong jresult = 0 ;
+  Effekseer::EffectNode *arg1 = (Effekseer::EffectNode *) 0 ;
+  int arg2 ;
+  Effekseer::EffectNodeRing *result = 0 ;
+  
+  (void)jenv;
+  (void)jcls;
+  (void)jarg1_;
+  arg1 = *(Effekseer::EffectNode **)&jarg1; 
+  arg2 = (int)jarg2; 
+  result = (Effekseer::EffectNodeRing *)Effekseer_EffectNode_getChildAsRing(arg1,arg2);
+  *(Effekseer::EffectNodeRing **)&jresult = result; 
+  return jresult;
+}
+
+
+SWIGEXPORT jlong JNICALL Java_io_github_srjohnathan_gdx_effekseer_core_GDXJNI_EffectNode_1getChildAsModel(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_, jint jarg2) {
+  jlong jresult = 0 ;
+  Effekseer::EffectNode *arg1 = (Effekseer::EffectNode *) 0 ;
+  int arg2 ;
+  Effekseer::EffectNodeModel *result = 0 ;
+  
+  (void)jenv;
+  (void)jcls;
+  (void)jarg1_;
+  arg1 = *(Effekseer::EffectNode **)&jarg1; 
+  arg2 = (int)jarg2; 
+  result = (Effekseer::EffectNodeModel *)Effekseer_EffectNode_getChildAsModel(arg1,arg2);
+  *(Effekseer::EffectNodeModel **)&jresult = result; 
   return jresult;
 }
 
@@ -16712,6 +17205,615 @@ SWIGEXPORT jint JNICALL Java_io_github_srjohnathan_gdx_effekseer_core_GDXJNI_Par
   result = (Effekseer::ParameterGenerationLocation::LineType)Effekseer::ParameterGenerationLocation::LineType::Order;
   jresult = (jint)result; 
   return jresult;
+}
+
+
+SWIGEXPORT jlong JNICALL Java_io_github_srjohnathan_gdx_effekseer_core_GDXJNI_ParameterGenerationLocation_1getPointLocation(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_) {
+  jlong jresult = 0 ;
+  Effekseer::ParameterGenerationLocation *arg1 = (Effekseer::ParameterGenerationLocation *) 0 ;
+  Effekseer::random_vector3d result;
+  
+  (void)jenv;
+  (void)jcls;
+  (void)jarg1_;
+  arg1 = *(Effekseer::ParameterGenerationLocation **)&jarg1; 
+  result = Effekseer_ParameterGenerationLocation_getPointLocation(arg1);
+  *(Effekseer::random_vector3d **)&jresult = new Effekseer::random_vector3d((const Effekseer::random_vector3d &)result); 
+  return jresult;
+}
+
+
+SWIGEXPORT void JNICALL Java_io_github_srjohnathan_gdx_effekseer_core_GDXJNI_ParameterGenerationLocation_1setPointLocation(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_, jlong jarg2, jobject jarg2_) {
+  Effekseer::ParameterGenerationLocation *arg1 = (Effekseer::ParameterGenerationLocation *) 0 ;
+  Effekseer::random_vector3d arg2 ;
+  Effekseer::random_vector3d *argp2 ;
+  
+  (void)jenv;
+  (void)jcls;
+  (void)jarg1_;
+  (void)jarg2_;
+  arg1 = *(Effekseer::ParameterGenerationLocation **)&jarg1; 
+  argp2 = *(Effekseer::random_vector3d **)&jarg2; 
+  if (!argp2) {
+    SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "Attempt to dereference null Effekseer::random_vector3d");
+    return ;
+  }
+  arg2 = *argp2; 
+  Effekseer_ParameterGenerationLocation_setPointLocation(arg1,arg2);
+}
+
+
+SWIGEXPORT jlong JNICALL Java_io_github_srjohnathan_gdx_effekseer_core_GDXJNI_ParameterGenerationLocation_1getSphereRadius(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_) {
+  jlong jresult = 0 ;
+  Effekseer::ParameterGenerationLocation *arg1 = (Effekseer::ParameterGenerationLocation *) 0 ;
+  Effekseer::random_float result;
+  
+  (void)jenv;
+  (void)jcls;
+  (void)jarg1_;
+  arg1 = *(Effekseer::ParameterGenerationLocation **)&jarg1; 
+  result = Effekseer_ParameterGenerationLocation_getSphereRadius(arg1);
+  *(Effekseer::random_float **)&jresult = new Effekseer::random_float((const Effekseer::random_float &)result); 
+  return jresult;
+}
+
+
+SWIGEXPORT void JNICALL Java_io_github_srjohnathan_gdx_effekseer_core_GDXJNI_ParameterGenerationLocation_1setSphereRadius(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_, jlong jarg2, jobject jarg2_) {
+  Effekseer::ParameterGenerationLocation *arg1 = (Effekseer::ParameterGenerationLocation *) 0 ;
+  Effekseer::random_float arg2 ;
+  Effekseer::random_float *argp2 ;
+  
+  (void)jenv;
+  (void)jcls;
+  (void)jarg1_;
+  (void)jarg2_;
+  arg1 = *(Effekseer::ParameterGenerationLocation **)&jarg1; 
+  argp2 = *(Effekseer::random_float **)&jarg2; 
+  if (!argp2) {
+    SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "Attempt to dereference null Effekseer::random_float");
+    return ;
+  }
+  arg2 = *argp2; 
+  Effekseer_ParameterGenerationLocation_setSphereRadius(arg1,arg2);
+}
+
+
+SWIGEXPORT jlong JNICALL Java_io_github_srjohnathan_gdx_effekseer_core_GDXJNI_ParameterGenerationLocation_1getSphereRotationX(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_) {
+  jlong jresult = 0 ;
+  Effekseer::ParameterGenerationLocation *arg1 = (Effekseer::ParameterGenerationLocation *) 0 ;
+  Effekseer::random_float result;
+  
+  (void)jenv;
+  (void)jcls;
+  (void)jarg1_;
+  arg1 = *(Effekseer::ParameterGenerationLocation **)&jarg1; 
+  result = Effekseer_ParameterGenerationLocation_getSphereRotationX(arg1);
+  *(Effekseer::random_float **)&jresult = new Effekseer::random_float((const Effekseer::random_float &)result); 
+  return jresult;
+}
+
+
+SWIGEXPORT void JNICALL Java_io_github_srjohnathan_gdx_effekseer_core_GDXJNI_ParameterGenerationLocation_1setSphereRotationX(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_, jlong jarg2, jobject jarg2_) {
+  Effekseer::ParameterGenerationLocation *arg1 = (Effekseer::ParameterGenerationLocation *) 0 ;
+  Effekseer::random_float arg2 ;
+  Effekseer::random_float *argp2 ;
+  
+  (void)jenv;
+  (void)jcls;
+  (void)jarg1_;
+  (void)jarg2_;
+  arg1 = *(Effekseer::ParameterGenerationLocation **)&jarg1; 
+  argp2 = *(Effekseer::random_float **)&jarg2; 
+  if (!argp2) {
+    SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "Attempt to dereference null Effekseer::random_float");
+    return ;
+  }
+  arg2 = *argp2; 
+  Effekseer_ParameterGenerationLocation_setSphereRotationX(arg1,arg2);
+}
+
+
+SWIGEXPORT jlong JNICALL Java_io_github_srjohnathan_gdx_effekseer_core_GDXJNI_ParameterGenerationLocation_1getSphereRotationY(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_) {
+  jlong jresult = 0 ;
+  Effekseer::ParameterGenerationLocation *arg1 = (Effekseer::ParameterGenerationLocation *) 0 ;
+  Effekseer::random_float result;
+  
+  (void)jenv;
+  (void)jcls;
+  (void)jarg1_;
+  arg1 = *(Effekseer::ParameterGenerationLocation **)&jarg1; 
+  result = Effekseer_ParameterGenerationLocation_getSphereRotationY(arg1);
+  *(Effekseer::random_float **)&jresult = new Effekseer::random_float((const Effekseer::random_float &)result); 
+  return jresult;
+}
+
+
+SWIGEXPORT void JNICALL Java_io_github_srjohnathan_gdx_effekseer_core_GDXJNI_ParameterGenerationLocation_1setSphereRotationY(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_, jlong jarg2, jobject jarg2_) {
+  Effekseer::ParameterGenerationLocation *arg1 = (Effekseer::ParameterGenerationLocation *) 0 ;
+  Effekseer::random_float arg2 ;
+  Effekseer::random_float *argp2 ;
+  
+  (void)jenv;
+  (void)jcls;
+  (void)jarg1_;
+  (void)jarg2_;
+  arg1 = *(Effekseer::ParameterGenerationLocation **)&jarg1; 
+  argp2 = *(Effekseer::random_float **)&jarg2; 
+  if (!argp2) {
+    SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "Attempt to dereference null Effekseer::random_float");
+    return ;
+  }
+  arg2 = *argp2; 
+  Effekseer_ParameterGenerationLocation_setSphereRotationY(arg1,arg2);
+}
+
+
+SWIGEXPORT jint JNICALL Java_io_github_srjohnathan_gdx_effekseer_core_GDXJNI_ParameterGenerationLocation_1getModelReferenceType(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_) {
+  jint jresult = 0 ;
+  Effekseer::ParameterGenerationLocation *arg1 = (Effekseer::ParameterGenerationLocation *) 0 ;
+  Effekseer::ModelReferenceType result;
+  
+  (void)jenv;
+  (void)jcls;
+  (void)jarg1_;
+  arg1 = *(Effekseer::ParameterGenerationLocation **)&jarg1; 
+  result = (Effekseer::ModelReferenceType)Effekseer_ParameterGenerationLocation_getModelReferenceType(arg1);
+  jresult = (jint)result; 
+  return jresult;
+}
+
+
+SWIGEXPORT void JNICALL Java_io_github_srjohnathan_gdx_effekseer_core_GDXJNI_ParameterGenerationLocation_1setModelReferenceType(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_, jint jarg2) {
+  Effekseer::ParameterGenerationLocation *arg1 = (Effekseer::ParameterGenerationLocation *) 0 ;
+  Effekseer::ModelReferenceType arg2 ;
+  
+  (void)jenv;
+  (void)jcls;
+  (void)jarg1_;
+  arg1 = *(Effekseer::ParameterGenerationLocation **)&jarg1; 
+  arg2 = (Effekseer::ModelReferenceType)jarg2; 
+  Effekseer_ParameterGenerationLocation_setModelReferenceType(arg1,arg2);
+}
+
+
+SWIGEXPORT jint JNICALL Java_io_github_srjohnathan_gdx_effekseer_core_GDXJNI_ParameterGenerationLocation_1getModelIndex(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_) {
+  jint jresult = 0 ;
+  Effekseer::ParameterGenerationLocation *arg1 = (Effekseer::ParameterGenerationLocation *) 0 ;
+  int32_t result;
+  
+  (void)jenv;
+  (void)jcls;
+  (void)jarg1_;
+  arg1 = *(Effekseer::ParameterGenerationLocation **)&jarg1; 
+  result = (int32_t)Effekseer_ParameterGenerationLocation_getModelIndex(arg1);
+  jresult = (jint)result; 
+  return jresult;
+}
+
+
+SWIGEXPORT void JNICALL Java_io_github_srjohnathan_gdx_effekseer_core_GDXJNI_ParameterGenerationLocation_1setModelIndex(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_, jint jarg2) {
+  Effekseer::ParameterGenerationLocation *arg1 = (Effekseer::ParameterGenerationLocation *) 0 ;
+  int32_t arg2 ;
+  
+  (void)jenv;
+  (void)jcls;
+  (void)jarg1_;
+  arg1 = *(Effekseer::ParameterGenerationLocation **)&jarg1; 
+  arg2 = (int32_t)jarg2; 
+  Effekseer_ParameterGenerationLocation_setModelIndex(arg1,arg2);
+}
+
+
+SWIGEXPORT jint JNICALL Java_io_github_srjohnathan_gdx_effekseer_core_GDXJNI_ParameterGenerationLocation_1getModelType(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_) {
+  jint jresult = 0 ;
+  Effekseer::ParameterGenerationLocation *arg1 = (Effekseer::ParameterGenerationLocation *) 0 ;
+  Effekseer::ParameterGenerationLocation::eModelType result;
+  
+  (void)jenv;
+  (void)jcls;
+  (void)jarg1_;
+  arg1 = *(Effekseer::ParameterGenerationLocation **)&jarg1; 
+  result = (Effekseer::ParameterGenerationLocation::eModelType)Effekseer_ParameterGenerationLocation_getModelType(arg1);
+  jresult = (jint)result; 
+  return jresult;
+}
+
+
+SWIGEXPORT void JNICALL Java_io_github_srjohnathan_gdx_effekseer_core_GDXJNI_ParameterGenerationLocation_1setModelType(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_, jint jarg2) {
+  Effekseer::ParameterGenerationLocation *arg1 = (Effekseer::ParameterGenerationLocation *) 0 ;
+  Effekseer::ParameterGenerationLocation::eModelType arg2 ;
+  
+  (void)jenv;
+  (void)jcls;
+  (void)jarg1_;
+  arg1 = *(Effekseer::ParameterGenerationLocation **)&jarg1; 
+  arg2 = (Effekseer::ParameterGenerationLocation::eModelType)jarg2; 
+  Effekseer_ParameterGenerationLocation_setModelType(arg1,arg2);
+}
+
+
+SWIGEXPORT jint JNICALL Java_io_github_srjohnathan_gdx_effekseer_core_GDXJNI_ParameterGenerationLocation_1getCircleDivision(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_) {
+  jint jresult = 0 ;
+  Effekseer::ParameterGenerationLocation *arg1 = (Effekseer::ParameterGenerationLocation *) 0 ;
+  int32_t result;
+  
+  (void)jenv;
+  (void)jcls;
+  (void)jarg1_;
+  arg1 = *(Effekseer::ParameterGenerationLocation **)&jarg1; 
+  result = (int32_t)Effekseer_ParameterGenerationLocation_getCircleDivision(arg1);
+  jresult = (jint)result; 
+  return jresult;
+}
+
+
+SWIGEXPORT void JNICALL Java_io_github_srjohnathan_gdx_effekseer_core_GDXJNI_ParameterGenerationLocation_1setCircleDivision(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_, jint jarg2) {
+  Effekseer::ParameterGenerationLocation *arg1 = (Effekseer::ParameterGenerationLocation *) 0 ;
+  int32_t arg2 ;
+  
+  (void)jenv;
+  (void)jcls;
+  (void)jarg1_;
+  arg1 = *(Effekseer::ParameterGenerationLocation **)&jarg1; 
+  arg2 = (int32_t)jarg2; 
+  Effekseer_ParameterGenerationLocation_setCircleDivision(arg1,arg2);
+}
+
+
+SWIGEXPORT jlong JNICALL Java_io_github_srjohnathan_gdx_effekseer_core_GDXJNI_ParameterGenerationLocation_1getCircleRadius(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_) {
+  jlong jresult = 0 ;
+  Effekseer::ParameterGenerationLocation *arg1 = (Effekseer::ParameterGenerationLocation *) 0 ;
+  Effekseer::random_float result;
+  
+  (void)jenv;
+  (void)jcls;
+  (void)jarg1_;
+  arg1 = *(Effekseer::ParameterGenerationLocation **)&jarg1; 
+  result = Effekseer_ParameterGenerationLocation_getCircleRadius(arg1);
+  *(Effekseer::random_float **)&jresult = new Effekseer::random_float((const Effekseer::random_float &)result); 
+  return jresult;
+}
+
+
+SWIGEXPORT void JNICALL Java_io_github_srjohnathan_gdx_effekseer_core_GDXJNI_ParameterGenerationLocation_1setCircleRadius(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_, jlong jarg2, jobject jarg2_) {
+  Effekseer::ParameterGenerationLocation *arg1 = (Effekseer::ParameterGenerationLocation *) 0 ;
+  Effekseer::random_float arg2 ;
+  Effekseer::random_float *argp2 ;
+  
+  (void)jenv;
+  (void)jcls;
+  (void)jarg1_;
+  (void)jarg2_;
+  arg1 = *(Effekseer::ParameterGenerationLocation **)&jarg1; 
+  argp2 = *(Effekseer::random_float **)&jarg2; 
+  if (!argp2) {
+    SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "Attempt to dereference null Effekseer::random_float");
+    return ;
+  }
+  arg2 = *argp2; 
+  Effekseer_ParameterGenerationLocation_setCircleRadius(arg1,arg2);
+}
+
+
+SWIGEXPORT jlong JNICALL Java_io_github_srjohnathan_gdx_effekseer_core_GDXJNI_ParameterGenerationLocation_1getCircleAngleStart(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_) {
+  jlong jresult = 0 ;
+  Effekseer::ParameterGenerationLocation *arg1 = (Effekseer::ParameterGenerationLocation *) 0 ;
+  Effekseer::random_float result;
+  
+  (void)jenv;
+  (void)jcls;
+  (void)jarg1_;
+  arg1 = *(Effekseer::ParameterGenerationLocation **)&jarg1; 
+  result = Effekseer_ParameterGenerationLocation_getCircleAngleStart(arg1);
+  *(Effekseer::random_float **)&jresult = new Effekseer::random_float((const Effekseer::random_float &)result); 
+  return jresult;
+}
+
+
+SWIGEXPORT void JNICALL Java_io_github_srjohnathan_gdx_effekseer_core_GDXJNI_ParameterGenerationLocation_1setCircleAngleStart(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_, jlong jarg2, jobject jarg2_) {
+  Effekseer::ParameterGenerationLocation *arg1 = (Effekseer::ParameterGenerationLocation *) 0 ;
+  Effekseer::random_float arg2 ;
+  Effekseer::random_float *argp2 ;
+  
+  (void)jenv;
+  (void)jcls;
+  (void)jarg1_;
+  (void)jarg2_;
+  arg1 = *(Effekseer::ParameterGenerationLocation **)&jarg1; 
+  argp2 = *(Effekseer::random_float **)&jarg2; 
+  if (!argp2) {
+    SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "Attempt to dereference null Effekseer::random_float");
+    return ;
+  }
+  arg2 = *argp2; 
+  Effekseer_ParameterGenerationLocation_setCircleAngleStart(arg1,arg2);
+}
+
+
+SWIGEXPORT jlong JNICALL Java_io_github_srjohnathan_gdx_effekseer_core_GDXJNI_ParameterGenerationLocation_1getCircleAngleEnd(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_) {
+  jlong jresult = 0 ;
+  Effekseer::ParameterGenerationLocation *arg1 = (Effekseer::ParameterGenerationLocation *) 0 ;
+  Effekseer::random_float result;
+  
+  (void)jenv;
+  (void)jcls;
+  (void)jarg1_;
+  arg1 = *(Effekseer::ParameterGenerationLocation **)&jarg1; 
+  result = Effekseer_ParameterGenerationLocation_getCircleAngleEnd(arg1);
+  *(Effekseer::random_float **)&jresult = new Effekseer::random_float((const Effekseer::random_float &)result); 
+  return jresult;
+}
+
+
+SWIGEXPORT void JNICALL Java_io_github_srjohnathan_gdx_effekseer_core_GDXJNI_ParameterGenerationLocation_1setCircleAngleEnd(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_, jlong jarg2, jobject jarg2_) {
+  Effekseer::ParameterGenerationLocation *arg1 = (Effekseer::ParameterGenerationLocation *) 0 ;
+  Effekseer::random_float arg2 ;
+  Effekseer::random_float *argp2 ;
+  
+  (void)jenv;
+  (void)jcls;
+  (void)jarg1_;
+  (void)jarg2_;
+  arg1 = *(Effekseer::ParameterGenerationLocation **)&jarg1; 
+  argp2 = *(Effekseer::random_float **)&jarg2; 
+  if (!argp2) {
+    SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "Attempt to dereference null Effekseer::random_float");
+    return ;
+  }
+  arg2 = *argp2; 
+  Effekseer_ParameterGenerationLocation_setCircleAngleEnd(arg1,arg2);
+}
+
+
+SWIGEXPORT jint JNICALL Java_io_github_srjohnathan_gdx_effekseer_core_GDXJNI_ParameterGenerationLocation_1getCircleType(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_) {
+  jint jresult = 0 ;
+  Effekseer::ParameterGenerationLocation *arg1 = (Effekseer::ParameterGenerationLocation *) 0 ;
+  Effekseer::ParameterGenerationLocation::eCircleType result;
+  
+  (void)jenv;
+  (void)jcls;
+  (void)jarg1_;
+  arg1 = *(Effekseer::ParameterGenerationLocation **)&jarg1; 
+  result = (Effekseer::ParameterGenerationLocation::eCircleType)Effekseer_ParameterGenerationLocation_getCircleType(arg1);
+  jresult = (jint)result; 
+  return jresult;
+}
+
+
+SWIGEXPORT void JNICALL Java_io_github_srjohnathan_gdx_effekseer_core_GDXJNI_ParameterGenerationLocation_1setCircleType(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_, jint jarg2) {
+  Effekseer::ParameterGenerationLocation *arg1 = (Effekseer::ParameterGenerationLocation *) 0 ;
+  Effekseer::ParameterGenerationLocation::eCircleType arg2 ;
+  
+  (void)jenv;
+  (void)jcls;
+  (void)jarg1_;
+  arg1 = *(Effekseer::ParameterGenerationLocation **)&jarg1; 
+  arg2 = (Effekseer::ParameterGenerationLocation::eCircleType)jarg2; 
+  Effekseer_ParameterGenerationLocation_setCircleType(arg1,arg2);
+}
+
+
+SWIGEXPORT jint JNICALL Java_io_github_srjohnathan_gdx_effekseer_core_GDXJNI_ParameterGenerationLocation_1getCircleAxisDirection(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_) {
+  jint jresult = 0 ;
+  Effekseer::ParameterGenerationLocation *arg1 = (Effekseer::ParameterGenerationLocation *) 0 ;
+  Effekseer::ParameterGenerationLocation::AxisType result;
+  
+  (void)jenv;
+  (void)jcls;
+  (void)jarg1_;
+  arg1 = *(Effekseer::ParameterGenerationLocation **)&jarg1; 
+  result = (Effekseer::ParameterGenerationLocation::AxisType)Effekseer_ParameterGenerationLocation_getCircleAxisDirection(arg1);
+  jresult = (jint)result; 
+  return jresult;
+}
+
+
+SWIGEXPORT void JNICALL Java_io_github_srjohnathan_gdx_effekseer_core_GDXJNI_ParameterGenerationLocation_1setCircleAxisDirection(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_, jint jarg2) {
+  Effekseer::ParameterGenerationLocation *arg1 = (Effekseer::ParameterGenerationLocation *) 0 ;
+  Effekseer::ParameterGenerationLocation::AxisType arg2 ;
+  
+  (void)jenv;
+  (void)jcls;
+  (void)jarg1_;
+  arg1 = *(Effekseer::ParameterGenerationLocation **)&jarg1; 
+  arg2 = (Effekseer::ParameterGenerationLocation::AxisType)jarg2; 
+  Effekseer_ParameterGenerationLocation_setCircleAxisDirection(arg1,arg2);
+}
+
+
+SWIGEXPORT jlong JNICALL Java_io_github_srjohnathan_gdx_effekseer_core_GDXJNI_ParameterGenerationLocation_1getCircleAngleNoise(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_) {
+  jlong jresult = 0 ;
+  Effekseer::ParameterGenerationLocation *arg1 = (Effekseer::ParameterGenerationLocation *) 0 ;
+  Effekseer::random_float result;
+  
+  (void)jenv;
+  (void)jcls;
+  (void)jarg1_;
+  arg1 = *(Effekseer::ParameterGenerationLocation **)&jarg1; 
+  result = Effekseer_ParameterGenerationLocation_getCircleAngleNoise(arg1);
+  *(Effekseer::random_float **)&jresult = new Effekseer::random_float((const Effekseer::random_float &)result); 
+  return jresult;
+}
+
+
+SWIGEXPORT void JNICALL Java_io_github_srjohnathan_gdx_effekseer_core_GDXJNI_ParameterGenerationLocation_1setCircleAngleNoise(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_, jlong jarg2, jobject jarg2_) {
+  Effekseer::ParameterGenerationLocation *arg1 = (Effekseer::ParameterGenerationLocation *) 0 ;
+  Effekseer::random_float arg2 ;
+  Effekseer::random_float *argp2 ;
+  
+  (void)jenv;
+  (void)jcls;
+  (void)jarg1_;
+  (void)jarg2_;
+  arg1 = *(Effekseer::ParameterGenerationLocation **)&jarg1; 
+  argp2 = *(Effekseer::random_float **)&jarg2; 
+  if (!argp2) {
+    SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "Attempt to dereference null Effekseer::random_float");
+    return ;
+  }
+  arg2 = *argp2; 
+  Effekseer_ParameterGenerationLocation_setCircleAngleNoise(arg1,arg2);
+}
+
+
+SWIGEXPORT jint JNICALL Java_io_github_srjohnathan_gdx_effekseer_core_GDXJNI_ParameterGenerationLocation_1getLineDivision(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_) {
+  jint jresult = 0 ;
+  Effekseer::ParameterGenerationLocation *arg1 = (Effekseer::ParameterGenerationLocation *) 0 ;
+  int32_t result;
+  
+  (void)jenv;
+  (void)jcls;
+  (void)jarg1_;
+  arg1 = *(Effekseer::ParameterGenerationLocation **)&jarg1; 
+  result = (int32_t)Effekseer_ParameterGenerationLocation_getLineDivision(arg1);
+  jresult = (jint)result; 
+  return jresult;
+}
+
+
+SWIGEXPORT void JNICALL Java_io_github_srjohnathan_gdx_effekseer_core_GDXJNI_ParameterGenerationLocation_1setLineDivision(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_, jint jarg2) {
+  Effekseer::ParameterGenerationLocation *arg1 = (Effekseer::ParameterGenerationLocation *) 0 ;
+  int32_t arg2 ;
+  
+  (void)jenv;
+  (void)jcls;
+  (void)jarg1_;
+  arg1 = *(Effekseer::ParameterGenerationLocation **)&jarg1; 
+  arg2 = (int32_t)jarg2; 
+  Effekseer_ParameterGenerationLocation_setLineDivision(arg1,arg2);
+}
+
+
+SWIGEXPORT jlong JNICALL Java_io_github_srjohnathan_gdx_effekseer_core_GDXJNI_ParameterGenerationLocation_1getLinePositionStart(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_) {
+  jlong jresult = 0 ;
+  Effekseer::ParameterGenerationLocation *arg1 = (Effekseer::ParameterGenerationLocation *) 0 ;
+  Effekseer::random_vector3d result;
+  
+  (void)jenv;
+  (void)jcls;
+  (void)jarg1_;
+  arg1 = *(Effekseer::ParameterGenerationLocation **)&jarg1; 
+  result = Effekseer_ParameterGenerationLocation_getLinePositionStart(arg1);
+  *(Effekseer::random_vector3d **)&jresult = new Effekseer::random_vector3d((const Effekseer::random_vector3d &)result); 
+  return jresult;
+}
+
+
+SWIGEXPORT void JNICALL Java_io_github_srjohnathan_gdx_effekseer_core_GDXJNI_ParameterGenerationLocation_1setLinePositionStart(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_, jlong jarg2, jobject jarg2_) {
+  Effekseer::ParameterGenerationLocation *arg1 = (Effekseer::ParameterGenerationLocation *) 0 ;
+  Effekseer::random_vector3d arg2 ;
+  Effekseer::random_vector3d *argp2 ;
+  
+  (void)jenv;
+  (void)jcls;
+  (void)jarg1_;
+  (void)jarg2_;
+  arg1 = *(Effekseer::ParameterGenerationLocation **)&jarg1; 
+  argp2 = *(Effekseer::random_vector3d **)&jarg2; 
+  if (!argp2) {
+    SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "Attempt to dereference null Effekseer::random_vector3d");
+    return ;
+  }
+  arg2 = *argp2; 
+  Effekseer_ParameterGenerationLocation_setLinePositionStart(arg1,arg2);
+}
+
+
+SWIGEXPORT jlong JNICALL Java_io_github_srjohnathan_gdx_effekseer_core_GDXJNI_ParameterGenerationLocation_1getLinePositionEnd(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_) {
+  jlong jresult = 0 ;
+  Effekseer::ParameterGenerationLocation *arg1 = (Effekseer::ParameterGenerationLocation *) 0 ;
+  Effekseer::random_vector3d result;
+  
+  (void)jenv;
+  (void)jcls;
+  (void)jarg1_;
+  arg1 = *(Effekseer::ParameterGenerationLocation **)&jarg1; 
+  result = Effekseer_ParameterGenerationLocation_getLinePositionEnd(arg1);
+  *(Effekseer::random_vector3d **)&jresult = new Effekseer::random_vector3d((const Effekseer::random_vector3d &)result); 
+  return jresult;
+}
+
+
+SWIGEXPORT void JNICALL Java_io_github_srjohnathan_gdx_effekseer_core_GDXJNI_ParameterGenerationLocation_1setLinePositionEnd(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_, jlong jarg2, jobject jarg2_) {
+  Effekseer::ParameterGenerationLocation *arg1 = (Effekseer::ParameterGenerationLocation *) 0 ;
+  Effekseer::random_vector3d arg2 ;
+  Effekseer::random_vector3d *argp2 ;
+  
+  (void)jenv;
+  (void)jcls;
+  (void)jarg1_;
+  (void)jarg2_;
+  arg1 = *(Effekseer::ParameterGenerationLocation **)&jarg1; 
+  argp2 = *(Effekseer::random_vector3d **)&jarg2; 
+  if (!argp2) {
+    SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "Attempt to dereference null Effekseer::random_vector3d");
+    return ;
+  }
+  arg2 = *argp2; 
+  Effekseer_ParameterGenerationLocation_setLinePositionEnd(arg1,arg2);
+}
+
+
+SWIGEXPORT jlong JNICALL Java_io_github_srjohnathan_gdx_effekseer_core_GDXJNI_ParameterGenerationLocation_1getLinePositionNoise(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_) {
+  jlong jresult = 0 ;
+  Effekseer::ParameterGenerationLocation *arg1 = (Effekseer::ParameterGenerationLocation *) 0 ;
+  Effekseer::random_float result;
+  
+  (void)jenv;
+  (void)jcls;
+  (void)jarg1_;
+  arg1 = *(Effekseer::ParameterGenerationLocation **)&jarg1; 
+  result = Effekseer_ParameterGenerationLocation_getLinePositionNoise(arg1);
+  *(Effekseer::random_float **)&jresult = new Effekseer::random_float((const Effekseer::random_float &)result); 
+  return jresult;
+}
+
+
+SWIGEXPORT void JNICALL Java_io_github_srjohnathan_gdx_effekseer_core_GDXJNI_ParameterGenerationLocation_1setLinePositionNoise(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_, jlong jarg2, jobject jarg2_) {
+  Effekseer::ParameterGenerationLocation *arg1 = (Effekseer::ParameterGenerationLocation *) 0 ;
+  Effekseer::random_float arg2 ;
+  Effekseer::random_float *argp2 ;
+  
+  (void)jenv;
+  (void)jcls;
+  (void)jarg1_;
+  (void)jarg2_;
+  arg1 = *(Effekseer::ParameterGenerationLocation **)&jarg1; 
+  argp2 = *(Effekseer::random_float **)&jarg2; 
+  if (!argp2) {
+    SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "Attempt to dereference null Effekseer::random_float");
+    return ;
+  }
+  arg2 = *argp2; 
+  Effekseer_ParameterGenerationLocation_setLinePositionNoise(arg1,arg2);
+}
+
+
+SWIGEXPORT jint JNICALL Java_io_github_srjohnathan_gdx_effekseer_core_GDXJNI_ParameterGenerationLocation_1getLineType(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_) {
+  jint jresult = 0 ;
+  Effekseer::ParameterGenerationLocation *arg1 = (Effekseer::ParameterGenerationLocation *) 0 ;
+  Effekseer::ParameterGenerationLocation::LineType result;
+  
+  (void)jenv;
+  (void)jcls;
+  (void)jarg1_;
+  arg1 = *(Effekseer::ParameterGenerationLocation **)&jarg1; 
+  result = (Effekseer::ParameterGenerationLocation::LineType)Effekseer_ParameterGenerationLocation_getLineType(arg1);
+  jresult = (jint)result; 
+  return jresult;
+}
+
+
+SWIGEXPORT void JNICALL Java_io_github_srjohnathan_gdx_effekseer_core_GDXJNI_ParameterGenerationLocation_1setLineType(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_, jint jarg2) {
+  Effekseer::ParameterGenerationLocation *arg1 = (Effekseer::ParameterGenerationLocation *) 0 ;
+  Effekseer::ParameterGenerationLocation::LineType arg2 ;
+  
+  (void)jenv;
+  (void)jcls;
+  (void)jarg1_;
+  arg1 = *(Effekseer::ParameterGenerationLocation **)&jarg1; 
+  arg2 = (Effekseer::ParameterGenerationLocation::LineType)jarg2; 
+  Effekseer_ParameterGenerationLocation_setLineType(arg1,arg2);
 }
 
 
@@ -20694,6 +21796,822 @@ SWIGEXPORT void JNICALL Java_io_github_srjohnathan_gdx_effekseer_core_GDXJNI_del
 }
 
 
+SWIGEXPORT jint JNICALL Java_io_github_srjohnathan_gdx_effekseer_core_GDXJNI_RibbonAllColorParameterCore_1Fixed_1get(JNIEnv *jenv, jclass jcls) {
+  jint jresult = 0 ;
+  int result;
+  
+  (void)jenv;
+  (void)jcls;
+  result = (int)Effekseer::RibbonAllColorParameter::Fixed;
+  jresult = (jint)result; 
+  return jresult;
+}
+
+
+SWIGEXPORT jint JNICALL Java_io_github_srjohnathan_gdx_effekseer_core_GDXJNI_RibbonAllColorParameterCore_1Random_1get(JNIEnv *jenv, jclass jcls) {
+  jint jresult = 0 ;
+  int result;
+  
+  (void)jenv;
+  (void)jcls;
+  result = (int)Effekseer::RibbonAllColorParameter::Random;
+  jresult = (jint)result; 
+  return jresult;
+}
+
+
+SWIGEXPORT jint JNICALL Java_io_github_srjohnathan_gdx_effekseer_core_GDXJNI_RibbonAllColorParameterCore_1Easing_1get(JNIEnv *jenv, jclass jcls) {
+  jint jresult = 0 ;
+  int result;
+  
+  (void)jenv;
+  (void)jcls;
+  result = (int)Effekseer::RibbonAllColorParameter::Easing;
+  jresult = (jint)result; 
+  return jresult;
+}
+
+
+SWIGEXPORT jint JNICALL Java_io_github_srjohnathan_gdx_effekseer_core_GDXJNI_RibbonAllColorParameterCore_1Parameter_1DWORD_1get(JNIEnv *jenv, jclass jcls) {
+  jint jresult = 0 ;
+  int result;
+  
+  (void)jenv;
+  (void)jcls;
+  result = (int)Effekseer::RibbonAllColorParameter::Parameter_DWORD;
+  jresult = (jint)result; 
+  return jresult;
+}
+
+
+SWIGEXPORT void JNICALL Java_io_github_srjohnathan_gdx_effekseer_core_GDXJNI_RibbonAllColorParameterCore_1type_1set(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_, jint jarg2) {
+  Effekseer::RibbonAllColorParameter *arg1 = (Effekseer::RibbonAllColorParameter *) 0 ;
+  int arg2 ;
+  
+  (void)jenv;
+  (void)jcls;
+  (void)jarg1_;
+  arg1 = *(Effekseer::RibbonAllColorParameter **)&jarg1; 
+  arg2 = (int)jarg2; 
+  if (arg1 && sizeof(int) == sizeof((arg1)->type)) *(int*)(void*)&((arg1)->type) = arg2;
+}
+
+
+SWIGEXPORT jint JNICALL Java_io_github_srjohnathan_gdx_effekseer_core_GDXJNI_RibbonAllColorParameterCore_1type_1get(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_) {
+  jint jresult = 0 ;
+  Effekseer::RibbonAllColorParameter *arg1 = (Effekseer::RibbonAllColorParameter *) 0 ;
+  int result;
+  
+  (void)jenv;
+  (void)jcls;
+  (void)jarg1_;
+  arg1 = *(Effekseer::RibbonAllColorParameter **)&jarg1; 
+  result = (int) ((arg1)->type);
+  jresult = (jint)result; 
+  return jresult;
+}
+
+
+SWIGEXPORT jlong JNICALL Java_io_github_srjohnathan_gdx_effekseer_core_GDXJNI_RibbonAllColorParameterCore_1getFixedAllColor(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_) {
+  jlong jresult = 0 ;
+  Effekseer::RibbonAllColorParameter *arg1 = (Effekseer::RibbonAllColorParameter *) 0 ;
+  Effekseer::Color result;
+  
+  (void)jenv;
+  (void)jcls;
+  (void)jarg1_;
+  arg1 = *(Effekseer::RibbonAllColorParameter **)&jarg1; 
+  result = Effekseer_RibbonAllColorParameter_getFixedAllColor(arg1);
+  *(Effekseer::Color **)&jresult = new Effekseer::Color((const Effekseer::Color &)result); 
+  return jresult;
+}
+
+
+SWIGEXPORT void JNICALL Java_io_github_srjohnathan_gdx_effekseer_core_GDXJNI_RibbonAllColorParameterCore_1setFixedAllColor(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_, jlong jarg2, jobject jarg2_) {
+  Effekseer::RibbonAllColorParameter *arg1 = (Effekseer::RibbonAllColorParameter *) 0 ;
+  Effekseer::Color arg2 ;
+  Effekseer::Color *argp2 ;
+  
+  (void)jenv;
+  (void)jcls;
+  (void)jarg1_;
+  (void)jarg2_;
+  arg1 = *(Effekseer::RibbonAllColorParameter **)&jarg1; 
+  argp2 = *(Effekseer::Color **)&jarg2; 
+  if (!argp2) {
+    SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "Attempt to dereference null Effekseer::Color");
+    return ;
+  }
+  arg2 = *argp2; 
+  Effekseer_RibbonAllColorParameter_setFixedAllColor(arg1,arg2);
+}
+
+
+SWIGEXPORT jlong JNICALL Java_io_github_srjohnathan_gdx_effekseer_core_GDXJNI_RibbonAllColorParameterCore_1getRandomAllColor(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_) {
+  jlong jresult = 0 ;
+  Effekseer::RibbonAllColorParameter *arg1 = (Effekseer::RibbonAllColorParameter *) 0 ;
+  Effekseer::random_color result;
+  
+  (void)jenv;
+  (void)jcls;
+  (void)jarg1_;
+  arg1 = *(Effekseer::RibbonAllColorParameter **)&jarg1; 
+  result = Effekseer_RibbonAllColorParameter_getRandomAllColor(arg1);
+  *(Effekseer::random_color **)&jresult = new Effekseer::random_color((const Effekseer::random_color &)result); 
+  return jresult;
+}
+
+
+SWIGEXPORT void JNICALL Java_io_github_srjohnathan_gdx_effekseer_core_GDXJNI_RibbonAllColorParameterCore_1setRandomAllColor(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_, jlong jarg2, jobject jarg2_) {
+  Effekseer::RibbonAllColorParameter *arg1 = (Effekseer::RibbonAllColorParameter *) 0 ;
+  Effekseer::random_color arg2 ;
+  Effekseer::random_color *argp2 ;
+  
+  (void)jenv;
+  (void)jcls;
+  (void)jarg1_;
+  (void)jarg2_;
+  arg1 = *(Effekseer::RibbonAllColorParameter **)&jarg1; 
+  argp2 = *(Effekseer::random_color **)&jarg2; 
+  if (!argp2) {
+    SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "Attempt to dereference null Effekseer::random_color");
+    return ;
+  }
+  arg2 = *argp2; 
+  Effekseer_RibbonAllColorParameter_setRandomAllColor(arg1,arg2);
+}
+
+
+SWIGEXPORT jlong JNICALL Java_io_github_srjohnathan_gdx_effekseer_core_GDXJNI_RibbonAllColorParameterCore_1getEasingAllColor(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_) {
+  jlong jresult = 0 ;
+  Effekseer::RibbonAllColorParameter *arg1 = (Effekseer::RibbonAllColorParameter *) 0 ;
+  Effekseer::easing_color result;
+  
+  (void)jenv;
+  (void)jcls;
+  (void)jarg1_;
+  arg1 = *(Effekseer::RibbonAllColorParameter **)&jarg1; 
+  result = Effekseer_RibbonAllColorParameter_getEasingAllColor(arg1);
+  *(Effekseer::easing_color **)&jresult = new Effekseer::easing_color((const Effekseer::easing_color &)result); 
+  return jresult;
+}
+
+
+SWIGEXPORT void JNICALL Java_io_github_srjohnathan_gdx_effekseer_core_GDXJNI_RibbonAllColorParameterCore_1setEasingAllColor(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_, jlong jarg2, jobject jarg2_) {
+  Effekseer::RibbonAllColorParameter *arg1 = (Effekseer::RibbonAllColorParameter *) 0 ;
+  Effekseer::easing_color arg2 ;
+  Effekseer::easing_color *argp2 ;
+  
+  (void)jenv;
+  (void)jcls;
+  (void)jarg1_;
+  (void)jarg2_;
+  arg1 = *(Effekseer::RibbonAllColorParameter **)&jarg1; 
+  argp2 = *(Effekseer::easing_color **)&jarg2; 
+  if (!argp2) {
+    SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "Attempt to dereference null Effekseer::easing_color");
+    return ;
+  }
+  arg2 = *argp2; 
+  Effekseer_RibbonAllColorParameter_setEasingAllColor(arg1,arg2);
+}
+
+
+SWIGEXPORT jlong JNICALL Java_io_github_srjohnathan_gdx_effekseer_core_GDXJNI_new_1RibbonAllColorParameterCore(JNIEnv *jenv, jclass jcls) {
+  jlong jresult = 0 ;
+  Effekseer::RibbonAllColorParameter *result = 0 ;
+  
+  (void)jenv;
+  (void)jcls;
+  result = (Effekseer::RibbonAllColorParameter *)new Effekseer::RibbonAllColorParameter();
+  *(Effekseer::RibbonAllColorParameter **)&jresult = result; 
+  return jresult;
+}
+
+
+SWIGEXPORT void JNICALL Java_io_github_srjohnathan_gdx_effekseer_core_GDXJNI_delete_1RibbonAllColorParameterCore(JNIEnv *jenv, jclass jcls, jlong jarg1) {
+  Effekseer::RibbonAllColorParameter *arg1 = (Effekseer::RibbonAllColorParameter *) 0 ;
+  
+  (void)jenv;
+  (void)jcls;
+  arg1 = *(Effekseer::RibbonAllColorParameter **)&jarg1; 
+  delete arg1;
+}
+
+
+SWIGEXPORT jint JNICALL Java_io_github_srjohnathan_gdx_effekseer_core_GDXJNI_RibbonColorParameterCore_1Default_1get(JNIEnv *jenv, jclass jcls) {
+  jint jresult = 0 ;
+  int result;
+  
+  (void)jenv;
+  (void)jcls;
+  result = (int)Effekseer::RibbonColorParameter::Default;
+  jresult = (jint)result; 
+  return jresult;
+}
+
+
+SWIGEXPORT jint JNICALL Java_io_github_srjohnathan_gdx_effekseer_core_GDXJNI_RibbonColorParameterCore_1Fixed_1get(JNIEnv *jenv, jclass jcls) {
+  jint jresult = 0 ;
+  int result;
+  
+  (void)jenv;
+  (void)jcls;
+  result = (int)Effekseer::RibbonColorParameter::Fixed;
+  jresult = (jint)result; 
+  return jresult;
+}
+
+
+SWIGEXPORT jint JNICALL Java_io_github_srjohnathan_gdx_effekseer_core_GDXJNI_RibbonColorParameterCore_1Parameter_1DWORD_1get(JNIEnv *jenv, jclass jcls) {
+  jint jresult = 0 ;
+  int result;
+  
+  (void)jenv;
+  (void)jcls;
+  result = (int)Effekseer::RibbonColorParameter::Parameter_DWORD;
+  jresult = (jint)result; 
+  return jresult;
+}
+
+
+SWIGEXPORT void JNICALL Java_io_github_srjohnathan_gdx_effekseer_core_GDXJNI_RibbonColorParameterCore_1type_1set(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_, jint jarg2) {
+  Effekseer::RibbonColorParameter *arg1 = (Effekseer::RibbonColorParameter *) 0 ;
+  int arg2 ;
+  
+  (void)jenv;
+  (void)jcls;
+  (void)jarg1_;
+  arg1 = *(Effekseer::RibbonColorParameter **)&jarg1; 
+  arg2 = (int)jarg2; 
+  if (arg1 && sizeof(int) == sizeof((arg1)->type)) *(int*)(void*)&((arg1)->type) = arg2;
+}
+
+
+SWIGEXPORT jint JNICALL Java_io_github_srjohnathan_gdx_effekseer_core_GDXJNI_RibbonColorParameterCore_1type_1get(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_) {
+  jint jresult = 0 ;
+  Effekseer::RibbonColorParameter *arg1 = (Effekseer::RibbonColorParameter *) 0 ;
+  int result;
+  
+  (void)jenv;
+  (void)jcls;
+  (void)jarg1_;
+  arg1 = *(Effekseer::RibbonColorParameter **)&jarg1; 
+  result = (int) ((arg1)->type);
+  jresult = (jint)result; 
+  return jresult;
+}
+
+
+SWIGEXPORT jlong JNICALL Java_io_github_srjohnathan_gdx_effekseer_core_GDXJNI_RibbonColorParameterCore_1getFixedLeftColor(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_) {
+  jlong jresult = 0 ;
+  Effekseer::RibbonColorParameter *arg1 = (Effekseer::RibbonColorParameter *) 0 ;
+  Effekseer::Color result;
+  
+  (void)jenv;
+  (void)jcls;
+  (void)jarg1_;
+  arg1 = *(Effekseer::RibbonColorParameter **)&jarg1; 
+  result = Effekseer_RibbonColorParameter_getFixedLeftColor(arg1);
+  *(Effekseer::Color **)&jresult = new Effekseer::Color((const Effekseer::Color &)result); 
+  return jresult;
+}
+
+
+SWIGEXPORT void JNICALL Java_io_github_srjohnathan_gdx_effekseer_core_GDXJNI_RibbonColorParameterCore_1setFixedLeftColor(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_, jlong jarg2, jobject jarg2_) {
+  Effekseer::RibbonColorParameter *arg1 = (Effekseer::RibbonColorParameter *) 0 ;
+  Effekseer::Color arg2 ;
+  Effekseer::Color *argp2 ;
+  
+  (void)jenv;
+  (void)jcls;
+  (void)jarg1_;
+  (void)jarg2_;
+  arg1 = *(Effekseer::RibbonColorParameter **)&jarg1; 
+  argp2 = *(Effekseer::Color **)&jarg2; 
+  if (!argp2) {
+    SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "Attempt to dereference null Effekseer::Color");
+    return ;
+  }
+  arg2 = *argp2; 
+  Effekseer_RibbonColorParameter_setFixedLeftColor(arg1,arg2);
+}
+
+
+SWIGEXPORT jlong JNICALL Java_io_github_srjohnathan_gdx_effekseer_core_GDXJNI_RibbonColorParameterCore_1getFixedRightColor(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_) {
+  jlong jresult = 0 ;
+  Effekseer::RibbonColorParameter *arg1 = (Effekseer::RibbonColorParameter *) 0 ;
+  Effekseer::Color result;
+  
+  (void)jenv;
+  (void)jcls;
+  (void)jarg1_;
+  arg1 = *(Effekseer::RibbonColorParameter **)&jarg1; 
+  result = Effekseer_RibbonColorParameter_getFixedRightColor(arg1);
+  *(Effekseer::Color **)&jresult = new Effekseer::Color((const Effekseer::Color &)result); 
+  return jresult;
+}
+
+
+SWIGEXPORT void JNICALL Java_io_github_srjohnathan_gdx_effekseer_core_GDXJNI_RibbonColorParameterCore_1setFixedRightColor(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_, jlong jarg2, jobject jarg2_) {
+  Effekseer::RibbonColorParameter *arg1 = (Effekseer::RibbonColorParameter *) 0 ;
+  Effekseer::Color arg2 ;
+  Effekseer::Color *argp2 ;
+  
+  (void)jenv;
+  (void)jcls;
+  (void)jarg1_;
+  (void)jarg2_;
+  arg1 = *(Effekseer::RibbonColorParameter **)&jarg1; 
+  argp2 = *(Effekseer::Color **)&jarg2; 
+  if (!argp2) {
+    SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "Attempt to dereference null Effekseer::Color");
+    return ;
+  }
+  arg2 = *argp2; 
+  Effekseer_RibbonColorParameter_setFixedRightColor(arg1,arg2);
+}
+
+
+SWIGEXPORT jlong JNICALL Java_io_github_srjohnathan_gdx_effekseer_core_GDXJNI_new_1RibbonColorParameterCore(JNIEnv *jenv, jclass jcls) {
+  jlong jresult = 0 ;
+  Effekseer::RibbonColorParameter *result = 0 ;
+  
+  (void)jenv;
+  (void)jcls;
+  result = (Effekseer::RibbonColorParameter *)new Effekseer::RibbonColorParameter();
+  *(Effekseer::RibbonColorParameter **)&jresult = result; 
+  return jresult;
+}
+
+
+SWIGEXPORT void JNICALL Java_io_github_srjohnathan_gdx_effekseer_core_GDXJNI_delete_1RibbonColorParameterCore(JNIEnv *jenv, jclass jcls, jlong jarg1) {
+  Effekseer::RibbonColorParameter *arg1 = (Effekseer::RibbonColorParameter *) 0 ;
+  
+  (void)jenv;
+  (void)jcls;
+  arg1 = *(Effekseer::RibbonColorParameter **)&jarg1; 
+  delete arg1;
+}
+
+
+SWIGEXPORT jint JNICALL Java_io_github_srjohnathan_gdx_effekseer_core_GDXJNI_RibbonPositionParameterCore_1Default_1get(JNIEnv *jenv, jclass jcls) {
+  jint jresult = 0 ;
+  int result;
+  
+  (void)jenv;
+  (void)jcls;
+  result = (int)Effekseer::RibbonPositionParameter::Default;
+  jresult = (jint)result; 
+  return jresult;
+}
+
+
+SWIGEXPORT jint JNICALL Java_io_github_srjohnathan_gdx_effekseer_core_GDXJNI_RibbonPositionParameterCore_1Fixed_1get(JNIEnv *jenv, jclass jcls) {
+  jint jresult = 0 ;
+  int result;
+  
+  (void)jenv;
+  (void)jcls;
+  result = (int)Effekseer::RibbonPositionParameter::Fixed;
+  jresult = (jint)result; 
+  return jresult;
+}
+
+
+SWIGEXPORT jint JNICALL Java_io_github_srjohnathan_gdx_effekseer_core_GDXJNI_RibbonPositionParameterCore_1Parameter_1DWORD_1get(JNIEnv *jenv, jclass jcls) {
+  jint jresult = 0 ;
+  int result;
+  
+  (void)jenv;
+  (void)jcls;
+  result = (int)Effekseer::RibbonPositionParameter::Parameter_DWORD;
+  jresult = (jint)result; 
+  return jresult;
+}
+
+
+SWIGEXPORT void JNICALL Java_io_github_srjohnathan_gdx_effekseer_core_GDXJNI_RibbonPositionParameterCore_1type_1set(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_, jint jarg2) {
+  Effekseer::RibbonPositionParameter *arg1 = (Effekseer::RibbonPositionParameter *) 0 ;
+  int arg2 ;
+  
+  (void)jenv;
+  (void)jcls;
+  (void)jarg1_;
+  arg1 = *(Effekseer::RibbonPositionParameter **)&jarg1; 
+  arg2 = (int)jarg2; 
+  if (arg1 && sizeof(int) == sizeof((arg1)->type)) *(int*)(void*)&((arg1)->type) = arg2;
+}
+
+
+SWIGEXPORT jint JNICALL Java_io_github_srjohnathan_gdx_effekseer_core_GDXJNI_RibbonPositionParameterCore_1type_1get(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_) {
+  jint jresult = 0 ;
+  Effekseer::RibbonPositionParameter *arg1 = (Effekseer::RibbonPositionParameter *) 0 ;
+  int result;
+  
+  (void)jenv;
+  (void)jcls;
+  (void)jarg1_;
+  arg1 = *(Effekseer::RibbonPositionParameter **)&jarg1; 
+  result = (int) ((arg1)->type);
+  jresult = (jint)result; 
+  return jresult;
+}
+
+
+SWIGEXPORT jfloat JNICALL Java_io_github_srjohnathan_gdx_effekseer_core_GDXJNI_RibbonPositionParameterCore_1getFixedLeftCoord(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_) {
+  jfloat jresult = 0 ;
+  Effekseer::RibbonPositionParameter *arg1 = (Effekseer::RibbonPositionParameter *) 0 ;
+  float result;
+  
+  (void)jenv;
+  (void)jcls;
+  (void)jarg1_;
+  arg1 = *(Effekseer::RibbonPositionParameter **)&jarg1; 
+  result = (float)Effekseer_RibbonPositionParameter_getFixedLeftCoord(arg1);
+  jresult = (jfloat)result; 
+  return jresult;
+}
+
+
+SWIGEXPORT void JNICALL Java_io_github_srjohnathan_gdx_effekseer_core_GDXJNI_RibbonPositionParameterCore_1setFixedLeftCoord(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_, jfloat jarg2) {
+  Effekseer::RibbonPositionParameter *arg1 = (Effekseer::RibbonPositionParameter *) 0 ;
+  float arg2 ;
+  
+  (void)jenv;
+  (void)jcls;
+  (void)jarg1_;
+  arg1 = *(Effekseer::RibbonPositionParameter **)&jarg1; 
+  arg2 = (float)jarg2; 
+  Effekseer_RibbonPositionParameter_setFixedLeftCoord(arg1,arg2);
+}
+
+
+SWIGEXPORT jfloat JNICALL Java_io_github_srjohnathan_gdx_effekseer_core_GDXJNI_RibbonPositionParameterCore_1getFixedRightCoord(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_) {
+  jfloat jresult = 0 ;
+  Effekseer::RibbonPositionParameter *arg1 = (Effekseer::RibbonPositionParameter *) 0 ;
+  float result;
+  
+  (void)jenv;
+  (void)jcls;
+  (void)jarg1_;
+  arg1 = *(Effekseer::RibbonPositionParameter **)&jarg1; 
+  result = (float)Effekseer_RibbonPositionParameter_getFixedRightCoord(arg1);
+  jresult = (jfloat)result; 
+  return jresult;
+}
+
+
+SWIGEXPORT void JNICALL Java_io_github_srjohnathan_gdx_effekseer_core_GDXJNI_RibbonPositionParameterCore_1setFixedRightCoord(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_, jfloat jarg2) {
+  Effekseer::RibbonPositionParameter *arg1 = (Effekseer::RibbonPositionParameter *) 0 ;
+  float arg2 ;
+  
+  (void)jenv;
+  (void)jcls;
+  (void)jarg1_;
+  arg1 = *(Effekseer::RibbonPositionParameter **)&jarg1; 
+  arg2 = (float)jarg2; 
+  Effekseer_RibbonPositionParameter_setFixedRightCoord(arg1,arg2);
+}
+
+
+SWIGEXPORT jlong JNICALL Java_io_github_srjohnathan_gdx_effekseer_core_GDXJNI_new_1RibbonPositionParameterCore(JNIEnv *jenv, jclass jcls) {
+  jlong jresult = 0 ;
+  Effekseer::RibbonPositionParameter *result = 0 ;
+  
+  (void)jenv;
+  (void)jcls;
+  result = (Effekseer::RibbonPositionParameter *)new Effekseer::RibbonPositionParameter();
+  *(Effekseer::RibbonPositionParameter **)&jresult = result; 
+  return jresult;
+}
+
+
+SWIGEXPORT void JNICALL Java_io_github_srjohnathan_gdx_effekseer_core_GDXJNI_delete_1RibbonPositionParameterCore(JNIEnv *jenv, jclass jcls, jlong jarg1) {
+  Effekseer::RibbonPositionParameter *arg1 = (Effekseer::RibbonPositionParameter *) 0 ;
+  
+  (void)jenv;
+  (void)jcls;
+  arg1 = *(Effekseer::RibbonPositionParameter **)&jarg1; 
+  delete arg1;
+}
+
+
+SWIGEXPORT void JNICALL Java_io_github_srjohnathan_gdx_effekseer_core_GDXJNI_EffectNodeRibbon_1m_1nodeParameter_1set(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_, jlong jarg2) {
+  Effekseer::EffectNodeRibbon *arg1 = (Effekseer::EffectNodeRibbon *) 0 ;
+  Effekseer::RibbonRenderer::NodeParameter *arg2 = (Effekseer::RibbonRenderer::NodeParameter *) 0 ;
+  
+  (void)jenv;
+  (void)jcls;
+  (void)jarg1_;
+  arg1 = *(Effekseer::EffectNodeRibbon **)&jarg1; 
+  arg2 = *(Effekseer::RibbonRenderer::NodeParameter **)&jarg2; 
+  if (arg1) (arg1)->m_nodeParameter = *arg2;
+}
+
+
+SWIGEXPORT jlong JNICALL Java_io_github_srjohnathan_gdx_effekseer_core_GDXJNI_EffectNodeRibbon_1m_1nodeParameter_1get(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_) {
+  jlong jresult = 0 ;
+  Effekseer::EffectNodeRibbon *arg1 = (Effekseer::EffectNodeRibbon *) 0 ;
+  Effekseer::RibbonRenderer::NodeParameter *result = 0 ;
+  
+  (void)jenv;
+  (void)jcls;
+  (void)jarg1_;
+  arg1 = *(Effekseer::EffectNodeRibbon **)&jarg1; 
+  result = (Effekseer::RibbonRenderer::NodeParameter *)& ((arg1)->m_nodeParameter);
+  *(Effekseer::RibbonRenderer::NodeParameter **)&jresult = result; 
+  return jresult;
+}
+
+
+SWIGEXPORT void JNICALL Java_io_github_srjohnathan_gdx_effekseer_core_GDXJNI_EffectNodeRibbon_1m_1instanceParameter_1set(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_, jlong jarg2) {
+  Effekseer::EffectNodeRibbon *arg1 = (Effekseer::EffectNodeRibbon *) 0 ;
+  Effekseer::RibbonRenderer::InstanceParameter *arg2 = (Effekseer::RibbonRenderer::InstanceParameter *) 0 ;
+  
+  (void)jenv;
+  (void)jcls;
+  (void)jarg1_;
+  arg1 = *(Effekseer::EffectNodeRibbon **)&jarg1; 
+  arg2 = *(Effekseer::RibbonRenderer::InstanceParameter **)&jarg2; 
+  if (arg1) (arg1)->m_instanceParameter = *arg2;
+}
+
+
+SWIGEXPORT jlong JNICALL Java_io_github_srjohnathan_gdx_effekseer_core_GDXJNI_EffectNodeRibbon_1m_1instanceParameter_1get(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_) {
+  jlong jresult = 0 ;
+  Effekseer::EffectNodeRibbon *arg1 = (Effekseer::EffectNodeRibbon *) 0 ;
+  Effekseer::RibbonRenderer::InstanceParameter *result = 0 ;
+  
+  (void)jenv;
+  (void)jcls;
+  (void)jarg1_;
+  arg1 = *(Effekseer::EffectNodeRibbon **)&jarg1; 
+  result = (Effekseer::RibbonRenderer::InstanceParameter *)& ((arg1)->m_instanceParameter);
+  *(Effekseer::RibbonRenderer::InstanceParameter **)&jresult = result; 
+  return jresult;
+}
+
+
+SWIGEXPORT void JNICALL Java_io_github_srjohnathan_gdx_effekseer_core_GDXJNI_EffectNodeRibbon_1AlphaBlend_1set(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_, jint jarg2) {
+  Effekseer::EffectNodeRibbon *arg1 = (Effekseer::EffectNodeRibbon *) 0 ;
+  Effekseer::AlphaBlendType arg2 ;
+  
+  (void)jenv;
+  (void)jcls;
+  (void)jarg1_;
+  arg1 = *(Effekseer::EffectNodeRibbon **)&jarg1; 
+  arg2 = (Effekseer::AlphaBlendType)jarg2; 
+  if (arg1) (arg1)->AlphaBlend = arg2;
+}
+
+
+SWIGEXPORT jint JNICALL Java_io_github_srjohnathan_gdx_effekseer_core_GDXJNI_EffectNodeRibbon_1AlphaBlend_1get(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_) {
+  jint jresult = 0 ;
+  Effekseer::EffectNodeRibbon *arg1 = (Effekseer::EffectNodeRibbon *) 0 ;
+  Effekseer::AlphaBlendType result;
+  
+  (void)jenv;
+  (void)jcls;
+  (void)jarg1_;
+  arg1 = *(Effekseer::EffectNodeRibbon **)&jarg1; 
+  result = (Effekseer::AlphaBlendType) ((arg1)->AlphaBlend);
+  jresult = (jint)result; 
+  return jresult;
+}
+
+
+SWIGEXPORT void JNICALL Java_io_github_srjohnathan_gdx_effekseer_core_GDXJNI_EffectNodeRibbon_1ViewpointDependent_1set(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_, jint jarg2) {
+  Effekseer::EffectNodeRibbon *arg1 = (Effekseer::EffectNodeRibbon *) 0 ;
+  int arg2 ;
+  
+  (void)jenv;
+  (void)jcls;
+  (void)jarg1_;
+  arg1 = *(Effekseer::EffectNodeRibbon **)&jarg1; 
+  arg2 = (int)jarg2; 
+  if (arg1) (arg1)->ViewpointDependent = arg2;
+}
+
+
+SWIGEXPORT jint JNICALL Java_io_github_srjohnathan_gdx_effekseer_core_GDXJNI_EffectNodeRibbon_1ViewpointDependent_1get(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_) {
+  jint jresult = 0 ;
+  Effekseer::EffectNodeRibbon *arg1 = (Effekseer::EffectNodeRibbon *) 0 ;
+  int result;
+  
+  (void)jenv;
+  (void)jcls;
+  (void)jarg1_;
+  arg1 = *(Effekseer::EffectNodeRibbon **)&jarg1; 
+  result = (int) ((arg1)->ViewpointDependent);
+  jresult = (jint)result; 
+  return jresult;
+}
+
+
+SWIGEXPORT void JNICALL Java_io_github_srjohnathan_gdx_effekseer_core_GDXJNI_EffectNodeRibbon_1RibbonAllColor_1set(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_, jlong jarg2, jobject jarg2_) {
+  Effekseer::EffectNodeRibbon *arg1 = (Effekseer::EffectNodeRibbon *) 0 ;
+  Effekseer::RibbonAllColorParameter *arg2 = (Effekseer::RibbonAllColorParameter *) 0 ;
+  
+  (void)jenv;
+  (void)jcls;
+  (void)jarg1_;
+  (void)jarg2_;
+  arg1 = *(Effekseer::EffectNodeRibbon **)&jarg1; 
+  arg2 = *(Effekseer::RibbonAllColorParameter **)&jarg2; 
+  if (arg1) (arg1)->RibbonAllColor = *arg2;
+}
+
+
+SWIGEXPORT jlong JNICALL Java_io_github_srjohnathan_gdx_effekseer_core_GDXJNI_EffectNodeRibbon_1RibbonAllColor_1get(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_) {
+  jlong jresult = 0 ;
+  Effekseer::EffectNodeRibbon *arg1 = (Effekseer::EffectNodeRibbon *) 0 ;
+  Effekseer::RibbonAllColorParameter *result = 0 ;
+  
+  (void)jenv;
+  (void)jcls;
+  (void)jarg1_;
+  arg1 = *(Effekseer::EffectNodeRibbon **)&jarg1; 
+  result = (Effekseer::RibbonAllColorParameter *)& ((arg1)->RibbonAllColor);
+  *(Effekseer::RibbonAllColorParameter **)&jresult = result; 
+  return jresult;
+}
+
+
+SWIGEXPORT void JNICALL Java_io_github_srjohnathan_gdx_effekseer_core_GDXJNI_EffectNodeRibbon_1RibbonColor_1set(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_, jlong jarg2, jobject jarg2_) {
+  Effekseer::EffectNodeRibbon *arg1 = (Effekseer::EffectNodeRibbon *) 0 ;
+  Effekseer::RibbonColorParameter *arg2 = (Effekseer::RibbonColorParameter *) 0 ;
+  
+  (void)jenv;
+  (void)jcls;
+  (void)jarg1_;
+  (void)jarg2_;
+  arg1 = *(Effekseer::EffectNodeRibbon **)&jarg1; 
+  arg2 = *(Effekseer::RibbonColorParameter **)&jarg2; 
+  if (arg1) (arg1)->RibbonColor = *arg2;
+}
+
+
+SWIGEXPORT jlong JNICALL Java_io_github_srjohnathan_gdx_effekseer_core_GDXJNI_EffectNodeRibbon_1RibbonColor_1get(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_) {
+  jlong jresult = 0 ;
+  Effekseer::EffectNodeRibbon *arg1 = (Effekseer::EffectNodeRibbon *) 0 ;
+  Effekseer::RibbonColorParameter *result = 0 ;
+  
+  (void)jenv;
+  (void)jcls;
+  (void)jarg1_;
+  arg1 = *(Effekseer::EffectNodeRibbon **)&jarg1; 
+  result = (Effekseer::RibbonColorParameter *)& ((arg1)->RibbonColor);
+  *(Effekseer::RibbonColorParameter **)&jresult = result; 
+  return jresult;
+}
+
+
+SWIGEXPORT void JNICALL Java_io_github_srjohnathan_gdx_effekseer_core_GDXJNI_EffectNodeRibbon_1RibbonPosition_1set(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_, jlong jarg2, jobject jarg2_) {
+  Effekseer::EffectNodeRibbon *arg1 = (Effekseer::EffectNodeRibbon *) 0 ;
+  Effekseer::RibbonPositionParameter *arg2 = (Effekseer::RibbonPositionParameter *) 0 ;
+  
+  (void)jenv;
+  (void)jcls;
+  (void)jarg1_;
+  (void)jarg2_;
+  arg1 = *(Effekseer::EffectNodeRibbon **)&jarg1; 
+  arg2 = *(Effekseer::RibbonPositionParameter **)&jarg2; 
+  if (arg1) (arg1)->RibbonPosition = *arg2;
+}
+
+
+SWIGEXPORT jlong JNICALL Java_io_github_srjohnathan_gdx_effekseer_core_GDXJNI_EffectNodeRibbon_1RibbonPosition_1get(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_) {
+  jlong jresult = 0 ;
+  Effekseer::EffectNodeRibbon *arg1 = (Effekseer::EffectNodeRibbon *) 0 ;
+  Effekseer::RibbonPositionParameter *result = 0 ;
+  
+  (void)jenv;
+  (void)jcls;
+  (void)jarg1_;
+  arg1 = *(Effekseer::EffectNodeRibbon **)&jarg1; 
+  result = (Effekseer::RibbonPositionParameter *)& ((arg1)->RibbonPosition);
+  *(Effekseer::RibbonPositionParameter **)&jresult = result; 
+  return jresult;
+}
+
+
+SWIGEXPORT void JNICALL Java_io_github_srjohnathan_gdx_effekseer_core_GDXJNI_EffectNodeRibbon_1RibbonTexture_1set(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_, jint jarg2) {
+  Effekseer::EffectNodeRibbon *arg1 = (Effekseer::EffectNodeRibbon *) 0 ;
+  int arg2 ;
+  
+  (void)jenv;
+  (void)jcls;
+  (void)jarg1_;
+  arg1 = *(Effekseer::EffectNodeRibbon **)&jarg1; 
+  arg2 = (int)jarg2; 
+  if (arg1) (arg1)->RibbonTexture = arg2;
+}
+
+
+SWIGEXPORT jint JNICALL Java_io_github_srjohnathan_gdx_effekseer_core_GDXJNI_EffectNodeRibbon_1RibbonTexture_1get(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_) {
+  jint jresult = 0 ;
+  Effekseer::EffectNodeRibbon *arg1 = (Effekseer::EffectNodeRibbon *) 0 ;
+  int result;
+  
+  (void)jenv;
+  (void)jcls;
+  (void)jarg1_;
+  arg1 = *(Effekseer::EffectNodeRibbon **)&jarg1; 
+  result = (int) ((arg1)->RibbonTexture);
+  jresult = (jint)result; 
+  return jresult;
+}
+
+
+SWIGEXPORT void JNICALL Java_io_github_srjohnathan_gdx_effekseer_core_GDXJNI_EffectNodeRibbon_1SplineDivision_1set(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_, jint jarg2) {
+  Effekseer::EffectNodeRibbon *arg1 = (Effekseer::EffectNodeRibbon *) 0 ;
+  int32_t arg2 ;
+  
+  (void)jenv;
+  (void)jcls;
+  (void)jarg1_;
+  arg1 = *(Effekseer::EffectNodeRibbon **)&jarg1; 
+  arg2 = (int32_t)jarg2; 
+  if (arg1) (arg1)->SplineDivision = arg2;
+}
+
+
+SWIGEXPORT jint JNICALL Java_io_github_srjohnathan_gdx_effekseer_core_GDXJNI_EffectNodeRibbon_1SplineDivision_1get(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_) {
+  jint jresult = 0 ;
+  Effekseer::EffectNodeRibbon *arg1 = (Effekseer::EffectNodeRibbon *) 0 ;
+  int32_t result;
+  
+  (void)jenv;
+  (void)jcls;
+  (void)jarg1_;
+  arg1 = *(Effekseer::EffectNodeRibbon **)&jarg1; 
+  result = (int32_t) ((arg1)->SplineDivision);
+  jresult = (jint)result; 
+  return jresult;
+}
+
+
+SWIGEXPORT void JNICALL Java_io_github_srjohnathan_gdx_effekseer_core_GDXJNI_EffectNodeRibbon_1TextureUVType_1set(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_, jlong jarg2, jobject jarg2_) {
+  Effekseer::EffectNodeRibbon *arg1 = (Effekseer::EffectNodeRibbon *) 0 ;
+  Effekseer::NodeRendererTextureUVTypeParameter *arg2 = (Effekseer::NodeRendererTextureUVTypeParameter *) 0 ;
+  
+  (void)jenv;
+  (void)jcls;
+  (void)jarg1_;
+  (void)jarg2_;
+  arg1 = *(Effekseer::EffectNodeRibbon **)&jarg1; 
+  arg2 = *(Effekseer::NodeRendererTextureUVTypeParameter **)&jarg2; 
+  if (arg1) (arg1)->TextureUVType = *arg2;
+}
+
+
+SWIGEXPORT jlong JNICALL Java_io_github_srjohnathan_gdx_effekseer_core_GDXJNI_EffectNodeRibbon_1TextureUVType_1get(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_) {
+  jlong jresult = 0 ;
+  Effekseer::EffectNodeRibbon *arg1 = (Effekseer::EffectNodeRibbon *) 0 ;
+  Effekseer::NodeRendererTextureUVTypeParameter *result = 0 ;
+  
+  (void)jenv;
+  (void)jcls;
+  (void)jarg1_;
+  arg1 = *(Effekseer::EffectNodeRibbon **)&jarg1; 
+  result = (Effekseer::NodeRendererTextureUVTypeParameter *)& ((arg1)->TextureUVType);
+  *(Effekseer::NodeRendererTextureUVTypeParameter **)&jresult = result; 
+  return jresult;
+}
+
+
+SWIGEXPORT jlong JNICALL Java_io_github_srjohnathan_gdx_effekseer_core_GDXJNI_new_1EffectNodeRibbon(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_, jlong jarg2) {
+  jlong jresult = 0 ;
+  Effekseer::Effect *arg1 = (Effekseer::Effect *) 0 ;
+  unsigned char **arg2 = 0 ;
+  Effekseer::EffectNodeRibbon *result = 0 ;
+  
+  (void)jenv;
+  (void)jcls;
+  (void)jarg1_;
+  arg1 = *(Effekseer::Effect **)&jarg1; 
+  arg2 = *(unsigned char ***)&jarg2;
+  if (!arg2) {
+    SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "unsigned char *& reference is null");
+    return 0;
+  } 
+  result = (Effekseer::EffectNodeRibbon *)new Effekseer::EffectNodeRibbon(arg1,*arg2);
+  *(Effekseer::EffectNodeRibbon **)&jresult = result; 
+  return jresult;
+}
+
+
+SWIGEXPORT void JNICALL Java_io_github_srjohnathan_gdx_effekseer_core_GDXJNI_delete_1EffectNodeRibbon(JNIEnv *jenv, jclass jcls, jlong jarg1) {
+  Effekseer::EffectNodeRibbon *arg1 = (Effekseer::EffectNodeRibbon *) 0 ;
+  
+  (void)jenv;
+  (void)jcls;
+  arg1 = *(Effekseer::EffectNodeRibbon **)&jarg1; 
+  delete arg1;
+}
+
+
 SWIGEXPORT jint JNICALL Java_io_github_srjohnathan_gdx_effekseer_core_GDXJNI_TrackSizeParameterCore_1Fixed_1get(JNIEnv *jenv, jclass jcls) {
   jint jresult = 0 ;
   int result;
@@ -21285,6 +23203,1506 @@ SWIGEXPORT void JNICALL Java_io_github_srjohnathan_gdx_effekseer_core_GDXJNI_del
 }
 
 
+SWIGEXPORT jint JNICALL Java_io_github_srjohnathan_gdx_effekseer_core_GDXJNI_RingSingleParameterCore_1Fixed_1get(JNIEnv *jenv, jclass jcls) {
+  jint jresult = 0 ;
+  int result;
+  
+  (void)jenv;
+  (void)jcls;
+  result = (int)Effekseer::RingSingleParameter::Fixed;
+  jresult = (jint)result; 
+  return jresult;
+}
+
+
+SWIGEXPORT jint JNICALL Java_io_github_srjohnathan_gdx_effekseer_core_GDXJNI_RingSingleParameterCore_1Random_1get(JNIEnv *jenv, jclass jcls) {
+  jint jresult = 0 ;
+  int result;
+  
+  (void)jenv;
+  (void)jcls;
+  result = (int)Effekseer::RingSingleParameter::Random;
+  jresult = (jint)result; 
+  return jresult;
+}
+
+
+SWIGEXPORT jint JNICALL Java_io_github_srjohnathan_gdx_effekseer_core_GDXJNI_RingSingleParameterCore_1Easing_1get(JNIEnv *jenv, jclass jcls) {
+  jint jresult = 0 ;
+  int result;
+  
+  (void)jenv;
+  (void)jcls;
+  result = (int)Effekseer::RingSingleParameter::Easing;
+  jresult = (jint)result; 
+  return jresult;
+}
+
+
+SWIGEXPORT jint JNICALL Java_io_github_srjohnathan_gdx_effekseer_core_GDXJNI_RingSingleParameterCore_1Parameter_1DWORD_1get(JNIEnv *jenv, jclass jcls) {
+  jint jresult = 0 ;
+  int result;
+  
+  (void)jenv;
+  (void)jcls;
+  result = (int)Effekseer::RingSingleParameter::Parameter_DWORD;
+  jresult = (jint)result; 
+  return jresult;
+}
+
+
+SWIGEXPORT void JNICALL Java_io_github_srjohnathan_gdx_effekseer_core_GDXJNI_RingSingleParameterCore_1type_1set(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_, jint jarg2) {
+  Effekseer::RingSingleParameter *arg1 = (Effekseer::RingSingleParameter *) 0 ;
+  int arg2 ;
+  
+  (void)jenv;
+  (void)jcls;
+  (void)jarg1_;
+  arg1 = *(Effekseer::RingSingleParameter **)&jarg1; 
+  arg2 = (int)jarg2; 
+  if (arg1 && sizeof(int) == sizeof((arg1)->type)) *(int*)(void*)&((arg1)->type) = arg2;
+}
+
+
+SWIGEXPORT jint JNICALL Java_io_github_srjohnathan_gdx_effekseer_core_GDXJNI_RingSingleParameterCore_1type_1get(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_) {
+  jint jresult = 0 ;
+  Effekseer::RingSingleParameter *arg1 = (Effekseer::RingSingleParameter *) 0 ;
+  int result;
+  
+  (void)jenv;
+  (void)jcls;
+  (void)jarg1_;
+  arg1 = *(Effekseer::RingSingleParameter **)&jarg1; 
+  result = (int) ((arg1)->type);
+  jresult = (jint)result; 
+  return jresult;
+}
+
+
+SWIGEXPORT void JNICALL Java_io_github_srjohnathan_gdx_effekseer_core_GDXJNI_RingSingleParameterCore_1fixed_1set(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_, jfloat jarg2) {
+  Effekseer::RingSingleParameter *arg1 = (Effekseer::RingSingleParameter *) 0 ;
+  float arg2 ;
+  
+  (void)jenv;
+  (void)jcls;
+  (void)jarg1_;
+  arg1 = *(Effekseer::RingSingleParameter **)&jarg1; 
+  arg2 = (float)jarg2; 
+  if (arg1) (arg1)->fixed = arg2;
+}
+
+
+SWIGEXPORT jfloat JNICALL Java_io_github_srjohnathan_gdx_effekseer_core_GDXJNI_RingSingleParameterCore_1fixed_1get(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_) {
+  jfloat jresult = 0 ;
+  Effekseer::RingSingleParameter *arg1 = (Effekseer::RingSingleParameter *) 0 ;
+  float result;
+  
+  (void)jenv;
+  (void)jcls;
+  (void)jarg1_;
+  arg1 = *(Effekseer::RingSingleParameter **)&jarg1; 
+  result = (float) ((arg1)->fixed);
+  jresult = (jfloat)result; 
+  return jresult;
+}
+
+
+SWIGEXPORT void JNICALL Java_io_github_srjohnathan_gdx_effekseer_core_GDXJNI_RingSingleParameterCore_1random_1set(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_, jlong jarg2, jobject jarg2_) {
+  Effekseer::RingSingleParameter *arg1 = (Effekseer::RingSingleParameter *) 0 ;
+  Effekseer::random_float *arg2 = (Effekseer::random_float *) 0 ;
+  
+  (void)jenv;
+  (void)jcls;
+  (void)jarg1_;
+  (void)jarg2_;
+  arg1 = *(Effekseer::RingSingleParameter **)&jarg1; 
+  arg2 = *(Effekseer::random_float **)&jarg2; 
+  if (arg1) (arg1)->random = *arg2;
+}
+
+
+SWIGEXPORT jlong JNICALL Java_io_github_srjohnathan_gdx_effekseer_core_GDXJNI_RingSingleParameterCore_1random_1get(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_) {
+  jlong jresult = 0 ;
+  Effekseer::RingSingleParameter *arg1 = (Effekseer::RingSingleParameter *) 0 ;
+  Effekseer::random_float *result = 0 ;
+  
+  (void)jenv;
+  (void)jcls;
+  (void)jarg1_;
+  arg1 = *(Effekseer::RingSingleParameter **)&jarg1; 
+  result = (Effekseer::random_float *)& ((arg1)->random);
+  *(Effekseer::random_float **)&jresult = result; 
+  return jresult;
+}
+
+
+SWIGEXPORT void JNICALL Java_io_github_srjohnathan_gdx_effekseer_core_GDXJNI_RingSingleParameterCore_1easing_1set(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_, jlong jarg2, jobject jarg2_) {
+  Effekseer::RingSingleParameter *arg1 = (Effekseer::RingSingleParameter *) 0 ;
+  Effekseer::ParameterEasingFloat *arg2 = (Effekseer::ParameterEasingFloat *) 0 ;
+  
+  (void)jenv;
+  (void)jcls;
+  (void)jarg1_;
+  (void)jarg2_;
+  arg1 = *(Effekseer::RingSingleParameter **)&jarg1; 
+  arg2 = *(Effekseer::ParameterEasingFloat **)&jarg2; 
+  if (arg1) (arg1)->easing = *arg2;
+}
+
+
+SWIGEXPORT jlong JNICALL Java_io_github_srjohnathan_gdx_effekseer_core_GDXJNI_RingSingleParameterCore_1easing_1get(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_) {
+  jlong jresult = 0 ;
+  Effekseer::RingSingleParameter *arg1 = (Effekseer::RingSingleParameter *) 0 ;
+  Effekseer::ParameterEasingFloat *result = 0 ;
+  
+  (void)jenv;
+  (void)jcls;
+  (void)jarg1_;
+  arg1 = *(Effekseer::RingSingleParameter **)&jarg1; 
+  result = (Effekseer::ParameterEasingFloat *)& ((arg1)->easing);
+  *(Effekseer::ParameterEasingFloat **)&jresult = result; 
+  return jresult;
+}
+
+
+SWIGEXPORT jlong JNICALL Java_io_github_srjohnathan_gdx_effekseer_core_GDXJNI_new_1RingSingleParameterCore(JNIEnv *jenv, jclass jcls) {
+  jlong jresult = 0 ;
+  Effekseer::RingSingleParameter *result = 0 ;
+  
+  (void)jenv;
+  (void)jcls;
+  result = (Effekseer::RingSingleParameter *)new Effekseer::RingSingleParameter();
+  *(Effekseer::RingSingleParameter **)&jresult = result; 
+  return jresult;
+}
+
+
+SWIGEXPORT void JNICALL Java_io_github_srjohnathan_gdx_effekseer_core_GDXJNI_delete_1RingSingleParameterCore(JNIEnv *jenv, jclass jcls, jlong jarg1) {
+  Effekseer::RingSingleParameter *arg1 = (Effekseer::RingSingleParameter *) 0 ;
+  
+  (void)jenv;
+  (void)jcls;
+  arg1 = *(Effekseer::RingSingleParameter **)&jarg1; 
+  delete arg1;
+}
+
+
+SWIGEXPORT jint JNICALL Java_io_github_srjohnathan_gdx_effekseer_core_GDXJNI_RingLocationParameterCore_1Fixed_1get(JNIEnv *jenv, jclass jcls) {
+  jint jresult = 0 ;
+  int result;
+  
+  (void)jenv;
+  (void)jcls;
+  result = (int)Effekseer::RingLocationParameter::Fixed;
+  jresult = (jint)result; 
+  return jresult;
+}
+
+
+SWIGEXPORT jint JNICALL Java_io_github_srjohnathan_gdx_effekseer_core_GDXJNI_RingLocationParameterCore_1PVA_1get(JNIEnv *jenv, jclass jcls) {
+  jint jresult = 0 ;
+  int result;
+  
+  (void)jenv;
+  (void)jcls;
+  result = (int)Effekseer::RingLocationParameter::PVA;
+  jresult = (jint)result; 
+  return jresult;
+}
+
+
+SWIGEXPORT jint JNICALL Java_io_github_srjohnathan_gdx_effekseer_core_GDXJNI_RingLocationParameterCore_1Easing_1get(JNIEnv *jenv, jclass jcls) {
+  jint jresult = 0 ;
+  int result;
+  
+  (void)jenv;
+  (void)jcls;
+  result = (int)Effekseer::RingLocationParameter::Easing;
+  jresult = (jint)result; 
+  return jresult;
+}
+
+
+SWIGEXPORT jint JNICALL Java_io_github_srjohnathan_gdx_effekseer_core_GDXJNI_RingLocationParameterCore_1Parameter_1DWORD_1get(JNIEnv *jenv, jclass jcls) {
+  jint jresult = 0 ;
+  int result;
+  
+  (void)jenv;
+  (void)jcls;
+  result = (int)Effekseer::RingLocationParameter::Parameter_DWORD;
+  jresult = (jint)result; 
+  return jresult;
+}
+
+
+SWIGEXPORT void JNICALL Java_io_github_srjohnathan_gdx_effekseer_core_GDXJNI_RingLocationParameterCore_1type_1set(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_, jint jarg2) {
+  Effekseer::RingLocationParameter *arg1 = (Effekseer::RingLocationParameter *) 0 ;
+  int arg2 ;
+  
+  (void)jenv;
+  (void)jcls;
+  (void)jarg1_;
+  arg1 = *(Effekseer::RingLocationParameter **)&jarg1; 
+  arg2 = (int)jarg2; 
+  if (arg1 && sizeof(int) == sizeof((arg1)->type)) *(int*)(void*)&((arg1)->type) = arg2;
+}
+
+
+SWIGEXPORT jint JNICALL Java_io_github_srjohnathan_gdx_effekseer_core_GDXJNI_RingLocationParameterCore_1type_1get(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_) {
+  jint jresult = 0 ;
+  Effekseer::RingLocationParameter *arg1 = (Effekseer::RingLocationParameter *) 0 ;
+  int result;
+  
+  (void)jenv;
+  (void)jcls;
+  (void)jarg1_;
+  arg1 = *(Effekseer::RingLocationParameter **)&jarg1; 
+  result = (int) ((arg1)->type);
+  jresult = (jint)result; 
+  return jresult;
+}
+
+
+SWIGEXPORT void JNICALL Java_io_github_srjohnathan_gdx_effekseer_core_GDXJNI_RingLocationParameterCore_1easing_1set(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_, jlong jarg2, jobject jarg2_) {
+  Effekseer::RingLocationParameter *arg1 = (Effekseer::RingLocationParameter *) 0 ;
+  Effekseer::easing_vector2d *arg2 = (Effekseer::easing_vector2d *) 0 ;
+  
+  (void)jenv;
+  (void)jcls;
+  (void)jarg1_;
+  (void)jarg2_;
+  arg1 = *(Effekseer::RingLocationParameter **)&jarg1; 
+  arg2 = *(Effekseer::easing_vector2d **)&jarg2; 
+  if (arg1) (arg1)->easing = *arg2;
+}
+
+
+SWIGEXPORT jlong JNICALL Java_io_github_srjohnathan_gdx_effekseer_core_GDXJNI_RingLocationParameterCore_1easing_1get(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_) {
+  jlong jresult = 0 ;
+  Effekseer::RingLocationParameter *arg1 = (Effekseer::RingLocationParameter *) 0 ;
+  Effekseer::easing_vector2d *result = 0 ;
+  
+  (void)jenv;
+  (void)jcls;
+  (void)jarg1_;
+  arg1 = *(Effekseer::RingLocationParameter **)&jarg1; 
+  result = (Effekseer::easing_vector2d *)& ((arg1)->easing);
+  *(Effekseer::easing_vector2d **)&jresult = result; 
+  return jresult;
+}
+
+
+SWIGEXPORT jlong JNICALL Java_io_github_srjohnathan_gdx_effekseer_core_GDXJNI_new_1RingLocationParameterCore(JNIEnv *jenv, jclass jcls) {
+  jlong jresult = 0 ;
+  Effekseer::RingLocationParameter *result = 0 ;
+  
+  (void)jenv;
+  (void)jcls;
+  result = (Effekseer::RingLocationParameter *)new Effekseer::RingLocationParameter();
+  *(Effekseer::RingLocationParameter **)&jresult = result; 
+  return jresult;
+}
+
+
+SWIGEXPORT void JNICALL Java_io_github_srjohnathan_gdx_effekseer_core_GDXJNI_delete_1RingLocationParameterCore(JNIEnv *jenv, jclass jcls, jlong jarg1) {
+  Effekseer::RingLocationParameter *arg1 = (Effekseer::RingLocationParameter *) 0 ;
+  
+  (void)jenv;
+  (void)jcls;
+  arg1 = *(Effekseer::RingLocationParameter **)&jarg1; 
+  delete arg1;
+}
+
+
+SWIGEXPORT jint JNICALL Java_io_github_srjohnathan_gdx_effekseer_core_GDXJNI_RingColorParameterCore_1Fixed_1get(JNIEnv *jenv, jclass jcls) {
+  jint jresult = 0 ;
+  int result;
+  
+  (void)jenv;
+  (void)jcls;
+  result = (int)Effekseer::RingColorParameter::Fixed;
+  jresult = (jint)result; 
+  return jresult;
+}
+
+
+SWIGEXPORT jint JNICALL Java_io_github_srjohnathan_gdx_effekseer_core_GDXJNI_RingColorParameterCore_1Random_1get(JNIEnv *jenv, jclass jcls) {
+  jint jresult = 0 ;
+  int result;
+  
+  (void)jenv;
+  (void)jcls;
+  result = (int)Effekseer::RingColorParameter::Random;
+  jresult = (jint)result; 
+  return jresult;
+}
+
+
+SWIGEXPORT jint JNICALL Java_io_github_srjohnathan_gdx_effekseer_core_GDXJNI_RingColorParameterCore_1Easing_1get(JNIEnv *jenv, jclass jcls) {
+  jint jresult = 0 ;
+  int result;
+  
+  (void)jenv;
+  (void)jcls;
+  result = (int)Effekseer::RingColorParameter::Easing;
+  jresult = (jint)result; 
+  return jresult;
+}
+
+
+SWIGEXPORT jint JNICALL Java_io_github_srjohnathan_gdx_effekseer_core_GDXJNI_RingColorParameterCore_1Parameter_1DWORD_1get(JNIEnv *jenv, jclass jcls) {
+  jint jresult = 0 ;
+  int result;
+  
+  (void)jenv;
+  (void)jcls;
+  result = (int)Effekseer::RingColorParameter::Parameter_DWORD;
+  jresult = (jint)result; 
+  return jresult;
+}
+
+
+SWIGEXPORT void JNICALL Java_io_github_srjohnathan_gdx_effekseer_core_GDXJNI_RingColorParameterCore_1type_1set(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_, jint jarg2) {
+  Effekseer::RingColorParameter *arg1 = (Effekseer::RingColorParameter *) 0 ;
+  int arg2 ;
+  
+  (void)jenv;
+  (void)jcls;
+  (void)jarg1_;
+  arg1 = *(Effekseer::RingColorParameter **)&jarg1; 
+  arg2 = (int)jarg2; 
+  if (arg1 && sizeof(int) == sizeof((arg1)->type)) *(int*)(void*)&((arg1)->type) = arg2;
+}
+
+
+SWIGEXPORT jint JNICALL Java_io_github_srjohnathan_gdx_effekseer_core_GDXJNI_RingColorParameterCore_1type_1get(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_) {
+  jint jresult = 0 ;
+  Effekseer::RingColorParameter *arg1 = (Effekseer::RingColorParameter *) 0 ;
+  int result;
+  
+  (void)jenv;
+  (void)jcls;
+  (void)jarg1_;
+  arg1 = *(Effekseer::RingColorParameter **)&jarg1; 
+  result = (int) ((arg1)->type);
+  jresult = (jint)result; 
+  return jresult;
+}
+
+
+SWIGEXPORT void JNICALL Java_io_github_srjohnathan_gdx_effekseer_core_GDXJNI_RingColorParameterCore_1fixed_1set(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_, jlong jarg2, jobject jarg2_) {
+  Effekseer::RingColorParameter *arg1 = (Effekseer::RingColorParameter *) 0 ;
+  Effekseer::Color *arg2 = (Effekseer::Color *) 0 ;
+  
+  (void)jenv;
+  (void)jcls;
+  (void)jarg1_;
+  (void)jarg2_;
+  arg1 = *(Effekseer::RingColorParameter **)&jarg1; 
+  arg2 = *(Effekseer::Color **)&jarg2; 
+  if (arg1) (arg1)->fixed = *arg2;
+}
+
+
+SWIGEXPORT jlong JNICALL Java_io_github_srjohnathan_gdx_effekseer_core_GDXJNI_RingColorParameterCore_1fixed_1get(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_) {
+  jlong jresult = 0 ;
+  Effekseer::RingColorParameter *arg1 = (Effekseer::RingColorParameter *) 0 ;
+  Effekseer::Color *result = 0 ;
+  
+  (void)jenv;
+  (void)jcls;
+  (void)jarg1_;
+  arg1 = *(Effekseer::RingColorParameter **)&jarg1; 
+  result = (Effekseer::Color *)& ((arg1)->fixed);
+  *(Effekseer::Color **)&jresult = result; 
+  return jresult;
+}
+
+
+SWIGEXPORT void JNICALL Java_io_github_srjohnathan_gdx_effekseer_core_GDXJNI_RingColorParameterCore_1random_1set(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_, jlong jarg2, jobject jarg2_) {
+  Effekseer::RingColorParameter *arg1 = (Effekseer::RingColorParameter *) 0 ;
+  Effekseer::random_color *arg2 = (Effekseer::random_color *) 0 ;
+  
+  (void)jenv;
+  (void)jcls;
+  (void)jarg1_;
+  (void)jarg2_;
+  arg1 = *(Effekseer::RingColorParameter **)&jarg1; 
+  arg2 = *(Effekseer::random_color **)&jarg2; 
+  if (arg1) (arg1)->random = *arg2;
+}
+
+
+SWIGEXPORT jlong JNICALL Java_io_github_srjohnathan_gdx_effekseer_core_GDXJNI_RingColorParameterCore_1random_1get(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_) {
+  jlong jresult = 0 ;
+  Effekseer::RingColorParameter *arg1 = (Effekseer::RingColorParameter *) 0 ;
+  Effekseer::random_color *result = 0 ;
+  
+  (void)jenv;
+  (void)jcls;
+  (void)jarg1_;
+  arg1 = *(Effekseer::RingColorParameter **)&jarg1; 
+  result = (Effekseer::random_color *)& ((arg1)->random);
+  *(Effekseer::random_color **)&jresult = result; 
+  return jresult;
+}
+
+
+SWIGEXPORT void JNICALL Java_io_github_srjohnathan_gdx_effekseer_core_GDXJNI_RingColorParameterCore_1easing_1set(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_, jlong jarg2, jobject jarg2_) {
+  Effekseer::RingColorParameter *arg1 = (Effekseer::RingColorParameter *) 0 ;
+  Effekseer::easing_color *arg2 = (Effekseer::easing_color *) 0 ;
+  
+  (void)jenv;
+  (void)jcls;
+  (void)jarg1_;
+  (void)jarg2_;
+  arg1 = *(Effekseer::RingColorParameter **)&jarg1; 
+  arg2 = *(Effekseer::easing_color **)&jarg2; 
+  if (arg1) (arg1)->easing = *arg2;
+}
+
+
+SWIGEXPORT jlong JNICALL Java_io_github_srjohnathan_gdx_effekseer_core_GDXJNI_RingColorParameterCore_1easing_1get(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_) {
+  jlong jresult = 0 ;
+  Effekseer::RingColorParameter *arg1 = (Effekseer::RingColorParameter *) 0 ;
+  Effekseer::easing_color *result = 0 ;
+  
+  (void)jenv;
+  (void)jcls;
+  (void)jarg1_;
+  arg1 = *(Effekseer::RingColorParameter **)&jarg1; 
+  result = (Effekseer::easing_color *)& ((arg1)->easing);
+  *(Effekseer::easing_color **)&jresult = result; 
+  return jresult;
+}
+
+
+SWIGEXPORT jlong JNICALL Java_io_github_srjohnathan_gdx_effekseer_core_GDXJNI_new_1RingColorParameterCore(JNIEnv *jenv, jclass jcls) {
+  jlong jresult = 0 ;
+  Effekseer::RingColorParameter *result = 0 ;
+  
+  (void)jenv;
+  (void)jcls;
+  result = (Effekseer::RingColorParameter *)new Effekseer::RingColorParameter();
+  *(Effekseer::RingColorParameter **)&jresult = result; 
+  return jresult;
+}
+
+
+SWIGEXPORT void JNICALL Java_io_github_srjohnathan_gdx_effekseer_core_GDXJNI_delete_1RingColorParameterCore(JNIEnv *jenv, jclass jcls, jlong jarg1) {
+  Effekseer::RingColorParameter *arg1 = (Effekseer::RingColorParameter *) 0 ;
+  
+  (void)jenv;
+  (void)jcls;
+  arg1 = *(Effekseer::RingColorParameter **)&jarg1; 
+  delete arg1;
+}
+
+
+SWIGEXPORT void JNICALL Java_io_github_srjohnathan_gdx_effekseer_core_GDXJNI_RingSingleValuesCore_1current_1set(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_, jfloat jarg2) {
+  Effekseer::RingSingleValues *arg1 = (Effekseer::RingSingleValues *) 0 ;
+  float arg2 ;
+  
+  (void)jenv;
+  (void)jcls;
+  (void)jarg1_;
+  arg1 = *(Effekseer::RingSingleValues **)&jarg1; 
+  arg2 = (float)jarg2; 
+  if (arg1) (arg1)->current = arg2;
+}
+
+
+SWIGEXPORT jfloat JNICALL Java_io_github_srjohnathan_gdx_effekseer_core_GDXJNI_RingSingleValuesCore_1current_1get(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_) {
+  jfloat jresult = 0 ;
+  Effekseer::RingSingleValues *arg1 = (Effekseer::RingSingleValues *) 0 ;
+  float result;
+  
+  (void)jenv;
+  (void)jcls;
+  (void)jarg1_;
+  arg1 = *(Effekseer::RingSingleValues **)&jarg1; 
+  result = (float) ((arg1)->current);
+  jresult = (jfloat)result; 
+  return jresult;
+}
+
+
+SWIGEXPORT void JNICALL Java_io_github_srjohnathan_gdx_effekseer_core_GDXJNI_RingSingleValuesCore_1easing_1set(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_, jlong jarg2, jobject jarg2_) {
+  Effekseer::RingSingleValues *arg1 = (Effekseer::RingSingleValues *) 0 ;
+  Effekseer::InstanceEasing< float > *arg2 = (Effekseer::InstanceEasing< float > *) 0 ;
+  
+  (void)jenv;
+  (void)jcls;
+  (void)jarg1_;
+  (void)jarg2_;
+  arg1 = *(Effekseer::RingSingleValues **)&jarg1; 
+  arg2 = *(Effekseer::InstanceEasing< float > **)&jarg2; 
+  if (arg1) (arg1)->easing = *arg2;
+}
+
+
+SWIGEXPORT jlong JNICALL Java_io_github_srjohnathan_gdx_effekseer_core_GDXJNI_RingSingleValuesCore_1easing_1get(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_) {
+  jlong jresult = 0 ;
+  Effekseer::RingSingleValues *arg1 = (Effekseer::RingSingleValues *) 0 ;
+  Effekseer::InstanceEasing< float > *result = 0 ;
+  
+  (void)jenv;
+  (void)jcls;
+  (void)jarg1_;
+  arg1 = *(Effekseer::RingSingleValues **)&jarg1; 
+  result = (Effekseer::InstanceEasing< float > *)& ((arg1)->easing);
+  *(Effekseer::InstanceEasing< float > **)&jresult = result; 
+  return jresult;
+}
+
+
+SWIGEXPORT jlong JNICALL Java_io_github_srjohnathan_gdx_effekseer_core_GDXJNI_new_1RingSingleValuesCore(JNIEnv *jenv, jclass jcls) {
+  jlong jresult = 0 ;
+  Effekseer::RingSingleValues *result = 0 ;
+  
+  (void)jenv;
+  (void)jcls;
+  result = (Effekseer::RingSingleValues *)new Effekseer::RingSingleValues();
+  *(Effekseer::RingSingleValues **)&jresult = result; 
+  return jresult;
+}
+
+
+SWIGEXPORT void JNICALL Java_io_github_srjohnathan_gdx_effekseer_core_GDXJNI_delete_1RingSingleValuesCore(JNIEnv *jenv, jclass jcls, jlong jarg1) {
+  Effekseer::RingSingleValues *arg1 = (Effekseer::RingSingleValues *) 0 ;
+  
+  (void)jenv;
+  (void)jcls;
+  arg1 = *(Effekseer::RingSingleValues **)&jarg1; 
+  delete arg1;
+}
+
+
+SWIGEXPORT void JNICALL Java_io_github_srjohnathan_gdx_effekseer_core_GDXJNI_RingLocationValuesCore_1current_1set(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_, jlong jarg2, jobject jarg2_) {
+  Effekseer::RingLocationValues *arg1 = (Effekseer::RingLocationValues *) 0 ;
+  Effekseer::SIMD::Vec2f *arg2 = (Effekseer::SIMD::Vec2f *) 0 ;
+  
+  (void)jenv;
+  (void)jcls;
+  (void)jarg1_;
+  (void)jarg2_;
+  arg1 = *(Effekseer::RingLocationValues **)&jarg1; 
+  arg2 = *(Effekseer::SIMD::Vec2f **)&jarg2; 
+  if (arg1) (arg1)->current = *arg2;
+}
+
+
+SWIGEXPORT jlong JNICALL Java_io_github_srjohnathan_gdx_effekseer_core_GDXJNI_RingLocationValuesCore_1current_1get(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_) {
+  jlong jresult = 0 ;
+  Effekseer::RingLocationValues *arg1 = (Effekseer::RingLocationValues *) 0 ;
+  Effekseer::SIMD::Vec2f *result = 0 ;
+  
+  (void)jenv;
+  (void)jcls;
+  (void)jarg1_;
+  arg1 = *(Effekseer::RingLocationValues **)&jarg1; 
+  result = (Effekseer::SIMD::Vec2f *)& ((arg1)->current);
+  *(Effekseer::SIMD::Vec2f **)&jresult = result; 
+  return jresult;
+}
+
+
+SWIGEXPORT jlong JNICALL Java_io_github_srjohnathan_gdx_effekseer_core_GDXJNI_new_1RingLocationValuesCore(JNIEnv *jenv, jclass jcls) {
+  jlong jresult = 0 ;
+  Effekseer::RingLocationValues *result = 0 ;
+  
+  (void)jenv;
+  (void)jcls;
+  result = (Effekseer::RingLocationValues *)new Effekseer::RingLocationValues();
+  *(Effekseer::RingLocationValues **)&jresult = result; 
+  return jresult;
+}
+
+
+SWIGEXPORT void JNICALL Java_io_github_srjohnathan_gdx_effekseer_core_GDXJNI_delete_1RingLocationValuesCore(JNIEnv *jenv, jclass jcls, jlong jarg1) {
+  Effekseer::RingLocationValues *arg1 = (Effekseer::RingLocationValues *) 0 ;
+  
+  (void)jenv;
+  (void)jcls;
+  arg1 = *(Effekseer::RingLocationValues **)&jarg1; 
+  delete arg1;
+}
+
+
+SWIGEXPORT void JNICALL Java_io_github_srjohnathan_gdx_effekseer_core_GDXJNI_RingColorValuesCore_1current_1set(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_, jlong jarg2, jobject jarg2_) {
+  Effekseer::RingColorValues *arg1 = (Effekseer::RingColorValues *) 0 ;
+  Effekseer::Color *arg2 = (Effekseer::Color *) 0 ;
+  
+  (void)jenv;
+  (void)jcls;
+  (void)jarg1_;
+  (void)jarg2_;
+  arg1 = *(Effekseer::RingColorValues **)&jarg1; 
+  arg2 = *(Effekseer::Color **)&jarg2; 
+  if (arg1) (arg1)->current = *arg2;
+}
+
+
+SWIGEXPORT jlong JNICALL Java_io_github_srjohnathan_gdx_effekseer_core_GDXJNI_RingColorValuesCore_1current_1get(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_) {
+  jlong jresult = 0 ;
+  Effekseer::RingColorValues *arg1 = (Effekseer::RingColorValues *) 0 ;
+  Effekseer::Color *result = 0 ;
+  
+  (void)jenv;
+  (void)jcls;
+  (void)jarg1_;
+  arg1 = *(Effekseer::RingColorValues **)&jarg1; 
+  result = (Effekseer::Color *)& ((arg1)->current);
+  *(Effekseer::Color **)&jresult = result; 
+  return jresult;
+}
+
+
+SWIGEXPORT void JNICALL Java_io_github_srjohnathan_gdx_effekseer_core_GDXJNI_RingColorValuesCore_1original_1set(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_, jlong jarg2, jobject jarg2_) {
+  Effekseer::RingColorValues *arg1 = (Effekseer::RingColorValues *) 0 ;
+  Effekseer::Color *arg2 = (Effekseer::Color *) 0 ;
+  
+  (void)jenv;
+  (void)jcls;
+  (void)jarg1_;
+  (void)jarg2_;
+  arg1 = *(Effekseer::RingColorValues **)&jarg1; 
+  arg2 = *(Effekseer::Color **)&jarg2; 
+  if (arg1) (arg1)->original = *arg2;
+}
+
+
+SWIGEXPORT jlong JNICALL Java_io_github_srjohnathan_gdx_effekseer_core_GDXJNI_RingColorValuesCore_1original_1get(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_) {
+  jlong jresult = 0 ;
+  Effekseer::RingColorValues *arg1 = (Effekseer::RingColorValues *) 0 ;
+  Effekseer::Color *result = 0 ;
+  
+  (void)jenv;
+  (void)jcls;
+  (void)jarg1_;
+  arg1 = *(Effekseer::RingColorValues **)&jarg1; 
+  result = (Effekseer::Color *)& ((arg1)->original);
+  *(Effekseer::Color **)&jresult = result; 
+  return jresult;
+}
+
+
+SWIGEXPORT jlong JNICALL Java_io_github_srjohnathan_gdx_effekseer_core_GDXJNI_new_1RingColorValuesCore(JNIEnv *jenv, jclass jcls) {
+  jlong jresult = 0 ;
+  Effekseer::RingColorValues *result = 0 ;
+  
+  (void)jenv;
+  (void)jcls;
+  result = (Effekseer::RingColorValues *)new Effekseer::RingColorValues();
+  *(Effekseer::RingColorValues **)&jresult = result; 
+  return jresult;
+}
+
+
+SWIGEXPORT void JNICALL Java_io_github_srjohnathan_gdx_effekseer_core_GDXJNI_delete_1RingColorValuesCore(JNIEnv *jenv, jclass jcls, jlong jarg1) {
+  Effekseer::RingColorValues *arg1 = (Effekseer::RingColorValues *) 0 ;
+  
+  (void)jenv;
+  (void)jcls;
+  arg1 = *(Effekseer::RingColorValues **)&jarg1; 
+  delete arg1;
+}
+
+
+SWIGEXPORT void JNICALL Java_io_github_srjohnathan_gdx_effekseer_core_GDXJNI_RingShapeParameterCore_1Type_1set(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_, jint jarg2) {
+  Effekseer::RingShapeParameter *arg1 = (Effekseer::RingShapeParameter *) 0 ;
+  Effekseer::RingShapeType arg2 ;
+  
+  (void)jenv;
+  (void)jcls;
+  (void)jarg1_;
+  arg1 = *(Effekseer::RingShapeParameter **)&jarg1; 
+  arg2 = (Effekseer::RingShapeType)jarg2; 
+  if (arg1) (arg1)->Type = arg2;
+}
+
+
+SWIGEXPORT jint JNICALL Java_io_github_srjohnathan_gdx_effekseer_core_GDXJNI_RingShapeParameterCore_1Type_1get(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_) {
+  jint jresult = 0 ;
+  Effekseer::RingShapeParameter *arg1 = (Effekseer::RingShapeParameter *) 0 ;
+  Effekseer::RingShapeType result;
+  
+  (void)jenv;
+  (void)jcls;
+  (void)jarg1_;
+  arg1 = *(Effekseer::RingShapeParameter **)&jarg1; 
+  result = (Effekseer::RingShapeType) ((arg1)->Type);
+  jresult = (jint)result; 
+  return jresult;
+}
+
+
+SWIGEXPORT void JNICALL Java_io_github_srjohnathan_gdx_effekseer_core_GDXJNI_RingShapeParameterCore_1StartingFade_1set(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_, jfloat jarg2) {
+  Effekseer::RingShapeParameter *arg1 = (Effekseer::RingShapeParameter *) 0 ;
+  float arg2 ;
+  
+  (void)jenv;
+  (void)jcls;
+  (void)jarg1_;
+  arg1 = *(Effekseer::RingShapeParameter **)&jarg1; 
+  arg2 = (float)jarg2; 
+  if (arg1) (arg1)->StartingFade = arg2;
+}
+
+
+SWIGEXPORT jfloat JNICALL Java_io_github_srjohnathan_gdx_effekseer_core_GDXJNI_RingShapeParameterCore_1StartingFade_1get(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_) {
+  jfloat jresult = 0 ;
+  Effekseer::RingShapeParameter *arg1 = (Effekseer::RingShapeParameter *) 0 ;
+  float result;
+  
+  (void)jenv;
+  (void)jcls;
+  (void)jarg1_;
+  arg1 = *(Effekseer::RingShapeParameter **)&jarg1; 
+  result = (float) ((arg1)->StartingFade);
+  jresult = (jfloat)result; 
+  return jresult;
+}
+
+
+SWIGEXPORT void JNICALL Java_io_github_srjohnathan_gdx_effekseer_core_GDXJNI_RingShapeParameterCore_1EndingFade_1set(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_, jfloat jarg2) {
+  Effekseer::RingShapeParameter *arg1 = (Effekseer::RingShapeParameter *) 0 ;
+  float arg2 ;
+  
+  (void)jenv;
+  (void)jcls;
+  (void)jarg1_;
+  arg1 = *(Effekseer::RingShapeParameter **)&jarg1; 
+  arg2 = (float)jarg2; 
+  if (arg1) (arg1)->EndingFade = arg2;
+}
+
+
+SWIGEXPORT jfloat JNICALL Java_io_github_srjohnathan_gdx_effekseer_core_GDXJNI_RingShapeParameterCore_1EndingFade_1get(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_) {
+  jfloat jresult = 0 ;
+  Effekseer::RingShapeParameter *arg1 = (Effekseer::RingShapeParameter *) 0 ;
+  float result;
+  
+  (void)jenv;
+  (void)jcls;
+  (void)jarg1_;
+  arg1 = *(Effekseer::RingShapeParameter **)&jarg1; 
+  result = (float) ((arg1)->EndingFade);
+  jresult = (jfloat)result; 
+  return jresult;
+}
+
+
+SWIGEXPORT void JNICALL Java_io_github_srjohnathan_gdx_effekseer_core_GDXJNI_RingShapeParameterCore_1StartingAngle_1set(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_, jlong jarg2, jobject jarg2_) {
+  Effekseer::RingShapeParameter *arg1 = (Effekseer::RingShapeParameter *) 0 ;
+  Effekseer::RingSingleParameter *arg2 = (Effekseer::RingSingleParameter *) 0 ;
+  
+  (void)jenv;
+  (void)jcls;
+  (void)jarg1_;
+  (void)jarg2_;
+  arg1 = *(Effekseer::RingShapeParameter **)&jarg1; 
+  arg2 = *(Effekseer::RingSingleParameter **)&jarg2; 
+  if (arg1) (arg1)->StartingAngle = *arg2;
+}
+
+
+SWIGEXPORT jlong JNICALL Java_io_github_srjohnathan_gdx_effekseer_core_GDXJNI_RingShapeParameterCore_1StartingAngle_1get(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_) {
+  jlong jresult = 0 ;
+  Effekseer::RingShapeParameter *arg1 = (Effekseer::RingShapeParameter *) 0 ;
+  Effekseer::RingSingleParameter *result = 0 ;
+  
+  (void)jenv;
+  (void)jcls;
+  (void)jarg1_;
+  arg1 = *(Effekseer::RingShapeParameter **)&jarg1; 
+  result = (Effekseer::RingSingleParameter *)& ((arg1)->StartingAngle);
+  *(Effekseer::RingSingleParameter **)&jresult = result; 
+  return jresult;
+}
+
+
+SWIGEXPORT void JNICALL Java_io_github_srjohnathan_gdx_effekseer_core_GDXJNI_RingShapeParameterCore_1EndingAngle_1set(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_, jlong jarg2, jobject jarg2_) {
+  Effekseer::RingShapeParameter *arg1 = (Effekseer::RingShapeParameter *) 0 ;
+  Effekseer::RingSingleParameter *arg2 = (Effekseer::RingSingleParameter *) 0 ;
+  
+  (void)jenv;
+  (void)jcls;
+  (void)jarg1_;
+  (void)jarg2_;
+  arg1 = *(Effekseer::RingShapeParameter **)&jarg1; 
+  arg2 = *(Effekseer::RingSingleParameter **)&jarg2; 
+  if (arg1) (arg1)->EndingAngle = *arg2;
+}
+
+
+SWIGEXPORT jlong JNICALL Java_io_github_srjohnathan_gdx_effekseer_core_GDXJNI_RingShapeParameterCore_1EndingAngle_1get(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_) {
+  jlong jresult = 0 ;
+  Effekseer::RingShapeParameter *arg1 = (Effekseer::RingShapeParameter *) 0 ;
+  Effekseer::RingSingleParameter *result = 0 ;
+  
+  (void)jenv;
+  (void)jcls;
+  (void)jarg1_;
+  arg1 = *(Effekseer::RingShapeParameter **)&jarg1; 
+  result = (Effekseer::RingSingleParameter *)& ((arg1)->EndingAngle);
+  *(Effekseer::RingSingleParameter **)&jresult = result; 
+  return jresult;
+}
+
+
+SWIGEXPORT jlong JNICALL Java_io_github_srjohnathan_gdx_effekseer_core_GDXJNI_new_1RingShapeParameterCore(JNIEnv *jenv, jclass jcls) {
+  jlong jresult = 0 ;
+  Effekseer::RingShapeParameter *result = 0 ;
+  
+  (void)jenv;
+  (void)jcls;
+  result = (Effekseer::RingShapeParameter *)new Effekseer::RingShapeParameter();
+  *(Effekseer::RingShapeParameter **)&jresult = result; 
+  return jresult;
+}
+
+
+SWIGEXPORT void JNICALL Java_io_github_srjohnathan_gdx_effekseer_core_GDXJNI_delete_1RingShapeParameterCore(JNIEnv *jenv, jclass jcls, jlong jarg1) {
+  Effekseer::RingShapeParameter *arg1 = (Effekseer::RingShapeParameter *) 0 ;
+  
+  (void)jenv;
+  (void)jcls;
+  arg1 = *(Effekseer::RingShapeParameter **)&jarg1; 
+  delete arg1;
+}
+
+
+SWIGEXPORT void JNICALL Java_io_github_srjohnathan_gdx_effekseer_core_GDXJNI_EffectNodeRing_1AlphaBlend_1set(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_, jint jarg2) {
+  Effekseer::EffectNodeRing *arg1 = (Effekseer::EffectNodeRing *) 0 ;
+  Effekseer::AlphaBlendType arg2 ;
+  
+  (void)jenv;
+  (void)jcls;
+  (void)jarg1_;
+  arg1 = *(Effekseer::EffectNodeRing **)&jarg1; 
+  arg2 = (Effekseer::AlphaBlendType)jarg2; 
+  if (arg1) (arg1)->AlphaBlend = arg2;
+}
+
+
+SWIGEXPORT jint JNICALL Java_io_github_srjohnathan_gdx_effekseer_core_GDXJNI_EffectNodeRing_1AlphaBlend_1get(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_) {
+  jint jresult = 0 ;
+  Effekseer::EffectNodeRing *arg1 = (Effekseer::EffectNodeRing *) 0 ;
+  Effekseer::AlphaBlendType result;
+  
+  (void)jenv;
+  (void)jcls;
+  (void)jarg1_;
+  arg1 = *(Effekseer::EffectNodeRing **)&jarg1; 
+  result = (Effekseer::AlphaBlendType) ((arg1)->AlphaBlend);
+  jresult = (jint)result; 
+  return jresult;
+}
+
+
+SWIGEXPORT void JNICALL Java_io_github_srjohnathan_gdx_effekseer_core_GDXJNI_EffectNodeRing_1Billboard_1set(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_, jint jarg2) {
+  Effekseer::EffectNodeRing *arg1 = (Effekseer::EffectNodeRing *) 0 ;
+  Effekseer::BillboardType arg2 ;
+  
+  (void)jenv;
+  (void)jcls;
+  (void)jarg1_;
+  arg1 = *(Effekseer::EffectNodeRing **)&jarg1; 
+  arg2 = (Effekseer::BillboardType)jarg2; 
+  if (arg1) (arg1)->Billboard = arg2;
+}
+
+
+SWIGEXPORT jint JNICALL Java_io_github_srjohnathan_gdx_effekseer_core_GDXJNI_EffectNodeRing_1Billboard_1get(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_) {
+  jint jresult = 0 ;
+  Effekseer::EffectNodeRing *arg1 = (Effekseer::EffectNodeRing *) 0 ;
+  Effekseer::BillboardType result;
+  
+  (void)jenv;
+  (void)jcls;
+  (void)jarg1_;
+  arg1 = *(Effekseer::EffectNodeRing **)&jarg1; 
+  result = (Effekseer::BillboardType) ((arg1)->Billboard);
+  jresult = (jint)result; 
+  return jresult;
+}
+
+
+SWIGEXPORT void JNICALL Java_io_github_srjohnathan_gdx_effekseer_core_GDXJNI_EffectNodeRing_1VertexCount_1set(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_, jint jarg2) {
+  Effekseer::EffectNodeRing *arg1 = (Effekseer::EffectNodeRing *) 0 ;
+  int32_t arg2 ;
+  
+  (void)jenv;
+  (void)jcls;
+  (void)jarg1_;
+  arg1 = *(Effekseer::EffectNodeRing **)&jarg1; 
+  arg2 = (int32_t)jarg2; 
+  if (arg1) (arg1)->VertexCount = arg2;
+}
+
+
+SWIGEXPORT jint JNICALL Java_io_github_srjohnathan_gdx_effekseer_core_GDXJNI_EffectNodeRing_1VertexCount_1get(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_) {
+  jint jresult = 0 ;
+  Effekseer::EffectNodeRing *arg1 = (Effekseer::EffectNodeRing *) 0 ;
+  int32_t result;
+  
+  (void)jenv;
+  (void)jcls;
+  (void)jarg1_;
+  arg1 = *(Effekseer::EffectNodeRing **)&jarg1; 
+  result = (int32_t) ((arg1)->VertexCount);
+  jresult = (jint)result; 
+  return jresult;
+}
+
+
+SWIGEXPORT void JNICALL Java_io_github_srjohnathan_gdx_effekseer_core_GDXJNI_EffectNodeRing_1Shape_1set(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_, jlong jarg2, jobject jarg2_) {
+  Effekseer::EffectNodeRing *arg1 = (Effekseer::EffectNodeRing *) 0 ;
+  Effekseer::RingShapeParameter *arg2 = (Effekseer::RingShapeParameter *) 0 ;
+  
+  (void)jenv;
+  (void)jcls;
+  (void)jarg1_;
+  (void)jarg2_;
+  arg1 = *(Effekseer::EffectNodeRing **)&jarg1; 
+  arg2 = *(Effekseer::RingShapeParameter **)&jarg2; 
+  if (arg1) (arg1)->Shape = *arg2;
+}
+
+
+SWIGEXPORT jlong JNICALL Java_io_github_srjohnathan_gdx_effekseer_core_GDXJNI_EffectNodeRing_1Shape_1get(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_) {
+  jlong jresult = 0 ;
+  Effekseer::EffectNodeRing *arg1 = (Effekseer::EffectNodeRing *) 0 ;
+  Effekseer::RingShapeParameter *result = 0 ;
+  
+  (void)jenv;
+  (void)jcls;
+  (void)jarg1_;
+  arg1 = *(Effekseer::EffectNodeRing **)&jarg1; 
+  result = (Effekseer::RingShapeParameter *)& ((arg1)->Shape);
+  *(Effekseer::RingShapeParameter **)&jresult = result; 
+  return jresult;
+}
+
+
+SWIGEXPORT void JNICALL Java_io_github_srjohnathan_gdx_effekseer_core_GDXJNI_EffectNodeRing_1OuterLocation_1set(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_, jlong jarg2, jobject jarg2_) {
+  Effekseer::EffectNodeRing *arg1 = (Effekseer::EffectNodeRing *) 0 ;
+  Effekseer::RingLocationParameter *arg2 = (Effekseer::RingLocationParameter *) 0 ;
+  
+  (void)jenv;
+  (void)jcls;
+  (void)jarg1_;
+  (void)jarg2_;
+  arg1 = *(Effekseer::EffectNodeRing **)&jarg1; 
+  arg2 = *(Effekseer::RingLocationParameter **)&jarg2; 
+  if (arg1) (arg1)->OuterLocation = *arg2;
+}
+
+
+SWIGEXPORT jlong JNICALL Java_io_github_srjohnathan_gdx_effekseer_core_GDXJNI_EffectNodeRing_1OuterLocation_1get(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_) {
+  jlong jresult = 0 ;
+  Effekseer::EffectNodeRing *arg1 = (Effekseer::EffectNodeRing *) 0 ;
+  Effekseer::RingLocationParameter *result = 0 ;
+  
+  (void)jenv;
+  (void)jcls;
+  (void)jarg1_;
+  arg1 = *(Effekseer::EffectNodeRing **)&jarg1; 
+  result = (Effekseer::RingLocationParameter *)& ((arg1)->OuterLocation);
+  *(Effekseer::RingLocationParameter **)&jresult = result; 
+  return jresult;
+}
+
+
+SWIGEXPORT void JNICALL Java_io_github_srjohnathan_gdx_effekseer_core_GDXJNI_EffectNodeRing_1InnerLocation_1set(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_, jlong jarg2, jobject jarg2_) {
+  Effekseer::EffectNodeRing *arg1 = (Effekseer::EffectNodeRing *) 0 ;
+  Effekseer::RingLocationParameter *arg2 = (Effekseer::RingLocationParameter *) 0 ;
+  
+  (void)jenv;
+  (void)jcls;
+  (void)jarg1_;
+  (void)jarg2_;
+  arg1 = *(Effekseer::EffectNodeRing **)&jarg1; 
+  arg2 = *(Effekseer::RingLocationParameter **)&jarg2; 
+  if (arg1) (arg1)->InnerLocation = *arg2;
+}
+
+
+SWIGEXPORT jlong JNICALL Java_io_github_srjohnathan_gdx_effekseer_core_GDXJNI_EffectNodeRing_1InnerLocation_1get(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_) {
+  jlong jresult = 0 ;
+  Effekseer::EffectNodeRing *arg1 = (Effekseer::EffectNodeRing *) 0 ;
+  Effekseer::RingLocationParameter *result = 0 ;
+  
+  (void)jenv;
+  (void)jcls;
+  (void)jarg1_;
+  arg1 = *(Effekseer::EffectNodeRing **)&jarg1; 
+  result = (Effekseer::RingLocationParameter *)& ((arg1)->InnerLocation);
+  *(Effekseer::RingLocationParameter **)&jresult = result; 
+  return jresult;
+}
+
+
+SWIGEXPORT void JNICALL Java_io_github_srjohnathan_gdx_effekseer_core_GDXJNI_EffectNodeRing_1CenterRatio_1set(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_, jlong jarg2, jobject jarg2_) {
+  Effekseer::EffectNodeRing *arg1 = (Effekseer::EffectNodeRing *) 0 ;
+  Effekseer::RingSingleParameter *arg2 = (Effekseer::RingSingleParameter *) 0 ;
+  
+  (void)jenv;
+  (void)jcls;
+  (void)jarg1_;
+  (void)jarg2_;
+  arg1 = *(Effekseer::EffectNodeRing **)&jarg1; 
+  arg2 = *(Effekseer::RingSingleParameter **)&jarg2; 
+  if (arg1) (arg1)->CenterRatio = *arg2;
+}
+
+
+SWIGEXPORT jlong JNICALL Java_io_github_srjohnathan_gdx_effekseer_core_GDXJNI_EffectNodeRing_1CenterRatio_1get(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_) {
+  jlong jresult = 0 ;
+  Effekseer::EffectNodeRing *arg1 = (Effekseer::EffectNodeRing *) 0 ;
+  Effekseer::RingSingleParameter *result = 0 ;
+  
+  (void)jenv;
+  (void)jcls;
+  (void)jarg1_;
+  arg1 = *(Effekseer::EffectNodeRing **)&jarg1; 
+  result = (Effekseer::RingSingleParameter *)& ((arg1)->CenterRatio);
+  *(Effekseer::RingSingleParameter **)&jresult = result; 
+  return jresult;
+}
+
+
+SWIGEXPORT void JNICALL Java_io_github_srjohnathan_gdx_effekseer_core_GDXJNI_EffectNodeRing_1OuterColor_1set(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_, jlong jarg2, jobject jarg2_) {
+  Effekseer::EffectNodeRing *arg1 = (Effekseer::EffectNodeRing *) 0 ;
+  Effekseer::RingColorParameter *arg2 = (Effekseer::RingColorParameter *) 0 ;
+  
+  (void)jenv;
+  (void)jcls;
+  (void)jarg1_;
+  (void)jarg2_;
+  arg1 = *(Effekseer::EffectNodeRing **)&jarg1; 
+  arg2 = *(Effekseer::RingColorParameter **)&jarg2; 
+  if (arg1) (arg1)->OuterColor = *arg2;
+}
+
+
+SWIGEXPORT jlong JNICALL Java_io_github_srjohnathan_gdx_effekseer_core_GDXJNI_EffectNodeRing_1OuterColor_1get(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_) {
+  jlong jresult = 0 ;
+  Effekseer::EffectNodeRing *arg1 = (Effekseer::EffectNodeRing *) 0 ;
+  Effekseer::RingColorParameter *result = 0 ;
+  
+  (void)jenv;
+  (void)jcls;
+  (void)jarg1_;
+  arg1 = *(Effekseer::EffectNodeRing **)&jarg1; 
+  result = (Effekseer::RingColorParameter *)& ((arg1)->OuterColor);
+  *(Effekseer::RingColorParameter **)&jresult = result; 
+  return jresult;
+}
+
+
+SWIGEXPORT void JNICALL Java_io_github_srjohnathan_gdx_effekseer_core_GDXJNI_EffectNodeRing_1CenterColor_1set(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_, jlong jarg2, jobject jarg2_) {
+  Effekseer::EffectNodeRing *arg1 = (Effekseer::EffectNodeRing *) 0 ;
+  Effekseer::RingColorParameter *arg2 = (Effekseer::RingColorParameter *) 0 ;
+  
+  (void)jenv;
+  (void)jcls;
+  (void)jarg1_;
+  (void)jarg2_;
+  arg1 = *(Effekseer::EffectNodeRing **)&jarg1; 
+  arg2 = *(Effekseer::RingColorParameter **)&jarg2; 
+  if (arg1) (arg1)->CenterColor = *arg2;
+}
+
+
+SWIGEXPORT jlong JNICALL Java_io_github_srjohnathan_gdx_effekseer_core_GDXJNI_EffectNodeRing_1CenterColor_1get(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_) {
+  jlong jresult = 0 ;
+  Effekseer::EffectNodeRing *arg1 = (Effekseer::EffectNodeRing *) 0 ;
+  Effekseer::RingColorParameter *result = 0 ;
+  
+  (void)jenv;
+  (void)jcls;
+  (void)jarg1_;
+  arg1 = *(Effekseer::EffectNodeRing **)&jarg1; 
+  result = (Effekseer::RingColorParameter *)& ((arg1)->CenterColor);
+  *(Effekseer::RingColorParameter **)&jresult = result; 
+  return jresult;
+}
+
+
+SWIGEXPORT void JNICALL Java_io_github_srjohnathan_gdx_effekseer_core_GDXJNI_EffectNodeRing_1InnerColor_1set(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_, jlong jarg2, jobject jarg2_) {
+  Effekseer::EffectNodeRing *arg1 = (Effekseer::EffectNodeRing *) 0 ;
+  Effekseer::RingColorParameter *arg2 = (Effekseer::RingColorParameter *) 0 ;
+  
+  (void)jenv;
+  (void)jcls;
+  (void)jarg1_;
+  (void)jarg2_;
+  arg1 = *(Effekseer::EffectNodeRing **)&jarg1; 
+  arg2 = *(Effekseer::RingColorParameter **)&jarg2; 
+  if (arg1) (arg1)->InnerColor = *arg2;
+}
+
+
+SWIGEXPORT jlong JNICALL Java_io_github_srjohnathan_gdx_effekseer_core_GDXJNI_EffectNodeRing_1InnerColor_1get(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_) {
+  jlong jresult = 0 ;
+  Effekseer::EffectNodeRing *arg1 = (Effekseer::EffectNodeRing *) 0 ;
+  Effekseer::RingColorParameter *result = 0 ;
+  
+  (void)jenv;
+  (void)jcls;
+  (void)jarg1_;
+  arg1 = *(Effekseer::EffectNodeRing **)&jarg1; 
+  result = (Effekseer::RingColorParameter *)& ((arg1)->InnerColor);
+  *(Effekseer::RingColorParameter **)&jresult = result; 
+  return jresult;
+}
+
+
+SWIGEXPORT void JNICALL Java_io_github_srjohnathan_gdx_effekseer_core_GDXJNI_EffectNodeRing_1RingTexture_1set(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_, jint jarg2) {
+  Effekseer::EffectNodeRing *arg1 = (Effekseer::EffectNodeRing *) 0 ;
+  int arg2 ;
+  
+  (void)jenv;
+  (void)jcls;
+  (void)jarg1_;
+  arg1 = *(Effekseer::EffectNodeRing **)&jarg1; 
+  arg2 = (int)jarg2; 
+  if (arg1) (arg1)->RingTexture = arg2;
+}
+
+
+SWIGEXPORT jint JNICALL Java_io_github_srjohnathan_gdx_effekseer_core_GDXJNI_EffectNodeRing_1RingTexture_1get(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_) {
+  jint jresult = 0 ;
+  Effekseer::EffectNodeRing *arg1 = (Effekseer::EffectNodeRing *) 0 ;
+  int result;
+  
+  (void)jenv;
+  (void)jcls;
+  (void)jarg1_;
+  arg1 = *(Effekseer::EffectNodeRing **)&jarg1; 
+  result = (int) ((arg1)->RingTexture);
+  jresult = (jint)result; 
+  return jresult;
+}
+
+
+SWIGEXPORT void JNICALL Java_io_github_srjohnathan_gdx_effekseer_core_GDXJNI_EffectNodeRing_1nodeParameter_1set(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_, jlong jarg2) {
+  Effekseer::EffectNodeRing *arg1 = (Effekseer::EffectNodeRing *) 0 ;
+  Effekseer::RingRenderer::NodeParameter *arg2 = (Effekseer::RingRenderer::NodeParameter *) 0 ;
+  
+  (void)jenv;
+  (void)jcls;
+  (void)jarg1_;
+  arg1 = *(Effekseer::EffectNodeRing **)&jarg1; 
+  arg2 = *(Effekseer::RingRenderer::NodeParameter **)&jarg2; 
+  if (arg1) (arg1)->nodeParameter = *arg2;
+}
+
+
+SWIGEXPORT jlong JNICALL Java_io_github_srjohnathan_gdx_effekseer_core_GDXJNI_EffectNodeRing_1nodeParameter_1get(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_) {
+  jlong jresult = 0 ;
+  Effekseer::EffectNodeRing *arg1 = (Effekseer::EffectNodeRing *) 0 ;
+  Effekseer::RingRenderer::NodeParameter *result = 0 ;
+  
+  (void)jenv;
+  (void)jcls;
+  (void)jarg1_;
+  arg1 = *(Effekseer::EffectNodeRing **)&jarg1; 
+  result = (Effekseer::RingRenderer::NodeParameter *)& ((arg1)->nodeParameter);
+  *(Effekseer::RingRenderer::NodeParameter **)&jresult = result; 
+  return jresult;
+}
+
+
+SWIGEXPORT jlong JNICALL Java_io_github_srjohnathan_gdx_effekseer_core_GDXJNI_new_1EffectNodeRing(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_, jlong jarg2) {
+  jlong jresult = 0 ;
+  Effekseer::Effect *arg1 = (Effekseer::Effect *) 0 ;
+  unsigned char **arg2 = 0 ;
+  Effekseer::EffectNodeRing *result = 0 ;
+  
+  (void)jenv;
+  (void)jcls;
+  (void)jarg1_;
+  arg1 = *(Effekseer::Effect **)&jarg1; 
+  arg2 = *(unsigned char ***)&jarg2;
+  if (!arg2) {
+    SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "unsigned char *& reference is null");
+    return 0;
+  } 
+  result = (Effekseer::EffectNodeRing *)new Effekseer::EffectNodeRing(arg1,*arg2);
+  *(Effekseer::EffectNodeRing **)&jresult = result; 
+  return jresult;
+}
+
+
+SWIGEXPORT void JNICALL Java_io_github_srjohnathan_gdx_effekseer_core_GDXJNI_delete_1EffectNodeRing(JNIEnv *jenv, jclass jcls, jlong jarg1) {
+  Effekseer::EffectNodeRing *arg1 = (Effekseer::EffectNodeRing *) 0 ;
+  
+  (void)jenv;
+  (void)jcls;
+  arg1 = *(Effekseer::EffectNodeRing **)&jarg1; 
+  delete arg1;
+}
+
+
+SWIGEXPORT void JNICALL Java_io_github_srjohnathan_gdx_effekseer_core_GDXJNI_EffectNodeModel_1AlphaBlend_1set(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_, jint jarg2) {
+  Effekseer::EffectNodeModel *arg1 = (Effekseer::EffectNodeModel *) 0 ;
+  Effekseer::AlphaBlendType arg2 ;
+  
+  (void)jenv;
+  (void)jcls;
+  (void)jarg1_;
+  arg1 = *(Effekseer::EffectNodeModel **)&jarg1; 
+  arg2 = (Effekseer::AlphaBlendType)jarg2; 
+  if (arg1) (arg1)->AlphaBlend = arg2;
+}
+
+
+SWIGEXPORT jint JNICALL Java_io_github_srjohnathan_gdx_effekseer_core_GDXJNI_EffectNodeModel_1AlphaBlend_1get(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_) {
+  jint jresult = 0 ;
+  Effekseer::EffectNodeModel *arg1 = (Effekseer::EffectNodeModel *) 0 ;
+  Effekseer::AlphaBlendType result;
+  
+  (void)jenv;
+  (void)jcls;
+  (void)jarg1_;
+  arg1 = *(Effekseer::EffectNodeModel **)&jarg1; 
+  result = (Effekseer::AlphaBlendType) ((arg1)->AlphaBlend);
+  jresult = (jint)result; 
+  return jresult;
+}
+
+
+SWIGEXPORT void JNICALL Java_io_github_srjohnathan_gdx_effekseer_core_GDXJNI_EffectNodeModel_1ModelIndex_1set(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_, jint jarg2) {
+  Effekseer::EffectNodeModel *arg1 = (Effekseer::EffectNodeModel *) 0 ;
+  int32_t arg2 ;
+  
+  (void)jenv;
+  (void)jcls;
+  (void)jarg1_;
+  arg1 = *(Effekseer::EffectNodeModel **)&jarg1; 
+  arg2 = (int32_t)jarg2; 
+  if (arg1) (arg1)->ModelIndex = arg2;
+}
+
+
+SWIGEXPORT jint JNICALL Java_io_github_srjohnathan_gdx_effekseer_core_GDXJNI_EffectNodeModel_1ModelIndex_1get(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_) {
+  jint jresult = 0 ;
+  Effekseer::EffectNodeModel *arg1 = (Effekseer::EffectNodeModel *) 0 ;
+  int32_t result;
+  
+  (void)jenv;
+  (void)jcls;
+  (void)jarg1_;
+  arg1 = *(Effekseer::EffectNodeModel **)&jarg1; 
+  result = (int32_t) ((arg1)->ModelIndex);
+  jresult = (jint)result; 
+  return jresult;
+}
+
+
+SWIGEXPORT void JNICALL Java_io_github_srjohnathan_gdx_effekseer_core_GDXJNI_EffectNodeModel_1NormalTextureIndex_1set(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_, jint jarg2) {
+  Effekseer::EffectNodeModel *arg1 = (Effekseer::EffectNodeModel *) 0 ;
+  int32_t arg2 ;
+  
+  (void)jenv;
+  (void)jcls;
+  (void)jarg1_;
+  arg1 = *(Effekseer::EffectNodeModel **)&jarg1; 
+  arg2 = (int32_t)jarg2; 
+  if (arg1) (arg1)->NormalTextureIndex = arg2;
+}
+
+
+SWIGEXPORT jint JNICALL Java_io_github_srjohnathan_gdx_effekseer_core_GDXJNI_EffectNodeModel_1NormalTextureIndex_1get(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_) {
+  jint jresult = 0 ;
+  Effekseer::EffectNodeModel *arg1 = (Effekseer::EffectNodeModel *) 0 ;
+  int32_t result;
+  
+  (void)jenv;
+  (void)jcls;
+  (void)jarg1_;
+  arg1 = *(Effekseer::EffectNodeModel **)&jarg1; 
+  result = (int32_t) ((arg1)->NormalTextureIndex);
+  jresult = (jint)result; 
+  return jresult;
+}
+
+
+SWIGEXPORT void JNICALL Java_io_github_srjohnathan_gdx_effekseer_core_GDXJNI_EffectNodeModel_1Billboard_1set(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_, jint jarg2) {
+  Effekseer::EffectNodeModel *arg1 = (Effekseer::EffectNodeModel *) 0 ;
+  Effekseer::BillboardType arg2 ;
+  
+  (void)jenv;
+  (void)jcls;
+  (void)jarg1_;
+  arg1 = *(Effekseer::EffectNodeModel **)&jarg1; 
+  arg2 = (Effekseer::BillboardType)jarg2; 
+  if (arg1) (arg1)->Billboard = arg2;
+}
+
+
+SWIGEXPORT jint JNICALL Java_io_github_srjohnathan_gdx_effekseer_core_GDXJNI_EffectNodeModel_1Billboard_1get(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_) {
+  jint jresult = 0 ;
+  Effekseer::EffectNodeModel *arg1 = (Effekseer::EffectNodeModel *) 0 ;
+  Effekseer::BillboardType result;
+  
+  (void)jenv;
+  (void)jcls;
+  (void)jarg1_;
+  arg1 = *(Effekseer::EffectNodeModel **)&jarg1; 
+  result = (Effekseer::BillboardType) ((arg1)->Billboard);
+  jresult = (jint)result; 
+  return jresult;
+}
+
+
+SWIGEXPORT void JNICALL Java_io_github_srjohnathan_gdx_effekseer_core_GDXJNI_EffectNodeModel_1Lighting_1set(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_, jboolean jarg2) {
+  Effekseer::EffectNodeModel *arg1 = (Effekseer::EffectNodeModel *) 0 ;
+  bool arg2 ;
+  
+  (void)jenv;
+  (void)jcls;
+  (void)jarg1_;
+  arg1 = *(Effekseer::EffectNodeModel **)&jarg1; 
+  arg2 = jarg2 ? true : false; 
+  if (arg1) (arg1)->Lighting = arg2;
+}
+
+
+SWIGEXPORT jboolean JNICALL Java_io_github_srjohnathan_gdx_effekseer_core_GDXJNI_EffectNodeModel_1Lighting_1get(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_) {
+  jboolean jresult = 0 ;
+  Effekseer::EffectNodeModel *arg1 = (Effekseer::EffectNodeModel *) 0 ;
+  bool result;
+  
+  (void)jenv;
+  (void)jcls;
+  (void)jarg1_;
+  arg1 = *(Effekseer::EffectNodeModel **)&jarg1; 
+  result = (bool) ((arg1)->Lighting);
+  jresult = (jboolean)result; 
+  return jresult;
+}
+
+
+SWIGEXPORT void JNICALL Java_io_github_srjohnathan_gdx_effekseer_core_GDXJNI_EffectNodeModel_1Culling_1set(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_, jint jarg2) {
+  Effekseer::EffectNodeModel *arg1 = (Effekseer::EffectNodeModel *) 0 ;
+  Effekseer::CullingType arg2 ;
+  
+  (void)jenv;
+  (void)jcls;
+  (void)jarg1_;
+  arg1 = *(Effekseer::EffectNodeModel **)&jarg1; 
+  arg2 = (Effekseer::CullingType)jarg2; 
+  if (arg1) (arg1)->Culling = arg2;
+}
+
+
+SWIGEXPORT jint JNICALL Java_io_github_srjohnathan_gdx_effekseer_core_GDXJNI_EffectNodeModel_1Culling_1get(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_) {
+  jint jresult = 0 ;
+  Effekseer::EffectNodeModel *arg1 = (Effekseer::EffectNodeModel *) 0 ;
+  Effekseer::CullingType result;
+  
+  (void)jenv;
+  (void)jcls;
+  (void)jarg1_;
+  arg1 = *(Effekseer::EffectNodeModel **)&jarg1; 
+  result = (Effekseer::CullingType) ((arg1)->Culling);
+  jresult = (jint)result; 
+  return jresult;
+}
+
+
+SWIGEXPORT void JNICALL Java_io_github_srjohnathan_gdx_effekseer_core_GDXJNI_EffectNodeModel_1AllColor_1set(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_, jlong jarg2, jobject jarg2_) {
+  Effekseer::EffectNodeModel *arg1 = (Effekseer::EffectNodeModel *) 0 ;
+  Effekseer::StandardColorParameter *arg2 = (Effekseer::StandardColorParameter *) 0 ;
+  
+  (void)jenv;
+  (void)jcls;
+  (void)jarg1_;
+  (void)jarg2_;
+  arg1 = *(Effekseer::EffectNodeModel **)&jarg1; 
+  arg2 = *(Effekseer::StandardColorParameter **)&jarg2; 
+  if (arg1) (arg1)->AllColor = *arg2;
+}
+
+
+SWIGEXPORT jlong JNICALL Java_io_github_srjohnathan_gdx_effekseer_core_GDXJNI_EffectNodeModel_1AllColor_1get(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_) {
+  jlong jresult = 0 ;
+  Effekseer::EffectNodeModel *arg1 = (Effekseer::EffectNodeModel *) 0 ;
+  Effekseer::StandardColorParameter *result = 0 ;
+  
+  (void)jenv;
+  (void)jcls;
+  (void)jarg1_;
+  arg1 = *(Effekseer::EffectNodeModel **)&jarg1; 
+  result = (Effekseer::StandardColorParameter *)& ((arg1)->AllColor);
+  *(Effekseer::StandardColorParameter **)&jresult = result; 
+  return jresult;
+}
+
+
+SWIGEXPORT void JNICALL Java_io_github_srjohnathan_gdx_effekseer_core_GDXJNI_EffectNodeModel_1Mode_1set(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_, jint jarg2) {
+  Effekseer::EffectNodeModel *arg1 = (Effekseer::EffectNodeModel *) 0 ;
+  Effekseer::ModelReferenceType arg2 ;
+  
+  (void)jenv;
+  (void)jcls;
+  (void)jarg1_;
+  arg1 = *(Effekseer::EffectNodeModel **)&jarg1; 
+  arg2 = (Effekseer::ModelReferenceType)jarg2; 
+  if (arg1) (arg1)->Mode = arg2;
+}
+
+
+SWIGEXPORT jint JNICALL Java_io_github_srjohnathan_gdx_effekseer_core_GDXJNI_EffectNodeModel_1Mode_1get(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_) {
+  jint jresult = 0 ;
+  Effekseer::EffectNodeModel *arg1 = (Effekseer::EffectNodeModel *) 0 ;
+  Effekseer::ModelReferenceType result;
+  
+  (void)jenv;
+  (void)jcls;
+  (void)jarg1_;
+  arg1 = *(Effekseer::EffectNodeModel **)&jarg1; 
+  result = (Effekseer::ModelReferenceType) ((arg1)->Mode);
+  jresult = (jint)result; 
+  return jresult;
+}
+
+
+SWIGEXPORT jlong JNICALL Java_io_github_srjohnathan_gdx_effekseer_core_GDXJNI_new_1EffectNodeModel(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_, jlong jarg2) {
+  jlong jresult = 0 ;
+  Effekseer::Effect *arg1 = (Effekseer::Effect *) 0 ;
+  unsigned char **arg2 = 0 ;
+  Effekseer::EffectNodeModel *result = 0 ;
+  
+  (void)jenv;
+  (void)jcls;
+  (void)jarg1_;
+  arg1 = *(Effekseer::Effect **)&jarg1; 
+  arg2 = *(unsigned char ***)&jarg2;
+  if (!arg2) {
+    SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "unsigned char *& reference is null");
+    return 0;
+  } 
+  result = (Effekseer::EffectNodeModel *)new Effekseer::EffectNodeModel(arg1,*arg2);
+  *(Effekseer::EffectNodeModel **)&jresult = result; 
+  return jresult;
+}
+
+
+SWIGEXPORT void JNICALL Java_io_github_srjohnathan_gdx_effekseer_core_GDXJNI_delete_1EffectNodeModel(JNIEnv *jenv, jclass jcls, jlong jarg1) {
+  Effekseer::EffectNodeModel *arg1 = (Effekseer::EffectNodeModel *) 0 ;
+  
+  (void)jenv;
+  (void)jcls;
+  arg1 = *(Effekseer::EffectNodeModel **)&jarg1; 
+  delete arg1;
+}
+
+
 SWIGEXPORT void JNICALL Java_io_github_srjohnathan_gdx_effekseer_core_GDXJNI_EffekseerManagerParameters_1UpdateParameter_1DeltaFrame_1set(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_, jfloat jarg2) {
   Effekseer::Manager::UpdateParameter *arg1 = (Effekseer::Manager::UpdateParameter *) 0 ;
   float arg2 ;
@@ -21551,11 +24969,35 @@ SWIGEXPORT jlong JNICALL Java_io_github_srjohnathan_gdx_effekseer_core_GDXJNI_Ef
     return baseptr;
 }
 
+SWIGEXPORT jlong JNICALL Java_io_github_srjohnathan_gdx_effekseer_core_GDXJNI_EffectNodeRibbon_1SWIGUpcast(JNIEnv *jenv, jclass jcls, jlong jarg1) {
+    jlong baseptr = 0;
+    (void)jenv;
+    (void)jcls;
+    *(Effekseer::EffectNodeImplemented **)&baseptr = *(Effekseer::EffectNodeRibbon **)&jarg1;
+    return baseptr;
+}
+
 SWIGEXPORT jlong JNICALL Java_io_github_srjohnathan_gdx_effekseer_core_GDXJNI_EffectNodeTrack_1SWIGUpcast(JNIEnv *jenv, jclass jcls, jlong jarg1) {
     jlong baseptr = 0;
     (void)jenv;
     (void)jcls;
     *(Effekseer::EffectNodeImplemented **)&baseptr = *(Effekseer::EffectNodeTrack **)&jarg1;
+    return baseptr;
+}
+
+SWIGEXPORT jlong JNICALL Java_io_github_srjohnathan_gdx_effekseer_core_GDXJNI_EffectNodeRing_1SWIGUpcast(JNIEnv *jenv, jclass jcls, jlong jarg1) {
+    jlong baseptr = 0;
+    (void)jenv;
+    (void)jcls;
+    *(Effekseer::EffectNodeImplemented **)&baseptr = *(Effekseer::EffectNodeRing **)&jarg1;
+    return baseptr;
+}
+
+SWIGEXPORT jlong JNICALL Java_io_github_srjohnathan_gdx_effekseer_core_GDXJNI_EffectNodeModel_1SWIGUpcast(JNIEnv *jenv, jclass jcls, jlong jarg1) {
+    jlong baseptr = 0;
+    (void)jenv;
+    (void)jcls;
+    *(Effekseer::EffectNodeImplemented **)&baseptr = *(Effekseer::EffectNodeModel **)&jarg1;
     return baseptr;
 }
 

@@ -216,7 +216,7 @@ effekseer.setRotation();
 effekseer.roatate();
 effekseer.setScale();
 effekseer.scale();
-effekseer.transform; // For direct access for transformation
+effekseer.getTransform(); // For direct access for transformation
 
 effekseer.getNodeCount();
 effekseer.getRootNode();
@@ -231,7 +231,10 @@ effekseer.getRootNode();
 EffekseerNode // The base node class for all node classes below
 EffekseerNodeRoot // The root node of an effect
 EffekseerNodeSprite
+EffekseerNodeRibbon
 EffekseerNodeTrack
+EffekseerNodeRing
+EffekseerNodeModel
 ```
 
 [![paypal](https://www.paypalobjects.com/en_US/i/btn/btn_donateCC_LG.gif)](https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=ZESRVEEVLLCY6)
