@@ -331,23 +331,26 @@ public class EffekseerManager implements Disposable {
             }
         }
 
-        // Set the projection matrix
+        // Get the camera width and height
+        float cameraWidth = 0f;
+        float cameraHeight = 0f;
         if (this.camera instanceof OrthographicCamera) {
             if (this.viewport != null) {
+                cameraWidth = this.viewport.getWorldWidth();
+                cameraHeight = this.viewport.getWorldHeight();
                 this.effekseerManagerCore.SetProjectionMatrix((camera).projection.val, (camera).view.val, false, viewport.getWorldWidth(), viewport.getWorldHeight());
             }
             else {
-                this.effekseerManagerCore.SetProjectionMatrix((camera).projection.val, (camera).view.val, false, camera.viewportWidth, camera.viewportHeight);
-
+                cameraWidth = this.camera.viewportWidth;
+                cameraHeight = this.camera.viewportHeight;
             }
-        }
-        else if (this.camera instanceof PerspectiveCamera) {
-            this.effekseerManagerCore.SetProjectionMatrix((camera).projection.val, (camera).view.val, true, 0, 0);
         }
 
         // Update the manager core
-        this.effekseerManagerCore.Update(delta * SINGLE_FRAME_TIME_SECONDS_INV);
-        this.effekseerManagerCore.SetTime(this.timeInSeconds);
+        this.effekseerManagerCore.UpdateCombined(
+                delta * SINGLE_FRAME_TIME_SECONDS_INV,
+                this.timeInSeconds,
+                this.camera.projection.val, this.camera.view.val, this.camera instanceof PerspectiveCamera, cameraWidth, cameraHeight);
     }
 
     /**
@@ -358,9 +361,7 @@ public class EffekseerManager implements Disposable {
         this.onPreDraw();
 
         // Draw
-        this.effekseerManagerCore.BeginRendering();
-        this.effekseerManagerCore.Draw(this.drawParameter);
-        this.effekseerManagerCore.EndRendering();
+        this.effekseerManagerCore.DrawCombined(this.drawParameter);
 
         this.onPostDraw();
     }

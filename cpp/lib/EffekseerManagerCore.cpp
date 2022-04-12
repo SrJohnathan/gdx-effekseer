@@ -526,6 +526,12 @@ void EffekseerManagerCore::SetTime(float time) {
     renderer_->SetTime(time);
 }
 
+void EffekseerManagerCore::UpdateCombined(float deltaFrames, float time, float projectionMatrix44[],float viewMatrix44C[], bool view, float width, float height) {
+    SetProjectionMatrix(projectionMatrix44, viewMatrix44C, view, width, height);
+    SetTime(time);
+    Update(deltaFrames);
+}
+
 void EffekseerManagerCore::BeginRendering() {
     renderer_->BeginRendering();
 }
@@ -559,6 +565,12 @@ void EffekseerManagerCore::DrawFront() {
 
 void EffekseerManagerCore::EndRendering() {
     renderer_->EndRendering();
+}
+
+void EffekseerManagerCore::DrawCombined(const Effekseer::Manager::DrawParameter& drawParameter) {
+    BeginRendering();
+    Draw(drawParameter);
+    EndRendering();
 }
 
 

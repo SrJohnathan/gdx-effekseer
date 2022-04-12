@@ -236,6 +236,10 @@ public class EffekseerManagerCore {
     GDXJNI.EffekseerManagerCore_SetTime(swigCPtr, this, time);
   }
 
+  public void UpdateCombined(float deltaFrames, float time, float[] projectionMatrix44, float[] viewMatrix44C, boolean view, float width, float height) {
+    GDXJNI.EffekseerManagerCore_UpdateCombined(swigCPtr, this, deltaFrames, time, projectionMatrix44, viewMatrix44C, view, width, height);
+  }
+
   public void BeginRendering() {
     GDXJNI.EffekseerManagerCore_BeginRendering(swigCPtr, this);
   }
@@ -254,6 +258,10 @@ public class EffekseerManagerCore {
 
   public void EndRendering() {
     GDXJNI.EffekseerManagerCore_EndRendering(swigCPtr, this);
+  }
+
+  public void DrawCombined(EffekseerManagerParameters.DrawParameter drawParameter) {
+    GDXJNI.EffekseerManagerCore_DrawCombined(swigCPtr, this, EffekseerManagerParameters.DrawParameter.getCPtr(drawParameter), drawParameter);
   }
 
 }

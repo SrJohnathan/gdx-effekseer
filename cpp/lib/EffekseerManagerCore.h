@@ -100,12 +100,16 @@ public:
 	void UpdateHandle(int handle, float deltaFrame = 1.0f);
 	void UpdateHandleToMoveToFrame(int handle, float frame);
     void SetTime(float time);
+    // Calls SetProjectionMatrix(), SetTime(), and Update(deltaFrames). This can be called to avoid a separate JNI call for each method.
+    void UpdateCombined(float deltaFrames, float time, float projectionMatrix44[],float viewMatrix44C[], bool view, float width, float height);
 
     void BeginRendering();
     void Draw(const Effekseer::Manager::DrawParameter& drawParameter);
     void DrawBack();
     void DrawFront();
     void EndRendering();
+    // Calls BeginRendering(), Draw(drawParameter), and EndRendering(). This can be called to avoid a separate JNI call for each method.
+    void DrawCombined(const Effekseer::Manager::DrawParameter& drawParameter);
 
 
  /*   void SetBackground(uint32_t glid,bool hasMipmap);

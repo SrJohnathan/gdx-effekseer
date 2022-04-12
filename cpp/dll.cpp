@@ -3506,6 +3506,37 @@ SWIGEXPORT void JNICALL Java_io_github_srjohnathan_gdx_effekseer_core_GDXJNI_Eff
 }
 
 
+SWIGEXPORT void JNICALL Java_io_github_srjohnathan_gdx_effekseer_core_GDXJNI_EffekseerManagerCore_1UpdateCombined(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_, jfloat jarg2, jfloat jarg3, jfloatArray jarg4, jfloatArray jarg5, jboolean jarg6, jfloat jarg7, jfloat jarg8) {
+  EffekseerManagerCore *arg1 = (EffekseerManagerCore *) 0 ;
+  float arg2 ;
+  float arg3 ;
+  float *arg4 ;
+  float *arg5 ;
+  bool arg6 ;
+  float arg7 ;
+  float arg8 ;
+  jfloat *jarr4 ;
+  jfloat *jarr5 ;
+  
+  (void)jenv;
+  (void)jcls;
+  (void)jarg1_;
+  arg1 = *(EffekseerManagerCore **)&jarg1; 
+  arg2 = (float)jarg2; 
+  arg3 = (float)jarg3; 
+  if (!SWIG_JavaArrayInFloat(jenv, &jarr4, (float **)&arg4, jarg4)) return ; 
+  if (!SWIG_JavaArrayInFloat(jenv, &jarr5, (float **)&arg5, jarg5)) return ; 
+  arg6 = jarg6 ? true : false; 
+  arg7 = (float)jarg7; 
+  arg8 = (float)jarg8; 
+  (arg1)->UpdateCombined(arg2,arg3,arg4,arg5,arg6,arg7,arg8);
+  SWIG_JavaArrayArgoutFloat(jenv, jarr4, (float *)arg4, jarg4); 
+  SWIG_JavaArrayArgoutFloat(jenv, jarr5, (float *)arg5, jarg5); 
+  delete [] arg4; 
+  delete [] arg5; 
+}
+
+
 SWIGEXPORT void JNICALL Java_io_github_srjohnathan_gdx_effekseer_core_GDXJNI_EffekseerManagerCore_1BeginRendering(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_) {
   EffekseerManagerCore *arg1 = (EffekseerManagerCore *) 0 ;
   
@@ -3565,6 +3596,24 @@ SWIGEXPORT void JNICALL Java_io_github_srjohnathan_gdx_effekseer_core_GDXJNI_Eff
   (void)jarg1_;
   arg1 = *(EffekseerManagerCore **)&jarg1; 
   (arg1)->EndRendering();
+}
+
+
+SWIGEXPORT void JNICALL Java_io_github_srjohnathan_gdx_effekseer_core_GDXJNI_EffekseerManagerCore_1DrawCombined(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_, jlong jarg2, jobject jarg2_) {
+  EffekseerManagerCore *arg1 = (EffekseerManagerCore *) 0 ;
+  Effekseer::Manager::DrawParameter *arg2 = 0 ;
+  
+  (void)jenv;
+  (void)jcls;
+  (void)jarg1_;
+  (void)jarg2_;
+  arg1 = *(EffekseerManagerCore **)&jarg1; 
+  arg2 = *(Effekseer::Manager::DrawParameter **)&jarg2;
+  if (!arg2) {
+    SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "Effekseer::Manager::DrawParameter const & reference is null");
+    return ;
+  } 
+  (arg1)->DrawCombined((Effekseer::Manager::DrawParameter const &)*arg2);
 }
 
 
