@@ -115,6 +115,12 @@
         return static_cast<Effekseer::EffectNodeTrack*>(self->GetChild(index));
     }
 
+    Effekseer::EffectNodeRing* getChildAsRing(int index) {
+        if (index >= self->GetChildrenCount())
+            return nullptr;
+        return static_cast<Effekseer::EffectNodeRing*>(self->GetChild(index));
+    }
+
     Effekseer::EffectNodeModel* getChildAsModel(int index) {
         if (index >= self->GetChildrenCount())
             return nullptr;

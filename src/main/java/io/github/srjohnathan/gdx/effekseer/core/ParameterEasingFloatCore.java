@@ -8,16 +8,16 @@
 
 package io.github.srjohnathan.gdx.effekseer.core;
 
-public class ParameterEasingSIMDVec3 {
+public class ParameterEasingFloatCore {
   private transient long swigCPtr;
   protected transient boolean swigCMemOwn;
 
-  protected ParameterEasingSIMDVec3(long cPtr, boolean cMemoryOwn) {
+  protected ParameterEasingFloatCore(long cPtr, boolean cMemoryOwn) {
     swigCMemOwn = cMemoryOwn;
     swigCPtr = cPtr;
   }
 
-  protected static long getCPtr(ParameterEasingSIMDVec3 obj) {
+  protected static long getCPtr(ParameterEasingFloatCore obj) {
     return (obj == null) ? 0 : obj.swigCPtr;
   }
 
@@ -30,14 +30,14 @@ public class ParameterEasingSIMDVec3 {
     if (swigCPtr != 0) {
       if (swigCMemOwn) {
         swigCMemOwn = false;
-        GDXJNI.delete_ParameterEasingSIMDVec3(swigCPtr);
+        GDXJNI.delete_ParameterEasingFloatCore(swigCPtr);
       }
       swigCPtr = 0;
     }
   }
 
-  public ParameterEasingSIMDVec3() {
-    this(GDXJNI.new_ParameterEasingSIMDVec3(), true);
+  public ParameterEasingFloatCore(int minDynamicParameterVersion, int minAppendParameterVersion) {
+    this(GDXJNI.new_ParameterEasingFloatCore(minDynamicParameterVersion, minAppendParameterVersion), true);
   }
 
 }

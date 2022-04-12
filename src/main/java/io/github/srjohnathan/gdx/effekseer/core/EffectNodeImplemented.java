@@ -83,13 +83,13 @@ public class EffectNodeImplemented extends EffectNode {
     return (cPtr == 0) ? null : new ParameterTranslationPVA(cPtr, false);
   }
 
-  public void setTranslationEasing(ParameterEasingSIMDVec3 value) {
-    GDXJNI.EffectNodeImplemented_TranslationEasing_set(swigCPtr, this, ParameterEasingSIMDVec3.getCPtr(value), value);
+  public void setTranslationEasing(ParameterEasingSIMDVec3Core value) {
+    GDXJNI.EffectNodeImplemented_TranslationEasing_set(swigCPtr, this, ParameterEasingSIMDVec3Core.getCPtr(value), value);
   }
 
-  public ParameterEasingSIMDVec3 getTranslationEasing() {
+  public ParameterEasingSIMDVec3Core getTranslationEasing() {
     long cPtr = GDXJNI.EffectNodeImplemented_TranslationEasing_get(swigCPtr, this);
-    return (cPtr == 0) ? null : new ParameterEasingSIMDVec3(cPtr, false);
+    return (cPtr == 0) ? null : new ParameterEasingSIMDVec3Core(cPtr, false);
   }
 
   public void setTranslationFCurve(FCurveVector3D value) {
@@ -145,13 +145,13 @@ public class EffectNodeImplemented extends EffectNode {
     return (cPtr == 0) ? null : new ParameterRotationPVA(cPtr, false);
   }
 
-  public void setRotationEasing(ParameterEasingSIMDVec3 value) {
-    GDXJNI.EffectNodeImplemented_RotationEasing_set(swigCPtr, this, ParameterEasingSIMDVec3.getCPtr(value), value);
+  public void setRotationEasing(ParameterEasingSIMDVec3Core value) {
+    GDXJNI.EffectNodeImplemented_RotationEasing_set(swigCPtr, this, ParameterEasingSIMDVec3Core.getCPtr(value), value);
   }
 
-  public ParameterEasingSIMDVec3 getRotationEasing() {
+  public ParameterEasingSIMDVec3Core getRotationEasing() {
     long cPtr = GDXJNI.EffectNodeImplemented_RotationEasing_get(swigCPtr, this);
-    return (cPtr == 0) ? null : new ParameterEasingSIMDVec3(cPtr, false);
+    return (cPtr == 0) ? null : new ParameterEasingSIMDVec3Core(cPtr, false);
   }
 
   public void setRotationFCurve(FCurveVector3D value) {
@@ -207,13 +207,13 @@ public class EffectNodeImplemented extends EffectNode {
     return (cPtr == 0) ? null : new ParameterScalingPVA(cPtr, false);
   }
 
-  public void setScalingEasing(ParameterEasingSIMDVec3 value) {
-    GDXJNI.EffectNodeImplemented_ScalingEasing_set(swigCPtr, this, ParameterEasingSIMDVec3.getCPtr(value), value);
+  public void setScalingEasing(ParameterEasingSIMDVec3Core value) {
+    GDXJNI.EffectNodeImplemented_ScalingEasing_set(swigCPtr, this, ParameterEasingSIMDVec3Core.getCPtr(value), value);
   }
 
-  public ParameterEasingSIMDVec3 getScalingEasing() {
+  public ParameterEasingSIMDVec3Core getScalingEasing() {
     long cPtr = GDXJNI.EffectNodeImplemented_ScalingEasing_get(swigCPtr, this);
-    return (cPtr == 0) ? null : new ParameterEasingSIMDVec3(cPtr, false);
+    return (cPtr == 0) ? null : new ParameterEasingSIMDVec3Core(cPtr, false);
   }
 
   public void setScalingSinglePVA(ParameterScalingSinglePVA value) {
@@ -225,13 +225,13 @@ public class EffectNodeImplemented extends EffectNode {
     return (cPtr == 0) ? null : new ParameterScalingSinglePVA(cPtr, false);
   }
 
-  public void setScalingSingleEasing(ParameterEasingFloat value) {
-    GDXJNI.EffectNodeImplemented_ScalingSingleEasing_set(swigCPtr, this, ParameterEasingFloat.getCPtr(value), value);
+  public void setScalingSingleEasing(ParameterEasingFloatCore value) {
+    GDXJNI.EffectNodeImplemented_ScalingSingleEasing_set(swigCPtr, this, ParameterEasingFloatCore.getCPtr(value), value);
   }
 
-  public ParameterEasingFloat getScalingSingleEasing() {
+  public ParameterEasingFloatCore getScalingSingleEasing() {
     long cPtr = GDXJNI.EffectNodeImplemented_ScalingSingleEasing_get(swigCPtr, this);
-    return (cPtr == 0) ? null : new ParameterEasingFloat(cPtr, false);
+    return (cPtr == 0) ? null : new ParameterEasingFloatCore(cPtr, false);
   }
 
   public void setScalingFCurve(FCurveVector3D value) {

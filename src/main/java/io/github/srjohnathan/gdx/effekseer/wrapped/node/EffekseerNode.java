@@ -101,14 +101,14 @@ public class EffekseerNode<T extends EffectNodeImplemented> {
         }
     });
 
-    private EffekseerFieldWrapper<ParameterEasingSIMDVec3> translationEasing = new EffekseerFieldWrapper<ParameterEasingSIMDVec3>(new Function<Void, ParameterEasingSIMDVec3>() {
+    private EffekseerFieldWrapper<ParameterEasingSIMDVec3Core> translationEasing = new EffekseerFieldWrapper<ParameterEasingSIMDVec3Core>(new Function<Void, ParameterEasingSIMDVec3Core>() {
         @Override
-        public ParameterEasingSIMDVec3 apply(Void unused) {
+        public ParameterEasingSIMDVec3Core apply(Void unused) {
             return coreNode.getTranslationEasing();
         }
-    }, new Function<ParameterEasingSIMDVec3, Void>() {
+    }, new Function<ParameterEasingSIMDVec3Core, Void>() {
         @Override
-        public Void apply(ParameterEasingSIMDVec3 value) {
+        public Void apply(ParameterEasingSIMDVec3Core value) {
             coreNode.setTranslationEasing(value);
             return null;
         }
@@ -183,14 +183,14 @@ public class EffekseerNode<T extends EffectNodeImplemented> {
         }
     });
 
-    private EffekseerFieldWrapper<ParameterEasingSIMDVec3> rotationEasing = new EffekseerFieldWrapper<ParameterEasingSIMDVec3>(new Function<Void, ParameterEasingSIMDVec3>() {
+    private EffekseerFieldWrapper<ParameterEasingSIMDVec3Core> rotationEasing = new EffekseerFieldWrapper<ParameterEasingSIMDVec3Core>(new Function<Void, ParameterEasingSIMDVec3Core>() {
         @Override
-        public ParameterEasingSIMDVec3 apply(Void unused) {
+        public ParameterEasingSIMDVec3Core apply(Void unused) {
             return coreNode.getRotationEasing();
         }
-    }, new Function<ParameterEasingSIMDVec3, Void>() {
+    }, new Function<ParameterEasingSIMDVec3Core, Void>() {
         @Override
-        public Void apply(ParameterEasingSIMDVec3 value) {
+        public Void apply(ParameterEasingSIMDVec3Core value) {
             coreNode.setRotationEasing(value);
             return null;
         }
@@ -282,27 +282,27 @@ public class EffekseerNode<T extends EffectNodeImplemented> {
         }
     });
 
-    private EffekseerFieldWrapper<ParameterEasingSIMDVec3> scalingEasing = new EffekseerFieldWrapper<ParameterEasingSIMDVec3>(new Function<Void, ParameterEasingSIMDVec3>() {
+    private EffekseerFieldWrapper<ParameterEasingSIMDVec3Core> scalingEasing = new EffekseerFieldWrapper<ParameterEasingSIMDVec3Core>(new Function<Void, ParameterEasingSIMDVec3Core>() {
         @Override
-        public ParameterEasingSIMDVec3 apply(Void unused) {
+        public ParameterEasingSIMDVec3Core apply(Void unused) {
             return coreNode.getScalingEasing();
         }
-    }, new Function<ParameterEasingSIMDVec3, Void>() {
+    }, new Function<ParameterEasingSIMDVec3Core, Void>() {
         @Override
-        public Void apply(ParameterEasingSIMDVec3 value) {
+        public Void apply(ParameterEasingSIMDVec3Core value) {
             coreNode.setScalingEasing(value);
             return null;
         }
     });
 
-    private EffekseerFieldWrapper<ParameterEasingFloat> scalingSingleEasing = new EffekseerFieldWrapper<ParameterEasingFloat>(new Function<Void, ParameterEasingFloat>() {
+    private EffekseerFieldWrapper<ParameterEasingFloatCore> scalingSingleEasing = new EffekseerFieldWrapper<ParameterEasingFloatCore>(new Function<Void, ParameterEasingFloatCore>() {
         @Override
-        public ParameterEasingFloat apply(Void unused) {
+        public ParameterEasingFloatCore apply(Void unused) {
             return coreNode.getScalingSingleEasing();
         }
-    }, new Function<ParameterEasingFloat, Void>() {
+    }, new Function<ParameterEasingFloatCore, Void>() {
         @Override
-        public Void apply(ParameterEasingFloat value) {
+        public Void apply(ParameterEasingFloatCore value) {
             coreNode.setScalingSingleEasing(value);
             return null;
         }
@@ -488,15 +488,19 @@ public class EffekseerNode<T extends EffectNodeImplemented> {
                 cachedNode = new EffekseerNodeSprite(this.effect, this.coreNode.getChildAsSprite(index));
             }
             else if (childNodeType == eEffectNodeType.EFFECT_NODE_TYPE_RIBBON) {
-                // Set the cached track node
+                // Set the cached ribbon node
                 cachedNode = new EffekseerNodeRibbon(this.effect, this.coreNode.getChildAsRibbon(index));
             }
             else if (childNodeType == eEffectNodeType.EFFECT_NODE_TYPE_TRACK) {
                 // Set the cached track node
                 cachedNode = new EffekseerNodeTrack(this.effect, this.coreNode.getChildAsTrack(index));
             }
+            else if (childNodeType == eEffectNodeType.EFFECT_NODE_TYPE_RING) {
+                // Set the cached ring node
+                cachedNode = new EffekseerNodeRing(this.effect, this.coreNode.getChildAsRing(index));
+            }
             else if (childNodeType == eEffectNodeType.EFFECT_NODE_TYPE_MODEL) {
-                // Set the cached track node
+                // Set the cached model node
                 cachedNode = new EffekseerNodeModel(this.effect, this.coreNode.getChildAsModel(index));
             }
             else {
@@ -574,11 +578,11 @@ public class EffekseerNode<T extends EffectNodeImplemented> {
         return this.translationPVA.get();
     }
 
-    public void setTranslationEasing(ParameterEasingSIMDVec3 value) {
+    public void setTranslationEasing(ParameterEasingSIMDVec3Core value) {
         this.translationEasing.set(value);
     }
 
-    public ParameterEasingSIMDVec3 getTranslationEasing() {
+    public ParameterEasingSIMDVec3Core getTranslationEasing() {
         return this.translationEasing.get();
     }
 
@@ -630,11 +634,11 @@ public class EffekseerNode<T extends EffectNodeImplemented> {
         return this.rotationPVA.get();
     }
 
-    public void setRotationEasing(ParameterEasingSIMDVec3 value) {
+    public void setRotationEasing(ParameterEasingSIMDVec3Core value) {
         this.rotationEasing.set(value);
     }
 
-    public ParameterEasingSIMDVec3 getRotationEasing() {
+    public ParameterEasingSIMDVec3Core getRotationEasing() {
         return this.rotationEasing.get();
     }
 
@@ -686,11 +690,11 @@ public class EffekseerNode<T extends EffectNodeImplemented> {
         return this.scalingPVA.get();
     }
 
-    public void setScalingEasing(ParameterEasingSIMDVec3 value) {
+    public void setScalingEasing(ParameterEasingSIMDVec3Core value) {
         this.scalingEasing.set(value);
     }
 
-    public ParameterEasingSIMDVec3 getScalingEasing() {
+    public ParameterEasingSIMDVec3Core getScalingEasing() {
         return this.scalingEasing.get();
     }
 
@@ -702,11 +706,11 @@ public class EffekseerNode<T extends EffectNodeImplemented> {
         return this.scalingSinglePVA.get();
     }
 
-    public void setScalingSingleEasing(ParameterEasingFloat value) {
+    public void setScalingSingleEasing(ParameterEasingFloatCore value) {
         this.scalingSingleEasing.set(value);
     }
 
-    public ParameterEasingFloat getScalingSingleEasing() {
+    public ParameterEasingFloatCore getScalingSingleEasing() {
         return this.scalingSingleEasing.get();
     }
 

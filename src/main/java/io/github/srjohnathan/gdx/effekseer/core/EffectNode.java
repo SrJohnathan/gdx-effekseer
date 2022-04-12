@@ -90,6 +90,11 @@ public class EffectNode {
     return (cPtr == 0) ? null : new EffectNodeTrack(cPtr, false);
   }
 
+  public EffectNodeRing getChildAsRing(int index) {
+    long cPtr = GDXJNI.EffectNode_getChildAsRing(swigCPtr, this, index);
+    return (cPtr == 0) ? null : new EffectNodeRing(cPtr, false);
+  }
+
   public EffectNodeModel getChildAsModel(int index) {
     long cPtr = GDXJNI.EffectNode_getChildAsModel(swigCPtr, this, index);
     return (cPtr == 0) ? null : new EffectNodeModel(cPtr, false);
