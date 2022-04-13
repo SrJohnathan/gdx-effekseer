@@ -5,6 +5,7 @@ import com.badlogic.gdx.graphics.Camera;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.PerspectiveCamera;
+import com.badlogic.gdx.graphics.g3d.utils.RenderContext;
 import com.badlogic.gdx.utils.Array;
 import com.badlogic.gdx.utils.Disposable;
 import com.badlogic.gdx.utils.viewport.Viewport;
@@ -43,6 +44,11 @@ public class EffekseerManager implements Disposable {
     //region State
 
     /**
+     * An optional {@link RenderContext} used to reduce graphics calls.
+     */
+    private RenderContext renderContext = null;
+
+    /**
      * The DrawParameter instance to use for calling the {@link EffekseerManagerCore#Draw(EffekseerManagerParameters.DrawParameter)} method.
      */
     private final EffekseerManagerParameters.DrawParameter drawParameter;
@@ -62,8 +68,14 @@ public class EffekseerManager implements Disposable {
 
     //region Constructors
 
-    public EffekseerManager(Camera camera, EffekseerCore.TypeOpenGL core, int maxSpriteCount) {
+    /**
+     * @param renderContext Optional instance to a {@link RenderContext} to try to reduce calls to the graphics api.
+     */
+    public EffekseerManager(Camera camera, EffekseerCore.TypeOpenGL core, int maxSpriteCount, RenderContext renderContext) {
         EffekseerBackendCore.InitializeAsOpenGL();
+
+        // Set the render context if available
+        this.renderContext = renderContext;
 
         // Set the properties/state
         this.effekseerManagerCore = new EffekseerManagerCore();
@@ -75,9 +87,17 @@ public class EffekseerManager implements Disposable {
         this.effekseerManagerCore.Initialize(maxSpriteCount, core.getId(),true);
     }
 
+    public EffekseerManager(Camera camera, EffekseerCore.TypeOpenGL core, int maxSpriteCount) {
+        this(camera, core, maxSpriteCount, null);
+    }
+
     //endregion
 
     //region Protected Methods
+
+    protected RenderContext getRenderContext() {
+        return this.renderContext;
+    }
 
     protected void addParticleEffekseer(EffekseerParticle effekseer) {
         this.effekseers.add(effekseer);
@@ -95,16 +115,21 @@ public class EffekseerManager implements Disposable {
      * Called at the start of the draw call.
      */
     protected void onPreDraw() {
-        Gdx.gl.glEnable(GL20.GL_BLEND);
-        Gdx.gl.glEnable(GL20.GL_DEPTH_TEST);
+        if (this.renderContext != null) {
+            this.renderContext.setBlending(true, GL20.GL_SRC_ALPHA, GL20.GL_ONE_MINUS_SRC_ALPHA);
+            this.renderContext.setDepthTest(GL20.GL_LESS, 0f, 1f);
+        }
+        else {
+            Gdx.gl.glEnable(GL20.GL_BLEND);
+            Gdx.gl.glEnable(GL20.GL_DEPTH_TEST);
+        }
     }
 
     /**
      * Called at the end of the draw call.
      */
     protected void onPostDraw() {
-        Gdx.gl.glEnable(GL20.GL_BLEND);
-        Gdx.gl.glEnable(GL20.GL_DEPTH_TEST);
+        // Do nothing
     }
 
     //endregion
