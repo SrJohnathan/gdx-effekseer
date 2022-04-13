@@ -84,6 +84,14 @@ public class EffekseerManagerCore {
     GDXJNI.EffekseerManagerCore_SetMatrix(swigCPtr, this, handle, matrix43);
   }
 
+  public void SetMatrixBatch2(int handle1, float[] matrix43_1, int handle2, float[] matrix43_2) {
+    GDXJNI.EffekseerManagerCore_SetMatrixBatch2(swigCPtr, this, handle1, matrix43_1, handle2, matrix43_2);
+  }
+
+  public void SetMatrixBatch4(int handle1, float[] matrix43_1, int handle2, float[] matrix43_2, int handle3, float[] matrix43_3, int handle4, float[] matrix43_4) {
+    GDXJNI.EffekseerManagerCore_SetMatrixBatch4(swigCPtr, this, handle1, matrix43_1, handle2, matrix43_2, handle3, matrix43_3, handle4, matrix43_4);
+  }
+
   public float[] GetBaseMatrix(int handle) {
     return GDXJNI.EffekseerManagerCore_GetBaseMatrix(swigCPtr, this, handle);
   }
@@ -236,6 +244,10 @@ public class EffekseerManagerCore {
     GDXJNI.EffekseerManagerCore_SetTime(swigCPtr, this, time);
   }
 
+  public void UpdateCombined(float deltaFrames, float time, float[] projectionMatrix44, float[] viewMatrix44C, boolean view, float width, float height) {
+    GDXJNI.EffekseerManagerCore_UpdateCombined(swigCPtr, this, deltaFrames, time, projectionMatrix44, viewMatrix44C, view, width, height);
+  }
+
   public void BeginRendering() {
     GDXJNI.EffekseerManagerCore_BeginRendering(swigCPtr, this);
   }
@@ -254,6 +266,10 @@ public class EffekseerManagerCore {
 
   public void EndRendering() {
     GDXJNI.EffekseerManagerCore_EndRendering(swigCPtr, this);
+  }
+
+  public void DrawCombined(EffekseerManagerParameters.DrawParameter drawParameter) {
+    GDXJNI.EffekseerManagerCore_DrawCombined(swigCPtr, this, EffekseerManagerParameters.DrawParameter.getCPtr(drawParameter), drawParameter);
   }
 
 }

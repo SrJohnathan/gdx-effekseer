@@ -5,6 +5,7 @@ import com.badlogic.gdx.graphics.Camera;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.PerspectiveCamera;
+import com.badlogic.gdx.graphics.g3d.utils.RenderContext;
 import com.badlogic.gdx.utils.Array;
 import com.badlogic.gdx.utils.Disposable;
 import com.badlogic.gdx.utils.viewport.Viewport;
@@ -24,7 +25,10 @@ public class EffekseerManager implements Disposable {
     private static final float SINGLE_FRAME_TIME_SECONDS = 1.0f / 60.0f;
     private static final float SINGLE_FRAME_TIME_SECONDS_INV = 1.0f / SINGLE_FRAME_TIME_SECONDS;
 
+    private static final int MAX_BATCH_SIZE_PENDING_PARTICLE_TRANSFORM = 4;
+
     //endregion
+
     //region Properties
 
     protected EffekseerManagerCore effekseerManagerCore;
@@ -40,6 +44,11 @@ public class EffekseerManager implements Disposable {
     //region State
 
     /**
+     * An optional {@link RenderContext} used to reduce graphics calls.
+     */
+    private RenderContext renderContext = null;
+
+    /**
      * The DrawParameter instance to use for calling the {@link EffekseerManagerCore#Draw(EffekseerManagerParameters.DrawParameter)} method.
      */
     private final EffekseerManagerParameters.DrawParameter drawParameter;
@@ -49,12 +58,24 @@ public class EffekseerManager implements Disposable {
      */
     private float timeInSeconds = 0f;
 
+    /**
+     * Keep track of effects that have transform changes that need to be sent to Effekseer. Using this allows for batch updating
+     * to reduce JNI calls.
+     */
+    private Array<EffekseerParticle> pendingEffectsWithTransformChanges = new Array<>(false, 4);
+
     //endregion
 
     //region Constructors
 
-    public EffekseerManager(Camera camera, EffekseerCore.TypeOpenGL core, int maxSpriteCount) {
+    /**
+     * @param renderContext Optional instance to a {@link RenderContext} to try to reduce calls to the graphics api.
+     */
+    public EffekseerManager(Camera camera, EffekseerCore.TypeOpenGL core, int maxSpriteCount, RenderContext renderContext) {
         EffekseerBackendCore.InitializeAsOpenGL();
+
+        // Set the render context if available
+        this.renderContext = renderContext;
 
         // Set the properties/state
         this.effekseerManagerCore = new EffekseerManagerCore();
@@ -66,9 +87,17 @@ public class EffekseerManager implements Disposable {
         this.effekseerManagerCore.Initialize(maxSpriteCount, core.getId(),true);
     }
 
+    public EffekseerManager(Camera camera, EffekseerCore.TypeOpenGL core, int maxSpriteCount) {
+        this(camera, core, maxSpriteCount, null);
+    }
+
     //endregion
 
     //region Protected Methods
+
+    protected RenderContext getRenderContext() {
+        return this.renderContext;
+    }
 
     protected void addParticleEffekseer(EffekseerParticle effekseer) {
         this.effekseers.add(effekseer);
@@ -86,16 +115,21 @@ public class EffekseerManager implements Disposable {
      * Called at the start of the draw call.
      */
     protected void onPreDraw() {
-        Gdx.gl.glEnable(GL20.GL_BLEND);
-        Gdx.gl.glEnable(GL20.GL_DEPTH_TEST);
+        if (this.renderContext != null) {
+            this.renderContext.setBlending(true, GL20.GL_SRC_ALPHA, GL20.GL_ONE_MINUS_SRC_ALPHA);
+            this.renderContext.setDepthTest(GL20.GL_LESS, 0f, 1f);
+        }
+        else {
+            Gdx.gl.glEnable(GL20.GL_BLEND);
+            Gdx.gl.glEnable(GL20.GL_DEPTH_TEST);
+        }
     }
 
     /**
      * Called at the end of the draw call.
      */
     protected void onPostDraw() {
-        Gdx.gl.glEnable(GL20.GL_BLEND);
-        Gdx.gl.glEnable(GL20.GL_DEPTH_TEST);
+        // Do nothing
     }
 
     //endregion
@@ -298,6 +332,38 @@ public class EffekseerManager implements Disposable {
     //endregion
 
     /**
+     * Batches multiple pending effect transforms to a single JNI call.
+     */
+    private void sendPendingEffectTransformsToEffekseer() {
+        while (!this.pendingEffectsWithTransformChanges.isEmpty()) {
+            if (this.pendingEffectsWithTransformChanges.size >= MAX_BATCH_SIZE_PENDING_PARTICLE_TRANSFORM) {
+                EffekseerParticle particle1 = this.pendingEffectsWithTransformChanges.pop();
+                EffekseerParticle particle2 = this.pendingEffectsWithTransformChanges.pop();
+                EffekseerParticle particle3 = this.pendingEffectsWithTransformChanges.pop();
+                EffekseerParticle particle4 = this.pendingEffectsWithTransformChanges.pop();
+
+                this.effekseerManagerCore.SetMatrixBatch4(
+                        particle1.getHandle(), particle1.getTransformValuesForEffekseer(),
+                        particle2.getHandle(), particle2.getTransformValuesForEffekseer(),
+                        particle3.getHandle(), particle3.getTransformValuesForEffekseer(),
+                        particle4.getHandle(), particle4.getTransformValuesForEffekseer());
+            }
+            else if (this.pendingEffectsWithTransformChanges.size >= 2) {
+                EffekseerParticle particle1 = this.pendingEffectsWithTransformChanges.pop();
+                EffekseerParticle particle2 = this.pendingEffectsWithTransformChanges.pop();
+
+                this.effekseerManagerCore.SetMatrixBatch2(
+                        particle1.getHandle(), particle1.getTransformValuesForEffekseer(),
+                        particle2.getHandle(), particle2.getTransformValuesForEffekseer());
+            }
+            else {
+                EffekseerParticle particle = this.pendingEffectsWithTransformChanges.pop();
+                this.effekseerManagerCore.SetMatrix(particle.getHandle(), particle.getTransformValuesForEffekseer());
+            }
+        }
+    }
+
+    /**
      * Updates all state needed for the current step in the simulation. Call this only once per frame.
      * If you only draw the simulation once per frame, you can call @link #draw(float)} instead which calls this
      * update method and then the draw method.
@@ -312,42 +378,56 @@ public class EffekseerManager implements Disposable {
         }
 
         // Update and draw each particle effect
-        for (EffekseerParticle effekseer : this.effekseers) {
+        for (EffekseerParticle particle : this.effekseers) {
             // Only update the particle effect if it is playing
-            if (effekseer.isInPlayingState()) {
-                effekseer.update(delta);
+            if (particle.isInPlayingState()) {
+                particle.update(delta);
 
                 // Check if the current effect has just finished playing. If so, call its animation completed callback if available.
-                if (!this.isPlaying(effekseer)) {
-                    effekseer.setToStopState();
-                    if (effekseer.getOnAnimationComplete() != null) {
-                        effekseer.getOnAnimationComplete().finish();
+                if (!this.isPlaying(particle)) {
+                    particle.setToStopState();
+                    if (particle.getOnAnimationComplete() != null) {
+                        particle.getOnAnimationComplete().finish();
                     }
                 }
 
                 if (this.camera instanceof PerspectiveCamera) {
-                    effekseer.updateTransformMatrixIfQueued();
+                    if (particle.updateTransformMatrixIfQueued()) {
+                        this.pendingEffectsWithTransformChanges.add(particle);
+
+                        // Send if there are enough for batching
+                        if (this.pendingEffectsWithTransformChanges.size >= MAX_BATCH_SIZE_PENDING_PARTICLE_TRANSFORM) {
+                            this.sendPendingEffectTransformsToEffekseer();
+                        }
+                    }
                 }
             }
         }
 
-        // Set the projection matrix
+        if (!this.pendingEffectsWithTransformChanges.isEmpty()) {
+            this.sendPendingEffectTransformsToEffekseer();
+        }
+
+        // Get the camera width and height
+        float cameraWidth = 0f;
+        float cameraHeight = 0f;
         if (this.camera instanceof OrthographicCamera) {
             if (this.viewport != null) {
+                cameraWidth = this.viewport.getWorldWidth();
+                cameraHeight = this.viewport.getWorldHeight();
                 this.effekseerManagerCore.SetProjectionMatrix((camera).projection.val, (camera).view.val, false, viewport.getWorldWidth(), viewport.getWorldHeight());
             }
             else {
-                this.effekseerManagerCore.SetProjectionMatrix((camera).projection.val, (camera).view.val, false, camera.viewportWidth, camera.viewportHeight);
-
+                cameraWidth = this.camera.viewportWidth;
+                cameraHeight = this.camera.viewportHeight;
             }
-        }
-        else if (this.camera instanceof PerspectiveCamera) {
-            this.effekseerManagerCore.SetProjectionMatrix((camera).projection.val, (camera).view.val, true, 0, 0);
         }
 
         // Update the manager core
-        this.effekseerManagerCore.Update(delta * SINGLE_FRAME_TIME_SECONDS_INV);
-        this.effekseerManagerCore.SetTime(this.timeInSeconds);
+        this.effekseerManagerCore.UpdateCombined(
+                delta * SINGLE_FRAME_TIME_SECONDS_INV,
+                this.timeInSeconds,
+                this.camera.projection.val, this.camera.view.val, this.camera instanceof PerspectiveCamera, cameraWidth, cameraHeight);
     }
 
     /**
@@ -358,9 +438,7 @@ public class EffekseerManager implements Disposable {
         this.onPreDraw();
 
         // Draw
-        this.effekseerManagerCore.BeginRendering();
-        this.effekseerManagerCore.Draw(this.drawParameter);
-        this.effekseerManagerCore.EndRendering();
+        this.effekseerManagerCore.DrawCombined(this.drawParameter);
 
         this.onPostDraw();
     }

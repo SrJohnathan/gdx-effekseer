@@ -2873,6 +2873,70 @@ SWIGEXPORT void JNICALL Java_io_github_srjohnathan_gdx_effekseer_core_GDXJNI_Eff
 }
 
 
+SWIGEXPORT void JNICALL Java_io_github_srjohnathan_gdx_effekseer_core_GDXJNI_EffekseerManagerCore_1SetMatrixBatch2(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_, jint jarg2, jfloatArray jarg3, jint jarg4, jfloatArray jarg5) {
+  EffekseerManagerCore *arg1 = (EffekseerManagerCore *) 0 ;
+  int arg2 ;
+  float *arg3 ;
+  int arg4 ;
+  float *arg5 ;
+  jfloat *jarr3 ;
+  jfloat *jarr5 ;
+  
+  (void)jenv;
+  (void)jcls;
+  (void)jarg1_;
+  arg1 = *(EffekseerManagerCore **)&jarg1; 
+  arg2 = (int)jarg2; 
+  if (!SWIG_JavaArrayInFloat(jenv, &jarr3, (float **)&arg3, jarg3)) return ; 
+  arg4 = (int)jarg4; 
+  if (!SWIG_JavaArrayInFloat(jenv, &jarr5, (float **)&arg5, jarg5)) return ; 
+  (arg1)->SetMatrixBatch2(arg2,arg3,arg4,arg5);
+  SWIG_JavaArrayArgoutFloat(jenv, jarr3, (float *)arg3, jarg3); 
+  SWIG_JavaArrayArgoutFloat(jenv, jarr5, (float *)arg5, jarg5); 
+  delete [] arg3; 
+  delete [] arg5; 
+}
+
+
+SWIGEXPORT void JNICALL Java_io_github_srjohnathan_gdx_effekseer_core_GDXJNI_EffekseerManagerCore_1SetMatrixBatch4(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_, jint jarg2, jfloatArray jarg3, jint jarg4, jfloatArray jarg5, jint jarg6, jfloatArray jarg7, jint jarg8, jfloatArray jarg9) {
+  EffekseerManagerCore *arg1 = (EffekseerManagerCore *) 0 ;
+  int arg2 ;
+  float *arg3 ;
+  int arg4 ;
+  float *arg5 ;
+  int arg6 ;
+  float *arg7 ;
+  int arg8 ;
+  float *arg9 ;
+  jfloat *jarr3 ;
+  jfloat *jarr5 ;
+  jfloat *jarr7 ;
+  jfloat *jarr9 ;
+  
+  (void)jenv;
+  (void)jcls;
+  (void)jarg1_;
+  arg1 = *(EffekseerManagerCore **)&jarg1; 
+  arg2 = (int)jarg2; 
+  if (!SWIG_JavaArrayInFloat(jenv, &jarr3, (float **)&arg3, jarg3)) return ; 
+  arg4 = (int)jarg4; 
+  if (!SWIG_JavaArrayInFloat(jenv, &jarr5, (float **)&arg5, jarg5)) return ; 
+  arg6 = (int)jarg6; 
+  if (!SWIG_JavaArrayInFloat(jenv, &jarr7, (float **)&arg7, jarg7)) return ; 
+  arg8 = (int)jarg8; 
+  if (!SWIG_JavaArrayInFloat(jenv, &jarr9, (float **)&arg9, jarg9)) return ; 
+  (arg1)->SetMatrixBatch4(arg2,arg3,arg4,arg5,arg6,arg7,arg8,arg9);
+  SWIG_JavaArrayArgoutFloat(jenv, jarr3, (float *)arg3, jarg3); 
+  SWIG_JavaArrayArgoutFloat(jenv, jarr5, (float *)arg5, jarg5); 
+  SWIG_JavaArrayArgoutFloat(jenv, jarr7, (float *)arg7, jarg7); 
+  SWIG_JavaArrayArgoutFloat(jenv, jarr9, (float *)arg9, jarg9); 
+  delete [] arg3; 
+  delete [] arg5; 
+  delete [] arg7; 
+  delete [] arg9; 
+}
+
+
 SWIGEXPORT jfloatArray JNICALL Java_io_github_srjohnathan_gdx_effekseer_core_GDXJNI_EffekseerManagerCore_1GetBaseMatrix(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_, jint jarg2) {
   jfloatArray jresult = 0 ;
   EffekseerManagerCore *arg1 = (EffekseerManagerCore *) 0 ;
@@ -3506,6 +3570,37 @@ SWIGEXPORT void JNICALL Java_io_github_srjohnathan_gdx_effekseer_core_GDXJNI_Eff
 }
 
 
+SWIGEXPORT void JNICALL Java_io_github_srjohnathan_gdx_effekseer_core_GDXJNI_EffekseerManagerCore_1UpdateCombined(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_, jfloat jarg2, jfloat jarg3, jfloatArray jarg4, jfloatArray jarg5, jboolean jarg6, jfloat jarg7, jfloat jarg8) {
+  EffekseerManagerCore *arg1 = (EffekseerManagerCore *) 0 ;
+  float arg2 ;
+  float arg3 ;
+  float *arg4 ;
+  float *arg5 ;
+  bool arg6 ;
+  float arg7 ;
+  float arg8 ;
+  jfloat *jarr4 ;
+  jfloat *jarr5 ;
+  
+  (void)jenv;
+  (void)jcls;
+  (void)jarg1_;
+  arg1 = *(EffekseerManagerCore **)&jarg1; 
+  arg2 = (float)jarg2; 
+  arg3 = (float)jarg3; 
+  if (!SWIG_JavaArrayInFloat(jenv, &jarr4, (float **)&arg4, jarg4)) return ; 
+  if (!SWIG_JavaArrayInFloat(jenv, &jarr5, (float **)&arg5, jarg5)) return ; 
+  arg6 = jarg6 ? true : false; 
+  arg7 = (float)jarg7; 
+  arg8 = (float)jarg8; 
+  (arg1)->UpdateCombined(arg2,arg3,arg4,arg5,arg6,arg7,arg8);
+  SWIG_JavaArrayArgoutFloat(jenv, jarr4, (float *)arg4, jarg4); 
+  SWIG_JavaArrayArgoutFloat(jenv, jarr5, (float *)arg5, jarg5); 
+  delete [] arg4; 
+  delete [] arg5; 
+}
+
+
 SWIGEXPORT void JNICALL Java_io_github_srjohnathan_gdx_effekseer_core_GDXJNI_EffekseerManagerCore_1BeginRendering(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_) {
   EffekseerManagerCore *arg1 = (EffekseerManagerCore *) 0 ;
   
@@ -3565,6 +3660,24 @@ SWIGEXPORT void JNICALL Java_io_github_srjohnathan_gdx_effekseer_core_GDXJNI_Eff
   (void)jarg1_;
   arg1 = *(EffekseerManagerCore **)&jarg1; 
   (arg1)->EndRendering();
+}
+
+
+SWIGEXPORT void JNICALL Java_io_github_srjohnathan_gdx_effekseer_core_GDXJNI_EffekseerManagerCore_1DrawCombined(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_, jlong jarg2, jobject jarg2_) {
+  EffekseerManagerCore *arg1 = (EffekseerManagerCore *) 0 ;
+  Effekseer::Manager::DrawParameter *arg2 = 0 ;
+  
+  (void)jenv;
+  (void)jcls;
+  (void)jarg1_;
+  (void)jarg2_;
+  arg1 = *(EffekseerManagerCore **)&jarg1; 
+  arg2 = *(Effekseer::Manager::DrawParameter **)&jarg2;
+  if (!arg2) {
+    SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "Effekseer::Manager::DrawParameter const & reference is null");
+    return ;
+  } 
+  (arg1)->DrawCombined((Effekseer::Manager::DrawParameter const &)*arg2);
 }
 
 

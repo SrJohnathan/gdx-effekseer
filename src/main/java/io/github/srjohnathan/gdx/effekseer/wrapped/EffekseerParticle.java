@@ -61,12 +61,22 @@ public class EffekseerParticle implements Disposable {
 
     //region Transform Matrix Methods
 
-    protected void updateTransformMatrixIfQueued() {
+    /**
+     * @return True if there were transform changes that were applied. Call {@link #getTransformValuesForEffekseer} to the transform floats to send to Effekseer.
+     */
+    protected boolean updateTransformMatrixIfQueued() {
         if (this.isTransformMatrixUpdateQueued) {
             this.transform.extract4x3Matrix(this.mtx);
-            this.manager.effekseerManagerCore.SetMatrix(this.handle, this.mtx);
             this.isTransformMatrixUpdateQueued = false;
+
+            return true;
         }
+
+        return false;
+    }
+
+    protected final float[] getTransformValuesForEffekseer() {
+        return this.mtx;
     }
 
     private void getTransformFromEffekseer() {

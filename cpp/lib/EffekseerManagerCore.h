@@ -57,6 +57,8 @@ public:
 
     float* GetMatrix(int handle);
     void SetMatrix(int handle,float matrix43[]);
+    void SetMatrixBatch2(int handle1,float matrix43_1[], int handle2,float matrix43_2[]);
+    void SetMatrixBatch4(int handle1,float matrix43_1[], int handle2,float matrix43_2[], int handle3,float matrix43_3[], int handle4,float matrix43_4[]);
     float* GetBaseMatrix(int handle);
     void SetBaseMatrix(int handle, float matrix43[]);
     Vector3D GetLocation(int handle);
@@ -100,12 +102,16 @@ public:
 	void UpdateHandle(int handle, float deltaFrame = 1.0f);
 	void UpdateHandleToMoveToFrame(int handle, float frame);
     void SetTime(float time);
+    // Calls SetProjectionMatrix(), SetTime(), and Update(deltaFrames). This can be called to avoid a separate JNI call for each method.
+    void UpdateCombined(float deltaFrames, float time, float projectionMatrix44[],float viewMatrix44C[], bool view, float width, float height);
 
     void BeginRendering();
     void Draw(const Effekseer::Manager::DrawParameter& drawParameter);
     void DrawBack();
     void DrawFront();
     void EndRendering();
+    // Calls BeginRendering(), Draw(drawParameter), and EndRendering(). This can be called to avoid a separate JNI call for each method.
+    void DrawCombined(const Effekseer::Manager::DrawParameter& drawParameter);
 
 
  /*   void SetBackground(uint32_t glid,bool hasMipmap);

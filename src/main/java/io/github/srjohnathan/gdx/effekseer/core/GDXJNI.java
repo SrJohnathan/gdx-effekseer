@@ -100,6 +100,8 @@ public class GDXJNI {
   public final static native int EffekseerManagerCore_GetTotalInstanceCount(long jarg1, EffekseerManagerCore jarg1_);
   public final static native float[] EffekseerManagerCore_GetMatrix(long jarg1, EffekseerManagerCore jarg1_, int jarg2);
   public final static native void EffekseerManagerCore_SetMatrix(long jarg1, EffekseerManagerCore jarg1_, int jarg2, float[] jarg3);
+  public final static native void EffekseerManagerCore_SetMatrixBatch2(long jarg1, EffekseerManagerCore jarg1_, int jarg2, float[] jarg3, int jarg4, float[] jarg5);
+  public final static native void EffekseerManagerCore_SetMatrixBatch4(long jarg1, EffekseerManagerCore jarg1_, int jarg2, float[] jarg3, int jarg4, float[] jarg5, int jarg6, float[] jarg7, int jarg8, float[] jarg9);
   public final static native float[] EffekseerManagerCore_GetBaseMatrix(long jarg1, EffekseerManagerCore jarg1_, int jarg2);
   public final static native void EffekseerManagerCore_SetBaseMatrix(long jarg1, EffekseerManagerCore jarg1_, int jarg2, float[] jarg3);
   public final static native long EffekseerManagerCore_GetLocation(long jarg1, EffekseerManagerCore jarg1_, int jarg2);
@@ -138,11 +140,13 @@ public class GDXJNI {
   public final static native void EffekseerManagerCore_UpdateHandle__SWIG_1(long jarg1, EffekseerManagerCore jarg1_, int jarg2);
   public final static native void EffekseerManagerCore_UpdateHandleToMoveToFrame(long jarg1, EffekseerManagerCore jarg1_, int jarg2, float jarg3);
   public final static native void EffekseerManagerCore_SetTime(long jarg1, EffekseerManagerCore jarg1_, float jarg2);
+  public final static native void EffekseerManagerCore_UpdateCombined(long jarg1, EffekseerManagerCore jarg1_, float jarg2, float jarg3, float[] jarg4, float[] jarg5, boolean jarg6, float jarg7, float jarg8);
   public final static native void EffekseerManagerCore_BeginRendering(long jarg1, EffekseerManagerCore jarg1_);
   public final static native void EffekseerManagerCore_Draw(long jarg1, EffekseerManagerCore jarg1_, long jarg2, EffekseerManagerParameters.DrawParameter jarg2_);
   public final static native void EffekseerManagerCore_DrawBack(long jarg1, EffekseerManagerCore jarg1_);
   public final static native void EffekseerManagerCore_DrawFront(long jarg1, EffekseerManagerCore jarg1_);
   public final static native void EffekseerManagerCore_EndRendering(long jarg1, EffekseerManagerCore jarg1_);
+  public final static native void EffekseerManagerCore_DrawCombined(long jarg1, EffekseerManagerCore jarg1_, long jarg2, EffekseerManagerParameters.DrawParameter jarg2_);
   public final static native void Vector2D_x_set(long jarg1, Vector2D jarg1_, float jarg2);
   public final static native float Vector2D_x_get(long jarg1, Vector2D jarg1_);
   public final static native void Vector2D_y_set(long jarg1, Vector2D jarg1_, float jarg2);
