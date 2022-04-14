@@ -321,8 +321,11 @@ public class EffekseerParticleAssetLoader extends AsynchronousAssetLoader<Effeks
             this.result.effectFileData = manager.get(effectFileHandle.path(), EffekseerParticleSubAssetLoader.Result.class);
         }
         else {
+            // Load asset
             this.subAssetLoader.loadAsync(manager, "", effectFileHandle, null);
             this.result.effectFileData = this.subAssetLoader.loadSync(manager, "", effectFileHandle, null);
+            // Cache asset
+            this.cacheSubAssetInAssetManager(this.result.effectFileData, manager);
         }
         parameter.effekseerEffectCore.load(parameter.effekseerManagerCore, this.result.effectFileData.data, this.result.effectFileData.data.length, parameter.magnification);
 
@@ -342,8 +345,11 @@ public class EffekseerParticleAssetLoader extends AsynchronousAssetLoader<Effeks
                     this.result.textures.add(new LoadedTextureResult(textureType, i, loadedAsset));
                 }
                 else {
+                    // Load asset
                     this.subAssetLoader.loadAsync(manager, "", textureFileHandle, null);
                     EffekseerParticleSubAssetLoader.Result loadedAsset = this.subAssetLoader.loadSync(manager, "", textureFileHandle, null);
+                    // Cache asset
+                    this.cacheSubAssetInAssetManager(loadedAsset, manager);
                     this.result.textures.add(new LoadedTextureResult(textureType, i, loadedAsset));
                 }
             }
@@ -359,8 +365,11 @@ public class EffekseerParticleAssetLoader extends AsynchronousAssetLoader<Effeks
                 this.result.models.add(manager.get(modelFileHandle.path(), EffekseerParticleSubAssetLoader.Result.class));
             }
             else {
+                // Load asset
                 this.subAssetLoader.loadAsync(manager, "", modelFileHandle, null);
                 EffekseerParticleSubAssetLoader.Result loadedAsset = this.subAssetLoader.loadSync(manager, "", modelFileHandle, null);
+                // Cache asset
+                this.cacheSubAssetInAssetManager(loadedAsset, manager);
                 this.result.models.add(loadedAsset);
             }
         }
@@ -375,8 +384,11 @@ public class EffekseerParticleAssetLoader extends AsynchronousAssetLoader<Effeks
                 this.result.materials.add(manager.get(materialFileHandle.path(), EffekseerParticleSubAssetLoader.Result.class));
             }
             else {
+                // Load asset
                 this.subAssetLoader.loadAsync(manager, "", materialFileHandle, null);
                 EffekseerParticleSubAssetLoader.Result loadedAsset = this.subAssetLoader.loadSync(manager, "", materialFileHandle, null);
+                // Cache asset
+                this.cacheSubAssetInAssetManager(loadedAsset, manager);
                 this.result.materials.add(loadedAsset);
             }
         }
@@ -389,21 +401,6 @@ public class EffekseerParticleAssetLoader extends AsynchronousAssetLoader<Effeks
     public Result loadSync(AssetManager manager, String fileName, FileHandle file, Parameters parameter) {
         // Send sub assets to the effect
         this.result.loadSubAssetsIntoEffect(parameter.effekseerManagerCore, parameter.effekseerEffectCore, parameter.magnification);
-
-        // Now cache each sub asset into the given AssetManager because the dependencies list did not have it, and thus it
-        // doesn't exist in the AssetManager. This is done so that multiple effects that reference the same file don't have
-        // to be loaded multiple times.
-        this.cacheSubAssetInAssetManager(this.result.effectFileData, manager);
-        for (LoadedTextureResult asset : this.result.textures) {
-            this.cacheSubAssetInAssetManager(asset.assetData, manager);
-        }
-        for (EffekseerParticleSubAssetLoader.Result asset : this.result.models) {
-            this.cacheSubAssetInAssetManager(asset, manager);
-        }
-        for (EffekseerParticleSubAssetLoader.Result asset : this.result.materials) {
-            this.cacheSubAssetInAssetManager(asset, manager);
-        }
-        // TODO sound
 
         return this.result;
     }
