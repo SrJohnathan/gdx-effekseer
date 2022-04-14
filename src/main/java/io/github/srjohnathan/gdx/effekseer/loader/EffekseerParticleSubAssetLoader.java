@@ -7,6 +7,7 @@ import com.badlogic.gdx.assets.loaders.AsynchronousAssetLoader;
 import com.badlogic.gdx.assets.loaders.FileHandleResolver;
 import com.badlogic.gdx.files.FileHandle;
 import com.badlogic.gdx.utils.Array;
+import com.badlogic.gdx.utils.Pool;
 import io.github.srjohnathan.gdx.effekseer.core.EffekseerEffectCore;
 
 /**
@@ -16,8 +17,11 @@ public class EffekseerParticleSubAssetLoader extends AsynchronousAssetLoader<Eff
 
     //region Static
 
+    //region Classes
+
     /**
      * Parameters needed to load EffekseerParticleLoader.
+     * Call {@link #recycle} when this instance is no longer needed.
      */
     static class Parameters extends AssetLoaderParameters<Result> {
         /**
@@ -25,11 +29,15 @@ public class EffekseerParticleSubAssetLoader extends AsynchronousAssetLoader<Eff
          */
         public Result loadedResult = null;
 
-        /**
-         * Resets any state so this instance can be used again.
-         */
-        public void reset() {
+        public void resetWithoutRecycling() {
             this.loadedResult = null;
+            this.loadedCallback = null;
+        }
+
+        public void recycle() {
+            synchronized (parametersPool) {
+                parametersPool.free(this);
+            }
         }
     }
 
@@ -45,6 +53,30 @@ public class EffekseerParticleSubAssetLoader extends AsynchronousAssetLoader<Eff
             this.data = data;
         }
     }
+
+    //endregion
+
+    //region Pool
+
+    private static Pool<Parameters> parametersPool = new Pool<Parameters>(16, 100) {
+        @Override
+        protected Parameters newObject() {
+            return new Parameters();
+        }
+
+        @Override
+        protected void reset(Parameters object) {
+            object.resetWithoutRecycling();
+        }
+    };
+
+    public static Parameters obtainParametersInstance() {
+        synchronized (parametersPool) {
+            return parametersPool.obtain();
+        }
+    }
+
+    //endregion
 
     //endregion
 
@@ -72,7 +104,14 @@ public class EffekseerParticleSubAssetLoader extends AsynchronousAssetLoader<Eff
 
     @Override
     public Result loadSync(AssetManager manager, String fileName, FileHandle file, Parameters parameter) {
-        return parameter.loadedResult;
+        Result result = parameter.loadedResult;
+
+        // Recycle instances now if there is no loaded callback
+        if (parameter.loadedCallback == null) {
+            parameter.recycle();
+        }
+
+        return result;
     }
 
     //endregion
