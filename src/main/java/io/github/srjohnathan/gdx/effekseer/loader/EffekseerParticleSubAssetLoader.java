@@ -21,10 +21,16 @@ public class EffekseerParticleSubAssetLoader extends AsynchronousAssetLoader<Eff
      */
     static class Parameters extends AssetLoaderParameters<Result> {
         /**
-         * If this is not null, then it will be passed as the final result without doing any file loading. This is used for
-         * caching an existing result into an {@link AssetManager} that doesn't have it.
+         * This is used for caching an existing result into an {@link AssetManager} that doesn't have it or tracking the data of a loaded sub asset.
          */
-        public Result alreadyLoadedResult = null;
+        public Result loadedResult = null;
+
+        /**
+         * Resets any state so this instance can be used again.
+         */
+        public void reset() {
+            this.loadedResult = null;
+        }
     }
 
     /**
@@ -39,12 +45,6 @@ public class EffekseerParticleSubAssetLoader extends AsynchronousAssetLoader<Eff
             this.data = data;
         }
     }
-
-    //endregion
-
-    //region State
-
-    private byte[] loadedData = null;
 
     //endregion
 
@@ -65,21 +65,14 @@ public class EffekseerParticleSubAssetLoader extends AsynchronousAssetLoader<Eff
 
     @Override
     public void loadAsync(AssetManager manager, String fileName, FileHandle file, Parameters parameter) {
-        if (parameter == null || parameter.alreadyLoadedResult == null) {
-            this.loadedData = file.readBytes();
+        if (parameter.loadedResult == null) {
+            parameter.loadedResult = new Result(file, file.readBytes());
         }
     }
 
     @Override
     public Result loadSync(AssetManager manager, String fileName, FileHandle file, Parameters parameter) {
-        if (parameter == null || parameter.alreadyLoadedResult == null) {
-            Result result = new Result(file, this.loadedData);
-            this.loadedData = null;
-            return result;
-        }
-        else {
-            return parameter.alreadyLoadedResult;
-        }
+        return parameter.loadedResult;
     }
 
     //endregion
