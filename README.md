@@ -99,35 +99,40 @@ run copyEffekseerNatives
 
 ```java
 // Effekseer start
-  EffekseerGdx.init()
-  AssetManager assetManager = new AssetManager(fileHandleResolver);
+EffekseerGdx.init()
+        
+AssetManager assetManager = new AssetManager(fileHandleResolver);
+
+ModelBatch modelBatch = new ModelBatch();
+RenderContext renderContext = modelBatch.getRenderContext();
 
 // set Loader
-    assetManager.setLoader(EffekseerParticleSubAssetLoader.Result.class, null, new EffekseerParticleSubAssetLoader(fileHandleResolver));
-    assetManager.setLoader(EffekseerParticleAssetLoader.Result.class, null, new EffekseerParticleAssetLoader(fileHandleResolver));
+assetManager.setLoader(EffekseerParticleSubAssetLoader.Result.class, null, new EffekseerParticleSubAssetLoader(fileHandleResolver));
+assetManager.setLoader(EffekseerParticleAssetLoader.Result.class, null, new EffekseerParticleAssetLoader(fileHandleResolver));
     
-  PerspectiveCamera  perspectiveCamera = new PerspectiveCamera(67, 1280f, 720);
+PerspectiveCamera  perspectiveCamera = new PerspectiveCamera(67, 1280f, 720);
 
-  // Create a new manager for the particles
-          if( Gdx.app.type == Application.ApplicationType.Android){
-          manager = EffekseerManager(perspectiveCamera, EffekseerCore.TypeOpenGL.OPEN_GLES2, 600);
-          }else{
-          manager = EffekseerManager(perspectiveCamera, EffekseerCore.TypeOpenGL.OPEN_GL2, 1000);
-          }
-        // create a new particle
-        effekseer = new EffekseerParticle(manager);
-        effekseer.setMagnification(20f);
-        try {
-            
-            // true = InternalStorage
-            // false = ExternalStorage
+// Create a new manager for the particles
+if (Gdx.app.type == Application.ApplicationType.Android) {
+    manager = EffekseerManager(perspectiveCamera, EffekseerCore.TypeOpenGL.OPEN_GLES2, 600);
+    --OR--
+    manager = EffekseerManager(perspectiveCamera, EffekseerCore.TypeOpenGL.OPEN_GLES2, 600, renderContext);
+}
+else {
+    manager = EffekseerManager(perspectiveCamera, EffekseerCore.TypeOpenGL.OPEN_GL2, 1000);
+    --OR--
+    manager = EffekseerManager(perspectiveCamera, EffekseerCore.TypeOpenGL.OPEN_GL2, 1000, renderContext);
+}
+// create a new particle
+effekseer = new EffekseerParticle(manager);
+effekseer.setMagnification(20f);
+try {
+    effekseer.syncLoad(assetManager, "data/tu.efk");
+} catch (Exception e) {
+    e.printStackTrace();
+}
 
-            effekseer.syncLoad(assetManager, "data/tu.efk", false);
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-
-    effekseer.play();
+effekseer.play();
 ```
 
 ### Loading Effects
@@ -168,10 +173,9 @@ public void render() {
     ...
 
     manager.draw(Gdx.graphics.getDeltaTime());
-    
-    OR
-    
+    --OR--
     manager.update(Gdx.graphics.getDeltaTime());
+    
     // Can call this draw as many times as needed. For example one draw for post-processing and then the normal draw.
     manager.drawAfterUpdate();
 } 
