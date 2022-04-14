@@ -139,6 +139,14 @@ AssetManager assetManager = new AssetManager(fileHandleResolver);
 assetManager.setLoader(EffekseerParticleSubAssetLoader.Result.class, null, new EffekseerParticleSubAssetLoader(fileHandleResolver));
 assetManager.setLoader(EffekseerParticleAssetLoader.Result.class, null, new EffekseerParticleAssetLoader(fileHandleResolver));
 
+// Pass in an instance of EffekseerIsMipMapEnabledDecider to override if an effect texture should use mimaps. By default all textures use mipmaps. 
+new EffekseerParticleSubAssetLoader(fileHandleResolver, new EffekseerIsMipMapEnabledDecider() {
+    @Override
+    public void isMipMapEnabledForTextureFile() {
+        ...
+    }
+});
+
 
 // For immediate loading
 effekseer.syncLoad(assetManager, "data/tu.efk", false);

@@ -64,8 +64,8 @@ public class EffekseerEffectCore {
     return GDXJNI.EffekseerEffectCore_GetTexturePath(swigCPtr, this, index, type.swigValue());
   }
 
-  public TextureRefWrapper LoadTexture(byte[] data, int len, int index, EffekseerTextureType type) {
-    return new TextureRefWrapper(GDXJNI.EffekseerEffectCore_LoadTexture(swigCPtr, this, data, len, index, type.swigValue()), true);
+  public TextureRefWrapper LoadTexture(byte[] data, int len, int index, EffekseerTextureType type, boolean isMipMapEnabled) {
+    return new TextureRefWrapper(GDXJNI.EffekseerEffectCore_LoadTexture(swigCPtr, this, data, len, index, type.swigValue(), isMipMapEnabled), true);
   }
 
   public void SetTexture(int index, EffekseerTextureType type, TextureRefWrapper texture) {

@@ -2445,13 +2445,14 @@ SWIGEXPORT jstring JNICALL Java_io_github_srjohnathan_gdx_effekseer_core_GDXJNI_
 }
 
 
-SWIGEXPORT jlong JNICALL Java_io_github_srjohnathan_gdx_effekseer_core_GDXJNI_EffekseerEffectCore_1LoadTexture(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_, jbyteArray jarg2, jint jarg3, jint jarg4, jint jarg5) {
+SWIGEXPORT jlong JNICALL Java_io_github_srjohnathan_gdx_effekseer_core_GDXJNI_EffekseerEffectCore_1LoadTexture(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_, jbyteArray jarg2, jint jarg3, jint jarg4, jint jarg5, jboolean jarg6) {
   jlong jresult = 0 ;
   EffekseerEffectCore *arg1 = (EffekseerEffectCore *) 0 ;
   unsigned char *arg2 = (unsigned char *) 0 ;
   int arg3 ;
   int32_t arg4 ;
   EffekseerTextureType arg5 ;
+  bool arg6 ;
   SwigValueWrapper< TextureRefWrapper > result;
   
   (void)jenv;
@@ -2464,7 +2465,8 @@ SWIGEXPORT jlong JNICALL Java_io_github_srjohnathan_gdx_effekseer_core_GDXJNI_Ef
   arg3 = (int)jarg3; 
   arg4 = (int32_t)jarg4; 
   arg5 = (EffekseerTextureType)jarg5; 
-  result = (arg1)->LoadTexture((unsigned char const *)arg2,arg3,arg4,arg5);
+  arg6 = jarg6 ? true : false; 
+  result = (arg1)->LoadTexture((unsigned char const *)arg2,arg3,arg4,arg5,arg6);
   *(TextureRefWrapper **)&jresult = new TextureRefWrapper((const TextureRefWrapper &)result); 
   {
     jenv->ReleaseByteArrayElements(jarg2, (jbyte *) arg2, 0);

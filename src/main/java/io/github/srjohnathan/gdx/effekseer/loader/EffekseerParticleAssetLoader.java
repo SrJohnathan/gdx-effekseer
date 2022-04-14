@@ -188,11 +188,21 @@ public class EffekseerParticleAssetLoader extends AsynchronousAssetLoader<Effeks
 
         //region Private Methods
 
-        private void loadSubAssetsIntoEffekseer(EffekseerEffectCore effekseerEffectCore) {
+        private void loadSubAssetsIntoEffekseer(EffekseerEffectCore effekseerEffectCore, EffekseerIsMipMapEnabledDecider effekseerIsMipMapEnabledDecider) {
             // Load textures that haven't already been loaded into Effekseer
             for (LoadedTextureResult textureAsset : this.textures) {
                 if (textureAsset.assetData.referenceWrapper == null) {
-                    textureAsset.assetData.referenceWrapper = effekseerEffectCore.LoadTexture(textureAsset.assetData.data, textureAsset.assetData.data.length, textureAsset.textureIndex, textureAsset.textureType);
+                    // First get if mipmaps should be used for the current texture asset
+                    boolean shouldUseMipMaps;
+                    if (effekseerIsMipMapEnabledDecider == null) {
+                        shouldUseMipMaps = true;
+                    }
+                    else {
+                        shouldUseMipMaps = effekseerIsMipMapEnabledDecider.isMipMapEnabledForTextureFile(textureAsset.assetData.fileHandle);
+                    }
+
+                    // Load into effekseer
+                    textureAsset.assetData.referenceWrapper = effekseerEffectCore.LoadTexture(textureAsset.assetData.data, textureAsset.assetData.data.length, textureAsset.textureIndex, textureAsset.textureType, shouldUseMipMaps);
                     if (textureAsset.assetData.referenceWrapper == null || !((TextureRefWrapper)textureAsset.assetData.referenceWrapper).getHasRef()) {
                         System.out.printf("Failed to load Effekseer particle texture file %s.\n", textureAsset.assetData.fileHandle.toString());
                     }
@@ -337,12 +347,25 @@ public class EffekseerParticleAssetLoader extends AsynchronousAssetLoader<Effeks
      */
     private final EffekseerParticleSubAssetLoader subAssetLoader = new EffekseerParticleSubAssetLoader(null);
 
+    /**
+     * Use this to determine if a texture should use mipmaps.
+     */
+    private final EffekseerIsMipMapEnabledDecider effekseerIsMipMapEnabledDecider;
+
     //endregion
 
     //region Constructors
 
-    public EffekseerParticleAssetLoader(FileHandleResolver fileHandleResolver) {
+    /**
+     * @param effekseerIsMipMapEnabledDecider Pass in to override if a texture should use mipmaps. If this is null, then mipmaps will always be true.
+     */
+    public EffekseerParticleAssetLoader(FileHandleResolver fileHandleResolver, EffekseerIsMipMapEnabledDecider effekseerIsMipMapEnabledDecider) {
         super(fileHandleResolver);
+        this.effekseerIsMipMapEnabledDecider = effekseerIsMipMapEnabledDecider;
+    }
+
+    public EffekseerParticleAssetLoader(FileHandleResolver fileHandleResolver) {
+        this(fileHandleResolver, null);
     }
 
     //endregion
@@ -468,7 +491,7 @@ public class EffekseerParticleAssetLoader extends AsynchronousAssetLoader<Effeks
         Result result = parameter.result;
 
         // Load the sub assets needed in this effect into Effekseer
-        result.loadSubAssetsIntoEffekseer(parameter.effekseerEffectCore);
+        result.loadSubAssetsIntoEffekseer(parameter.effekseerEffectCore, this.effekseerIsMipMapEnabledDecider);
         // Set the sub asset references needed in this effect
         result.setSubAssetsInEffect(parameter.effekseerEffectCore);
 

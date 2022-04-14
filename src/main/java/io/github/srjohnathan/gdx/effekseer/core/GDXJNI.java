@@ -75,7 +75,7 @@ public class GDXJNI {
   public final static native boolean EffekseerEffectCore_load(long jarg1, EffekseerEffectCore jarg1_, long jarg2, EffekseerManagerCore jarg2_, byte[] jarg3, int jarg4, float jarg5);
   public final static native int EffekseerEffectCore_GetTextureCount(long jarg1, EffekseerEffectCore jarg1_, int jarg2);
   public final static native String EffekseerEffectCore_GetTexturePath(long jarg1, EffekseerEffectCore jarg1_, int jarg2, int jarg3);
-  public final static native long EffekseerEffectCore_LoadTexture(long jarg1, EffekseerEffectCore jarg1_, byte[] jarg2, int jarg3, int jarg4, int jarg5);
+  public final static native long EffekseerEffectCore_LoadTexture(long jarg1, EffekseerEffectCore jarg1_, byte[] jarg2, int jarg3, int jarg4, int jarg5, boolean jarg6);
   public final static native void EffekseerEffectCore_SetTexture(long jarg1, EffekseerEffectCore jarg1_, int jarg2, int jarg3, long jarg4, TextureRefWrapper jarg4_);
   public final static native boolean EffekseerEffectCore_HasTextureLoaded(long jarg1, EffekseerEffectCore jarg1_, int jarg2, int jarg3);
   public final static native int EffekseerEffectCore_GetModelCount(long jarg1, EffekseerEffectCore jarg1_);

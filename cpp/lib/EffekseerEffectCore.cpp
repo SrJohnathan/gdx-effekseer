@@ -147,13 +147,13 @@ bool EffekseerEffectCore::LoadTexturePath(const EFK_CHAR *data, EffekseerTexture
 
 */
 
-TextureRefWrapper EffekseerEffectCore::LoadTexture(const unsigned char *data, int len, int32_t index, EffekseerTextureType type) {
+TextureRefWrapper EffekseerEffectCore::LoadTexture(const unsigned char *data, int len, int32_t index, EffekseerTextureType type, bool isMipMapEnabled) {
     auto loader = effect_->GetSetting()->GetTextureLoader();
     if (loader == nullptr) {
         return TextureRefWrapper(nullptr);
     }
 
-    auto texture = loader->Load((const void *) data, len, (Effekseer::TextureType) type,true);
+    auto texture = loader->Load((const void *) data, len, (Effekseer::TextureType) type, isMipMapEnabled);
     if (texture == nullptr) {
         return TextureRefWrapper(nullptr);
     }

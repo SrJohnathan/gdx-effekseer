@@ -57,7 +57,7 @@ public:
 
     int32_t GetTextureCount(EffekseerTextureType type) const;
     const char16_t* GetTexturePath(int32_t index, EffekseerTextureType type) const;
-    TextureRefWrapper LoadTexture(const unsigned char* data, int len, int32_t index, EffekseerTextureType type);
+    TextureRefWrapper LoadTexture(const unsigned char* data, int len, int32_t index, EffekseerTextureType type, bool isMipMapEnabled);
     void SetTexture(int32_t index, EffekseerTextureType type, TextureRefWrapper texture);
     // bool LoadTexturePath(const EFK_CHAR *data, EffekseerTextureType type);
     bool HasTextureLoaded(int32_t index, EffekseerTextureType type);
