@@ -7,8 +7,12 @@ import com.badlogic.gdx.assets.loaders.AsynchronousAssetLoader;
 import com.badlogic.gdx.assets.loaders.FileHandleResolver;
 import com.badlogic.gdx.files.FileHandle;
 import com.badlogic.gdx.utils.Array;
+import com.badlogic.gdx.utils.Disposable;
 import com.badlogic.gdx.utils.Pool;
 import io.github.srjohnathan.gdx.effekseer.core.EffekseerEffectCore;
+import io.github.srjohnathan.gdx.effekseer.core.MaterialRefWrapper;
+import io.github.srjohnathan.gdx.effekseer.core.ModelRefWrapper;
+import io.github.srjohnathan.gdx.effekseer.core.TextureRefWrapper;
 
 /**
  * Loads the assets needed for particle effects and loads them into a given {@link EffekseerEffectCore}.
@@ -44,14 +48,41 @@ public class EffekseerParticleSubAssetLoader extends AsynchronousAssetLoader<Eff
     /**
      * Contains the data for any file loaded that is used in an Effekseer effect.
      */
-    public static class Result {
+    public static class Result implements Disposable {
         public final FileHandle fileHandle;
         public final byte[] data;
+        /**
+         * Contains the wrapped c++ reference pointer to the type of Effekseer asset loaded. For example if this result hold
+         * texture data then this must be a {@link io.github.srjohnathan.gdx.effekseer.core.TextureRefWrapper}.
+         * Possible values:
+         * {@link io.github.srjohnathan.gdx.effekseer.core.TextureRefWrapper}
+         * {@link io.github.srjohnathan.gdx.effekseer.core.ModelRefWrapper}
+         * {@link io.github.srjohnathan.gdx.effekseer.core.MaterialRefWrapper}
+         */
+        public Object referenceWrapper = null;
 
         private Result(FileHandle fileHandle, byte[] data) {
             this.fileHandle = fileHandle;
             this.data = data;
         }
+
+        //region Disposable
+
+        @Override
+        public void dispose() {
+            // Remove loaded reference wrappers
+            if (this.referenceWrapper instanceof TextureRefWrapper) {
+                ((TextureRefWrapper) this.referenceWrapper).delete();
+            }
+            else if (this.referenceWrapper instanceof ModelRefWrapper) {
+                ((ModelRefWrapper) this.referenceWrapper).delete();
+            }
+            else if (this.referenceWrapper instanceof MaterialRefWrapper) {
+                ((MaterialRefWrapper) this.referenceWrapper).delete();
+            }
+        }
+
+        //endregion
     }
 
     //endregion

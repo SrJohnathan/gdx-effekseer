@@ -147,36 +147,22 @@ bool EffekseerEffectCore::LoadTexturePath(const EFK_CHAR *data, EffekseerTexture
 
 */
 
-bool EffekseerEffectCore::LoadTexture(const unsigned char *data, int len, int32_t index, EffekseerTextureType type) {
+TextureRefWrapper EffekseerEffectCore::LoadTexture(const unsigned char *data, int len, int32_t index, EffekseerTextureType type) {
     auto loader = effect_->GetSetting()->GetTextureLoader();
-
     if (loader == nullptr) {
-
-#if defined(__EFFEKSEER_RENDERER_GLES2__)
-        LOGD("nullptr effectLouder ");
-#endif
-
-        return false;
-
+        return TextureRefWrapper(nullptr);
     }
-
-
 
     auto texture = loader->Load((const void *) data, len, (Effekseer::TextureType) type,true);
-
     if (texture == nullptr) {
-
-
-#if defined(__EFFEKSEER_RENDERER_GLES2__)
-        LOGD("not Loading texture ");
-#endif
-        return false;
+        return TextureRefWrapper(nullptr);
     }
 
-    effect_->SetTexture(index, (Effekseer::TextureType) type, texture);
+    return TextureRefWrapper(texture);
+}
 
-
-    return true;
+void EffekseerEffectCore::SetTexture(int32_t index, EffekseerTextureType type, TextureRefWrapper texture) {
+    effect_->SetTexture(index, (Effekseer::TextureType) type, texture.textureRef);
 }
 
 bool EffekseerEffectCore::HasTextureLoaded(int32_t index, EffekseerTextureType type) {
@@ -197,42 +183,42 @@ const char16_t * EffekseerEffectCore::GetModelPath(int32_t index) const { return
 
 int32_t EffekseerEffectCore::GetModelCount() const { return effect_->GetModelCount(); }
 
-bool EffekseerEffectCore::LoadModel(const unsigned char *data, int len, int32_t index) {
+ModelRefWrapper EffekseerEffectCore::LoadModel(const unsigned char* data, int len, int32_t index) {
     auto loader = effect_->GetSetting()->GetModelLoader();
     if (loader == nullptr) {
-        return false;
+        return ModelRefWrapper(nullptr);
     }
 
     auto model = loader->Load((const void *) data, len);
-
     if (model == nullptr) {
-        return false;
+        return ModelRefWrapper(nullptr);
     }
 
+    return ModelRefWrapper(model);
+}
 
-    effect_->SetModel(index, model);
-
-    return true;
+void EffekseerEffectCore::SetModel(int32_t index, ModelRefWrapper model) {
+    effect_->SetModel(index, model.modelRef);
 }
 
 bool EffekseerEffectCore::HasModelLoaded(int32_t index) { return effect_->GetModel(index) != nullptr; }
 
-
-bool EffekseerEffectCore::LoadMaterial(const unsigned char *data, int len, int32_t index) {
+MaterialRefWrapper EffekseerEffectCore::LoadMaterial(const unsigned char* data, int len, int32_t index) {
     auto loader = effect_->GetSetting()->GetMaterialLoader();
     if (loader == nullptr) {
-        return false;
+        return MaterialRefWrapper(nullptr);
     }
 
     auto material = loader->Load((const void *) data, len, Effekseer::MaterialFileType::Code);
-
     if (material == nullptr) {
-        return false;
+        return MaterialRefWrapper(nullptr);
     }
 
-    effect_->SetMaterial(index, material);
+    return MaterialRefWrapper(material);
+}
 
-    return true;
+void EffekseerEffectCore::SetMaterial(int32_t index, MaterialRefWrapper material) {
+    effect_->SetMaterial(index, material.materialRef);
 }
 
 bool EffekseerEffectCore::HasMaterialLoaded(int32_t index) { return effect_->GetMaterial(index) != nullptr; }

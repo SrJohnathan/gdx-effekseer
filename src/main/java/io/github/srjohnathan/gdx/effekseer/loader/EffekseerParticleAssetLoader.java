@@ -10,9 +10,8 @@ import com.badlogic.gdx.assets.loaders.FileHandleResolver;
 import com.badlogic.gdx.files.FileHandle;
 import com.badlogic.gdx.utils.Array;
 import com.badlogic.gdx.utils.Pool;
-import io.github.srjohnathan.gdx.effekseer.core.EffekseerEffectCore;
-import io.github.srjohnathan.gdx.effekseer.core.EffekseerManagerCore;
-import io.github.srjohnathan.gdx.effekseer.core.EffekseerTextureType;
+import io.github.srjohnathan.gdx.effekseer.core.*;
+
 import java.util.Random;
 
 /**
@@ -187,37 +186,73 @@ public class EffekseerParticleAssetLoader extends AsynchronousAssetLoader<Effeks
         private Array<EffekseerParticleSubAssetLoader.Result> models;
         private Array<EffekseerParticleSubAssetLoader.Result> materials;
 
-        private void loadSubAssetsIntoEffect(EffekseerManagerCore effekseerManagerCore, EffekseerEffectCore effekseerEffectCore, float magnification) {
-            // Textures load
+        //region Private Methods
+
+        private void loadSubAssetsIntoEffekseer(EffekseerEffectCore effekseerEffectCore) {
+            // Load textures that haven't already been loaded into Effekseer
             for (LoadedTextureResult textureAsset : this.textures) {
-                if (!effekseerEffectCore.LoadTexture(textureAsset.assetData.data, textureAsset.assetData.data.length, textureAsset.textureIndex, textureAsset.textureType)) {
-                    System.out.printf("Failed to load Effekseer particle texture file %s.\n", textureAsset.assetData.fileHandle.toString());
+                if (textureAsset.assetData.referenceWrapper == null) {
+                    textureAsset.assetData.referenceWrapper = effekseerEffectCore.LoadTexture(textureAsset.assetData.data, textureAsset.assetData.data.length, textureAsset.textureIndex, textureAsset.textureType);
+                    if (textureAsset.assetData.referenceWrapper == null || !((TextureRefWrapper)textureAsset.assetData.referenceWrapper).getHasRef()) {
+                        System.out.printf("Failed to load Effekseer particle texture file %s.\n", textureAsset.assetData.fileHandle.toString());
+                    }
                 }
+            }
+
+            // Load models that haven't already been loaded into Effekseer
+            int currentIndex = 0;
+            for (EffekseerParticleSubAssetLoader.Result modelAsset : this.models) {
+                if (modelAsset.referenceWrapper == null) {
+                    modelAsset.referenceWrapper = effekseerEffectCore.LoadModel(modelAsset.data, modelAsset.data.length, currentIndex);
+                    if (modelAsset.referenceWrapper == null || !((TextureRefWrapper)modelAsset.referenceWrapper).getHasRef()) {
+                        System.out.printf("Failed to load Effekseer particle model file %s.\n", modelAsset.fileHandle.toString());
+                    }
+                }
+                currentIndex += 1;
+            }
+
+            // Load materials that haven't already been loaded into Effekseer
+            currentIndex = 0;
+            for (EffekseerParticleSubAssetLoader.Result materialAsset : this.materials) {
+                if (materialAsset.referenceWrapper == null) {
+                    materialAsset.referenceWrapper = effekseerEffectCore.LoadModel(materialAsset.data, materialAsset.data.length, currentIndex);
+                    if (materialAsset.referenceWrapper == null || !((TextureRefWrapper)materialAsset.referenceWrapper).getHasRef()) {
+                        System.out.printf("Failed to load Effekseer particle material file %s.\n", materialAsset.fileHandle.toString());
+                    }
+                }
+                currentIndex += 1;
+            }
+        }
+
+        private void setSubAssetsInEffect(EffekseerEffectCore effekseerEffectCore) {
+            // Textures set
+            for (LoadedTextureResult textureAsset : this.textures) {
+                effekseerEffectCore.SetTexture(textureAsset.textureIndex, textureAsset.textureType, (TextureRefWrapper)textureAsset.assetData.referenceWrapper);
             }
 
             // Models load
             int currentIndex = 0;
             for (EffekseerParticleSubAssetLoader.Result modelAsset : this.models) {
-                if (!effekseerEffectCore.LoadModel(modelAsset.data, modelAsset.data.length, currentIndex)) {
-                    System.out.printf("Failed to load Effekseer particle model file %s.\n", modelAsset.fileHandle.toString());
-                }
+                effekseerEffectCore.SetModel(currentIndex, (ModelRefWrapper) modelAsset.referenceWrapper);
                 currentIndex += 1;
             }
 
             // Materials load
             currentIndex = 0;
             for (EffekseerParticleSubAssetLoader.Result materialAsset : this.materials) {
-                if (!effekseerEffectCore.LoadMaterial(materialAsset.data, materialAsset.data.length, currentIndex)) {
-                    System.out.printf("Failed to load Effekseer particle material file %s.\n", materialAsset.fileHandle.toString());
-                }
+                effekseerEffectCore.SetMaterial(currentIndex, (MaterialRefWrapper) materialAsset.referenceWrapper);
                 currentIndex += 1;
             }
 
             // TODO sound
         }
 
+        //endregion
+
+        //region Public Methods
+
         /**
-         * Loads the effect files data in this result instance into the given {@link EffekseerManagerCore}.
+         * Loads the effect sub asset references in this result instance into the given {@link EffekseerManagerCore}.
          */
         public void loadInfoEffect(EffekseerManagerCore effekseerManagerCore, EffekseerEffectCore effekseerEffectCore, float magnification) {
             // Check that the manager and effect cores are available
@@ -232,17 +267,19 @@ public class EffekseerParticleAssetLoader extends AsynchronousAssetLoader<Effeks
                 if (this.loadedWithEffekseerEffectCore != effekseerEffectCore) {
                     // Main file load
                     if (!effekseerEffectCore.load(effekseerManagerCore, this.effectFileData.data, this.effectFileData.data.length, magnification)) {
-                        System.out.printf("Failed to load main Effekseer particle file %s.", this.effectFileData.fileHandle.toString());
+                        throw new Exception("Failed to load main Effekseer particle file " + this.effectFileData.fileHandle.toString());
                     }
 
                     // Sub assets load
-                    this.loadSubAssetsIntoEffect(effekseerManagerCore, effekseerEffectCore, magnification);
+                    this.setSubAssetsInEffect(effekseerEffectCore);
                 }
             }
             catch (Exception e) {
                 e.printStackTrace();
             }
         }
+
+        //endregion
     }
 
     /**
@@ -423,16 +460,19 @@ public class EffekseerParticleAssetLoader extends AsynchronousAssetLoader<Effeks
         }
 
         // TODO sound
+
     }
 
     @Override
     public Result loadSync(AssetManager manager, String fileName, FileHandle file, Parameters parameter) {
         Result result = parameter.result;
 
-        // Send sub assets to the effect
-        result.loadSubAssetsIntoEffect(parameter.effekseerManagerCore, parameter.effekseerEffectCore, parameter.magnification);
+        // Load the sub assets needed in this effect into Effekseer
+        result.loadSubAssetsIntoEffekseer(parameter.effekseerEffectCore);
+        // Set the sub asset references needed in this effect
+        result.setSubAssetsInEffect(parameter.effekseerEffectCore);
 
-        return result;
+        return parameter.result;
     }
 
     //endregion
