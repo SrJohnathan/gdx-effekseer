@@ -236,6 +236,7 @@ static void SWIGUNUSED SWIG_JavaThrowException(JNIEnv *jenv, SWIG_JavaExceptionC
 #include "lib/EffekseerBackendCore.h"
 #include "lib/EffekseerEffectCore.h"
 #include "lib/EffekseerManagerCore.h"
+#include "lib/RefWrappers.h"
 #include "Effekseer/Dev/Cpp/Effekseer/Effekseer/Effekseer.Base.h"
 #include "Effekseer/Dev/Cpp/Effekseer/Effekseer/SIMD/Vec2f.h"
 #include "Effekseer/Dev/Cpp/Effekseer/Effekseer/SIMD/Vec3f.h"
@@ -2444,14 +2445,15 @@ SWIGEXPORT jstring JNICALL Java_io_github_srjohnathan_gdx_effekseer_core_GDXJNI_
 }
 
 
-SWIGEXPORT jboolean JNICALL Java_io_github_srjohnathan_gdx_effekseer_core_GDXJNI_EffekseerEffectCore_1LoadTexture(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_, jbyteArray jarg2, jint jarg3, jint jarg4, jint jarg5) {
-  jboolean jresult = 0 ;
+SWIGEXPORT jlong JNICALL Java_io_github_srjohnathan_gdx_effekseer_core_GDXJNI_EffekseerEffectCore_1LoadTexture(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_, jbyteArray jarg2, jint jarg3, jint jarg4, jint jarg5, jboolean jarg6) {
+  jlong jresult = 0 ;
   EffekseerEffectCore *arg1 = (EffekseerEffectCore *) 0 ;
   unsigned char *arg2 = (unsigned char *) 0 ;
   int arg3 ;
   int32_t arg4 ;
   EffekseerTextureType arg5 ;
-  bool result;
+  bool arg6 ;
+  SwigValueWrapper< TextureRefWrapper > result;
   
   (void)jenv;
   (void)jcls;
@@ -2463,13 +2465,38 @@ SWIGEXPORT jboolean JNICALL Java_io_github_srjohnathan_gdx_effekseer_core_GDXJNI
   arg3 = (int)jarg3; 
   arg4 = (int32_t)jarg4; 
   arg5 = (EffekseerTextureType)jarg5; 
-  result = (bool)(arg1)->LoadTexture((unsigned char const *)arg2,arg3,arg4,arg5);
-  jresult = (jboolean)result; 
+  arg6 = jarg6 ? true : false; 
+  result = (arg1)->LoadTexture((unsigned char const *)arg2,arg3,arg4,arg5,arg6);
+  *(TextureRefWrapper **)&jresult = new TextureRefWrapper((const TextureRefWrapper &)result); 
   {
     jenv->ReleaseByteArrayElements(jarg2, (jbyte *) arg2, 0);
   }
   
   return jresult;
+}
+
+
+SWIGEXPORT void JNICALL Java_io_github_srjohnathan_gdx_effekseer_core_GDXJNI_EffekseerEffectCore_1SetTexture(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_, jint jarg2, jint jarg3, jlong jarg4, jobject jarg4_) {
+  EffekseerEffectCore *arg1 = (EffekseerEffectCore *) 0 ;
+  int32_t arg2 ;
+  EffekseerTextureType arg3 ;
+  SwigValueWrapper< TextureRefWrapper > arg4 ;
+  TextureRefWrapper *argp4 ;
+  
+  (void)jenv;
+  (void)jcls;
+  (void)jarg1_;
+  (void)jarg4_;
+  arg1 = *(EffekseerEffectCore **)&jarg1; 
+  arg2 = (int32_t)jarg2; 
+  arg3 = (EffekseerTextureType)jarg3; 
+  argp4 = *(TextureRefWrapper **)&jarg4; 
+  if (!argp4) {
+    SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "Attempt to dereference null TextureRefWrapper");
+    return ;
+  }
+  arg4 = *argp4; 
+  (arg1)->SetTexture(arg2,arg3,arg4);
 }
 
 
@@ -2526,13 +2553,13 @@ SWIGEXPORT jstring JNICALL Java_io_github_srjohnathan_gdx_effekseer_core_GDXJNI_
 }
 
 
-SWIGEXPORT jboolean JNICALL Java_io_github_srjohnathan_gdx_effekseer_core_GDXJNI_EffekseerEffectCore_1LoadModel(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_, jbyteArray jarg2, jint jarg3, jint jarg4) {
-  jboolean jresult = 0 ;
+SWIGEXPORT jlong JNICALL Java_io_github_srjohnathan_gdx_effekseer_core_GDXJNI_EffekseerEffectCore_1LoadModel(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_, jbyteArray jarg2, jint jarg3, jint jarg4) {
+  jlong jresult = 0 ;
   EffekseerEffectCore *arg1 = (EffekseerEffectCore *) 0 ;
   unsigned char *arg2 = (unsigned char *) 0 ;
   int arg3 ;
   int32_t arg4 ;
-  bool result;
+  SwigValueWrapper< ModelRefWrapper > result;
   
   (void)jenv;
   (void)jcls;
@@ -2543,13 +2570,35 @@ SWIGEXPORT jboolean JNICALL Java_io_github_srjohnathan_gdx_effekseer_core_GDXJNI
   }
   arg3 = (int)jarg3; 
   arg4 = (int32_t)jarg4; 
-  result = (bool)(arg1)->LoadModel((unsigned char const *)arg2,arg3,arg4);
-  jresult = (jboolean)result; 
+  result = (arg1)->LoadModel((unsigned char const *)arg2,arg3,arg4);
+  *(ModelRefWrapper **)&jresult = new ModelRefWrapper((const ModelRefWrapper &)result); 
   {
     jenv->ReleaseByteArrayElements(jarg2, (jbyte *) arg2, 0);
   }
   
   return jresult;
+}
+
+
+SWIGEXPORT void JNICALL Java_io_github_srjohnathan_gdx_effekseer_core_GDXJNI_EffekseerEffectCore_1SetModel(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_, jint jarg2, jlong jarg3, jobject jarg3_) {
+  EffekseerEffectCore *arg1 = (EffekseerEffectCore *) 0 ;
+  int32_t arg2 ;
+  SwigValueWrapper< ModelRefWrapper > arg3 ;
+  ModelRefWrapper *argp3 ;
+  
+  (void)jenv;
+  (void)jcls;
+  (void)jarg1_;
+  (void)jarg3_;
+  arg1 = *(EffekseerEffectCore **)&jarg1; 
+  arg2 = (int32_t)jarg2; 
+  argp3 = *(ModelRefWrapper **)&jarg3; 
+  if (!argp3) {
+    SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "Attempt to dereference null ModelRefWrapper");
+    return ;
+  }
+  arg3 = *argp3; 
+  (arg1)->SetModel(arg2,arg3);
 }
 
 
@@ -2604,13 +2653,13 @@ SWIGEXPORT jstring JNICALL Java_io_github_srjohnathan_gdx_effekseer_core_GDXJNI_
 }
 
 
-SWIGEXPORT jboolean JNICALL Java_io_github_srjohnathan_gdx_effekseer_core_GDXJNI_EffekseerEffectCore_1LoadMaterial(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_, jbyteArray jarg2, jint jarg3, jint jarg4) {
-  jboolean jresult = 0 ;
+SWIGEXPORT jlong JNICALL Java_io_github_srjohnathan_gdx_effekseer_core_GDXJNI_EffekseerEffectCore_1LoadMaterial(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_, jbyteArray jarg2, jint jarg3, jint jarg4) {
+  jlong jresult = 0 ;
   EffekseerEffectCore *arg1 = (EffekseerEffectCore *) 0 ;
   unsigned char *arg2 = (unsigned char *) 0 ;
   int arg3 ;
   int32_t arg4 ;
-  bool result;
+  SwigValueWrapper< MaterialRefWrapper > result;
   
   (void)jenv;
   (void)jcls;
@@ -2621,13 +2670,35 @@ SWIGEXPORT jboolean JNICALL Java_io_github_srjohnathan_gdx_effekseer_core_GDXJNI
   }
   arg3 = (int)jarg3; 
   arg4 = (int32_t)jarg4; 
-  result = (bool)(arg1)->LoadMaterial((unsigned char const *)arg2,arg3,arg4);
-  jresult = (jboolean)result; 
+  result = (arg1)->LoadMaterial((unsigned char const *)arg2,arg3,arg4);
+  *(MaterialRefWrapper **)&jresult = new MaterialRefWrapper((const MaterialRefWrapper &)result); 
   {
     jenv->ReleaseByteArrayElements(jarg2, (jbyte *) arg2, 0);
   }
   
   return jresult;
+}
+
+
+SWIGEXPORT void JNICALL Java_io_github_srjohnathan_gdx_effekseer_core_GDXJNI_EffekseerEffectCore_1SetMaterial(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_, jint jarg2, jlong jarg3, jobject jarg3_) {
+  EffekseerEffectCore *arg1 = (EffekseerEffectCore *) 0 ;
+  int32_t arg2 ;
+  SwigValueWrapper< MaterialRefWrapper > arg3 ;
+  MaterialRefWrapper *argp3 ;
+  
+  (void)jenv;
+  (void)jcls;
+  (void)jarg1_;
+  (void)jarg3_;
+  arg1 = *(EffekseerEffectCore **)&jarg1; 
+  arg2 = (int32_t)jarg2; 
+  argp3 = *(MaterialRefWrapper **)&jarg3; 
+  if (!argp3) {
+    SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "Attempt to dereference null MaterialRefWrapper");
+    return ;
+  }
+  arg3 = *argp3; 
+  (arg1)->SetMaterial(arg2,arg3);
 }
 
 
@@ -3678,6 +3749,120 @@ SWIGEXPORT void JNICALL Java_io_github_srjohnathan_gdx_effekseer_core_GDXJNI_Eff
     return ;
   } 
   (arg1)->DrawCombined((Effekseer::Manager::DrawParameter const &)*arg2);
+}
+
+
+SWIGEXPORT void JNICALL Java_io_github_srjohnathan_gdx_effekseer_core_GDXJNI_TextureRefWrapper_1hasRef_1set(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_, jboolean jarg2) {
+  TextureRefWrapper *arg1 = (TextureRefWrapper *) 0 ;
+  bool arg2 ;
+  
+  (void)jenv;
+  (void)jcls;
+  (void)jarg1_;
+  arg1 = *(TextureRefWrapper **)&jarg1; 
+  arg2 = jarg2 ? true : false; 
+  if (arg1) (arg1)->hasRef = arg2;
+}
+
+
+SWIGEXPORT jboolean JNICALL Java_io_github_srjohnathan_gdx_effekseer_core_GDXJNI_TextureRefWrapper_1hasRef_1get(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_) {
+  jboolean jresult = 0 ;
+  TextureRefWrapper *arg1 = (TextureRefWrapper *) 0 ;
+  bool result;
+  
+  (void)jenv;
+  (void)jcls;
+  (void)jarg1_;
+  arg1 = *(TextureRefWrapper **)&jarg1; 
+  result = (bool) ((arg1)->hasRef);
+  jresult = (jboolean)result; 
+  return jresult;
+}
+
+
+SWIGEXPORT void JNICALL Java_io_github_srjohnathan_gdx_effekseer_core_GDXJNI_delete_1TextureRefWrapper(JNIEnv *jenv, jclass jcls, jlong jarg1) {
+  TextureRefWrapper *arg1 = (TextureRefWrapper *) 0 ;
+  
+  (void)jenv;
+  (void)jcls;
+  arg1 = *(TextureRefWrapper **)&jarg1; 
+  delete arg1;
+}
+
+
+SWIGEXPORT void JNICALL Java_io_github_srjohnathan_gdx_effekseer_core_GDXJNI_ModelRefWrapper_1hasRef_1set(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_, jboolean jarg2) {
+  ModelRefWrapper *arg1 = (ModelRefWrapper *) 0 ;
+  bool arg2 ;
+  
+  (void)jenv;
+  (void)jcls;
+  (void)jarg1_;
+  arg1 = *(ModelRefWrapper **)&jarg1; 
+  arg2 = jarg2 ? true : false; 
+  if (arg1) (arg1)->hasRef = arg2;
+}
+
+
+SWIGEXPORT jboolean JNICALL Java_io_github_srjohnathan_gdx_effekseer_core_GDXJNI_ModelRefWrapper_1hasRef_1get(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_) {
+  jboolean jresult = 0 ;
+  ModelRefWrapper *arg1 = (ModelRefWrapper *) 0 ;
+  bool result;
+  
+  (void)jenv;
+  (void)jcls;
+  (void)jarg1_;
+  arg1 = *(ModelRefWrapper **)&jarg1; 
+  result = (bool) ((arg1)->hasRef);
+  jresult = (jboolean)result; 
+  return jresult;
+}
+
+
+SWIGEXPORT void JNICALL Java_io_github_srjohnathan_gdx_effekseer_core_GDXJNI_delete_1ModelRefWrapper(JNIEnv *jenv, jclass jcls, jlong jarg1) {
+  ModelRefWrapper *arg1 = (ModelRefWrapper *) 0 ;
+  
+  (void)jenv;
+  (void)jcls;
+  arg1 = *(ModelRefWrapper **)&jarg1; 
+  delete arg1;
+}
+
+
+SWIGEXPORT void JNICALL Java_io_github_srjohnathan_gdx_effekseer_core_GDXJNI_MaterialRefWrapper_1hasRef_1set(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_, jboolean jarg2) {
+  MaterialRefWrapper *arg1 = (MaterialRefWrapper *) 0 ;
+  bool arg2 ;
+  
+  (void)jenv;
+  (void)jcls;
+  (void)jarg1_;
+  arg1 = *(MaterialRefWrapper **)&jarg1; 
+  arg2 = jarg2 ? true : false; 
+  if (arg1) (arg1)->hasRef = arg2;
+}
+
+
+SWIGEXPORT jboolean JNICALL Java_io_github_srjohnathan_gdx_effekseer_core_GDXJNI_MaterialRefWrapper_1hasRef_1get(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_) {
+  jboolean jresult = 0 ;
+  MaterialRefWrapper *arg1 = (MaterialRefWrapper *) 0 ;
+  bool result;
+  
+  (void)jenv;
+  (void)jcls;
+  (void)jarg1_;
+  arg1 = *(MaterialRefWrapper **)&jarg1; 
+  result = (bool) ((arg1)->hasRef);
+  jresult = (jboolean)result; 
+  return jresult;
+}
+
+
+SWIGEXPORT void JNICALL Java_io_github_srjohnathan_gdx_effekseer_core_GDXJNI_delete_1MaterialRefWrapper(JNIEnv *jenv, jclass jcls, jlong jarg1) {
+  MaterialRefWrapper *arg1 = (MaterialRefWrapper *) 0 ;
+  
+  (void)jenv;
+  (void)jcls;
+  arg1 = *(MaterialRefWrapper **)&jarg1; 
+  delete arg1;
 }
 
 

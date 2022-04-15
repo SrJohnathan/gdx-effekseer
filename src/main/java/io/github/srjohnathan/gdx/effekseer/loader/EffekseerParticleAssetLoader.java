@@ -9,9 +9,9 @@ import com.badlogic.gdx.assets.loaders.AsynchronousAssetLoader;
 import com.badlogic.gdx.assets.loaders.FileHandleResolver;
 import com.badlogic.gdx.files.FileHandle;
 import com.badlogic.gdx.utils.Array;
-import io.github.srjohnathan.gdx.effekseer.core.EffekseerEffectCore;
-import io.github.srjohnathan.gdx.effekseer.core.EffekseerManagerCore;
-import io.github.srjohnathan.gdx.effekseer.core.EffekseerTextureType;
+import com.badlogic.gdx.utils.Pool;
+import io.github.srjohnathan.gdx.effekseer.core.*;
+
 import java.util.Random;
 
 /**
@@ -109,7 +109,9 @@ public class EffekseerParticleAssetLoader extends AsynchronousAssetLoader<Effeks
      * @return The {@link AssetDescriptor} to use for the main effect file.
      */
     public static AssetDescriptor<Result> getMainFileAssetDescriptor(FileHandle effectFileHandle, EffekseerManagerCore effekseerManagerCore, EffekseerEffectCore effekseerEffectCore, float magnification) throws IllegalStateException {
-        return new AssetDescriptor<Result>(new FileHandle(prefixForMainFilePath + effectFileHandle.path()), Result.class, new Parameters(effectFileHandle, effekseerManagerCore, effekseerEffectCore, magnification));
+        Parameters parameters = obtainParametersInstance();
+        parameters.set(effectFileHandle, effekseerManagerCore, effekseerEffectCore, magnification);
+        return new AssetDescriptor<Result>(new FileHandle(prefixForMainFilePath + effectFileHandle.path()), Result.class, parameters);
     }
 
     /**
@@ -129,15 +131,31 @@ public class EffekseerParticleAssetLoader extends AsynchronousAssetLoader<Effeks
      * Parameters needed to load EffekseerParticleLoader.
      */
     public static class Parameters extends AssetLoaderParameters<Result> {
-        public final FileHandle effectFileHandle;
-        public final EffekseerManagerCore effekseerManagerCore;
-        public final EffekseerEffectCore effekseerEffectCore;
-        public final float magnification;
-        public Parameters(FileHandle effectFileHandle, EffekseerManagerCore effekseerManagerCore, EffekseerEffectCore effekseerEffectCore, float magnification) {
+        public FileHandle effectFileHandle;
+        public EffekseerManagerCore effekseerManagerCore;
+        public EffekseerEffectCore effekseerEffectCore;
+        public float magnification;
+        private Result result = null;
+
+        Parameters() { }
+
+        void set(FileHandle effectFileHandle, EffekseerManagerCore effekseerManagerCore, EffekseerEffectCore effekseerEffectCore, float magnification) {
             this.effectFileHandle = effectFileHandle;
             this.effekseerEffectCore = effekseerEffectCore;
             this.effekseerManagerCore = effekseerManagerCore;
             this.magnification = magnification;
+            this.result = null;
+        }
+
+        public void resetWithoutRecycling() {
+            this.set(null, null, null, 0f);
+            this.loadedCallback = null;
+        }
+
+        public void recycle() {
+            synchronized (parametersPool) {
+                parametersPool.free(this);
+            }
         }
     }
 
@@ -168,37 +186,83 @@ public class EffekseerParticleAssetLoader extends AsynchronousAssetLoader<Effeks
         private Array<EffekseerParticleSubAssetLoader.Result> models;
         private Array<EffekseerParticleSubAssetLoader.Result> materials;
 
-        private void loadSubAssetsIntoEffect(EffekseerManagerCore effekseerManagerCore, EffekseerEffectCore effekseerEffectCore, float magnification) {
-            // Textures load
+        //region Private Methods
+
+        private void loadSubAssetsIntoEffekseer(EffekseerEffectCore effekseerEffectCore, EffekseerIsMipMapEnabledDecider effekseerIsMipMapEnabledDecider) {
+            // Load textures that haven't already been loaded into Effekseer
             for (LoadedTextureResult textureAsset : this.textures) {
-                if (!effekseerEffectCore.LoadTexture(textureAsset.assetData.data, textureAsset.assetData.data.length, textureAsset.textureIndex, textureAsset.textureType)) {
-                    System.out.printf("Failed to load Effekseer particle texture file %s.\n", textureAsset.assetData.fileHandle.toString());
+                if (textureAsset.assetData.referenceWrapper == null) {
+                    // First get if mipmaps should be used for the current texture asset
+                    boolean shouldUseMipMaps;
+                    if (effekseerIsMipMapEnabledDecider == null) {
+                        shouldUseMipMaps = true;
+                    }
+                    else {
+                        shouldUseMipMaps = effekseerIsMipMapEnabledDecider.isMipMapEnabledForTextureFile(textureAsset.assetData.fileHandle);
+                    }
+
+                    // Load into effekseer
+                    textureAsset.assetData.referenceWrapper = effekseerEffectCore.LoadTexture(textureAsset.assetData.data, textureAsset.assetData.data.length, textureAsset.textureIndex, textureAsset.textureType, shouldUseMipMaps);
+                    if (textureAsset.assetData.referenceWrapper == null || !((TextureRefWrapper)textureAsset.assetData.referenceWrapper).getHasRef()) {
+                        System.out.printf("Failed to load Effekseer particle texture file %s.\n", textureAsset.assetData.fileHandle.toString());
+                    }
                 }
+            }
+
+            // Load models that haven't already been loaded into Effekseer
+            int currentIndex = 0;
+            for (EffekseerParticleSubAssetLoader.Result modelAsset : this.models) {
+                if (modelAsset.referenceWrapper == null) {
+                    modelAsset.referenceWrapper = effekseerEffectCore.LoadModel(modelAsset.data, modelAsset.data.length, currentIndex);
+                    if (modelAsset.referenceWrapper == null || !((TextureRefWrapper)modelAsset.referenceWrapper).getHasRef()) {
+                        System.out.printf("Failed to load Effekseer particle model file %s.\n", modelAsset.fileHandle.toString());
+                    }
+                }
+                currentIndex += 1;
+            }
+
+            // Load materials that haven't already been loaded into Effekseer
+            currentIndex = 0;
+            for (EffekseerParticleSubAssetLoader.Result materialAsset : this.materials) {
+                if (materialAsset.referenceWrapper == null) {
+                    materialAsset.referenceWrapper = effekseerEffectCore.LoadModel(materialAsset.data, materialAsset.data.length, currentIndex);
+                    if (materialAsset.referenceWrapper == null || !((TextureRefWrapper)materialAsset.referenceWrapper).getHasRef()) {
+                        System.out.printf("Failed to load Effekseer particle material file %s.\n", materialAsset.fileHandle.toString());
+                    }
+                }
+                currentIndex += 1;
+            }
+        }
+
+        private void setSubAssetsInEffect(EffekseerEffectCore effekseerEffectCore) {
+            // Textures set
+            for (LoadedTextureResult textureAsset : this.textures) {
+                effekseerEffectCore.SetTexture(textureAsset.textureIndex, textureAsset.textureType, (TextureRefWrapper)textureAsset.assetData.referenceWrapper);
             }
 
             // Models load
             int currentIndex = 0;
             for (EffekseerParticleSubAssetLoader.Result modelAsset : this.models) {
-                if (!effekseerEffectCore.LoadModel(modelAsset.data, modelAsset.data.length, currentIndex)) {
-                    System.out.printf("Failed to load Effekseer particle model file %s.\n", modelAsset.fileHandle.toString());
-                }
+                effekseerEffectCore.SetModel(currentIndex, (ModelRefWrapper) modelAsset.referenceWrapper);
                 currentIndex += 1;
             }
 
             // Materials load
             currentIndex = 0;
             for (EffekseerParticleSubAssetLoader.Result materialAsset : this.materials) {
-                if (!effekseerEffectCore.LoadMaterial(materialAsset.data, materialAsset.data.length, currentIndex)) {
-                    System.out.printf("Failed to load Effekseer particle material file %s.\n", materialAsset.fileHandle.toString());
-                }
+                effekseerEffectCore.SetMaterial(currentIndex, (MaterialRefWrapper) materialAsset.referenceWrapper);
                 currentIndex += 1;
             }
 
             // TODO sound
         }
 
+        //endregion
+
+        //region Public Methods
+
         /**
-         * Loads the effect files data in this result instance into the given {@link EffekseerManagerCore}.
+         * Loads the effect sub asset references in this result instance into the given {@link EffekseerManagerCore}.
          */
         public void loadInfoEffect(EffekseerManagerCore effekseerManagerCore, EffekseerEffectCore effekseerEffectCore, float magnification) {
             // Check that the manager and effect cores are available
@@ -213,17 +277,19 @@ public class EffekseerParticleAssetLoader extends AsynchronousAssetLoader<Effeks
                 if (this.loadedWithEffekseerEffectCore != effekseerEffectCore) {
                     // Main file load
                     if (!effekseerEffectCore.load(effekseerManagerCore, this.effectFileData.data, this.effectFileData.data.length, magnification)) {
-                        System.out.printf("Failed to load main Effekseer particle file %s.", this.effectFileData.fileHandle.toString());
+                        throw new Exception("Failed to load main Effekseer particle file " + this.effectFileData.fileHandle.toString());
                     }
 
                     // Sub assets load
-                    this.loadSubAssetsIntoEffect(effekseerManagerCore, effekseerEffectCore, magnification);
+                    this.setSubAssetsInEffect(effekseerEffectCore);
                 }
             }
             catch (Exception e) {
                 e.printStackTrace();
             }
         }
+
+        //endregion
     }
 
     /**
@@ -233,8 +299,6 @@ public class EffekseerParticleAssetLoader extends AsynchronousAssetLoader<Effeks
         // Request load
         AssetDescriptor<Result> mainAssetDescriptor = getMainFileAssetDescriptor(effectFileHandle, effekseerManagerCore, effekseerEffectCore, magnification);
 
-
-
         assetManager.load(mainAssetDescriptor);
 
         // Wait for load to finish
@@ -243,6 +307,31 @@ public class EffekseerParticleAssetLoader extends AsynchronousAssetLoader<Effeks
         // Now send the loaded file data to the effect if it wasn't already sent
         Result loadedData = assetManager.get(mainAssetDescriptor);
         loadedData.loadInfoEffect(effekseerManagerCore, effekseerEffectCore, magnification);
+
+        // Recycle the obtained parameters object
+        ((Parameters)mainAssetDescriptor.params).recycle();
+    }
+
+    //endregion
+
+    //region Pool
+
+    private static Pool<Parameters> parametersPool = new Pool<Parameters>(16, 100) {
+        @Override
+        protected Parameters newObject() {
+            return new Parameters();
+        }
+
+        @Override
+        protected void reset(Parameters object) {
+            object.resetWithoutRecycling();
+        }
+    };
+
+    public static Parameters obtainParametersInstance() {
+        synchronized (parametersPool) {
+            return parametersPool.obtain();
+        }
     }
 
     //endregion
@@ -259,16 +348,24 @@ public class EffekseerParticleAssetLoader extends AsynchronousAssetLoader<Effeks
     private final EffekseerParticleSubAssetLoader subAssetLoader = new EffekseerParticleSubAssetLoader(null);
 
     /**
-     * Result being built in the async method and returned from the sync method.
+     * Use this to determine if a texture should use mipmaps.
      */
-    private Result result;
+    private final EffekseerIsMipMapEnabledDecider effekseerIsMipMapEnabledDecider;
 
     //endregion
 
     //region Constructors
 
-    public EffekseerParticleAssetLoader(FileHandleResolver fileHandleResolver) {
+    /**
+     * @param effekseerIsMipMapEnabledDecider Pass in to override if a texture should use mipmaps. If this is null, then mipmaps will always be true.
+     */
+    public EffekseerParticleAssetLoader(FileHandleResolver fileHandleResolver, EffekseerIsMipMapEnabledDecider effekseerIsMipMapEnabledDecider) {
         super(fileHandleResolver);
+        this.effekseerIsMipMapEnabledDecider = effekseerIsMipMapEnabledDecider;
+    }
+
+    public EffekseerParticleAssetLoader(FileHandleResolver fileHandleResolver) {
+        this(fileHandleResolver, null);
     }
 
     //endregion
@@ -276,8 +373,8 @@ public class EffekseerParticleAssetLoader extends AsynchronousAssetLoader<Effeks
     //region Private Methods
 
     private void cacheSubAssetInAssetManager(EffekseerParticleSubAssetLoader.Result asset, AssetManager manager) {
-        EffekseerParticleSubAssetLoader.Parameters parameters = new EffekseerParticleSubAssetLoader.Parameters();
-        parameters.alreadyLoadedResult = asset;
+        EffekseerParticleSubAssetLoader.Parameters parameters = EffekseerParticleSubAssetLoader.obtainParametersInstance();
+        parameters.loadedResult = asset;
         manager.load(getAssetDescriptorForSubAssetFileHandle(asset.fileHandle, parameters));
     }
 
@@ -299,7 +396,7 @@ public class EffekseerParticleAssetLoader extends AsynchronousAssetLoader<Effeks
         Array<AssetDescriptor> assets = new Array<>(false, 1);
 
         // Add the main file
-        assets.add(getAssetDescriptorForSubAssetFileHandle(parameter.effectFileHandle, null));
+        assets.add(getAssetDescriptorForSubAssetFileHandle(parameter.effectFileHandle, EffekseerParticleSubAssetLoader.obtainParametersInstance()));
 
         return assets;
     }
@@ -309,29 +406,21 @@ public class EffekseerParticleAssetLoader extends AsynchronousAssetLoader<Effeks
         FileHandle effectFileHandle = parameter.effectFileHandle;
         EffekseerEffectCore effekseerEffectCore = parameter.effekseerEffectCore;
 
+        // Create the result object that will be returned at the end
+        Result result = new Result(effekseerEffectCore);
+        parameter.result = result;
+
         // Load main file data into the effect instance
         EffekseerParticleSubAssetLoader.Result mainFileAsset = manager.get(getAssetDescriptorForSubAssetFileHandle(effectFileHandle, null));
+        result.effectFileData = mainFileAsset;
         parameter.effekseerEffectCore.load(parameter.effekseerManagerCore, mainFileAsset.data, mainFileAsset.data.length, parameter.magnification);
-
-        // Create the result object that will be returned at the end
-        this.result = new Result(effekseerEffectCore);
-
-        // Load main file data into the effect instance
-        if (manager.contains(effectFileHandle.path(), EffekseerParticleSubAssetLoader.Result.class)) {
-            this.result.effectFileData = manager.get(effectFileHandle.path(), EffekseerParticleSubAssetLoader.Result.class);
-        }
-        else {
-            this.subAssetLoader.loadAsync(manager, "", effectFileHandle, null);
-            this.result.effectFileData = this.subAssetLoader.loadSync(manager, "", effectFileHandle, null);
-        }
-        parameter.effekseerEffectCore.load(parameter.effekseerManagerCore, this.result.effectFileData.data, this.result.effectFileData.data.length, parameter.magnification);
 
         // Load and add the textures
         int texturesCount = 0;
         for (EffekseerTextureType textureType : textureTypes) {
             texturesCount += effekseerEffectCore.GetTextureCount(textureType);
         }
-        this.result.textures = new Array<>(false, texturesCount);
+        result.textures = new Array<>(false, texturesCount);
         for (EffekseerTextureType textureType : textureTypes) {
             int currentTextureCount = effekseerEffectCore.GetTextureCount(textureType);
             for (int i = 0; i < currentTextureCount; i++) {
@@ -339,45 +428,57 @@ public class EffekseerParticleAssetLoader extends AsynchronousAssetLoader<Effeks
                 FileHandle textureFileHandle = getPathAsFileHandle(path, effectFileHandle.type());
                 if (manager.contains(textureFileHandle.path(), EffekseerParticleSubAssetLoader.Result.class)) {
                     EffekseerParticleSubAssetLoader.Result loadedAsset = manager.get(textureFileHandle.path(), EffekseerParticleSubAssetLoader.Result.class);
-                    this.result.textures.add(new LoadedTextureResult(textureType, i, loadedAsset));
+                    result.textures.add(new LoadedTextureResult(textureType, i, loadedAsset));
                 }
                 else {
-                    this.subAssetLoader.loadAsync(manager, "", textureFileHandle, null);
-                    EffekseerParticleSubAssetLoader.Result loadedAsset = this.subAssetLoader.loadSync(manager, "", textureFileHandle, null);
-                    this.result.textures.add(new LoadedTextureResult(textureType, i, loadedAsset));
+                    // Load asset
+                    EffekseerParticleSubAssetLoader.Parameters subAssetParam = EffekseerParticleSubAssetLoader.obtainParametersInstance();
+                    this.subAssetLoader.loadAsync(manager, "", textureFileHandle, subAssetParam);
+                    EffekseerParticleSubAssetLoader.Result loadedAsset = this.subAssetLoader.loadSync(manager, "", textureFileHandle, subAssetParam);
+                    // Cache asset
+                    this.cacheSubAssetInAssetManager(loadedAsset, manager);
+                    result.textures.add(new LoadedTextureResult(textureType, i, loadedAsset));
                 }
             }
         }
 
         // Add the models
         int modelCount = effekseerEffectCore.GetModelCount();
-        this.result.models = new Array<>(false, modelCount);
+        result.models = new Array<>(false, modelCount);
         for (int i = 0; i < modelCount; i++) {
             String path = getModelPath(effectFileHandle, i, effekseerEffectCore);
             FileHandle modelFileHandle = getPathAsFileHandle(path, effectFileHandle.type());
             if (manager.contains(modelFileHandle.path(), EffekseerParticleSubAssetLoader.Result.class)) {
-                this.result.models.add(manager.get(modelFileHandle.path(), EffekseerParticleSubAssetLoader.Result.class));
+                result.models.add(manager.get(modelFileHandle.path(), EffekseerParticleSubAssetLoader.Result.class));
             }
             else {
-                this.subAssetLoader.loadAsync(manager, "", modelFileHandle, null);
-                EffekseerParticleSubAssetLoader.Result loadedAsset = this.subAssetLoader.loadSync(manager, "", modelFileHandle, null);
-                this.result.models.add(loadedAsset);
+                // Load asset
+                EffekseerParticleSubAssetLoader.Parameters subAssetParam = EffekseerParticleSubAssetLoader.obtainParametersInstance();
+                this.subAssetLoader.loadAsync(manager, "", modelFileHandle, subAssetParam);
+                EffekseerParticleSubAssetLoader.Result loadedAsset = this.subAssetLoader.loadSync(manager, "", modelFileHandle, subAssetParam);
+                // Cache asset
+                this.cacheSubAssetInAssetManager(loadedAsset, manager);
+                result.models.add(loadedAsset);
             }
         }
 
         // Add the materials
         int materialCount = effekseerEffectCore.GetMaterialCount();
-        this.result.materials = new Array<>(false, materialCount);
+        result.materials = new Array<>(false, materialCount);
         for (int i = 0; i < materialCount; i++) {
             String path = getMaterialPath(effectFileHandle, i, effekseerEffectCore);
             FileHandle materialFileHandle = getPathAsFileHandle(path, effectFileHandle.type());
             if (manager.contains(materialFileHandle.path(), EffekseerParticleSubAssetLoader.Result.class)) {
-                this.result.materials.add(manager.get(materialFileHandle.path(), EffekseerParticleSubAssetLoader.Result.class));
+                result.materials.add(manager.get(materialFileHandle.path(), EffekseerParticleSubAssetLoader.Result.class));
             }
             else {
-                this.subAssetLoader.loadAsync(manager, "", materialFileHandle, null);
-                EffekseerParticleSubAssetLoader.Result loadedAsset = this.subAssetLoader.loadSync(manager, "", materialFileHandle, null);
-                this.result.materials.add(loadedAsset);
+                // Load asset
+                EffekseerParticleSubAssetLoader.Parameters subAssetParam = EffekseerParticleSubAssetLoader.obtainParametersInstance();
+                this.subAssetLoader.loadAsync(manager, "", materialFileHandle, subAssetParam);
+                EffekseerParticleSubAssetLoader.Result loadedAsset = this.subAssetLoader.loadSync(manager, "", materialFileHandle, subAssetParam);
+                // Cache asset
+                this.cacheSubAssetInAssetManager(loadedAsset, manager);
+                result.materials.add(loadedAsset);
             }
         }
 
@@ -387,25 +488,14 @@ public class EffekseerParticleAssetLoader extends AsynchronousAssetLoader<Effeks
 
     @Override
     public Result loadSync(AssetManager manager, String fileName, FileHandle file, Parameters parameter) {
-        // Send sub assets to the effect
-        this.result.loadSubAssetsIntoEffect(parameter.effekseerManagerCore, parameter.effekseerEffectCore, parameter.magnification);
+        Result result = parameter.result;
 
-        // Now cache each sub asset into the given AssetManager because the dependencies list did not have it, and thus it
-        // doesn't exist in the AssetManager. This is done so that multiple effects that reference the same file don't have
-        // to be loaded multiple times.
-        this.cacheSubAssetInAssetManager(this.result.effectFileData, manager);
-        for (LoadedTextureResult asset : this.result.textures) {
-            this.cacheSubAssetInAssetManager(asset.assetData, manager);
-        }
-        for (EffekseerParticleSubAssetLoader.Result asset : this.result.models) {
-            this.cacheSubAssetInAssetManager(asset, manager);
-        }
-        for (EffekseerParticleSubAssetLoader.Result asset : this.result.materials) {
-            this.cacheSubAssetInAssetManager(asset, manager);
-        }
-        // TODO sound
+        // Load the sub assets needed in this effect into Effekseer
+        result.loadSubAssetsIntoEffekseer(parameter.effekseerEffectCore, this.effekseerIsMipMapEnabledDecider);
+        // Set the sub asset references needed in this effect
+        result.setSubAssetsInEffect(parameter.effekseerEffectCore);
 
-        return this.result;
+        return parameter.result;
     }
 
     //endregion

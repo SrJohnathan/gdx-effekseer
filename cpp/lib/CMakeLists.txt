@@ -10,6 +10,8 @@ add_library(
     EffekseerBackendCore.cpp
     EffekseerEffectCore.h
     EffekseerEffectCore.cpp
+    RefWrappers.h
+    RefWrappers.cpp
     EffekseerManagerCore.h
     EffekseerManagerCore.cpp
     EffekseerSettingCore.h

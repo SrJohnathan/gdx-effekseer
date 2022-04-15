@@ -34,7 +34,7 @@ public class EffekseerParticle implements Disposable {
 
     private AssetManager loadingInAssetManager;
 
-    private EffekseerFieldWrapper<EffekseerNode> rootNode = new EffekseerFieldWrapper<EffekseerNode>(new Function<Void, EffekseerNode>() {
+    private EffekseerFieldWrapper<EffekseerNode> rootNode = new EffekseerFieldWrapper<>(new Function<Void, EffekseerNode>() {
         @Override
         public EffekseerNode apply(Void unused) {
             return new EffekseerNodeRoot(EffekseerParticle.this, effekseerEffectCore.GetRootNode());
@@ -231,6 +231,9 @@ public class EffekseerParticle implements Disposable {
             if (loadedListener != null) {
                 loadedListener.onEffectLoaded();
             }
+
+            // Recycle the parameter instance
+            ((EffekseerParticleAssetLoader.Parameters)assetDescriptor.params).recycle();
         };
 
         // Now start the load

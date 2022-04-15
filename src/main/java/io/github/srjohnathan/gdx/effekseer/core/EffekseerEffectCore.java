@@ -64,8 +64,12 @@ public class EffekseerEffectCore {
     return GDXJNI.EffekseerEffectCore_GetTexturePath(swigCPtr, this, index, type.swigValue());
   }
 
-  public boolean LoadTexture(byte[] data, int len, int index, EffekseerTextureType type) {
-    return GDXJNI.EffekseerEffectCore_LoadTexture(swigCPtr, this, data, len, index, type.swigValue());
+  public TextureRefWrapper LoadTexture(byte[] data, int len, int index, EffekseerTextureType type, boolean isMipMapEnabled) {
+    return new TextureRefWrapper(GDXJNI.EffekseerEffectCore_LoadTexture(swigCPtr, this, data, len, index, type.swigValue(), isMipMapEnabled), true);
+  }
+
+  public void SetTexture(int index, EffekseerTextureType type, TextureRefWrapper texture) {
+    GDXJNI.EffekseerEffectCore_SetTexture(swigCPtr, this, index, type.swigValue(), TextureRefWrapper.getCPtr(texture), texture);
   }
 
   public boolean HasTextureLoaded(int index, EffekseerTextureType type) {
@@ -80,8 +84,12 @@ public class EffekseerEffectCore {
     return GDXJNI.EffekseerEffectCore_GetModelPath(swigCPtr, this, index);
   }
 
-  public boolean LoadModel(byte[] data, int len, int index) {
-    return GDXJNI.EffekseerEffectCore_LoadModel(swigCPtr, this, data, len, index);
+  public ModelRefWrapper LoadModel(byte[] data, int len, int index) {
+    return new ModelRefWrapper(GDXJNI.EffekseerEffectCore_LoadModel(swigCPtr, this, data, len, index), true);
+  }
+
+  public void SetModel(int index, ModelRefWrapper model) {
+    GDXJNI.EffekseerEffectCore_SetModel(swigCPtr, this, index, ModelRefWrapper.getCPtr(model), model);
   }
 
   public boolean HasModelLoaded(int index) {
@@ -96,8 +104,12 @@ public class EffekseerEffectCore {
     return GDXJNI.EffekseerEffectCore_GetMaterialPath(swigCPtr, this, index);
   }
 
-  public boolean LoadMaterial(byte[] data, int len, int index) {
-    return GDXJNI.EffekseerEffectCore_LoadMaterial(swigCPtr, this, data, len, index);
+  public MaterialRefWrapper LoadMaterial(byte[] data, int len, int index) {
+    return new MaterialRefWrapper(GDXJNI.EffekseerEffectCore_LoadMaterial(swigCPtr, this, data, len, index), true);
+  }
+
+  public void SetMaterial(int index, MaterialRefWrapper material) {
+    GDXJNI.EffekseerEffectCore_SetMaterial(swigCPtr, this, index, MaterialRefWrapper.getCPtr(material), material);
   }
 
   public boolean HasMaterialLoaded(int index) {

@@ -6,6 +6,7 @@
 #include "lib/EffekseerBackendCore.h"
 #include "lib/EffekseerEffectCore.h"
 #include "lib/EffekseerManagerCore.h"
+#include "lib/RefWrappers.h"
 #include "Effekseer/Dev/Cpp/Effekseer/Effekseer/Effekseer.Base.h"
 #include "Effekseer/Dev/Cpp/Effekseer/Effekseer/SIMD/Vec2f.h"
 #include "Effekseer/Dev/Cpp/Effekseer/Effekseer/SIMD/Vec3f.h"
@@ -85,6 +86,7 @@ struct Effekseer::Color;
 %include "/cpp/lib/EffekseerBackendCore.h"
 %include "/cpp/lib/EffekseerEffectCore.h"
 %include "/cpp/lib/EffekseerManagerCore.h"
+%include "/cpp/lib/RefWrappers.h"
 
 %include "extensions.i"
 
