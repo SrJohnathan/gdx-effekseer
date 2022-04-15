@@ -214,7 +214,7 @@ public class EffekseerParticleAssetLoader extends AsynchronousAssetLoader<Effeks
             for (EffekseerParticleSubAssetLoader.Result modelAsset : this.models) {
                 if (modelAsset.referenceWrapper == null) {
                     modelAsset.referenceWrapper = effekseerEffectCore.LoadModel(modelAsset.data, modelAsset.data.length, currentIndex);
-                    if (modelAsset.referenceWrapper == null || !((TextureRefWrapper)modelAsset.referenceWrapper).getHasRef()) {
+                    if (modelAsset.referenceWrapper == null || !((ModelRefWrapper)modelAsset.referenceWrapper).getHasRef()) {
                         System.out.printf("Failed to load Effekseer particle model file %s.\n", modelAsset.fileHandle.toString());
                     }
                 }
@@ -225,8 +225,8 @@ public class EffekseerParticleAssetLoader extends AsynchronousAssetLoader<Effeks
             currentIndex = 0;
             for (EffekseerParticleSubAssetLoader.Result materialAsset : this.materials) {
                 if (materialAsset.referenceWrapper == null) {
-                    materialAsset.referenceWrapper = effekseerEffectCore.LoadModel(materialAsset.data, materialAsset.data.length, currentIndex);
-                    if (materialAsset.referenceWrapper == null || !((TextureRefWrapper)materialAsset.referenceWrapper).getHasRef()) {
+                    materialAsset.referenceWrapper = effekseerEffectCore.LoadMaterial(materialAsset.data, materialAsset.data.length, currentIndex);
+                    if (materialAsset.referenceWrapper == null || !((MaterialRefWrapper)materialAsset.referenceWrapper).getHasRef()) {
                         System.out.printf("Failed to load Effekseer particle material file %s.\n", materialAsset.fileHandle.toString());
                     }
                 }
