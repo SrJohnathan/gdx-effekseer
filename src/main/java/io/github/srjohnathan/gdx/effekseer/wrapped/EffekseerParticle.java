@@ -223,7 +223,7 @@ public class EffekseerParticle implements Disposable {
             loadingInAssetManager = null;
             // Load the data into the effect
             EffekseerParticleAssetLoader.Result loadedData = assetManager1.get(assetDescriptor);
-            loadedData.loadInfoEffect(manager.effekseerManagerCore, effekseerEffectCore, magnification);
+            loadFromEffectAssetResult(loadedData);
 
             // Call listener
             if (loadedListener != null) {
@@ -235,6 +235,13 @@ public class EffekseerParticle implements Disposable {
         };
 
         return assetDescriptor;
+    }
+
+    /**
+     * Loads the particle loaded effect data ({@link EffekseerParticleAssetLoader.Result}) into this instance.
+     */
+    public void loadFromEffectAssetResult(EffekseerParticleAssetLoader.Result result) {
+        result.loadInfoEffect(manager.effekseerManagerCore, effekseerEffectCore, magnification);
     }
 
     /**
