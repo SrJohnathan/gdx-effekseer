@@ -210,16 +210,14 @@ public class EffekseerParticle implements Disposable {
     //region Loading
 
     /**
-     * Asynchronously loads the given effect file. An optional {@link LoadedListener} can be given for listening to when the
-     * effect has finished loading.
+     * @return The {@link AssetDescriptor} used for loading the particle effect at the given {@link FileHandle} into this instance.
+     * The {@link AssetDescriptor} returned will have its {@link com.badlogic.gdx.assets.AssetLoaderParameters#loadedCallback} set.
      */
-    public void asyncLoad(AssetManager assetManager, FileHandle effectFileHandle, LoadedListener loadedListener) {
-        // Track the asset manager for updating load state
-        this.loadingInAssetManager = assetManager;
-
+    public AssetDescriptor<EffekseerParticleAssetLoader.Result> getAssetDescriptorWithoutLoading(FileHandle effectFileHandle, LoadedListener loadedListener) {
         // Create the asset descriptor for sending to the given AssetManager
         AssetDescriptor<EffekseerParticleAssetLoader.Result> assetDescriptor = EffekseerParticleAssetLoader.getMainFileAssetDescriptor(effectFileHandle, this.manager.effekseerManagerCore, this.effekseerEffectCore, this.magnification);
-        // Listen for finish loading
+
+        // Listen for finished loading
         assetDescriptor.params.loadedCallback = (assetManager1, fileName, type) -> {
             // Reset the tracked asset manager
             loadingInAssetManager = null;
@@ -235,6 +233,19 @@ public class EffekseerParticle implements Disposable {
             // Recycle the parameter instance
             ((EffekseerParticleAssetLoader.Parameters)assetDescriptor.params).recycle();
         };
+
+        return assetDescriptor;
+    }
+
+    /**
+     * Asynchronously loads the given effect file. An optional {@link LoadedListener} can be given for listening to when the
+     * effect has finished loading.
+     */
+    public void asyncLoad(AssetManager assetManager, FileHandle effectFileHandle, LoadedListener loadedListener) {
+        // Track the asset manager for updating load state
+        this.loadingInAssetManager = assetManager;
+
+        AssetDescriptor<EffekseerParticleAssetLoader.Result> assetDescriptor = this.getAssetDescriptorWithoutLoading(effectFileHandle, loadedListener);
 
         // Now start the load
         assetManager.load(assetDescriptor);
