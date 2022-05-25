@@ -9,6 +9,7 @@ import com.badlogic.gdx.assets.loaders.AsynchronousAssetLoader;
 import com.badlogic.gdx.assets.loaders.FileHandleResolver;
 import com.badlogic.gdx.files.FileHandle;
 import com.badlogic.gdx.utils.Array;
+import com.badlogic.gdx.utils.ObjectMap;
 import com.badlogic.gdx.utils.Pool;
 import io.github.srjohnathan.gdx.effekseer.core.*;
 
@@ -119,6 +120,42 @@ public class EffekseerParticleAssetLoader extends AsynchronousAssetLoader<Effeks
      */
     private static AssetDescriptor<EffekseerParticleSubAssetLoader.Result> getAssetDescriptorForSubAssetFileHandle(FileHandle fileHandle, EffekseerParticleSubAssetLoader.Parameters parameters) {
         return new AssetDescriptor<>(fileHandle, EffekseerParticleSubAssetLoader.Result.class, parameters);
+    }
+
+    //endregion
+
+    //region Cache
+
+    private static ObjectMap<String, EffekseerParticleSubAssetLoader.Result> loaderCachedAssets = new ObjectMap<String, EffekseerParticleSubAssetLoader.Result>(24);
+
+    private static void cacheAssetInLoaderUntilInAssetManager(String itemPath, EffekseerParticleSubAssetLoader.Result asset) {
+        synchronized (loaderCachedAssets) {
+            loaderCachedAssets.put(itemPath, asset);
+        }
+    }
+
+    private static EffekseerParticleSubAssetLoader.Result getCachedAssetInLoaderOrAssetManager(AssetManager assetManager, String itemPath) {
+        synchronized (loaderCachedAssets) {
+            EffekseerParticleSubAssetLoader.Result loaderCachedResult = loaderCachedAssets.get(itemPath);
+            if (loaderCachedResult == null) {
+                // Get from asset manager
+                if (assetManager.contains(itemPath, EffekseerParticleSubAssetLoader.Result.class)) {
+                    return assetManager.get(itemPath, EffekseerParticleSubAssetLoader.Result.class);
+                }
+                else {
+                    return null;
+                }
+            }
+            else {
+                return loaderCachedResult;
+            }
+        }
+    }
+
+    private static void removeCacheAssetInLoader(String itemPath) {
+        synchronized (loaderCachedAssets) {
+            loaderCachedAssets.remove(itemPath);
+        }
     }
 
     //endregion
@@ -373,9 +410,26 @@ public class EffekseerParticleAssetLoader extends AsynchronousAssetLoader<Effeks
     //region Private Methods
 
     private void cacheSubAssetInAssetManager(EffekseerParticleSubAssetLoader.Result asset, AssetManager manager) {
-        EffekseerParticleSubAssetLoader.Parameters parameters = EffekseerParticleSubAssetLoader.obtainParametersInstance();
-        parameters.loadedResult = asset;
-        manager.load(getAssetDescriptorForSubAssetFileHandle(asset.fileHandle, parameters));
+        if (manager instanceof DirectAssetAdder) {
+            ((DirectAssetAdder)manager).addAssetDirectly(asset.fileHandle.path(), EffekseerParticleSubAssetLoader.Result.class, asset);
+        }
+        else {
+            // Cache the asset in memory until the AssetManager puts the asset in its state
+            cacheAssetInLoaderUntilInAssetManager(asset.fileHandle.path(), asset);
+
+            // Create the instances for loading
+            EffekseerParticleSubAssetLoader.Parameters parameters = EffekseerParticleSubAssetLoader.obtainParametersInstance();
+            parameters.loadedResult = asset;
+            parameters.loadedCallback = new AssetLoaderParameters.LoadedCallback() {
+                @Override
+                public void finishedLoading(AssetManager assetManager, String fileName, Class type) {
+                    removeCacheAssetInLoader(fileName);
+                    parameters.recycle();
+                }
+            };
+            // Start load
+            manager.load(getAssetDescriptorForSubAssetFileHandle(asset.fileHandle, parameters));
+        }
     }
 
     //endregion
@@ -426,9 +480,9 @@ public class EffekseerParticleAssetLoader extends AsynchronousAssetLoader<Effeks
             for (int i = 0; i < currentTextureCount; i++) {
                 String path = getTexturePath(effectFileHandle, i, textureType, effekseerEffectCore);
                 FileHandle textureFileHandle = getPathAsFileHandle(path, effectFileHandle.type());
-                if (manager.contains(textureFileHandle.path(), EffekseerParticleSubAssetLoader.Result.class)) {
-                    EffekseerParticleSubAssetLoader.Result loadedAsset = manager.get(textureFileHandle.path(), EffekseerParticleSubAssetLoader.Result.class);
-                    result.textures.add(new LoadedTextureResult(textureType, i, loadedAsset));
+                EffekseerParticleSubAssetLoader.Result cachedLoadedAsset = getCachedAssetInLoaderOrAssetManager(manager, textureFileHandle.path());
+                if (cachedLoadedAsset != null) {
+                    result.textures.add(new LoadedTextureResult(textureType, i, cachedLoadedAsset));
                 }
                 else {
                     // Load asset
@@ -448,8 +502,9 @@ public class EffekseerParticleAssetLoader extends AsynchronousAssetLoader<Effeks
         for (int i = 0; i < modelCount; i++) {
             String path = getModelPath(effectFileHandle, i, effekseerEffectCore);
             FileHandle modelFileHandle = getPathAsFileHandle(path, effectFileHandle.type());
-            if (manager.contains(modelFileHandle.path(), EffekseerParticleSubAssetLoader.Result.class)) {
-                result.models.add(manager.get(modelFileHandle.path(), EffekseerParticleSubAssetLoader.Result.class));
+            EffekseerParticleSubAssetLoader.Result cachedLoadedAsset = getCachedAssetInLoaderOrAssetManager(manager, modelFileHandle.path());
+            if (cachedLoadedAsset != null) {
+                result.models.add(cachedLoadedAsset);
             }
             else {
                 // Load asset
@@ -468,8 +523,9 @@ public class EffekseerParticleAssetLoader extends AsynchronousAssetLoader<Effeks
         for (int i = 0; i < materialCount; i++) {
             String path = getMaterialPath(effectFileHandle, i, effekseerEffectCore);
             FileHandle materialFileHandle = getPathAsFileHandle(path, effectFileHandle.type());
-            if (manager.contains(materialFileHandle.path(), EffekseerParticleSubAssetLoader.Result.class)) {
-                result.materials.add(manager.get(materialFileHandle.path(), EffekseerParticleSubAssetLoader.Result.class));
+            EffekseerParticleSubAssetLoader.Result cachedLoadedAsset = getCachedAssetInLoaderOrAssetManager(manager, materialFileHandle.path());
+            if (cachedLoadedAsset != null) {
+                result.materials.add(cachedLoadedAsset);
             }
             else {
                 // Load asset
