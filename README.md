@@ -138,6 +138,10 @@ effekseer.play();
 ### Loading Effects
 ```java
 effekseer = new EffekseerParticle(manager);
+
+// Ideally use an AssetManager that implements DirectAssetAdder for faster loading such as the provided class: AssetManagerWithDirectAssetAdder
+AssetManager assetManager = new AssetManagerWithDirectAssetAdder(fileHandleResolver);
+-- OR --
 AssetManager assetManager = new AssetManager(fileHandleResolver);
 
 // Register the following asset loaders for the asset manager instance once before any loading is executed
