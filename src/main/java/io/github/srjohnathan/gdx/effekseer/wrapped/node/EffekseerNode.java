@@ -17,6 +17,7 @@ public class EffekseerNode<T extends EffectNodeImplemented> {
     //region State
 
     protected EffekseerParticle effect;
+
     protected T coreNode;
     private Array<EffekseerNode> children = new Array<>(0);
 
@@ -333,6 +334,10 @@ public class EffekseerNode<T extends EffectNodeImplemented> {
             return null;
         }
     });
+
+    //endregion
+
+    //region Force Field
 
     //endregion
 
@@ -817,6 +822,70 @@ public class EffekseerNode<T extends EffectNodeImplemented> {
     public DynamicFactorParameter getDynamicFactor() {
         return this.dynamicFactorParameter.get();
     }
+
+    //region Force Fields
+
+    public boolean getLocalForceFieldHasValue() {
+        return coreNode.getLocalForceFieldHasValue();
+    }
+
+    public void setLocalForceFieldHasValue(boolean value) {
+        coreNode.setLocalForceFieldHasValue(value);
+    }
+
+    public boolean getLocalForceFieldIsGlobalEnabled() {
+        return coreNode.getLocalForceFieldIsGlobalEnabled();
+    }
+
+    public void setLocalForceFieldIsGlobalEnabled(boolean value) {
+        coreNode.setLocalForceFieldIsGlobalEnabled(value);
+    }
+
+    public int getNumberOfLocalForceFields() {
+        return coreNode.getNumberOfLocalForceFields();
+    }
+
+    public boolean getLocalForceFieldHasValueAtIndex(int index) {
+        return coreNode.getLocalForceFieldHasValueAtIndex(index);
+    }
+
+    public void setLocalForceFieldHasValueAtIndex(int index, boolean value) {
+        coreNode.setLocalForceFieldHasValueAtIndex(index, value);
+    }
+
+    public Vector3D getLocalForceFieldPositionAtIndex(int index) {
+        return coreNode.getLocalForceFieldPositionAtIndex(index);
+    }
+
+    public void setLocalForceFieldPositionAtIndex(int index, Vector3D value) {
+        coreNode.setLocalForceFieldPositionAtIndex(index, value);
+    }
+
+    public SIMDMat44f getLocalForceFieldRotationAtIndex(int index) {
+        return coreNode.getLocalForceFieldRotationAtIndex(index);
+    }
+
+    public void setLocalForceFieldRotationAtIndex(int index, SIMDMat44f value) {
+        coreNode.setLocalForceFieldRotationAtIndex(index, value);
+    }
+
+    public boolean getLocalForceFieldIsRotatedAtIndex(int index) {
+        return coreNode.getLocalForceFieldIsRotatedAtIndex(index);
+    }
+
+    public void setLocalForceFieldIsRotatedAtIndex(int index, boolean value) {
+        coreNode.setLocalForceFieldIsRotatedAtIndex(index, value);
+    }
+
+    public boolean getLocalForceFieldIsGlobalAtIndex(int index) {
+        return coreNode.getLocalForceFieldIsGlobalAtIndex(index);
+    }
+
+    public void setLocalForceFieldIsGlobalAtIndex(int index, boolean value) {
+        coreNode.setLocalForceFieldIsGlobalAtIndex(index, value);
+    }
+
+    //endregion
 
 
     //endregion

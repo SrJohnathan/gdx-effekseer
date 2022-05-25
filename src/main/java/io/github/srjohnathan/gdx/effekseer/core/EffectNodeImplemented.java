@@ -351,4 +351,64 @@ public class EffectNodeImplemented extends EffectNode {
     return eEffectNodeType.swigToEnum(GDXJNI.EffectNodeImplemented_getType(swigCPtr, this));
   }
 
+  public boolean getLocalForceFieldHasValue() {
+    return GDXJNI.EffectNodeImplemented_getLocalForceFieldHasValue(swigCPtr, this);
+  }
+
+  public void setLocalForceFieldHasValue(boolean value) {
+    GDXJNI.EffectNodeImplemented_setLocalForceFieldHasValue(swigCPtr, this, value);
+  }
+
+  public boolean getLocalForceFieldIsGlobalEnabled() {
+    return GDXJNI.EffectNodeImplemented_getLocalForceFieldIsGlobalEnabled(swigCPtr, this);
+  }
+
+  public void setLocalForceFieldIsGlobalEnabled(boolean value) {
+    GDXJNI.EffectNodeImplemented_setLocalForceFieldIsGlobalEnabled(swigCPtr, this, value);
+  }
+
+  public int getNumberOfLocalForceFields() {
+    return GDXJNI.EffectNodeImplemented_getNumberOfLocalForceFields(swigCPtr, this);
+  }
+
+  public boolean getLocalForceFieldHasValueAtIndex(int index) {
+    return GDXJNI.EffectNodeImplemented_getLocalForceFieldHasValueAtIndex(swigCPtr, this, index);
+  }
+
+  public void setLocalForceFieldHasValueAtIndex(int index, boolean value) {
+    GDXJNI.EffectNodeImplemented_setLocalForceFieldHasValueAtIndex(swigCPtr, this, index, value);
+  }
+
+  public Vector3D getLocalForceFieldPositionAtIndex(int index) {
+    return new Vector3D(GDXJNI.EffectNodeImplemented_getLocalForceFieldPositionAtIndex(swigCPtr, this, index), true);
+  }
+
+  public void setLocalForceFieldPositionAtIndex(int index, Vector3D value) {
+    GDXJNI.EffectNodeImplemented_setLocalForceFieldPositionAtIndex(swigCPtr, this, index, Vector3D.getCPtr(value), value);
+  }
+
+  public SIMDMat44f getLocalForceFieldRotationAtIndex(int index) {
+    return new SIMDMat44f(GDXJNI.EffectNodeImplemented_getLocalForceFieldRotationAtIndex(swigCPtr, this, index), true);
+  }
+
+  public void setLocalForceFieldRotationAtIndex(int index, SIMDMat44f value) {
+    GDXJNI.EffectNodeImplemented_setLocalForceFieldRotationAtIndex(swigCPtr, this, index, SIMDMat44f.getCPtr(value), value);
+  }
+
+  public boolean getLocalForceFieldIsRotatedAtIndex(int index) {
+    return GDXJNI.EffectNodeImplemented_getLocalForceFieldIsRotatedAtIndex(swigCPtr, this, index);
+  }
+
+  public void setLocalForceFieldIsRotatedAtIndex(int index, boolean value) {
+    GDXJNI.EffectNodeImplemented_setLocalForceFieldIsRotatedAtIndex(swigCPtr, this, index, value);
+  }
+
+  public boolean getLocalForceFieldIsGlobalAtIndex(int index) {
+    return GDXJNI.EffectNodeImplemented_getLocalForceFieldIsGlobalAtIndex(swigCPtr, this, index);
+  }
+
+  public void setLocalForceFieldIsGlobalAtIndex(int index, boolean value) {
+    GDXJNI.EffectNodeImplemented_setLocalForceFieldIsGlobalAtIndex(swigCPtr, this, index, value);
+  }
+
 }

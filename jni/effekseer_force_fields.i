@@ -33,7 +33,6 @@
 // Ignore boost data structures
 %rename($ignore, fullname=1) "Effekseer::LocalForceFieldParameter::LocalForceFields";
 %rename("LocalForceFieldInstance", fullname=1) "Effekseer::LocalForceFieldInstance";
-%rename($ignore, fullname=1) "Effekseer::LocalForceFieldParameter::LocalForceFields";
 // std wrappers
 namespace Effekseer {
     const int32_t LocalFieldSlotMax = 4;
