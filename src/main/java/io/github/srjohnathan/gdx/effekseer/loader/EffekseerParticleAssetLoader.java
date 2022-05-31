@@ -326,6 +326,26 @@ public class EffekseerParticleAssetLoader extends AsynchronousAssetLoader<Effeks
             }
         }
 
+        /**
+         * Adds the dependencies of this item to the given list.
+         */
+        public void getDependencies(Array<EffekseerParticleSubAssetLoader.Result> outDependencies) {
+            // Add textures
+            for (LoadedTextureResult texture : this.textures) {
+                outDependencies.add(texture.assetData);
+            }
+
+            // Add models
+            for (EffekseerParticleSubAssetLoader.Result model : this.models) {
+                outDependencies.add(model);
+            }
+
+            // Add materials
+            for (EffekseerParticleSubAssetLoader.Result material : this.materials) {
+                outDependencies.add(material);
+            }
+        }
+
         //endregion
     }
 
