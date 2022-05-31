@@ -301,7 +301,7 @@ public class EffekseerParticleAssetLoader extends AsynchronousAssetLoader<Effeks
         /**
          * Loads the effect sub asset references in this result instance into the given {@link EffekseerManagerCore}.
          */
-        public void loadInfoEffect(EffekseerManagerCore effekseerManagerCore, EffekseerEffectCore effekseerEffectCore, float magnification) {
+        public void loadIntoEffect(EffekseerManagerCore effekseerManagerCore, EffekseerEffectCore effekseerEffectCore, float magnification) {
             // Check that the manager and effect cores are available
             if (effekseerManagerCore == null) {
                 throw new IllegalStateException("EffekseerManagerCore is needed to load Effekseer effects.");
@@ -343,7 +343,7 @@ public class EffekseerParticleAssetLoader extends AsynchronousAssetLoader<Effeks
 
         // Now send the loaded file data to the effect if it wasn't already sent
         Result loadedData = assetManager.get(mainAssetDescriptor);
-        loadedData.loadInfoEffect(effekseerManagerCore, effekseerEffectCore, magnification);
+        loadedData.loadIntoEffect(effekseerManagerCore, effekseerEffectCore, magnification);
 
         // Recycle the obtained parameters object
         ((Parameters)mainAssetDescriptor.params).recycle();
