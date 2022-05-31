@@ -128,6 +128,69 @@
     }
 };
 
+// EffectNode
+%extend Effekseer::EffectNodeImplemented {
+    bool getLocalForceFieldHasValue() {
+        return self->LocalForceField.HasValue;
+    }
+
+    void setLocalForceFieldHasValue(bool value) {
+        self->LocalForceField.HasValue = value;
+    }
+
+    bool getLocalForceFieldIsGlobalEnabled() {
+        return self->LocalForceField.IsGlobalEnabled;
+    }
+
+    void setLocalForceFieldIsGlobalEnabled(bool value) {
+        self->LocalForceField.IsGlobalEnabled = value;
+    }
+
+    int getNumberOfLocalForceFields() {
+        return self->LocalForceField.LocalForceFields.size();
+    }
+
+    bool getLocalForceFieldHasValueAtIndex(int index) {
+        return self->LocalForceField.LocalForceFields[index].HasValue;
+    }
+
+    void setLocalForceFieldHasValueAtIndex(int index, bool value) {
+        self->LocalForceField.LocalForceFields[index].HasValue = value;
+    }
+
+    Vector3D getLocalForceFieldPositionAtIndex(int index) {
+        return self->LocalForceField.LocalForceFields[index].Position;
+    }
+
+    void setLocalForceFieldPositionAtIndex(int index, Vector3D value) {
+        self->LocalForceField.LocalForceFields[index].Position = value;
+    }
+
+    SIMD::Mat44f getLocalForceFieldRotationAtIndex(int index) {
+        return self->LocalForceField.LocalForceFields[index].Rotation;
+    }
+
+    void setLocalForceFieldRotationAtIndex(int index, SIMD::Mat44f value) {
+        self->LocalForceField.LocalForceFields[index].Rotation = value;
+    }
+
+    bool getLocalForceFieldIsRotatedAtIndex(int index) {
+        return self->LocalForceField.LocalForceFields[index].IsRotated;
+    }
+
+    void setLocalForceFieldIsRotatedAtIndex(int index, bool value) {
+        self->LocalForceField.LocalForceFields[index].IsRotated = value;
+    }
+
+    bool getLocalForceFieldIsGlobalAtIndex(int index) {
+        return self->LocalForceField.LocalForceFields[index].IsGlobal;
+    }
+
+    void setLocalForceFieldIsGlobalAtIndex(int index, bool value) {
+        self->LocalForceField.LocalForceFields[index].IsGlobal = value;
+    }
+};
+
 // SpriteColorParameter
 %extend Effekseer::SpriteColorParameter {
     Effekseer::Color getFixedLowerLeftColor() { return self->fixed.ll; }
