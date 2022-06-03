@@ -241,7 +241,7 @@ public class EffekseerParticle implements Disposable {
      * Loads the particle loaded effect data ({@link EffekseerParticleAssetLoader.Result}) into this instance.
      */
     public void loadFromEffectAssetResult(EffekseerParticleAssetLoader.Result result) {
-        result.loadInfoEffect(manager.effekseerManagerCore, effekseerEffectCore, magnification);
+        result.loadIntoEffect(manager.effekseerManagerCore, effekseerEffectCore, magnification);
     }
 
     /**
