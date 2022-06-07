@@ -84,7 +84,9 @@ public class EffekseerManager implements Disposable {
         this.drawParameter = new EffekseerManagerParameters.DrawParameter();
 
         // Initialize the core manager
-        this.effekseerManagerCore.Initialize(maxSpriteCount, core.getId(),true);
+        if (!this.effekseerManagerCore.Initialize(maxSpriteCount, core.getId(),true)) {
+            throw new RuntimeException("Failed to initialize the Effekseer manager instance with " + core.name() + " and max sprite count of " + maxSpriteCount);
+        }
     }
 
     public EffekseerManager(Camera camera, EffekseerCore.TypeOpenGL core, int maxSpriteCount) {

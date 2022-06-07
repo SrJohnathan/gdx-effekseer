@@ -13,6 +13,7 @@ import com.badlogic.gdx.utils.ObjectMap;
 import com.badlogic.gdx.utils.Pool;
 import io.github.srjohnathan.gdx.effekseer.core.*;
 
+import java.io.File;
 import java.util.Random;
 
 /**
@@ -53,20 +54,23 @@ public class EffekseerParticleAssetLoader extends AsynchronousAssetLoader<Effeks
      * @return {@link FileHandle} that represents the given file path and file type for loading an effect related file.
      */
     private static FileHandle getPathAsFileHandle(String path, Files.FileType fileType) {
+        // Simplify/Normalize the given path so that "../" usages are removed.
+        String normalizedPath = (new File(path)).toPath().normalize().toString();
+
         switch (fileType) {
             case Classpath:
-                return Gdx.files.classpath(path);
+                return Gdx.files.classpath(normalizedPath);
             case Internal:
-                return Gdx.files.internal(path);
+                return Gdx.files.internal(normalizedPath);
             case External:
-                return Gdx.files.external(path);
+                return Gdx.files.external(normalizedPath);
             case Absolute:
-                return Gdx.files.absolute(path);
+                return Gdx.files.absolute(normalizedPath);
             case Local:
-                return Gdx.files.local(path);
+                return Gdx.files.local(normalizedPath);
         }
 
-        return Gdx.files.internal(path);
+        return Gdx.files.internal(normalizedPath);
     }
 
     private static String getTexturePath(FileHandle effectFileHandle, int textureIndex, EffekseerTextureType textureType, EffekseerEffectCore effekseerEffectCore) {
