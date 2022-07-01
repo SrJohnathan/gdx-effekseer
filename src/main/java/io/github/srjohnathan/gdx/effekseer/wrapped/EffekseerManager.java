@@ -148,6 +148,14 @@ public class EffekseerManager implements Disposable {
         this.viewport = viewport;
     }
 
+    public Camera getCamera() {
+        return this.camera;
+    }
+
+    public void setCamera(Camera camera) {
+        this.camera = camera;
+    }
+
     /**
      *
      * @return The {@link EffekseerManagerParameters.DrawParameter} being used for every draw call. Update the state of this
