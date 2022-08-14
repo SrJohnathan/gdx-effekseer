@@ -27,6 +27,7 @@ public class EffekseerParticle implements Disposable {
     private OnAnimationComplete onAnimationComplete;
     private int handle;
     private boolean play;
+    private boolean isAddedToManager = false;
     private float magnification = 1.0f;
 
     private boolean isTransformMatrixUpdateQueued = false;
@@ -53,7 +54,6 @@ public class EffekseerParticle implements Disposable {
 
     public EffekseerParticle(EffekseerManager manager) {
         this.manager = Objects.requireNonNull(manager);
-        this.manager.addParticleEffekseer(this);
         this.effekseerEffectCore = new EffekseerEffectCore();
     }
 
@@ -165,6 +165,30 @@ public class EffekseerParticle implements Disposable {
 
     //endregion
 
+    //region Private Methods
+
+    /**
+     * Adds this particle instance to the manager if it was not added to it.
+     */
+    private void addToManager() {
+        if (!this.isAddedToManager) {
+            this.manager.addParticleEffekseer(this);
+            this.isAddedToManager = true;
+        }
+    }
+
+    /**
+     * Removes this particle instance from the manager if it was added to it.
+     */
+    private void removeFromManager() {
+        if (this.isAddedToManager) {
+            this.manager.removeParticleEffekseer(this);
+            this.isAddedToManager = false;
+        }
+    }
+
+    //endregion
+
     //region Protected Methods
 
     protected void update(float delta) {
@@ -183,8 +207,15 @@ public class EffekseerParticle implements Disposable {
     }
 
     protected void delete() {
-        manager.removeParticleEffekseer(this);
         effekseerEffectCore.delete();
+    }
+
+    //endregion
+
+    //region Package Private Methods
+
+    void onAnimationComplete() {
+        this.setToStopState();
     }
 
     //endregion
@@ -297,6 +328,8 @@ public class EffekseerParticle implements Disposable {
     //region Manager Wrapper Methods
 
     public int play() {
+        // Add this effect to the manager class if not already added
+        this.addToManager();
         this.play = true;
         this.handle = this.manager.play(this.effekseerEffectCore);
 
@@ -323,6 +356,8 @@ public class EffekseerParticle implements Disposable {
             this.manager.stopEffect(this.handle);
             this.setToStopState();
         }
+        // Removes this effect from the manager class if added
+        this.removeFromManager();
     }
 
     public int getInstanceCount() {
