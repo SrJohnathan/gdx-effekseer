@@ -1,0 +1,8 @@
+<component name="ProjectRunConfigurationManager">
+  <configuration default="false" name="Install" type="CompoundRunConfigurationType">
+    <toRun name="Install Android" type="MavenRunConfiguration" />
+    <toRun name="Install Core" type="MavenRunConfiguration" />
+    <toRun name="Install Desktop" type="MavenRunConfiguration" />
+    <method v="2" />
+  </configuration>
+</component>

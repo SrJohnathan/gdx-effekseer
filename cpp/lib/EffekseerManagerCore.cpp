@@ -194,7 +194,6 @@ void EffekseerManagerCore::SetMatrix(int handle, float *matrix43) {
     }
 
     auto mat43 = Vector4Map::getConvert43(matrix43);
-    mat43.Value[3][1] = mat43.Value[3][1] /2;
     manager_->SetMatrix(handle, mat43);
 }
 
